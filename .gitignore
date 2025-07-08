@@ -1,0 +1,7 @@
+cet-lua-*/
+Data/
+.vscode/
+Shared/
+*.log
+imgui.ini
+db.sqlite3
