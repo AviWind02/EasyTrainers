@@ -24,17 +24,17 @@ function WeaponTick.TickHandler(delta)
         GravityGun.Tick()
     end
     if teleyGunEnabled then
-        TeleportShot.TeleportToLookAt()
+        TeleportShot.Tick()
     end
 end
 
 function WeaponTick.HandleProjectileHit(self, eventData)
     if JsonHelper.GetBoolValue("WeaponOptions", "FlyingThunderGodTechnique") then
-        FlyingThunderGod.Handle(eventData)
+        FlyingThunderGod.Tick(eventData)
     end
 
     if JsonHelper.GetBoolValue("WeaponOptions", "SmartBladeReturn") then
-        SmartBlade.Return(self, eventData)
+        SmartBlade.Tick(self, eventData)
 
     end
 end

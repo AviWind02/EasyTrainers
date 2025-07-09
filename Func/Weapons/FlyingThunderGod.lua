@@ -1,7 +1,7 @@
 local FlyingThunderGod = {}
 
 -- Teleport player to hit position of projectile (Flying Thunder God)
-function FlyingThunderGod.Handle(eventData)
+function FlyingThunderGod.Tick(eventData)
     local player = Game.GetPlayer()
     local instances = eventData.hitInstances
     if instances and #instances > 0 then

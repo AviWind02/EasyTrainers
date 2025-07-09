@@ -1,7 +1,7 @@
 local SmartBlade = {}
 
 -- Bring blade back to player (SmartBlade)
-function SmartBlade.Return(self, eventData)
+function SmartBlade.Tick(self, eventData)
     local player = Game.GetPlayer()
     if not player then return end
 

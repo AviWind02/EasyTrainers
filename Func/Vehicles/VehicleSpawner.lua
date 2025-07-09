@@ -7,7 +7,7 @@ local sharePath = "Shared/SharedFeature.json"
 function VehicleSpawner.Spawn(tweakDBIDStr, spawnDist)
     local player = Game.GetPlayer()
     if not player then
-        print("[VehicleSpawner] Error: Player not found.")
+        print("[EasyTrainerVehicleSpawner] Error: Player not found.")
         return
     end
 
@@ -26,7 +26,7 @@ function VehicleSpawner.Spawn(tweakDBIDStr, spawnDist)
     transform:SetPosition(transform, spawnPos)
 
     local vehicleID = TweakDBID.new(tweakDBIDStr)
-    print(string.format("[VehicleSpawner] Requesting vehicle '%s' at (%.2f, %.2f, %.2f)",
+    print(string.format("[EasyTrainerVehicleSpawner] Requesting vehicle '%s' at (%.2f, %.2f, %.2f)",
         tweakDBIDStr, spawnPos.x, spawnPos.y, spawnPos.z))
 
     Game.GetPreventionSpawnSystem():RequestUnitSpawn(vehicleID, transform)
@@ -41,13 +41,13 @@ function VehicleSpawner.HandleVehicleSpawnRequest()
     if vs.ShouldSpawn and vs.SpawnTweakID then
         local distance = tonumber(vs.SpawnDistance) or 8.0
 
-        print(string.format("[VehicleSpawner] Spawning vehicle '%s' at distance %.1f", vs.SpawnTweakID, distance))
+        print(string.format("[EasyTrainerVehicleSpawner] Spawning vehicle '%s' at distance %.1f", vs.SpawnTweakID, distance))
         VehicleSpawner.Spawn(vs.SpawnTweakID, distance)
 
         config.VehicleSpawn.ShouldSpawn = false
         JsonHelper.WriteJson(sharePath, config)
 
-        print("[VehicleSpawner] Spawn flag reset.")
+        print("[EasyTrainerVehicleSpawner] Spawn flag reset.")
     end
 end
 

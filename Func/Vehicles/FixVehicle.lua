@@ -6,16 +6,19 @@
     Description: Fully repairs the player's current vehicle if they're inside one.
 ]]
 
-function fixVehicle()
+local VehicleRepairs = {}
+
+
+function VehicleRepairs.Tick()
     local player = Game.GetPlayer()
     if not Game.GetWorkspotSystem():IsActorInWorkspot(player) then
-        print("[fixVehicle] You're not in a vehicle!")
+        print("[EasyTrainerFixVehicle] You're not in a vehicle!")
         return
     end
 
     local vehicle = Game['GetMountedVehicle;GameObject'](player)
     if not vehicle then
-        print("[fixVehicle] No mounted vehicle found.")
+        print("[EasyTrainerFixVehicle] No mounted vehicle found.")
         return
     end
 
@@ -24,7 +27,7 @@ function fixVehicle()
     local name = vehicle:GetDisplayName()
     local type = vehicle:GetVehicleType().value
 
-    print(string.format("[fixVehicle] Repairing: %s (%s)", name, type))
+    print(string.format("[EasyTrainerFixVehicle] Repairing: %s (%s)", name, type))
 
     -- Reset damage level
     vc.damageLevel = 0
@@ -49,7 +52,7 @@ function fixVehicle()
 
         for _, part in ipairs(parts) do
             AnimationControllerComponent.SetInputFloat(vehicle, part, 0.0)
-            print("[fixVehicle] Reset part:", part)
+            print("[EasyTrainerFixVehicle] Reset part:", part)
         end
     end
 
@@ -57,7 +60,7 @@ function fixVehicle()
     if vehicle:GetFlatTireIndex() >= 0 then
         for i = 0, 3 do
             vehicle:ToggleBrokenTire(i, false)
-            print("[fixVehicle] Repaired tire:", i)
+            print("[EasyTrainerFixVehicle] Repaired tire:", i)
         end
     end
 
@@ -73,8 +76,8 @@ function fixVehicle()
     vps:CloseAllVehWindows()
     vps:ForcePersistentStateChanged()
 
-    print("[fixVehicle] Repair complete.")
+    print("[EasyTrainerFixVehicle] Repair complete.")
 end
 
--- Run the function
-fixVehicle()
+return VehicleRepairs
+

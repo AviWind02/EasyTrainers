@@ -16,7 +16,7 @@ function GravityGun.Tick()
         local obj = targetingSystem:GetLookAtObject(player, true, false)
         if obj then
             heldObject = obj
-            print("[GravityGun] Grabbed object: " .. tostring(obj:GetDisplayName()))
+            print("[EasyTrainerGravityGun] Grabbed object: " .. tostring(obj:GetDisplayName()))
         end
     end
 
@@ -40,7 +40,7 @@ function GravityGun.Tick()
             )
             teleportSystem:Teleport(heldObject, targetPos, EulerAngles.new(0, 0, 0))
         else
-            print("[GravityGun] Released object.")
+            print("[EasyTrainerGravityGun] Released object.")
             heldObject = nil
         end
     end

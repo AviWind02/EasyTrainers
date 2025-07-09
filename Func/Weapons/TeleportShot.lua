@@ -5,7 +5,7 @@ local cooldown = 0.5
 local lastTeleportTime = -1
 
 -- Teleport player to look-at position when shooting (TeleyGun)
-function TeleportShot.TeleportToLookAt()
+function TeleportShot.Tick()
     if not WeaponGlobals.IsShootingWithRangedWeapon() then
         return
     end
@@ -13,7 +13,7 @@ function TeleportShot.TeleportToLookAt()
     -- Delay to avoid overshooting and repeated Teley while ADS
     local currentTime = os.clock()
     if currentTime - lastTeleportTime < cooldown then
-        -- print("[TeleyGun] cooldown.")
+        -- print("[EasyTrainerTeleyGun] cooldown.")
         return
     end
 
@@ -25,7 +25,7 @@ function TeleportShot.TeleportToLookAt()
     local camOrigin = player:GetWorldPosition()
     local lookAt = targetingSystem:GetLookAtPosition(player, true, false)
     if not lookAt then
-        print("[TeleyGun] Failed to get look-at position.")
+        print("[EasyTrainerTeleyGun] Failed to get look-at position.")
         return
     end
 
