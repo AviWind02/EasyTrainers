@@ -10,16 +10,20 @@ local WeaponTick = {}
 
 local lastCheck = 0
 local gravityGunEnabled = false
+local teleyGunEnabled = false
 
 function WeaponTick.TickHandler(delta)
     lastCheck = lastCheck + delta
     if lastCheck >= 1.0 then
         lastCheck = 0
         gravityGunEnabled = JsonHelper.GetBoolValue("WeaponOptions", "GravityGun")
+        teleyGunEnabled = JsonHelper.GetBoolValue("WeaponOptions", "TeleyGun")
     end
 
     if gravityGunEnabled then
         GravityGun.Tick()
+    end
+    if teleyGunEnabled then
         TeleportShot.TeleportToLookAt()
     end
 end

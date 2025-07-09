@@ -8,6 +8,10 @@ local playerEvents = require("Func/Events/PlayerEvents")
 local projectileEvents = require("Func/Events/ProjectileEvents")
 
 local weaponsTickEvents = require("Func/Weapons/WeaponTick")
+local vehicleTickEvents = require("Func/Vehicles/VehicleTick")
+
+ 
+
 
 registerForEvent("onInit", function()
     print("[EasyTrainerInit] Starting initialization")
@@ -35,4 +39,5 @@ end)
 
 registerForEvent("onUpdate", function(delta)
     weaponsTickEvents.TickHandler(delta)
+    vehicleTickEvents.TickHandler(delta) 
 end)

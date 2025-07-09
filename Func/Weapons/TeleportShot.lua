@@ -10,9 +10,10 @@ function TeleportShot.TeleportToLookAt()
         return
     end
 
+    -- Delay to avoid overshooting and repeated Teley while ADS
     local currentTime = os.clock()
     if currentTime - lastTeleportTime < cooldown then
-        print("[TeleyGun] cooldown.")
+        -- print("[TeleyGun] cooldown.")
         return
     end
 
