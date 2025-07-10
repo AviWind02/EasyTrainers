@@ -8,6 +8,19 @@
 
 local VehicleRepairs = {}
 
+function VehicleRepairs.IsVehicleDamaged()
+    local player = Game.GetPlayer()
+    local vehicle = Game.GetMountedVehicle(player)
+
+    if not vehicle then return false end
+
+    local gvc = vehicle:GetVehiclePS()
+    if not gvc then return false end
+    return gvc:GetIsDestroyed()
+
+
+end
+
 
 function VehicleRepairs.Tick()
     local player = Game.GetPlayer()

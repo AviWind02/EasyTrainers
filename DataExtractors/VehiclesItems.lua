@@ -162,7 +162,7 @@ function M.Dump()
 				file:write(string.format(
 					'  { "id": "%s", "manufacturer": "%s", "category": "%s", "faction": "%s", "tags": [%s], "vehicleInfoLore": { "description": "%s", "productionYear": "%s" } }',
 					EscapeString(id), manufacturerName, category, faction, table.concat(tags, ", "),
-					EscapeString(vehicleInfoLore.description or ""),
+					vehicleInfoLore.description,
 					EscapeString(vehicleInfoLore.productionYear or "")
 				))
 
