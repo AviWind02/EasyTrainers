@@ -3,6 +3,7 @@ local M = {}
 local folderPath = "Data"
 local fileName = folderPath .. "/WeaponsItems.json"
 local status = require("Func/Core/SharedStatus")
+local Logger = require("Func/Core/Logger")
 
 local function EscapeString(s)
 	if not s then return "Unknown" end
@@ -187,60 +188,58 @@ end
 
 
 function M.Dump()
-	print("[EasyTrainerDataGetter] Dumping in-game weapon records...")
+    Logger.Log("[EasyTrainerDataGetter] Dumping in-game weapon records...")
 
-	local file = io.open(fileName, "w")
-	if not file then
-		print("[EasyTrainerDataGetter] Failed to open output file.")
-		return
-	end
+    local file = io.open(fileName, "w")
+    if not file then
+        Logger.Log("[EasyTrainerDataGetter] Failed to open output file.")
+        return
+    end
 
-	file:write("[\n")
+    file:write("[\n")
 
-	local records = TweakDB:GetRecords("gamedataWeaponItem_Record")
-	local count, first = 0, true
+    local records = TweakDB:GetRecords("gamedataWeaponItem_Record")
+    local count, first = 0, true
 
-	for _, record in ipairs(records) do
-		local ok, id = pcall(function() return record:GetID().value end)
-		if ok and id and id:find("^Items%.") then
-			local tags = GetTags(record)
-			local escapedTags = EscapeTags(tags)
-			local stats = GetWeaponStats(record, tags, id)
-			local onWall = IsWallWeapon(id)
-			local lore = GetWeaponLore(record)
+    for _, record in ipairs(records) do
+        local ok, id = pcall(function() return record:GetID().value end)
+        if ok and id and id:find("^Items%.") then
+            local tags = GetTags(record)
+            local escapedTags = EscapeTags(tags)
+            local stats = GetWeaponStats(record, tags, id)
+            local onWall = IsWallWeapon(id)
+            local lore = GetWeaponLore(record)
 
-			if not first then file:write(",\n") else first = false end
+            if not first then file:write(",\n") else first = false end
 
-			file:write(string.format(
-				'  { "id": "%s", "onWall": %s, "tags": [%s], "stats": { "type": "%s", "rarity": "%s", "iconic": %s, "isTech": %s, "isSmart": %s, "isPower": %s }, "weaponLore": { "manufacturer": "%s" } }',
-				EscapeString(id),
-				tostring(onWall),
-				table.concat(escapedTags, ", "),
-				EscapeString(stats.type),
-				EscapeString(stats.rarity),
-				tostring(stats.iconic),
-				tostring(stats.isTech),
-				tostring(stats.isSmart),
-				tostring(stats.isPower),
-				lore.manufacturer
-			))
+            file:write(string.format(
+                '  { "id": "%s", "onWall": %s, "tags": [%s], "stats": { "type": "%s", "rarity": "%s", "iconic": %s, "isTech": %s, "isSmart": %s, "isPower": %s }, "weaponLore": { "manufacturer": "%s" } }',
+                EscapeString(id),
+                tostring(onWall),
+                table.concat(escapedTags, ", "),
+                EscapeString(stats.type),
+                EscapeString(stats.rarity),
+                tostring(stats.iconic),
+                tostring(stats.isTech),
+                tostring(stats.isSmart),
+                tostring(stats.isPower),
+                lore.manufacturer
+            ))
 
-			count = count + 1
-		end
-	end
+            count = count + 1
+        end
+    end
 
-	file:write("\n]\n")
-	file:close()
+    file:write("\n]\n")
+    file:close()
 
-	if count > 0 then
-		status.SetDumpStatus("WeaponsItems", "Complete")
-		print(string.format("[EasyTrainerDataGetter] Wrote %d weapons to %s", count, fileName))
-	else
-		status.SetDumpStatus("WeaponsItems", "Error")
-		print("[EasyTrainerDataGetter] No weapon records found.")
-	end
-
-
+    if count > 0 then
+        status.SetDumpStatus("WeaponsItems", "Complete")
+        Logger.Log(string.format("[EasyTrainerDataGetter] Wrote %d weapons to %s", count, fileName))
+    else
+        status.SetDumpStatus("WeaponsItems", "Error")
+        Logger.Log("[EasyTrainerDataGetter] No weapon records found.")
+    end
 end
 
 return M

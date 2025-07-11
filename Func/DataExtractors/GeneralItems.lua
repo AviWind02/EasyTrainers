@@ -3,6 +3,7 @@ local M = {}
 local folderPath = "Data"
 local fileName = folderPath .. "/GeneralItems.json"
 local status = require("Func/Core/SharedStatus")
+local Logger = require("Func/Core/Logger")
 
 -- handle quotes properly so JSON doesn't break
 local function EscapeString(s)
@@ -127,50 +128,49 @@ local function GetQuality(id)
 end
 
 function M.Dump()
-	print("[EasyTrainerDataGetter] Dumping in-game item records...")
+    Logger.Log("[EasyTrainerDataGetter] Dumping in-game item records...")
 
-	local file = io.open(fileName, "w")
-	if not file then
-		print("[EasyTrainerDataGetter] Failed to open output file.")
-		return
-	end
+    local file = io.open(fileName, "w")
+    if not file then
+        Logger.Log("[EasyTrainerDataGetter] Failed to open output file.")
+        return
+    end
 
-	file:write("[\n")
+    file:write("[\n")
 
-	local records = TweakDB:GetRecords("gamedataItem_Record")
-	local count, first = 0, true
+    local records = TweakDB:GetRecords("gamedataItem_Record")
+    local count, first = 0, true
 
-	for _, record in ipairs(records) do
-		local success, id = pcall(function() return record:GetID().value end)
-		if success and id and id:find("^Items%.") then
-			local typeName, typeRaw = GetTypeName(record)
-			local name = GetDisplayName(record, typeRaw)
-			local description = GetDescription(record)
-			local tags = GetTags(record)
-			local quality = GetQuality(id)
+    for _, record in ipairs(records) do
+        local success, id = pcall(function() return record:GetID().value end)
+        if success and id and id:find("^Items%.") then
+            local typeName, typeRaw = GetTypeName(record)
+            local name = GetDisplayName(record, typeRaw)
+            local description = GetDescription(record)
+            local tags = GetTags(record)
+            local quality = GetQuality(id)
 
-			if not first then file:write(",\n") else first = false end
+            if not first then file:write(",\n") else first = false end
 
-			file:write(string.format(
-				'  { "id": "%s", "name": "%s", "typeName": "%s", "quality": "%s", "description": "%s", "tags": [%s] }',
-				EscapeString(id), name, typeName, quality, description, table.concat(tags, ", ")
-			))
+            file:write(string.format(
+                '  { "id": "%s", "name": "%s", "typeName": "%s", "quality": "%s", "description": "%s", "tags": [%s] }',
+                EscapeString(id), name, typeName, quality, description, table.concat(tags, ", ")
+            ))
 
-			count = count + 1
-		end
-	end
+            count = count + 1
+        end
+    end
 
-	file:write("\n]\n")
-	file:close()
-	
-	if count > 0 then
-		status.SetDumpStatus("GeneralItems", "Complete")
-		print(string.format("[EasyTrainerDataGetter] Wrote %d items to %s", count, fileName))
-	else
-		status.SetDumpStatus("GeneralItems", "Error")
-		print("[EasyTrainerDataGetter] No items found.")
-end
+    file:write("\n]\n")
+    file:close()
 
+    if count > 0 then
+        status.SetDumpStatus("GeneralItems", "Complete")
+        Logger.Log(string.format("[EasyTrainerDataGetter] Wrote %d items to %s", count, fileName))
+    else
+        status.SetDumpStatus("GeneralItems", "Error")
+        Logger.Log("[EasyTrainerDataGetter] No items found.")
+    end
 end
 
 return M

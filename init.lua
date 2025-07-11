@@ -1,8 +1,11 @@
-local generalItems = require("DataExtractors/GeneralItems")
-local vehiclesItems = require("DataExtractors/VehiclesItems")
-local weaponsItems = require("DataExtractors/WeaponItems")
 
 local status = require("Func/Core/SharedStatus")
+local Logger = require("Func/Core/Logger")
+
+local generalItems = require("Func/DataExtractors/GeneralItems")
+local vehiclesItems = require("Func/DataExtractors/VehiclesItems")
+local weaponsItems = require("Func/DataExtractors/WeaponItems")
+
 
 local playerEvents = require("Func/Events/PlayerEvents")
 local projectileEvents = require("Func/Events/ProjectileEvents")
@@ -11,35 +14,32 @@ local vehicleEvents = require("Func/Events/VehicleEvents")
 local weaponsTickEvents = require("Func/Weapons/WeaponTick")
 local vehicleTickEvents = require("Func/Vehicles/VehicleTick")
 
-local JsonHelper = require("Func/Core/JsonHelper") -- Assuming you're requiring this module
-local sharePath = "Shared/Dump.json"
 
 
 registerForEvent("onInit", function()
-    print("[EasyTrainerInit] Starting initialization")
+    Logger.Initialize()
+    Logger.Log("[EasyTrainerInit] Starting initialization")
 
-    print("[EasyTrainerInit] Resetting dump statuses.")
+    Logger.Log("[EasyTrainerInit] Resetting dump statuses.")
     status.ResetStatuses({
         "GeneralItems",
         "VehiclesItems",
         "WeaponsItems"
     })
 
-    print("[EasyTrainerInit] Performing data dumps")
+    Logger.Log("[EasyTrainerInit] Performing data dumps")
     generalItems.Dump()
     vehiclesItems.Dump()
     weaponsItems.Dump()
 
-    print("[EasyTrainerInit] Initializing events")
+    Logger.Log("[EasyTrainerInit] Initializing events")
     playerEvents.Init()
     projectileEvents.Init()
     vehicleEvents.Init()
 
-
-
-
-    print("[EasyTrainerInit] Initialization complete.")
+    Logger.Log("[EasyTrainerInit] Initialization complete.")
 end)
+
 
 
 
@@ -62,11 +62,8 @@ registerForEvent("onDraw", function()
     ImGui.SetNextWindowSize(300, 500, ImGuiCond.FirstUseEver)
 
     if ImGui.Begin("Luna Menu", ImGuiWindowFlags.NoScrollbar + ImGuiWindowFlags.NoScrollWithMouse + ImGuiWindowFlags.NoTitleBar) then
-        -- Get window position and size
         local winX, winY = ImGui.GetWindowPos()
         local winW, winH = ImGui.GetWindowSize()
-
-        -- Pass the bounds into your DrawMenu
         DrawManager.DrawMenu(winX, winY, winW, winH)
 
         ImGui.End()

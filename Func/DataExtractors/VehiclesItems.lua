@@ -3,6 +3,7 @@ local M = {}
 local folderPath = "Data"
 local fileName = folderPath .. "/VehiclesItems.json"
 local status = require("Func/Core/SharedStatus")
+local Logger = require("Func/Core/Logger")
 
 local function EscapeString(s)
 	if not s then return "Unknown" end
@@ -111,19 +112,13 @@ local function getVehicleInfoLore(record, id)
 			local text = Game.GetLocalizedText(ui:Info())
 			if text and text ~= "" and text ~= "Label Not Found" then
 				info.description = EscapeString(text)
-			else
-				print(string.format("[Debug] No valid description for vehicle: %s (LocKey: %s)", tostring(id), tostring(ui:Info())))
 			end
-		else
-			print(string.format("[Debug] ui:Info() failed for vehicle: %s", tostring(id)))
 		end
 
 		local okYear, year = pcall(function() return ui:ProductionYear() end)
 		if okYear and year then
 			info.productionYear = tostring(year)
 		end
-	else
-		print(string.format("[Debug] VehicleUIData() missing for vehicle: %s", tostring(id)))
 	end
 
 	return info
@@ -144,52 +139,53 @@ end
 
 
 function M.Dump()
-	print("[EasyTrainerDataGetter] Dumping in-game vehicle records...")
+    Logger.Log("[EasyTrainerDataGetter] Dumping in-game vehicle records...")
 
-	local file = io.open(fileName, "w")
-	if not file then
-		print("[EasyTrainerDataGetter] Failed to open output file.")
-		return
-	end
+    local file = io.open(fileName, "w")
+    if not file then
+        Logger.Log("[EasyTrainerDataGetter] Failed to open output file.")
+        return
+    end
 
-	file:write("[\n")
+    file:write("[\n")
 
-	local records = TweakDB:GetRecords("gamedataVehicle_Record")
-	local count, first = 0, true
+    local records = TweakDB:GetRecords("gamedataVehicle_Record")
+    local count, first = 0, true
 
-	for _, record in ipairs(records) do
-		local success, id = pcall(function() return record:GetID().value end)
-		if success and id and id:find("^Vehicle%.v_") then
-			-- local name = GetDisplayName(record)
-			-- name = SanitizeName(name)
-			-- I'll get them in run time
-			local tags = GetTags(record)
-			local category = InferVehicleCategoryFromTags(tags)
-			local faction = InferFaction(record, id)
-			local vehicleInfoLore = getVehicleInfoLore(record, id)
-			local manufacturerName = getManufacturerName(record)
+    for _, record in ipairs(records) do
+        local success, id = pcall(function() return record:GetID().value end)
+        if success and id and id:find("^Vehicle%.v_") then
+            local name = GetDisplayName(record)
+            --name = SanitizeName(name)
+            local tags = GetTags(record)
+            local category = InferVehicleCategoryFromTags(tags)
+            local faction = InferFaction(record, id)
+            local vehicleInfoLore = getVehicleInfoLore(record, id)
+            local manufacturerName = getManufacturerName(record)
 
-			if not first then file:write(",\n") else first = false end
-			file:write(string.format(
-				'  { "id": "%s", "manufacturer": "%s", "category": "%s", "faction": "%s", "tags": [%s], "vehicleInfoLore": { "description": "%s", "productionYear": "%s" } }',
-				EscapeString(id), manufacturerName, category, faction, table.concat(tags, ", "),
-				vehicleInfoLore.description,
-				EscapeString(vehicleInfoLore.productionYear or "")
+            if not first then file:write(",\n") else first = false end
+         file:write(string.format(
+			'  { "id": "%s", "name": "%s", "manufacturer": "%s", "category": "%s", "faction": "%s", "tags": [%s], "vehicleInfoLore": { "description": "%s", "productionYear": "%s" } }',
+			EscapeString(id), EscapeString(name), manufacturerName, category, faction, table.concat(tags, ", "),
+			vehicleInfoLore.description,
+			EscapeString(vehicleInfoLore.productionYear or "")
 			))
 
-			count = count + 1
-		end
-	end
+            count = count + 1
+        end
+    end
 
-	file:write("\n]\n")
-	file:close()
-	if count > 0 then
-		status.SetDumpStatus("VehiclesItems", "Complete")
-		print(string.format("[EasyTrainerDataGetter] Wrote %d vehicles to %s", count, fileName))
-	else
-		status.SetDumpStatus("VehiclesItems", "Error")
-		print("[EasyTrainerDataGetter] No vehicle records found.")
-	end
+    file:write("\n]\n")
+    file:close()
+
+    if count > 0 then
+        status.SetDumpStatus("VehiclesItems", "Complete")
+        Logger.Log(string.format("[EasyTrainerDataGetter] Wrote %d vehicles to %s", count, fileName))
+    else
+        status.SetDumpStatus("VehiclesItems", "Error")
+        Logger.Log("[EasyTrainerDataGetter] No vehicle records found.")
+    end
 end
+
 
 return M

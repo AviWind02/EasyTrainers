@@ -6,3 +6,11 @@ Shared/
 imgui.ini
 db.sqlite3
 Vendor/
+Logs/log_1.txt
+Logs/log_2.txt
+Logs/log_3.txt
+Logs/log_4.txt
+Logs/log_5.txt
+Logs/log_6.txt
+Logs/log_current.txt
+Vendor/CETImGuiTypes
