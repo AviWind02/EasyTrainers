@@ -5,4 +5,4 @@ Shared/
 *.log
 imgui.ini
 db.sqlite3
-Vendor/CETImGuiTypes
+Vendor/
