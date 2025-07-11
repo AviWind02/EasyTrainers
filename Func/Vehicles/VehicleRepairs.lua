@@ -90,6 +90,12 @@ function VehicleRepairs.Tick()
     vps:ForcePersistentStateChanged()
 
     print("[EasyTrainerFixVehicle] Repair complete.")
+
+    local comps = vehicle:GetComponents()
+    for i, comp in ipairs(comps) do
+        print(string.format("Component [%d]: %s", i, comp:GetClassName()))
+    end
+
 end
 
 return VehicleRepairs

@@ -10,7 +10,9 @@ local vehicleEvents = require("Func/Events/VehicleEvents")
 
 local weaponsTickEvents = require("Func/Weapons/WeaponTick")
 local vehicleTickEvents = require("Func/Vehicles/VehicleTick")
- 
+
+local JsonHelper = require("Func/Core/JsonHelper") -- Assuming you're requiring this module
+local sharePath = "Shared/Dump.json"
 
 
 registerForEvent("onInit", function()
@@ -39,44 +41,36 @@ registerForEvent("onInit", function()
     print("[EasyTrainerInit] Initialization complete.")
 end)
 
-local lastVehicle = nil
-local wasInVehicle = false
-
-registerForEvent("onDraw", function()
-    local player = Game.GetPlayer()
-    if not player then return end
-
-    local currentVehicle = Game.GetMountedVehicle(player)
-
-    -- Track last vehicle when player exits
-    if currentVehicle ~= nil then
-        wasInVehicle = true
-        lastVehicle = currentVehicle
-    elseif wasInVehicle then
-        wasInVehicle = false
-        -- lastVehicle already set, keep it
-    end
-
-    -- === Demo ImGui Window ===
-    ImGui.Begin("Vehicle Remote Test")
-
-    if lastVehicle then
-        local name = lastVehicle:GetDisplayName()
-        ImGui.Text("Last Vehicle: " .. tostring(name))
 
 
-    else
-        ImGui.Text("No last vehicle stored.")
-    end
 
-
-    ImGui.End()
+registerForEvent("onUpdate", function(delta)
+    weaponsTickEvents.TickHandler(delta)
+    vehicleTickEvents.TickHandler(delta)
 end)
 
 
- registerForEvent("onUpdate", function(delta)
-     weaponsTickEvents.TickHandler(delta)
-     vehicleTickEvents.TickHandler(delta) 
+
+
+
+
+
+local DrawManager = require("Draw/Manager")
+
+registerForEvent("onDraw", function()
+    -- Set up a dummy window to enable movement and resizing
+    ImGui.SetNextWindowSize(300, 500, ImGuiCond.FirstUseEver)
+
+    if ImGui.Begin("Luna Menu", ImGuiWindowFlags.NoScrollbar + ImGuiWindowFlags.NoScrollWithMouse + ImGuiWindowFlags.NoTitleBar) then
+        -- Get window position and size
+        local winX, winY = ImGui.GetWindowPos()
+        local winW, winH = ImGui.GetWindowSize()
+
+        -- Pass the bounds into your DrawMenu
+        DrawManager.DrawMenu(winX, winY, winW, winH)
+
+        ImGui.End()
+    end
 end)
 
 
@@ -150,5 +144,3 @@ Observe("PlayerPuppet", "OnAction", function(_, action)
     end
 end)
 --]]
-
-

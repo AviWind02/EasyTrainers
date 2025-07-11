@@ -98,27 +98,38 @@ local function GetDisplayName(record)
 	return "Unknown"
 end
 
-local function getVehicleInfoLore(record)
+local function getVehicleInfoLore(record, id)
 	local info = {
-		description = nil,
+		description = "No Description Available",
 		productionYear = nil
 	}
 
 	local success, ui = pcall(function() return record:VehicleUIData() end)
 	if success and ui then
-		local okDesc, desc = pcall(function() return ui:Info() end)
-		if okDesc and desc then
-			info.description = tostring(desc)
+		local okDesc, _ = pcall(function() return ui:Info() end)
+		if okDesc then
+			local text = Game.GetLocalizedText(ui:Info())
+			if text and text ~= "" and text ~= "Label Not Found" then
+				info.description = EscapeString(text)
+			else
+				print(string.format("[Debug] No valid description for vehicle: %s (LocKey: %s)", tostring(id), tostring(ui:Info())))
+			end
+		else
+			print(string.format("[Debug] ui:Info() failed for vehicle: %s", tostring(id)))
 		end
 
 		local okYear, year = pcall(function() return ui:ProductionYear() end)
 		if okYear and year then
 			info.productionYear = tostring(year)
 		end
+	else
+		print(string.format("[Debug] VehicleUIData() missing for vehicle: %s", tostring(id)))
 	end
 
 	return info
 end
+
+
 
 local function getManufacturerName(record)
 	local success, mfr = pcall(function() return record:Manufacturer() end)
@@ -155,16 +166,16 @@ function M.Dump()
 			local tags = GetTags(record)
 			local category = InferVehicleCategoryFromTags(tags)
 			local faction = InferFaction(record, id)
-			local vehicleInfoLore = getVehicleInfoLore(record)
+			local vehicleInfoLore = getVehicleInfoLore(record, id)
 			local manufacturerName = getManufacturerName(record)
 
 			if not first then file:write(",\n") else first = false end
-				file:write(string.format(
-					'  { "id": "%s", "manufacturer": "%s", "category": "%s", "faction": "%s", "tags": [%s], "vehicleInfoLore": { "description": "%s", "productionYear": "%s" } }',
-					EscapeString(id), manufacturerName, category, faction, table.concat(tags, ", "),
-					vehicleInfoLore.description,
-					EscapeString(vehicleInfoLore.productionYear or "")
-				))
+			file:write(string.format(
+				'  { "id": "%s", "manufacturer": "%s", "category": "%s", "faction": "%s", "tags": [%s], "vehicleInfoLore": { "description": "%s", "productionYear": "%s" } }',
+				EscapeString(id), manufacturerName, category, faction, table.concat(tags, ", "),
+				vehicleInfoLore.description,
+				EscapeString(vehicleInfoLore.productionYear or "")
+			))
 
 			count = count + 1
 		end
@@ -179,7 +190,6 @@ function M.Dump()
 		status.SetDumpStatus("VehiclesItems", "Error")
 		print("[EasyTrainerDataGetter] No vehicle records found.")
 	end
-
 end
 
 return M
