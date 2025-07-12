@@ -1,9 +1,7 @@
--- File: Player/StatModifiers/Movement.lua
 local StatModifiers = require("GamePlay/StatModifiers")
 
 local Movement = {}
 
--- Exposed toggles and value refs
 Movement.toggleSpeed     = { value = false }
 Movement.speedMultiplier = { value = 5.0 }
 
@@ -16,7 +14,6 @@ Movement.timeScaleMultiplier  = { value = 0.1 }
 Movement.toggleSandeDuration  = { value = false }
 Movement.durationMultiplier   = { value = 2.5 }
 
--- Internal modifier handles
 Movement.speedHandle = nil
 function Movement.SetMaxSpeed(remove, value)
     if remove then
