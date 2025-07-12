@@ -5,27 +5,75 @@ local function RGBA(r, g, b, a)
 end
 
 
-UI.Colors = {
-    -- Text
-    Text = 0xFFFFFFFF,
-    MutedText = 0xFF788CA0,
 
-    -- Surfaces
-    Background = 0xFF080A12,
-    FrameBg = 0xFF202020,
 
-    -- Borders & UI elements
-    Border = 0xFF505A6E,
-    Highlight = 0xFF3A6EA5,
-    ActiveHighlight = 0x5A00FFB4,
-    HoverBg = 0xA01E3C5A,
-    Active = 0xFFFF1493,
-    Grab = 0xFF00FFFF,
+UI.ColPalette = {
+    PureWhite = 0xFFFFFFFF,
+    DesaturatedBlueGray = 0xFFA08C78,
+    DeepBlueBlack = 0xFF120A08,
+    SlightBlueGray = 0xFF221612,
+    MutedSlate = 0xFF6E5A50,
+    BrightNeonAqua = 0xFFB4FF00,
+    TranslucentAqua = 0x5AB4FF00,
+    SoftCyanHighlight = 0xA05A3C1E,
+    CyberpunkPink = 0xFF9314FF,
+    NeonTeal = 0xFFFFFF00,
 
-    -- Utility
-    Transparent = 0x00000000
+    Transparent = 0x00000000,
+
+    DustySteelBlue = 0xFFA08C78,
+    MidnightPurple = 0xFF120A08,
+    DarkCharcoal = 0xFF202020,
+    GunmetalEdge = 0xFF6E5A50,
+    DeepSkyAccent = 0xFFA56E3A,
+    HotPinkPulse = 0xFF9314FF,
+
+    SoftWhite = 0xFFC8C8C8,
+    SoftGreen = 0xFF70C070,
+    SoftYellow = 0xFF80D0D0,
+    SoftRed = 0xFF8080F0,
+    SoftBlue = 0xFFD0B0A0,
+    SoftPurple = 0xFFD080D0,
+    SoftOrange = 0xFFA0C0D0,
+    SoftTeal = 0xFF80C0C0,
+    SoftPink = 0xFFD0A0C0,
+
+    MutedGrey = 0xFF5A5A5A,
+    MutedCyan = 0xFF608080,
+    MutedLime = 0xFF88AA88,
+    MutedRose = 0xFFAA8888,
+
+    GlowGreen = 0xFF00FF88,
+    GlowBlue = 0xFF00BBFF,
+    GlowPurple = 0xFFB388FF,
+    GlowYellow = 0xFFFFFF88,
+    GlowRed = 0xFFFF6A6A,
+
+    DesaturatedSlateBlue = 0xFF788CA0,
+    DeepIndigoBlack = 0xFF080A12,
+    SteelBorderGray = 0xFF505A6E,
+    CoolSkyBlue = 0xFF3A6EA5,
+    HotCyberPink = 0xFFFF1493,
+    
 }
 
+
+UI.Colors={
+    Text=UI.ColPalette.PureWhite,
+    MutedText=UI.ColPalette.DesaturatedSlateBlue,
+
+    Background=UI.ColPalette.DeepIndigoBlack,
+    FrameBg=UI.ColPalette.DarkCharcoal,
+
+    Border=UI.ColPalette.SteelBorderGray,
+    Highlight=UI.ColPalette.CoolSkyBlue,
+    ActiveHighlight=UI.ColPalette.TranslucentAqua,
+    HoverBg=UI.ColPalette.SoftCyanHighlight,
+    Active=UI.ColPalette.HotCyberPink,
+    Grab=UI.ColPalette.NeonTeal,
+
+    Transparent=UI.ColPalette.Transparent
+}
 UI.Layout = {
     Padding = 14.0,
     FrameRounding = 6.0,
@@ -42,8 +90,8 @@ UI.Layout = {
 }
 
 UI.Toggle = {
-    OnColor = UI.Colors.Highlight,
-    OffColor = RGBA(40, 40, 60, 255),
+    OnColor = UI.ColPalette.SoftWhite,
+    OffColor = UI.ColPalette.SoftYellow,
     Size = 10.0,
     Rounding = 4.0,
 
@@ -72,10 +120,22 @@ UI.Input = {
     Rounding = UI.Layout.FrameRounding
 }
 
+-- Header style config
 UI.Header = {
-    TitleBar = 0xFF14161C,
-    Footer = 0xFF191926,
-    Height = 40.0
+    Height = 40.0,
+    BackgroundColor = 0xFF14161C,
+    TextColor = 0xFFFFFFFF,
+    FontSize = 18,
+    Text = "Main Menu"
+}
+
+-- Footer style config
+UI.Footer = {
+    Height = 25.0,
+    BackgroundColor = 0xFF191926,
+    TextColor = 0xFFAAAAAA,
+    FontSize = 12,
+    Text = "v1.0.0 | Easy Trainers",
 }
 
 UI.Scroll = {

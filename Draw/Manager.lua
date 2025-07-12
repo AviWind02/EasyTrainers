@@ -1,33 +1,74 @@
 local Controls = require("Draw/Controls")
 local OptionManager = require("Draw/OptionManager")
+local Notifier = require("Draw/NotificationManager")
+local Decorators = require("Draw/Decorators")
+local Submenus = require("Draw/SubmenuManager")
 
 local M = {}
 
 
-local test = false
+local StatModifiers = require("Func/Gameplay/StatModifiers")
 
-local myToggle = { value = true }
+local toggleSpeed = { value = false }
+local speedHandle = nil
 
+local function SetSpeed(remove)
+    if remove then
+        if speedHandle then
+            StatModifiers.Remove(speedHandle)
+        end
+    else
+        speedHandle = StatModifiers.Create(gamedataStatType.MaxSpeed, gameStatModifierType.Multiplicative, 5.0)
+        StatModifiers.Add(speedHandle)
+    end
+end
+
+function testMenu2()
+    
+    StatModifiers.HandleStatModifierToggle(toggleSpeed, SetSpeed)
+
+    OptionManager.Toggle("Multiply Max Speed (x5)", toggleSpeed)
+
+    OptionManager.Option("Test Option 1", "Value 1", "This is a test option")
+    OptionManager.Option("Test Option 2", "Value 2", "This is another test option")
+    OptionManager.Option("Test Option 3", "Value 3", "Yet another test option")
+
+end
+local testMenu = { title = "testMenu", view = testMenu2 }
+
+local function MainMenuView()
+    OptionManager.Submenu("Self Menu", testMenu, "Player features")
+ 
+end
+local mainMenu = { title = "Main Menu", view = MainMenuView }
+
+
+
+local initialized = false
 
 -- Menu renderer
 function M.DrawMenu(x, y, w, h)
-
     OptionManager.SetMenuBounds(x, y, w, h)
-    Controls.HandleInputTick()
+
+
+    if not initialized then
+        initialized = true
+        Submenus.OpenSubmenu(mainMenu)
+        Notifier.Push("EasyTrainer initialized!")
+    end
 
     -- Background
     DrawHelpers.RectFilled(x, y, w, h, 0xFF1A1A1A, 6.0)
+    Decorators.DrawTitleBar(x, y, w)
 
-    -- Menu options
-    if OptionManager.Option("Start Game", "F5", "Start a new adventure") then end
-    if OptionManager.Option("Continue", "F6", "Resume your journey") then end
-    if OptionManager.Option("Settings", "", "Change your preferences") then end
-    if OptionManager.Option("Credits", "", "See who made this") then end
-    if OptionManager.Option("Exit", "Esc", "Close the menu") then end
-       OptionManager.Toggle("Godmode", myToggle)
-    -- Save total option count for control use
+    -- Draw current submenu view
+    local view = Submenus.GetCurrentView()
+    if view then view() end
+
+    Decorators.DrawFooter(x, y, w, h, OptionManager.maxVisible)
+
+    -- Save total option count
     OptionManager.maxOptions = Controls.optionIndex
 end
-
 
 return M

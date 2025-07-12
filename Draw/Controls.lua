@@ -1,5 +1,7 @@
 local Controls = {}
 
+local Submenus = require("Draw/SubmenuManager")
+
 -- Constants
 local scrollDelayBase = 200
 local scrollAcceleration = 20
@@ -65,6 +67,12 @@ function Controls.HandleInputTick()
     Controls.selectPressed = false
     Controls.miscPressed = false
 
+    local isHoldingUp = ImGui.IsKeyDown(ImGuiKey.UpArrow)
+    local isHoldingDown = ImGui.IsKeyDown(ImGuiKey.DownArrow)
+    local isHoldingLeft = ImGui.IsKeyDown(ImGuiKey.LeftArrow)
+    local isHoldingRight = ImGui.IsKeyDown(ImGuiKey.RightArrow)
+
+    -- Toggle menu
     if ToggleMenu() and now - lastKeyTick > scrollDelay then
         menuOpen = not menuOpen
         lastKeyTick = now
@@ -73,28 +81,37 @@ function Controls.HandleInputTick()
 
     if not menuOpen then return end
 
+    local acceleratedScroll = scrollAcceleration
+
+    -- Boost scrolling when held
+    if isHoldingUp or isHoldingDown then
+        acceleratedScroll = scrollAcceleration * 2.0
+    elseif isHoldingLeft or isHoldingRight then
+        acceleratedScroll = scrollAcceleration * 1.5
+    end
+
     if Up() and now - lastKeyTick > scrollDelay then
         Controls.currentOption = (Controls.currentOption > 1) and (Controls.currentOption - 1) or Controls.optionIndex
         lastKeyTick = now
-        scrollDelay = math.max(scrollMinDelay, scrollDelay - scrollAcceleration)
+        scrollDelay = math.max(scrollMinDelay, scrollDelay - acceleratedScroll)
     elseif Down() and now - lastKeyTick > scrollDelay then
         Controls.currentOption = (Controls.currentOption < Controls.optionIndex) and (Controls.currentOption + 1) or 1
         lastKeyTick = now
-        scrollDelay = math.max(scrollMinDelay, scrollDelay - scrollAcceleration)
+        scrollDelay = math.max(scrollMinDelay, scrollDelay - acceleratedScroll)
     elseif Left() and now - lastKeyTick > scrollDelay then
         Controls.leftPressed = true
         lastKeyTick = now
-        scrollDelay = scrollDelayBase
+        scrollDelay = math.max(scrollMinDelay, scrollDelay - acceleratedScroll)
     elseif Right() and now - lastKeyTick > scrollDelay then
         Controls.rightPressed = true
         lastKeyTick = now
-        scrollDelay = scrollDelayBase
+        scrollDelay = math.max(scrollMinDelay, scrollDelay - acceleratedScroll)
     elseif Select() and now - lastKeyTick > scrollDelay then
         Controls.selectPressed = true
         lastKeyTick = now
         scrollDelay = scrollDelayBase
     elseif Back() and now - lastKeyTick > scrollDelay then
-        -- call submenu close
+        Submenus.CloseSubmenu()
         lastKeyTick = now
         scrollDelay = scrollDelayBase
     elseif Misc() and now - lastKeyTick > scrollDelay then
@@ -109,6 +126,7 @@ function Controls.HandleInputTick()
 
     Controls.optionIndex = 0
 end
+
 
 function Controls.IsMenuOpen()
     return menuOpen

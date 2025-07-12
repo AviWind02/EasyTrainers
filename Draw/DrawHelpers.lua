@@ -52,4 +52,10 @@ function DrawHelpers.Text(x, y, color, text, fontSize, wrapWidth)
     end
 end
 
+-- WrappedText
+function DrawHelpers.TextWrapped(x, y, color, text, wrapWidth)
+    local drawlist = ImGui.GetWindowDrawList()
+    local fontSize = ImGui.GetFontSize()
+    ImGui.ImDrawListAddText(drawlist, fontSize, x, y, color, text, wrapWidth)
+end
 return DrawHelpers

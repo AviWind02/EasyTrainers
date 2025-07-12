@@ -1,4 +1,7 @@
 
+local DrawManager = require("Draw/Manager")
+local Notifier = require("Draw/NotificationManager")
+local Controls = require("Draw/Controls")
 local status = require("Func/Core/SharedStatus")
 local Logger = require("Func/Core/Logger")
 
@@ -41,34 +44,33 @@ registerForEvent("onInit", function()
 end)
 
 
-
-
-
 registerForEvent("onUpdate", function(delta)
     weaponsTickEvents.TickHandler(delta)
     vehicleTickEvents.TickHandler(delta)
 end)
 
 
-
-
-
-
-
-local DrawManager = require("Draw/Manager")
+local hasShownWelcome = false
 
 registerForEvent("onDraw", function()
-    -- Set up a dummy window to enable movement and resizing
-    ImGui.SetNextWindowSize(300, 500, ImGuiCond.FirstUseEver)
+    Controls.HandleInputTick()
 
-    if ImGui.Begin("Luna Menu", ImGuiWindowFlags.NoScrollbar + ImGuiWindowFlags.NoScrollWithMouse + ImGuiWindowFlags.NoTitleBar) then
-        local winX, winY = ImGui.GetWindowPos()
-        local winW, winH = ImGui.GetWindowSize()
-        DrawManager.DrawMenu(winX, winY, winW, winH)
+    if Controls.IsMenuOpen() then
+        -- Draw main menu
+        ImGui.SetNextWindowSize(300, 500, ImGuiCond.FirstUseEver)
 
-        ImGui.End()
+        if ImGui.Begin("Luna Menu", ImGuiWindowFlags.NoScrollbar + ImGuiWindowFlags.NoScrollWithMouse + ImGuiWindowFlags.NoTitleBar) then
+            local winX, winY = ImGui.GetWindowPos()
+            local winW, winH = ImGui.GetWindowSize()
+            DrawManager.DrawMenu(winX, winY, winW, winH)
+            ImGui.End()
+        end
     end
+
+    -- Always render notifications
+    Notifier.Render()
 end)
+
 
 
 --[[
