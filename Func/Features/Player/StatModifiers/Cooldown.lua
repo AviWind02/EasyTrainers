@@ -1,4 +1,4 @@
-local StatModifiers = require("GamePlay/StatModifiers")
+local StatModifiers = require("Func/GamePlay/StatModifiers")
 
 local Cooldown = {}
 

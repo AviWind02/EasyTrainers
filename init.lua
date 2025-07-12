@@ -14,8 +14,9 @@ local playerEvents = require("Func/Events/PlayerEvents")
 local projectileEvents = require("Func/Events/ProjectileEvents")
 local vehicleEvents = require("Func/Events/VehicleEvents")
 
-local weaponsTickEvents = require("Func/Weapons/WeaponTick")
-local vehicleTickEvents = require("Func/Vehicles/VehicleTick")
+local weaponsTickEvents = require("Func/Features/Weapons/WeaponTick")
+local vehicleTickEvents = require("Func/Features/Vehicles/VehicleTick")
+local playerTickEvents = require("Func/Features/Player/PlayerTick")
 
 
 
@@ -47,10 +48,9 @@ end)
 registerForEvent("onUpdate", function(delta)
     weaponsTickEvents.TickHandler(delta)
     vehicleTickEvents.TickHandler(delta)
+    playerTickEvents.TickHandler()
 end)
 
-
-local hasShownWelcome = false
 
 registerForEvent("onDraw", function()
     Controls.HandleInputTick()

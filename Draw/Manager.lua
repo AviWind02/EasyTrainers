@@ -3,41 +3,15 @@ local OptionManager = require("Draw/OptionManager")
 local Notifier = require("Draw/NotificationManager")
 local Decorators = require("Draw/Decorators")
 local Submenus = require("Draw/SubmenuManager")
+local PlayerView = require("Draw/View/PlayerView")
 
 local M = {}
 
 
-local StatModifiers = require("Func/Gameplay/StatModifiers")
-
-local toggleSpeed = { value = false }
-
-local function SetSpeed(remove)
-    local speedHandle = nil
-    if remove then
-        if speedHandle then
-            StatModifiers.Remove(speedHandle)
-        end
-    else
-        speedHandle = StatModifiers.Create(gamedataStatType.MaxSpeed, gameStatModifierType.Multiplier, 5.0)
-        StatModifiers.Add(speedHandle)
-    end
-end
-
-function testMenu2()
-    
-    StatModifiers.HandleStatModifierToggle(toggleSpeed, SetSpeed)
-
-    OptionManager.Toggle("Multiply Max Speed (x5)", toggleSpeed)
-
-    OptionManager.Option("Test Option 1", "Value 1", "This is a test option")
-    OptionManager.Option("Test Option 2", "Value 2", "This is another test option")
-    OptionManager.Option("Test Option 3", "Value 3", "Yet another test option")
-
-end
-local testMenu = { title = "testMenu", view = testMenu2 }
 
 local function MainMenuView()
-    OptionManager.Submenu("Self Menu", testMenu, "Player features")
+    OptionManager.Submenu("Self Menu", PlayerView , "Player features")
+
  
 end
 local mainMenu = { title = "Main Menu", view = MainMenuView }
