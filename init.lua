@@ -59,7 +59,7 @@ registerForEvent("onDraw", function()
         -- Draw main menu
         ImGui.SetNextWindowSize(300, 500, ImGuiCond.FirstUseEver)
 
-        if ImGui.Begin("Luna Menu", ImGuiWindowFlags.NoScrollbar + ImGuiWindowFlags.NoScrollWithMouse + ImGuiWindowFlags.NoTitleBar) then
+        if ImGui.Begin("EasyTrainer", ImGuiWindowFlags.NoScrollbar + ImGuiWindowFlags.NoScrollWithMouse + ImGuiWindowFlags.NoTitleBar) then
             local winX, winY = ImGui.GetWindowPos()
             local winW, winH = ImGui.GetWindowSize()
             DrawManager.DrawMenu(winX, winY, winW, winH)

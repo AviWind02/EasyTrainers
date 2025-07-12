@@ -5,6 +5,7 @@ local NotificationManager = {}
 local UI = require("Draw/Style")
 local DrawHelpers = require("Draw/DrawHelpers")
 local OptionManager = require("Draw/OptionManager")
+local Logger = require("Func/Core/Logger")
 
 local TypeColors = {
     info = UI.ColPalette.SoftWhite,
@@ -38,6 +39,7 @@ function NotificationManager.Push(msg, duration, position, type)
         pos = position or resolveAutoPosition(),
         type = type or "info"
     })
+    Logger.Log(string.format("[EasyTrainerNotificationManager] %s  Type: %s", type or "info", msg))
 end
 
 local function EstimateWrappedHeight(text, maxWidth)

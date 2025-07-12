@@ -10,15 +10,15 @@ local M = {}
 local StatModifiers = require("Func/Gameplay/StatModifiers")
 
 local toggleSpeed = { value = false }
-local speedHandle = nil
 
 local function SetSpeed(remove)
+    local speedHandle = nil
     if remove then
         if speedHandle then
             StatModifiers.Remove(speedHandle)
         end
     else
-        speedHandle = StatModifiers.Create(gamedataStatType.MaxSpeed, gameStatModifierType.Multiplicative, 5.0)
+        speedHandle = StatModifiers.Create(gamedataStatType.MaxSpeed, gameStatModifierType.Multiplier, 5.0)
         StatModifiers.Add(speedHandle)
     end
 end

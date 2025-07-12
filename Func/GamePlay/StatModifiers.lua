@@ -98,4 +98,34 @@ function StatModifiers.HandleStatModifierToggle(toggleRef, applyFunc)
         end
     end
 end
+
+
+local dynamicStates = setmetatable({}, { __mode = "k" })
+function StatModifiers.HandleDynamicStatModifierToggle(toggleRef, valueRef, applyFunc)
+    local state = dynamicStates[toggleRef]
+    if not state then
+        state = { applied = false, lastValue = nil }
+        dynamicStates[toggleRef] = state
+    end
+
+    local toggle = toggleRef.value
+    local currentValue = valueRef.value
+
+    if toggle then
+        if not state.applied then
+            applyFunc(false, currentValue)
+            state.applied = true
+            state.lastValue = currentValue
+        elseif currentValue ~= state.lastValue then
+            applyFunc(true, state.lastValue)   -- remove old
+            applyFunc(false, currentValue)     -- apply new
+            state.lastValue = currentValue
+        end
+    elseif state.applied then
+        applyFunc(true, state.lastValue)
+        state.applied = false
+    end
+end
+
+
 return StatModifiers
