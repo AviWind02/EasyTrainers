@@ -1,79 +1,76 @@
-
-local DrawManager = require("Draw/Manager")
-local Notifier = require("Draw/NotificationManager")
-local Controls = require("Draw/Controls")
-local status = require("Func/Core/SharedStatus")
-local Logger = require("Func/Core/Logger")
-
-local generalItems = require("Func/DataExtractors/GeneralItems")
-local vehiclesItems = require("Func/DataExtractors/VehiclesItems")
-local weaponsItems = require("Func/DataExtractors/WeaponItems")
+local Draw = require("UI")
+local MainMenu = require("View/MainMenu")
+local Logger = require("Core/Logger")
+local Gameplay = require("Gameplay")
 
 
-local playerEvents = require("Func/Events/PlayerEvents")
-local projectileEvents = require("Func/Events/ProjectileEvents")
-local vehicleEvents = require("Func/Events/VehicleEvents")
+local SelfTick = require("Features/Self/Tick")
+local WeaponsTick = require("Features/Weapons/Tick")
 
-local weaponsTickEvents = require("Func/Features/Weapons/WeaponTick")
-local vehicleTickEvents = require("Func/Features/Vehicles/VehicleTick")
-local playerTickEvents = require("Func/Features/Player/PlayerTick")
-
-
+local WeaponLoader = require("Features/DataExtractors/WeaponLoader")
+local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
+local GeneralLoader = require("Features/DataExtractors/GeneralLoader")
 
 registerForEvent("onInit", function()
     Logger.Initialize()
     Logger.Log("[EasyTrainerInit] Starting initialization")
 
-    Logger.Log("[EasyTrainerInit] Resetting dump statuses.")
-    status.ResetStatuses({
-        "GeneralItems",
-        "VehiclesItems",
-        "WeaponsItems"
-    })
+    Logger.Log("[EasyTrainerInit] Performing data dumps and loading to memory.")
+    WeaponLoader:LoadAll()
+    VehicleLoader:LoadAll()
+    GeneralLoader:LoadAll()
 
-    Logger.Log("[EasyTrainerInit] Performing data dumps")
-    generalItems.Dump()
-    vehiclesItems.Dump()
-    weaponsItems.Dump()
+    Observe("BaseProjectile", "ProjectileHit", function(self, eventData)
+        WeaponsTick.HandleProjectileHit(self, eventData)
+    end)
+    Logger.Log("[EasyTrainerInit] Observing BaseProjectile.ProjectileHit")
 
-    Logger.Log("[EasyTrainerInit] Initializing events")
-    playerEvents.Init()
-    projectileEvents.Init()
-    vehicleEvents.Init()
+    Observe("PlayerPuppet", "OnAction", function(_, action)
+        local actionName = Game.NameToString(action:GetName(action))
+        local actionType = action:GetType(action).value
+        Gameplay.WeaponInput.HandleInputAction(action)
+    end)
+    Logger.Log("[EasyTrainerInit] Observing PlayerPuppet.OnAction")
 
     Logger.Log("[EasyTrainerInit] Initialization complete.")
 end)
-
-
-registerForEvent("onUpdate", function(delta)
-    weaponsTickEvents.TickHandler(delta)
-    vehicleTickEvents.TickHandler(delta)
-    playerTickEvents.TickHandler()
+registerForEvent("onUpdate", function(deltaTime)
+    SelfTick.TickHandler()
+    WeaponsTick.TickHandler(deltaTime)
 end)
+
 
 
 registerForEvent("onDraw", function()
-    Controls.HandleInputTick()
+    Draw.InputHandler.HandleInputTick()
+    local menuX, menuY, menuW, menuH
 
-    if Controls.IsMenuOpen() then
-        -- Draw main menu
+    if Draw.InputHandler.IsMenuOpen() then
         ImGui.SetNextWindowSize(300, 500, ImGuiCond.FirstUseEver)
 
         if ImGui.Begin("EasyTrainer", ImGuiWindowFlags.NoScrollbar + ImGuiWindowFlags.NoScrollWithMouse + ImGuiWindowFlags.NoTitleBar) then
-            local winX, winY = ImGui.GetWindowPos()
-            local winW, winH = ImGui.GetWindowSize()
-            DrawManager.DrawMenu(winX, winY, winW, winH)
+            menuX, menuY = ImGui.GetWindowPos()
+            menuW, menuH = ImGui.GetWindowSize()
+
+            MainMenu.Render(menuX, menuY, menuW, menuH)
             ImGui.End()
         end
+        Draw.InfoBox.Render(menuX, menuY, menuW, menuH)
     end
 
-    -- Always render notifications
-    Notifier.Render()
+    Draw.Notifier.Render()
 end)
 
 
 
+registerForEvent("onShutdown", function()
+    Gameplay.StatModifiers.ClearAll()
+end)
+
+
 --[[
+
+
 local loggedActions = {}
 local logFilePath = "Shared/CyberpunkInputLog.json"
 
