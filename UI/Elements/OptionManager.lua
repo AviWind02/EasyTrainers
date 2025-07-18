@@ -206,6 +206,8 @@ function OptionManager.Toggle(label, ref, tip)
     if clicked then
         ref.value = not ref.value
     end
+    
+    return clicked
 end
 
 

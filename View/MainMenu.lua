@@ -1,8 +1,12 @@
 
 local Draw = require("UI")
+
 local SelfView = require("View/Self/SelfMenuView")
 local TeleportView = require("View/World/TeleportView")
 local WeaponView = require("View/Weapon/WeaponMenuView")
+local VehicleListView = require("View/Vehicle/VehicleListView")
+
+local VehicleFeaures = require("Features/Vehicle")
 
 local MainMenu = {}
 
@@ -33,6 +37,8 @@ local function MainMenuView()
     Draw.Options.Submenu("Self Menu", SelfView, "Modify player stats, movement, stealth, and health behavior.")
     Draw.Options.Submenu("Teleport Menu", TeleportView, "Teleport instantly to preset locations in Night City.")
     Draw.Options.Submenu("Weapon Menu", WeaponView, "Access various weapon-related features including special abilities, projectile behavior, and customization.")
+    if Draw.Options.Submenu("Vehicle List", VehicleListView, "Unlock and manage vehicles.") then VehicleFeaures.enableVehicleSpawnerMode = false end
+    if Draw.Options.Submenu("Vehicle Spawner", VehicleListView, "Spawn vehicles directly into the world.") then VehicleFeaures.enableVehicleSpawnerMode = true end
     Draw.Options.Submenu("Test Buttons", testMenu, "Go to test menu")
 
 end
