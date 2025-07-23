@@ -64,6 +64,35 @@ function Inventory.RemoveItem(tweakID, quantity)
 end
 
 
+function Inventory.GetAllItems()
+    local player = Game.GetPlayer()
+    local ts = Game.GetTransactionSystem()
+    local itemList = { ts:GetItemList(player) }
+
+    local result = {}
+
+    for _, item in ipairs(itemList[2]) do
+        local itemID = item:GetID()
+        local tdbid = TDBID.ToStringDEBUG(itemID.id)
+        local record = TweakDB:GetRecord(itemID.id)
+
+        local name = Game.GetLocalizedTextByKey(TDB.GetLocKey(tdbid .. ".displayName"))
+        if not name or name == "" then name = tdbid end
+
+        table.insert(result, {
+            name = name,
+            id = tdbid,
+            quantity = item.quantity or 1,
+            raw = item
+        })
+    end
+
+    return result
+end
+
+
+
+
 
 
 return Inventory

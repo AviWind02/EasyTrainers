@@ -1,5 +1,5 @@
 local Submenus = require("UI/Core/SubmenuManager")
-
+local Logger = require("Core/Logger")
 local InputHandler = {}
 
 -- Constants
@@ -32,10 +32,100 @@ local function ToggleMenu() return ImGui.IsKeyPressed(ImGuiKey.F4) end
 local function ToggleMouse() return ImGui.IsKeyPressed(ImGuiKey.X) end
 local function Misc() return ImGui.IsKeyPressed(ImGuiKey.LeftCtrl) end
 
+InputHandler.activeMenuKeys = {}
+local keyNames = {
+    [ImGuiKey.UpArrow] = "UpArrow",
+    [ImGuiKey.DownArrow] = "DownArrow",
+    [ImGuiKey.LeftArrow] = "LeftArrow",
+    [ImGuiKey.RightArrow] = "RightArrow",
+    [ImGuiKey.Enter] = "Enter",
+    [ImGuiKey.Backspace] = "Backspace",
+    [ImGuiKey.F4] = "F4",
+    [ImGuiKey.X] = "X",
+    [ImGuiKey.LeftCtrl] = "LeftCtrl"
+}
+
+InputHandler.freshlyPressedKeys = {}           -- keyName → true
+InputHandler.actionKeyMap = {}                 -- actionName → keyName (first used key)
+local lastFrameKeyDown = {}
+local permanentlyLoggedActions = {} 
+
+
+local previousKeyDown = {}
+
+function InputHandler.CacheActiveKeys()
+    if not menuOpen then return end
+
+    for key, name in pairs(keyNames) do
+        local isDown = ImGui.IsKeyDown(key)
+        local wasDown = previousKeyDown[key] or false
+
+        -- Only store if newly pressed this frame
+        if isDown and not wasDown then
+            InputHandler.activeMenuKeys[name] = true
+        end
+
+        -- Update previous state
+        previousKeyDown[key] = isDown
+    end
+end
+
+-- Stores active keys from the last UI tick
+InputHandler.activeMenuKeys = {}
+
+
+local permanentlyLoggedActions = {}
+
+function InputHandler.LogAction(actionName, actionType)
+    if not menuOpen then return end
+    if permanentlyLoggedActions[actionName] then return end
+
+    -- Find matching key from freshly pressed keys
+    local pressedKeyName = nil
+    for keyName, _ in pairs(InputHandler.freshlyPressedKeys) do
+        pressedKeyName = keyName
+        break -- take the first one found
+    end
+
+    if pressedKeyName then
+        Logger.Log(string.format(
+            "[Logged Action] Name: %s | Type: %s | Key: %s",
+            tostring(actionName),
+            tostring(actionType),
+            pressedKeyName
+        ))
+        InputHandler.actionKeyMap[actionName] = pressedKeyName
+    else
+        Logger.Log(string.format(
+            "[Logged Action] Name: %s | Type: %s | Key: Unknown",
+            tostring(actionName),
+            tostring(actionType)
+        ))
+    end
+
+    permanentlyLoggedActions[actionName] = true
+end
+
+
 -- Main input tick
 function InputHandler.HandleInputTick()
     local now = os.clock() * 1000  -- ms
+    InputHandler.freshlyPressedKeys = {}
 
+    if menuOpen then
+        for key, name in pairs(keyNames) do
+            local isDown = ImGui.IsKeyDown(key)
+            local wasDown = lastFrameKeyDown[key] or false
+
+            if isDown and not wasDown then
+                InputHandler.freshlyPressedKeys[name] = true
+            end
+
+            lastFrameKeyDown[key] = isDown
+        end
+    end
+
+    
     InputHandler.leftPressed = false
     InputHandler.rightPressed = false
     InputHandler.selectPressed = false

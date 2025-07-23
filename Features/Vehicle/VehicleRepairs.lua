@@ -6,6 +6,9 @@
     Description: Fully repairs the player's current vehicle if they're inside one.
 ]]
 
+local Draw = require("UI")
+local Logger = require("Core/Logger")
+
 local VehicleRepairs = {}
 
 function VehicleRepairs.IsVehicleDamaged()
@@ -25,13 +28,13 @@ end
 function VehicleRepairs.Tick()
     local player = Game.GetPlayer()
     if not Game.GetWorkspotSystem():IsActorInWorkspot(player) then
-        print("[EasyTrainerFixVehicle] You're not in a vehicle!")
+        Draw.Notifier.Push("[EasyTrainerFixVehicle] You're not in a vehicle!")
         return
     end
 
     local vehicle = Game['GetMountedVehicle;GameObject'](player)
     if not vehicle then
-        print("[EasyTrainerFixVehicle] No mounted vehicle found.")
+        Draw.Notifier.Push("[EasyTrainerFixVehicle] No mounted vehicle found.")
         return
     end
 
@@ -40,7 +43,7 @@ function VehicleRepairs.Tick()
     local name = vehicle:GetDisplayName()
     local type = vehicle:GetVehicleType().value
 
-    print(string.format("[EasyTrainerFixVehicle] Repairing: %s (%s)", name, type))
+    Draw.Notifier.Push(string.format("[EasyTrainerFixVehicle] Repairing: %s", name))
 
     -- Reset damage level
     vc.damageLevel = 0
@@ -65,7 +68,7 @@ function VehicleRepairs.Tick()
 
         for _, part in ipairs(parts) do
             AnimationControllerComponent.SetInputFloat(vehicle, part, 0.0)
-            print("[EasyTrainerFixVehicle] Reset part:", part)
+            Logger.Log("[EasyTrainerFixVehicle] Reset part:", part)
         end
     end
 
@@ -73,7 +76,7 @@ function VehicleRepairs.Tick()
     if vehicle:GetFlatTireIndex() >= 0 then
         for i = 0, 3 do
             vehicle:ToggleBrokenTire(i, false)
-            print("[EasyTrainerFixVehicle] Repaired tire:", i)
+            Logger.Log("[EasyTrainerFixVehicle] Repaired tire:", i)
         end
     end
 
@@ -89,11 +92,11 @@ function VehicleRepairs.Tick()
     vps:CloseAllVehWindows()
     vps:ForcePersistentStateChanged()
 
-    print("[EasyTrainerFixVehicle] Repair complete.")
+    Logger.Log("[EasyTrainerFixVehicle] Repair complete.")
 
     local comps = vehicle:GetComponents()
     for i, comp in ipairs(comps) do
-        print(string.format("Component [%d]: %s", i, comp:GetClassName()))
+        Logger.Log(string.format("Component [%d]: %s", i, comp:GetClassName()))
     end
 
 end

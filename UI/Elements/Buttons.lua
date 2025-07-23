@@ -70,4 +70,18 @@ function Buttons.Dropdown(label, ref, options, tip)
     OptionManager.Dropdown(label, ref, options, tip)
 end
 
+function Buttons.Radio(label, ref, options, tip, action)
+    if OptionManager.Radio(label, ref, options, tip) then
+        action()
+        return true
+    end 
+    return false
+end
+
+
+function Buttons.Color(label, ref, tip)
+    return OptionManager.Color(label, ref, tip)
+end
+
+
 return Buttons

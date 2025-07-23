@@ -24,8 +24,13 @@ end
 
 local function AmmoItemsView()
         Buttons.Option("Give 100 of Each Ammo Type", "Adds 100 ammo for each type", function()
-                for _, ammo in ipairs(ammoTypes) do
+                for _, ammo in ipairs(ammoTypes) do -- Make this a method one day
                         Inventory.GiveItem(ammo.id, 100)
+                end
+        end)
+        Buttons.Option("Remove 25 of Each Ammo Type", "Removes 25 ammo from each type", function()
+                for _, ammo in ipairs(ammoTypes) do
+                        Inventory.RemoveItem(ammo.id, 25)
                 end
         end)
         Buttons.Break("", "Add Ammo")
@@ -42,9 +47,7 @@ local function AmmoItemsView()
                 end)
         end
 end
-
 local ammoItemsSubmenu = { title = "Ammo Items", view = AmmoItemsView }
-
 
 
 local function WeaponsViewFunction()
@@ -53,6 +56,9 @@ local function WeaponsViewFunction()
         Buttons.Submenu("Ammo Manager", ammoItemsSubmenu, "Add or remove ammo types")
 
         Buttons.Option("Give All Wall Weapons", "Gives you all weapons that can be mounted on your apartment wall.", WeaponItemsMenu.GiveAllWallWeapons)
+        Buttons.Option("Give All Iconic Weapons", "Adds all iconic weapons to your inventory.", WeaponItemsMenu.GiveAllIconicWeapons)
+        Buttons.Option("Remove All Weapons", "Removes every weapon from your inventory.", WeaponItemsMenu.RemoveAllWeapons)
+        -- Buttons.Option("Remove Base Weapons", "Removes only base and common tier weapons from your inventory.", WeaponItemsMenu.RemoveBaseWeapons)
 
         Buttons.Toggle("Infinite Ammo", Weapons.InfiniteAmmo.enabled,
                 "Your ammo never runs out. Each time you shoot, you instantly get the bullet back.")

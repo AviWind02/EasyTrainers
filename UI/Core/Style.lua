@@ -1,9 +1,7 @@
 local UI = {}
 
-local function RGBA(r, g, b, a)
-    return { r = r, g = g, b = b, a = a }
-end
-
+local Color = {}
+function Color.new(c) return { r = c.Red, g = c.Green, b = c.Blue, a = c.Alpha } end
 
 
 
@@ -112,6 +110,15 @@ UI.Slider = {
     BorderSize = 1.0,
 }
 
+UI.ColorPicker = {
+    ChannelBoxSize = 24.0,
+    ChannelPadding = 6.0,
+    PreviewBoxSize = 18.0,
+    LabelOffsetX = 12.0,
+    RowSpacing = 2.0,
+    IconOffsetX = 4.0,
+}
+
 UI.Input = {
     Bg = 0xFF14141C,
     Text = UI.Colors.Text,
@@ -120,7 +127,25 @@ UI.Input = {
     Rounding = UI.Layout.FrameRounding
 }
 
--- Header style config
+UI.Dropdown = {
+    ArrowRight = IconGlyphs.ArrowRight,
+    ArrowDown = IconGlyphs.ArrowExpandAll,
+    ItemSpacing = UI.Layout.ItemSpacing,
+    RevealFrameDelay = 3,
+    LabelOffsetX = UI.Layout.LabelOffsetX,
+    SelectedColor = UI.Toggle.OnColor,
+    TextColor = UI.Colors.Text,
+}
+
+
+UI.Radio = {
+    Radius = 6.0,
+    BorderThickness = 1.5,
+    Segments = 20,
+    SelectedColor = UI.Toggle.OnColor,
+    UnselectedColor = UI.Colors.Text,
+}
+
 UI.Header = {
     Height = 40.0,
     BackgroundColor = 0xFF14161C,
@@ -129,7 +154,6 @@ UI.Header = {
     Text = "Main Menu"
 }
 
--- Footer style config
 UI.Footer = {
     Height = 25.0,
     BackgroundColor = 0xFF191926,

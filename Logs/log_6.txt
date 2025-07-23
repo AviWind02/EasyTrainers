@@ -1,0 +1,13 @@
+[2025-07-23 01:21:39] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
+[2025-07-23 01:21:39] [EasyTrainerInit] Starting initialization
+[2025-07-23 01:21:39] [EasyTrainerInit] Performing data dumps and loading to memory.
+[2025-07-23 01:21:40] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
+[2025-07-23 01:21:40] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
+[2025-07-23 01:21:40] [EasyTrainerGeneralLoader] Loaded 4731 items.
+[2025-07-23 01:21:40] [EasyTrainerInit] Observing BaseProjectile.ProjectileHit
+[2025-07-23 01:21:40] [EasyTrainerInit] Observing PlayerPuppet.OnAction
+[2025-07-23 01:21:40] [EasyTrainerInit] Initialization complete.
+[2025-07-23 01:22:06] [EasyTrainerWorldWeather] Setting weather: 24h_weather_light_clouds (1s)
+[2025-07-23 01:22:08] [EasyTrainerWorldWeather] Setting weather: 24h_weather_sunny (1s)
+[2025-07-23 01:22:11] [EasyTrainerWorldTime] Set game time to 12:00:00
+[2025-07-23 01:22:53] [EasyTrainerStatModifiers] ClearAll failed: context missing

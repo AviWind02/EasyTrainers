@@ -92,7 +92,7 @@ local function DrawVehicleRow(vehicle)
 
     if VehicleFeaures.enableVehicleSpawnerMode then
         Buttons.Option(name, tip, function()
-            VehicleSpawner.TestSpawnAndMount(vehicle.id, 4.0)
+            VehicleSpawner.TestSpawnAndMount(vehicle.id, 5.0)
         end)
     else
         local state = { value = VehicleSystem.IsVehicleUnlocked(vehicle.id) }

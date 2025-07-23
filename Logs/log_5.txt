@@ -1,0 +1,10 @@
+[2025-07-18 23:54:42] [EasyTrainerLogger] Logger initialized. Writing to log_5.txt and log_current.txt
+[2025-07-18 23:54:42] [EasyTrainerInit] Starting initialization
+[2025-07-18 23:54:42] [EasyTrainerInit] Performing data dumps and loading to memory.
+[2025-07-18 23:54:42] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
+[2025-07-18 23:54:42] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
+[2025-07-18 23:54:42] [EasyTrainerGeneralLoader] Loaded 4731 items.
+[2025-07-18 23:54:42] [EasyTrainerInit] Observing BaseProjectile.ProjectileHit
+[2025-07-18 23:54:42] [EasyTrainerInit] Observing PlayerPuppet.OnAction
+[2025-07-18 23:54:42] [EasyTrainerInit] Initialization complete.
+[2025-07-18 23:55:08] [EasyTrainerStatModifiers] Cleared all cached modifiers

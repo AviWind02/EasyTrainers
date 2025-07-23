@@ -212,35 +212,112 @@ end
 
 
 function OptionManager.IntToggle(label, ref, tip)
+    local clicked = OptionManager.Option(label, "", "", tip)
+    local pos = OptionManager._calcPosition()
+    if not pos then return false end
+
+    local Layout, Colors = UI.Layout, UI.Colors
+
+    local toggleSize = 18
+    local toggleSpacing = 10
+    local framePadding = 6
+    local textPadding = 3
+
+    local step = ref.step or 1
+    local minVal = ref.min or 0
+    local maxVal = ref.max or 100
+
+    local originalValue = ref.value
+    local originalEnabled = ref.enabled
+
+    if pos.isActive then
+        if Controls.leftPressed then
+            ref.value = ref.value - step
+            if ref.value < minVal then ref.value = maxVal end
+        elseif Controls.rightPressed then
+            ref.value = ref.value + step
+            if ref.value > maxVal then ref.value = minVal end
+        elseif ref.enabled ~= nil and Controls.selectPressed then
+            ref.enabled = not ref.enabled
+        end
+    end
+
+    ref.value = math.max(minVal, math.min(maxVal, ref.value))
+    local valueText = string.format("%d / %d", ref.value, maxVal)
+    local valueTextWidth = ImGui.CalcTextSize(valueText)
+
+    local toggleX = pos.x + pos.w - Layout.LabelOffsetX - (ref.enabled ~= nil and toggleSize or 0)
+    local valueX = toggleX - valueTextWidth - (ref.enabled ~= nil and toggleSpacing or 0)
+    local toggleY = pos.y + (pos.h - toggleSize) * 0.5
+
+    local totalWidth = valueTextWidth + (ref.enabled ~= nil and toggleSize + toggleSpacing or 0)
+    DrawHelpers.RectFilled(
+        valueX - framePadding,
+        pos.y + textPadding,
+        totalWidth + framePadding * 2,
+        pos.h - textPadding * 2,
+        Colors.FrameBg,
+        Layout.FrameRounding
+    )
+
+    local textColor = (ref.enabled == false) and Colors.MutedText or Colors.Text
+    DrawHelpers.Text(valueX, pos.fontY, textColor, valueText)
+
+    if ref.enabled ~= nil then
+        DrawHelpers.Rect(toggleX, toggleY, toggleSize, toggleSize, Colors.Text, Layout.FrameRounding)
+        if ref.enabled then
+            local inset = 2
+            DrawHelpers.RectFilled(
+                toggleX + inset,
+                toggleY + inset,
+                toggleSize - inset * 2,
+                toggleSize - inset * 2,
+                UI.Toggle.OnColor,
+                Layout.FrameRounding - 2
+            )
+        end
+    end
+
+    local valueChanged = (ref.value ~= originalValue) or (ref.enabled ~= originalEnabled)
+    return clicked or valueChanged
+end
+
+
+
+
+function OptionManager.FloatToggle(label, ref, tip)
 	local clicked = OptionManager.Option(label, "", "", tip)
 	local pos = OptionManager._calcPosition()
 	if not pos then return false end
 
 	local Layout, Colors = UI.Layout, UI.Colors
-
 	local toggleSize = 18
 	local toggleSpacing = 10
 	local framePadding = 6
 	local textPadding = 3
+	local decimalPlaces = 2
 
-	local step = ref.step or 1
-	local minVal = ref.min or 0
-	local maxVal = ref.max or 100
+	local oldValue = ref.value
+	local oldEnabled = ref.enabled
 
 	if pos.isActive then
+		local minVal = ref.min or 0
+		local maxVal = ref.max or 1
+		local step = ref.step or 0.1
+
 		if Controls.leftPressed then
-			ref.value = ref.value - step
-			if ref.value < minVal then ref.value = maxVal end
+			ref.value = ref.value <= minVal and maxVal or ref.value - step
 		elseif Controls.rightPressed then
-			ref.value = ref.value + step
-			if ref.value > maxVal then ref.value = minVal end
+			ref.value = ref.value >= maxVal and minVal or ref.value + step
 		elseif ref.enabled ~= nil and Controls.selectPressed then
 			ref.enabled = not ref.enabled
 		end
 	end
 
-	ref.value = math.max(minVal, math.min(maxVal, ref.value))
-	local valueText = string.format("%d / %d", ref.value, maxVal)
+	local minVal = ref.min or 0
+	local maxVal = ref.max or 1
+	ref.value = math.max(minVal, math.min(maxVal, tonumber(string.format("%.2f", ref.value))))
+	local valueText = string.format("%." .. decimalPlaces .. "f / %.2f", ref.value, maxVal)
 	local valueTextWidth = ImGui.CalcTextSize(valueText)
 
 	local toggleX = pos.x + pos.w - Layout.LabelOffsetX - (ref.enabled ~= nil and toggleSize or 0)
@@ -275,85 +352,10 @@ function OptionManager.IntToggle(label, ref, tip)
 		end
 	end
 
-	return clicked
+	local valueChanged = (ref.value ~= oldValue) or (ref.enabled ~= oldEnabled)
+	return clicked or valueChanged
 end
 
-
-
-function OptionManager.FloatToggle(label, ref, tip)
-    local clicked = OptionManager.Option(label, "", "", tip)
-    local pos = OptionManager._calcPosition()
-    if not pos then return false end
-
-    local Layout, Colors = UI.Layout, UI.Colors
-
-    -- Toggle/float UI config
-    local toggleSize = 18
-    local toggleSpacing = 10
-    local framePadding = 6
-    local textPadding = 3
-    local decimalPlaces = 2
-
-    -- Clamp and update value if active
-    if pos.isActive then
-        local minVal = ref.min or 0
-        local maxVal = ref.max or 1
-        local step = ref.step or 0.1
-
-        if Controls.leftPressed then
-            ref.value = ref.value <= minVal and maxVal or ref.value - step
-        elseif Controls.rightPressed then
-            ref.value = ref.value >= maxVal and minVal or ref.value + step
-        elseif ref.enabled ~= nil and Controls.selectPressed then
-            ref.enabled = not ref.enabled
-        end
-    end
-
-    -- Format and clamp value
-    local minVal = ref.min or 0
-    local maxVal = ref.max or 1
-    ref.value = math.max(minVal, math.min(maxVal, tonumber(string.format("%.2f", ref.value))))
-    local valueText = string.format("%." .. decimalPlaces .. "f / %.2f", ref.value, maxVal)
-    local valueTextWidth = ImGui.CalcTextSize(valueText)
-
-    -- Calculate element positions
-    local toggleX = pos.x + pos.w - Layout.LabelOffsetX - (ref.enabled ~= nil and toggleSize or 0)
-    local valueX = toggleX - valueTextWidth - (ref.enabled ~= nil and toggleSpacing or 0)
-    local toggleY = pos.y + (pos.h - toggleSize) * 0.5
-
-    -- Draw background for value + toggle
-    local totalWidth = valueTextWidth + (ref.enabled ~= nil and toggleSize + toggleSpacing or 0)
-    DrawHelpers.RectFilled(
-        valueX - framePadding,
-        pos.y + textPadding,
-        totalWidth + framePadding * 2,
-        pos.h - textPadding * 2,
-        Colors.FrameBg,
-        Layout.FrameRounding
-    )
-
-    -- Draw value text
-    local textColor = (ref.enabled == false) and Colors.MutedText or Colors.Text
-    DrawHelpers.Text(valueX, pos.fontY, textColor, valueText)
-
-    -- Draw toggle if enabled
-    if ref.enabled ~= nil then
-        DrawHelpers.Rect(toggleX, toggleY, toggleSize, toggleSize, Colors.Text, Layout.FrameRounding)
-        if ref.enabled then
-            local inset = 2
-            DrawHelpers.RectFilled(
-                toggleX + inset,
-                toggleY + inset,
-                toggleSize - inset * 2,
-                toggleSize - inset * 2,
-                UI.Toggle.OnColor,
-                Layout.FrameRounding - 2
-            )
-        end
-    end
-
-    return clicked
-end
 
 
 function OptionManager.Submenu(label, submenu, tip)
@@ -363,5 +365,131 @@ function OptionManager.Submenu(label, submenu, tip)
     end
     return false
 end
+
+
+function OptionManager.Radio(label, ref, options, tip)
+    if OptionManager.IsSelected() then
+        InfoBox.SetText(tip or "")
+    end
+
+    local changed = false
+    for i, option in ipairs(options) do
+        local isSelected = (ref.index == i)
+        local clicked = OptionManager.Option(option)
+
+        local pos = OptionManager._calcPosition()
+        if pos then
+            local radius = 6
+            local cx = pos.x + pos.w - UI.Layout.LabelOffsetX - radius
+            local cy = pos.y + (pos.h / 2)
+
+            local drawlist = ImGui.GetWindowDrawList()
+            if isSelected then
+                ImGui.ImDrawListAddCircleFilled(drawlist, cx, cy, radius, UI.Toggle.OnColor)
+            else
+                ImGui.ImDrawListAddCircle(drawlist, cx, cy, radius, UI.Colors.Text, 20, 1.5)
+            end
+
+            if clicked then
+                ref.index = i
+                changed = true
+            end
+        end
+    end
+
+    return changed
+end
+
+
+
+function OptionManager.Color(label, ref, tip)
+    local defaultTip = "Press Enter or Click to expand.\nUse Arrow keys to adjust color channels."
+    local combinedTip = (tip and (tip .. "\n\n") or "") .. defaultTip
+    local clicked = OptionManager.Option(label, "", "", combinedTip)
+    local pos = OptionManager._calcPosition()
+    if not pos then return false end
+
+    local squareSize = UI.ColorPicker.ChannelBoxSize
+    local squareX = pos.x + pos.w - UI.Layout.LabelOffsetX - squareSize
+    local squareY = pos.y + (pos.h - squareSize) * 0.5
+    local u32 = ImGui.ColorConvertFloat4ToU32({
+        ref.Red / 255,
+        ref.Green / 255,
+        ref.Blue / 255,
+        ref.Alpha / 255
+    })
+    DrawHelpers.RectFilled(squareX, squareY, squareSize, squareSize, u32, UI.Layout.FrameRounding)
+
+    ref._expanded = ref._expanded or false
+    ref._reveal = ref._reveal or 0
+    ref._lastFrame = ref._lastFrame or 0
+
+    if clicked then
+        ref._expanded = not ref._expanded
+        if ref._expanded then
+            ref._reveal = 0
+            ref._lastFrame = ImGui.GetFrameCount()
+        end
+    end
+    if not ref._expanded then return false end
+
+    local channelNames = { "- Red", "- Green", "- Blue", "- Alpha" }
+    local channelKeys = { "Red", "Green", "Blue", "Alpha" }
+
+    local changed = false
+    local currentFrame = ImGui.GetFrameCount()
+    local framesPerOption = 3
+
+    if ref._reveal < 4 then
+        if currentFrame - ref._lastFrame >= framesPerOption then
+            ref._reveal = ref._reveal + 1
+            ref._lastFrame = currentFrame
+        end
+    end
+
+    for i = 1, ref._reveal do
+        local key = channelKeys[i]
+        local label = channelNames[i]
+        local value = ref[key] or 0
+        OptionManager.Option(label, "", "", nil)
+        local pos = OptionManager._calcPosition()
+        if not pos then break end
+
+        local valueText = string.format("%d / 255", value)
+        local valueTextWidth = ImGui.CalcTextSize(valueText)
+        local boxW = valueTextWidth + 10
+        local boxH = pos.h - UI.ColorPicker.RowSpacing
+        local boxX = pos.x + pos.w - UI.Layout.LabelOffsetX - UI.ColorPicker.PreviewBoxSize - boxW - UI.ColorPicker.ChannelPadding
+        local boxY = pos.y + (pos.h - boxH) * 0.5
+        DrawHelpers.RectFilled(boxX, boxY, boxW, boxH, UI.Colors.FrameBg, UI.Layout.FrameRounding)
+        DrawHelpers.Text(boxX + 5, pos.fontY, UI.Colors.Text, valueText)
+
+        local previewX = pos.x + pos.w - UI.Layout.LabelOffsetX - UI.ColorPicker.PreviewBoxSize
+        local previewY = pos.y + (pos.h - UI.ColorPicker.PreviewBoxSize) * 0.5
+
+        local previewColor = { 0, 0, 0, 1 }
+        previewColor[i] = value / 255
+        local u32 = ImGui.ColorConvertFloat4ToU32(previewColor)
+        DrawHelpers.Rect(previewX, previewY, UI.ColorPicker.PreviewBoxSize, UI.ColorPicker.PreviewBoxSize, UI.Colors.Text, UI.Layout.FrameRounding)
+        DrawHelpers.RectFilled(previewX + 2, previewY + 2, UI.ColorPicker.PreviewBoxSize - 4, UI.ColorPicker.PreviewBoxSize - 4, u32, UI.Layout.FrameRounding - 2)
+
+        if pos.isActive then
+            if Controls.leftPressed then
+                value = value == 0 and 255 or value - 1
+                changed = true
+            elseif Controls.rightPressed then
+                value = value == 255 and 0 or value + 1
+                changed = true
+            end
+            ref[key] = value
+        end
+    end
+
+    return changed
+end
+
+
+
+
 
 return OptionManager

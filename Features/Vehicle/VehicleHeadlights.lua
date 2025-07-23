@@ -23,17 +23,17 @@ local function GetController()
     return vehicle:GetAccessoryController()
 end
 
-function VehicleLightControl.SetLightColor(lightType, color, forceOverride)
+function VehicleLightControl.SetLightColor(lightType, color)
     local controller = GetController()
     if not controller then return end
-    controller:SetLightColor(lightType, color, 0.0, forceOverride or true)
+    controller:SetLightColor(lightType, color, 0.0)
 end
 
 function VehicleLightControl.SetAllLightsColor(color)
     local controller = GetController()
     if not controller then return end
     for _, lightType in ipairs(lightTypes) do
-        controller:SetLightColor(lightType, color, 0.0, true)
+        controller:SetLightColor(lightType, color, 0.0)
     end
 end
 
@@ -49,10 +49,12 @@ function VehicleLightControl.SetLightStrength(lightType, strength)
     controller:SetLightStrength(lightType, strength, 0.0)
 end
 
+VehicleLightControl.toggleRGBFade = { value = false }
+
 -- Does a simple RGB fade effect on all lights
 function VehicleLightControl.UpdateRGB(delta)
-    local controller = GetController()
-    if not controller then return end
+
+    if not VehicleLightControl.toggleRGBFade.value then return end
 
     frametimeRGB = frametimeRGB + (delta * 1000)
     if frametimeRGB > 5 then
@@ -75,9 +77,9 @@ function VehicleLightControl.UpdateRGB(delta)
         RGBFadeBlue  = math.max(0, math.min(255, RGBFadeBlue))
 
         local color = Color.new({ Red = RGBFadeRed, Green = RGBFadeGreen, Blue = RGBFadeBlue, Alpha = 255 })
-        for _, lightType in ipairs(lightTypes) do
-            controller:SetLightColor(lightType, color, 0.0, true)
-        end
+
+        VehicleLightControl.SetAllLightsColor(color)
+
     end
 end
 
@@ -102,7 +104,7 @@ end
 function VehicleLightControl.ToggleLights(on, lightType)
     local controller = GetController()
     if not controller then return end
-    controller:ToggleLights(on, lightType or nil, 0.0, nil, false)
+    controller:ToggleLights(on, lightType or nil, 0.0, "", false)
 end
 
 function VehicleLightControl.DisableAllLights()

@@ -6,10 +6,14 @@ local Gameplay = require("Gameplay")
 
 local SelfTick = require("Features/Self/Tick")
 local WeaponsTick = require("Features/Weapons/Tick")
+local World = require("Features/World")
+local Vehicle = require("Features/Vehicle")
 
 local WeaponLoader = require("Features/DataExtractors/WeaponLoader")
 local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
 local GeneralLoader = require("Features/DataExtractors/GeneralLoader")
+
+
 
 registerForEvent("onInit", function()
     Logger.Initialize()
@@ -29,6 +33,8 @@ registerForEvent("onInit", function()
         local actionName = Game.NameToString(action:GetName(action))
         local actionType = action:GetType(action).value
         Gameplay.WeaponInput.HandleInputAction(action)
+        -- Draw.InputHandler.LogAction(actionName, actionType)
+        
     end)
     Logger.Log("[EasyTrainerInit] Observing PlayerPuppet.OnAction")
 
@@ -37,6 +43,10 @@ end)
 registerForEvent("onUpdate", function(deltaTime)
     SelfTick.TickHandler()
     WeaponsTick.TickHandler(deltaTime)
+    -- Move to tick func later
+    World.WorldTime.Update(deltaTime)
+    World.WorldWeather.Update()
+    Vehicle.Headlights.UpdateRGB(deltaTime)
 end)
 
 
@@ -57,7 +67,7 @@ registerForEvent("onDraw", function()
         end
         Draw.InfoBox.Render(menuX, menuY, menuW, menuH)
     end
-
+    Logger.DrawLogWindow()
     Draw.Notifier.Render()
 end)
 

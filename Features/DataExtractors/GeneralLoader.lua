@@ -37,7 +37,7 @@ local function getDisplayName(record, typeRaw)
         local text = Game.GetLocalizedTextByKey(fallbackKey)
         if text and text ~= "Label Not Found" then name = text end
     end
-    return escapeString(name or "Unknown")
+    return escapeString(name or typeRaw)
 end
 
 local function getDescription(record)

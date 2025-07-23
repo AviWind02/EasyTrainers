@@ -128,6 +128,30 @@ function StatModifiers.RemoveFromWeapon(modifier, itemID)
 end
 
 
+function StatModifiers.AddToVehicle(modifier)
+    local player = Game.GetPlayer()
+    local vehicle = Game.GetMountedVehicle(player)
+    local statsSystem = Game.GetStatsSystem()
+
+    if not player or not vehicle or not modifier then
+        Logger.Log("[EasyTrainerStatModifiers] AddToVehicle failed: missing player, vehicle, or modifier")
+        return
+    end
+
+    local statsID = vehicle:GetEntityID()
+    if not statsID then
+        Logger.Log("[EasyTrainerStatModifiers] AddToVehicle failed: vehicle entity ID not found")
+        return
+    end
+
+    statsSystem:AddModifier(statsID, modifier)
+
+    Logger.Log(string.format("[EasyTrainerStatModifiers] Modifier added to vehicle (%s, %s, %.2f)",
+        tostring(modifier.statType), tostring(modifier.modifierType), modifier.value))
+end
+
+
+
 local appliedStates = setmetatable({}, { __mode = "k" }) 
 function StatModifiers.HandleStatModifierToggle(toggleRef, applyFunc)
     local wasApplied = appliedStates[toggleRef] or false
