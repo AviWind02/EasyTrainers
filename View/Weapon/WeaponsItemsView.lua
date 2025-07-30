@@ -36,7 +36,7 @@ local function MatchInventoryToKnownWeapons()
 
     local allItems = Inventory.GetAllItems()
     if not allItems then return end
-
+    
     local knownWeapons = WeaponLoader:GetAll()
     local knownByID = {}
     for _, w in ipairs(knownWeapons) do
@@ -201,10 +201,10 @@ local function DrawInventoryWeapons()
 
         Buttons.OptionExtended(w.name, "", "x" .. tostring(w.count), tip, function()
             local action = actionOptions[actionMode.index or 1]
-            if action == "Add Weapon" then
+            if action == "Add Weapon (+1)" then
                 Inventory.GiveItem(w.id, 1)
                 w.count = w.count + 1
-            elseif action == "Remove Weapon" then
+            elseif action == "Remove Weapon (-1)" then
                 if w.count > 0 then
                     Inventory.RemoveItem(w.id, 1)
                     w.count = w.count - 1

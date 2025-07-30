@@ -84,8 +84,8 @@ end
 
 
 local function VehicleViewFunction()
-    if Buttons.Submenu("Vehicle List", VehicleListView, "Unlock and manage vehicles.") then VehicleFeaures.enableVehicleSpawnerMode = false end
-    if Buttons.Submenu("Vehicle Spawner", VehicleListView, "Spawn vehicles directly into the world.") then VehicleFeaures.enableVehicleSpawnerMode = true end
+    if Buttons.Submenu("Vehicle List", VehicleListView, "View all vehicles and toggle which ones are enabled or disabled in your owned vehicle menu.") then VehicleFeaures.enableVehicleSpawnerMode = false end
+    if Buttons.Submenu("Vehicle Spawner", VehicleListView, "Request any vehicles directly in front of the player. Does not add them to your owned list.") then VehicleFeaures.enableVehicleSpawnerMode = true end
     Buttons.Submenu("Vehicle Headlights", VehicleHeadLightView, "Control vehicle headlights and light types.")
     Buttons.Submenu("Vehicle Doors", VehicleDoorView, "Open and close vehicle doors.")
     Buttons.Option("Repair Vehicle", "Repair current vehicle", Vehicle.Repairs.Tick)

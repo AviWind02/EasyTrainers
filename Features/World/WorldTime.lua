@@ -40,14 +40,41 @@ end
 
 function WorldTime.SetGameTime(hours, minutes, seconds)
     timeSystem:SetGameTimeByHMS(hours, minutes, seconds, "EasyTrainerWorldTime")
-    Logger.Log(string.format("[EasyTrainerWorldTime] Set game time to %02d:%02d:%02d", hours, minutes, seconds))
+    -- Logger.Log(string.format("[EasyTrainerWorldTime] Set game time to %02d:%02d:%02d", hours, minutes, seconds))
 end
 
-function WorldTime.SetTimeMorning()   WorldTime.SetGameTime(6, 0, 0) end
-function WorldTime.SetTimeNoon()      WorldTime.SetGameTime(12, 0, 0) end
-function WorldTime.SetTimeAfternoon() WorldTime.SetGameTime(15, 0, 0) end
-function WorldTime.SetTimeEvening()   WorldTime.SetGameTime(18, 0, 0) end
-function WorldTime.SetTimeNight()     WorldTime.SetGameTime(22, 0, 0) end
+
+local function ApplyTimeWithState(hours, minutes, seconds, label)
+    local refroze = false
+    local resynced = false
+
+    if WorldTime.toggleFreezeTime.value then
+        WorldTime.toggleFreezeTime.value = false
+        refroze = true
+    end
+
+    if WorldTime.toggleSyncToSystemClock.value then
+        WorldTime.toggleSyncToSystemClock.value = false
+        resynced = true
+    end
+
+    WorldTime.SetGameTime(hours, minutes, seconds)
+
+    if refroze then
+        -- WorldTime.toggleFreezeTime.value = true
+        Draw.Notifier.Push(string.format("Time set to %s and disabled Freeze Time", label or "custom time"))
+    end
+
+    if resynced then
+        Draw.Notifier.Push("System clock sync disabled to apply custom time")
+    end
+end
+
+function WorldTime.SetTimeMorning()   ApplyTimeWithState(6, 0, 0, "Morning (6:00)") end
+function WorldTime.SetTimeNoon()      ApplyTimeWithState(12, 0, 0, "Noon (12:00)") end
+function WorldTime.SetTimeAfternoon() ApplyTimeWithState(15, 0, 0, "Afternoon (15:00)") end
+function WorldTime.SetTimeEvening()   ApplyTimeWithState(18, 0, 0, "Evening (18:00)") end
+function WorldTime.SetTimeNight()     ApplyTimeWithState(22, 0, 0, "Night (22:00)") end
 
 function WorldTime.SkipDays(days, step)
     if not days or days < 1 then days = 1 end

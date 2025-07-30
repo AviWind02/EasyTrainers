@@ -17,13 +17,24 @@ function Decorators.DrawTitleBar(menuX, menuY, menuW)
     -- Background
     DrawHelpers.RectFilled(x, y, w, h, header.Bg)
 
-    header.Text = Submenus.GetBreadcrumbTitle() or header.Text or "EasyTrainer"
+    -- Main title (top-left, shifted up)
+    local staticText = header.Text
+    local titleX = x + 10
+    local titleY = y + 8 
+    DrawHelpers.Text(titleX, titleY, header.TextColor, staticText, header.FontSize)
 
-    -- Text
-    local textX = x + 10
-    local textY = y + (h - header.FontSize) * 0.5
-    DrawHelpers.Text(textX, textY, header.TextColor, header.Text, header.FontSize)
+    -- Breadcrumb (bottom-right, shifted down)
+    local breadcrumb = Submenus.GetBreadcrumbTitle() or ""
+    local breadcrumbWidth = ImGui.CalcTextSize(breadcrumb)
+    local breadcrumbX = x + w - breadcrumbWidth - 10
+    local breadcrumbY = y + h - header.FontSizeSub - 5 -- move slightly down
+    DrawHelpers.Text(breadcrumbX, breadcrumbY, header.TextColor, breadcrumb, header.FontSizeSub)
+
+    -- Bottom divider line
+    DrawHelpers.Line(x, y + h - 1, x + w, y + h - 1, UI.Colors.Border, 1.0)
 end
+
+
 
 -- Draws the bottom footer with left/right aligned info
 function Decorators.DrawFooter(menuX, menuY, menuW, menuH, maxVisible)
@@ -41,7 +52,7 @@ function Decorators.DrawFooter(menuX, menuY, menuW, menuH, maxVisible)
     local currentPage = math.floor((current - 1) / visible) + 1
     local totalPages = math.floor((total + visible - 1) / visible)
 
-    local leftText = footer.Text or "v1.0.0"
+    local leftText = footer.Text
     local rightText = string.format("Opt: %d | Pg: %d/%d", current, currentPage, totalPages)
 
     -- Divider line

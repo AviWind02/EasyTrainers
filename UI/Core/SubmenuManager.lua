@@ -28,19 +28,37 @@ function SubmenuManager.CloseSubmenu()
 end
 
 function SubmenuManager.GetBreadcrumbTitle()
+    local stack = SubmenuManager.menuStack
+    if #stack == 0 then return "" end
+    return stack[#stack].title or ""
+end
+
+--[[
+function SubmenuManager.GetBreadcrumbTitle()
     local sep = " > "
-    local title = ""
+    local full = ""
 
     for _, menu in ipairs(SubmenuManager.menuStack) do
-        title = title .. menu.title .. sep
+        full = full .. menu.title .. sep
     end
 
-    if title:sub(-#sep) == sep then
-        title = title:sub(1, -#sep - 1)
+    if full:sub(-#sep) == sep then
+        full = full:sub(1, -#sep - 1)
     end
 
-    return title
+    local maxPixels = OptionManager.menuW or 300
+    local textW = ImGui.CalcTextSize(full)
+    local padding = 10
+    local maxChars = math.floor((maxPixels - padding) / 8.0)
+
+    if #full > maxChars then
+        local start = #full - maxChars + 3
+        full = "..." .. full:sub(start + 1)
+    end
+
+    return full
 end
+]]
 
 function SubmenuManager.GetCurrentView()
     local top = SubmenuManager.menuStack[#SubmenuManager.menuStack]

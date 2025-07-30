@@ -78,6 +78,10 @@ function Buttons.Radio(label, ref, options, tip, action)
     return false
 end
 
+function Buttons.StringCycler(label, ref, options, tip)
+    return OptionManager.StringCycler(label, ref, options, tip)
+end
+
 
 function Buttons.Color(label, ref, tip)
     return OptionManager.Color(label, ref, tip)

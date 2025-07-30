@@ -60,39 +60,46 @@ function OptionManager.RawOption(left, center, right, textColor, highlightColor)
     local pos = OptionManager._calcPosition()
     if not pos then return false end
 
-    -- Draw highlight first
-    if pos.isActive then
-        DrawHelpers.RectFilled(
-            pos.x,
-            OptionManager.smoothY,
-            pos.w,
-            pos.h,
-            highlightColor,
-            UI.Layout.FrameRounding
-        )
+    local mouseX, mouseY = ImGui.GetMousePos()
+    local hovered = mouseX >= pos.x and mouseX <= (pos.x + pos.w) and
+                    mouseY >= pos.y and mouseY <= (pos.y + pos.h)
+
+    if hovered and ImGui.IsMouseClicked(0) then
+        Submenus.currentOption = Submenus.optionIndex
     end
 
-    -- Draw left-aligned text
+    local isActive = Submenus.optionIndex == Submenus.currentOption
+
+    if hovered then
+        DrawHelpers.RectFilled(pos.x, pos.y, pos.w, pos.h, UI.Colors.MutedText, UI.Layout.FrameRounding)
+    end
+
+    if isActive then
+        OptionManager.smoothY = OptionManager.smoothY + (pos.y - OptionManager.smoothY) * UI.Animation.SmoothSpeed
+        DrawHelpers.RectFilled(pos.x, OptionManager.smoothY, pos.w, pos.h, highlightColor, UI.Layout.FrameRounding)
+    end
+
     if left and left ~= "" then
         DrawHelpers.Text(pos.x + UI.Layout.LabelOffsetX, pos.fontY, textColor, left)
     end
 
-    -- Draw center-aligned text
     if center and center ~= "" then
         local textW = ImGui.CalcTextSize(center)
         local centerX = pos.x + (pos.w - textW) * 0.5
         DrawHelpers.Text(centerX, pos.fontY, textColor, center)
     end
 
-    -- Draw right-aligned text
     if right and right ~= "" then
         local textW = ImGui.CalcTextSize(right)
         local rightX = pos.x + pos.w - UI.Layout.LabelOffsetX - textW
         DrawHelpers.Text(rightX, pos.fontY, textColor, right)
     end
 
-    return pos.isActive and Controls.selectPressed
+    return isActive and (Controls.selectPressed or (hovered and ImGui.IsMouseClicked(0)))
 end
+
+
+
 
 
 function OptionManager.Option(left, center, right, tip)
@@ -120,9 +127,11 @@ end
 
 
 function OptionManager.Dropdown(label, ref, options, tip)
+    local keyTip = "Tip: Press Enter or Click to expand and select option."
+    local fullTip = keyTip .. (tip and ("\n\n" .. tip) or "")
     local arrow = ref.expanded and IconGlyphs.CircleExpand or IconGlyphs.ArrowExpandAll
     local selectedLabel = options[ref.index or 1] or "None"
-    local clicked = OptionManager.Option(label, nil, selectedLabel .. " " .. arrow, tip)
+    local clicked = OptionManager.Option(label, nil, selectedLabel .. " " .. arrow, fullTip)
 
     if clicked then
         ref.expanded = not ref.expanded
@@ -212,7 +221,9 @@ end
 
 
 function OptionManager.IntToggle(label, ref, tip)
-    local clicked = OptionManager.Option(label, "", "", tip)
+    local keyTip = "Tip: Use Left and Right arrow keys to switch value."
+    local fullTip = keyTip .. (tip and ("\n\n" .. tip) or "")
+    local clicked = OptionManager.Option(label, "", "", fullTip)
     local pos = OptionManager._calcPosition()
     if not pos then return false end
 
@@ -286,8 +297,10 @@ end
 
 
 function OptionManager.FloatToggle(label, ref, tip)
-	local clicked = OptionManager.Option(label, "", "", tip)
-	local pos = OptionManager._calcPosition()
+    local keyTip = "Tip: Use Left and Right arrow keys to switch value"
+    local fullTip = keyTip .. (tip and ("\n\n" .. tip) or "")
+    local clicked = OptionManager.Option(label, "", "", fullTip)
+    local pos = OptionManager._calcPosition()
 	if not pos then return false end
 
 	local Layout, Colors = UI.Layout, UI.Colors
@@ -400,12 +413,52 @@ function OptionManager.Radio(label, ref, options, tip)
     return changed
 end
 
+function OptionManager.StringCycler(label, ref, options, tip)
+    local keyTip = "Tip: Use Left and Right arrow keys to switch value."
+    local fullTip = keyTip .. (tip and ("\n\n" .. tip) or "")
+    local clicked = OptionManager.Option(label, "", "", fullTip)
+    local pos = OptionManager._calcPosition()
+    if not pos then return false end
+
+    local Layout, Colors = UI.Layout, UI.Colors
+
+    local currentIndex = ref.index or 1
+    local currentText = options[currentIndex] or "None"
+    local valueTextWidth = ImGui.CalcTextSize(currentText)
+
+    local framePadding = 6
+    local textPadding = 3
+
+    local boxX = pos.x + pos.w - Layout.LabelOffsetX - valueTextWidth - framePadding * 2
+    local boxY = pos.y + textPadding
+    local boxW = valueTextWidth + framePadding * 2
+    local boxH = pos.h - textPadding * 2
+
+    DrawHelpers.RectFilled(boxX, boxY, boxW, boxH, Colors.FrameBg, Layout.FrameRounding)
+
+    DrawHelpers.Text(boxX + framePadding, pos.fontY, Colors.Highlight, currentText)
+
+    -- Navigation logic
+    if pos.isActive then
+        if Controls.leftPressed then
+            ref.index = currentIndex - 1
+            if ref.index < 1 then ref.index = #options end
+        elseif Controls.rightPressed then
+            ref.index = currentIndex + 1
+            if ref.index > #options then ref.index = 1 end
+        end
+    end
+
+    return clicked
+end
+
+
 
 
 function OptionManager.Color(label, ref, tip)
-    local defaultTip = "Press Enter or Click to expand.\nUse Arrow keys to adjust color channels."
-    local combinedTip = (tip and (tip .. "\n\n") or "") .. defaultTip
-    local clicked = OptionManager.Option(label, "", "", combinedTip)
+    local keyTip = "Press Enter or Click to expand.\nUse Arrow keys to adjust color channels."
+    local fullTip = (tip and (tip .. "\n\n") or "") .. keyTip
+    local clicked = OptionManager.Option(label, "", "", fullTip)
     local pos = OptionManager._calcPosition()
     if not pos then return false end
 

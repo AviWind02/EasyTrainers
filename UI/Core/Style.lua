@@ -151,7 +151,8 @@ UI.Header = {
     BackgroundColor = 0xFF14161C,
     TextColor = 0xFFFFFFFF,
     FontSize = 18,
-    Text = "Main Menu"
+    FontSizeSub = 16,
+    Text = "EasyTrainer"
 }
 
 UI.Footer = {
@@ -159,7 +160,7 @@ UI.Footer = {
     BackgroundColor = 0xFF191926,
     TextColor = 0xFFAAAAAA,
     FontSize = 12,
-    Text = "v1.0.0 | Easy Trainers",
+    Text = "vPreview Build | By Avi",
 }
 
 UI.Scroll = {

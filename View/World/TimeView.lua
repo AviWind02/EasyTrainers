@@ -71,7 +71,7 @@ local function WorldTimeViewFunction()
 
     Buttons.Break("Time Skip & Multiplier")
     Buttons.Int("Skip Days", WorldTime.skipDaysAmount, "How many in-game days to skip.")
-    Buttons.Int("Skip Step Speed", WorldTime.skipStepSize, "Controls how fast time skips. Lower = faster.")
+    Buttons.Int("Skip Step Speed", WorldTime.skipStepSize, "Controls how fast time skips. Higher = faster.")
     Buttons.Option("Start Skipping", "Begin time skip over the specified number of days", function()
         WorldTime.SkipDays(WorldTime.skipDaysAmount.value, WorldTime.skipStepSize.value)
     end)

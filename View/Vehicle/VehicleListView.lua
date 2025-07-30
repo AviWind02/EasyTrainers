@@ -24,15 +24,23 @@ local visibilityModes = {
     "Locked Only"
 }
 
+local filterModeTip = "Filter Modes:\n" ..
+"- All Vehicles: Shows all vehicles (Can be laggy)\n" ..
+"- Player Vehicles: Classified as player-ownable\n" ..
+"- By Category: Filter by vehicle category\n" ..
+"- By Manufacturer: Filter by vehicle brand\n" ..
+"- By Affiliation: Filter by faction or group"
+
 local selectedVisibility = { index = 1, expanded = false }
 local selectedProductionYear = { index = 1, expanded = false }
-local selectedMode = { index = 1, expanded = false }
+local selectedMode = { index = 2, expanded = false }
 local selectedValue = ""
 local initialized = false
 
 local categories = {}
 local manufacturers = {}
 local affiliations = {}
+local vehicleSpawnDis = { value = 7.0, min = 3.0, max = 25.0, step = 0.5 }
 
 local function BuildFilters()
     local seenCat, seenMan, seenAff = {}, {}, {}
@@ -91,18 +99,20 @@ local function DrawVehicleRow(vehicle)
     }, "\n")
 
     if VehicleFeaures.enableVehicleSpawnerMode then
-        Buttons.Option(name, tip, function()
-            VehicleSpawner.TestSpawnAndMount(vehicle.id, 5.0)
+        local spawnTip = "Note: You may need to click twice to request the vehicle.\n\n" .. tip 
+        Buttons.Option(name, spawnTip, function()
+            VehicleSpawner.RequestVehicle(vehicle.id, vehicleSpawnDis.value)
         end)
     else
         local state = { value = VehicleSystem.IsVehicleUnlocked(vehicle.id) }
+        local unlockTip = "Note: Enabled vehicles are unlocked and appear in your owned menu. Click to toggle them on or off.\n\n" .. tip
 
         local function onClick()
             local current = VehicleSystem.IsVehicleUnlocked(vehicle.id)
             VehicleSystem.SetPlayerVehicleState(vehicle.id, not current)
         end
 
-        Buttons.Toggle(name, state, tip, onClick)
+        Buttons.Toggle(name, state, unlockTip, onClick)
     end
 end
 
@@ -134,9 +144,16 @@ local function VehicleFilteredSubmenuView()
     local mode = filterModes[selectedMode.index or 1]
 
     -- Only show dropdowns here for filtered modes
+
+    
+   
+
     if mode ~= "All Vehicles" and mode ~= "Player Vehicles" then
         Buttons.Dropdown("Year", selectedProductionYear, productionYearsList, "Filter by production year")
         Buttons.Dropdown("Visibility", selectedVisibility, visibilityModes, "Show unlocked/locked vehicles")
+        if VehicleFeaures.enableVehicleSpawnerMode then
+            Buttons.Int("Spawn Distance", vehicleSpawnDis, "Distance the vehicle spawns in front of the player")
+        end
         Buttons.Break("", "Filtered Vehicle List")
     end
 
@@ -189,12 +206,15 @@ local function VehicleMainView()
         initialized = true
     end
 
-    Buttons.Dropdown("Mode", selectedMode, filterModes, "Choose a filter mode")
+    Buttons.Dropdown("Mode", selectedMode, filterModes, filterModeTip)
 
     local mode = filterModes[selectedMode.index or 1]
     if mode == "All Vehicles" or mode == "Player Vehicles" then
         Buttons.Dropdown("Year", selectedProductionYear, productionYearsList, "Filter by production year")
         Buttons.Dropdown("Visibility", selectedVisibility, visibilityModes, "Show unlocked/locked vehicles")
+        if VehicleFeaures.enableVehicleSpawnerMode then
+            Buttons.Int("Spawn Distance", vehicleSpawnDis, "Distance the vehicle spawns in front of the player")
+        end
         Buttons.Break("", "Filtered Vehicle List")
     end
 
@@ -226,6 +246,6 @@ local function VehicleMainView()
 end
 
 
-local VehicleListView = { title = "Vehicle Unlocker", view = VehicleMainView}
+local VehicleListView = { title = "Vehicle List", view = VehicleMainView}
 
 return VehicleListView

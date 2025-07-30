@@ -3,10 +3,12 @@ local Draw = require("UI")
 local Logger = require("Core/Logger")
 
 local SelfView = require("View/Self/SelfMenuView")
-local CooldownView = require("View/Self/CooldownView")
+local PlayerStatsView = require("View/Self/PlayerStatsView")
 local TeleportView = require("View/World/TeleportView")
 local WeatherView = require("View/World/WeatherView")
 local TimeView = require("View/World/TimeView")
+local GameFactsView = require("View/World/FactView")
+
 
 
 local WeaponView = require("View/Weapon/WeaponMenuView")
@@ -60,10 +62,12 @@ local testMenu = { title = "Test Menu", view = SecondaryView }
 
 local function MainMenuView()
     Draw.Options.Submenu("Self Menu", SelfView, "Modify player stats, movement, stealth, and health behavior.")
-    Draw.Options.Submenu("Cooldown Menu", CooldownView, "Manage all ability cooldowns and recovery rates such as grenades, cloaking, and quickhacks.")
+    Draw.Options.Submenu("Player Stats", PlayerStatsView, "Manage all ability cooldowns and recovery rates such as grenades, cloaking, and quickhacks.")
+    -- Draw.Options.Submenu("Custom Modifiers", CustomModifiersView, "")
     Draw.Options.Submenu("Teleport Menu", TeleportView, "Teleport instantly to preset locations in Night City.")
     Draw.Options.Submenu("Weapon Menu", WeaponView, "Access various weapon-related features including special abilities, projectile behavior, and customization.")
     Draw.Options.Submenu("Vehicle Menu", VehicleMenuView, "Manage vehicles, spawn new ones, and control vehicle Elements ")
+    Draw.Options.Submenu("Game Facts", GameFactsView, "Set story flags, censorship states, and progression facts.")
     Draw.Options.Submenu("Time Menu", TimeView, "Control time of day, time skip, freezing, syncing, and speed multipliers.")
     Draw.Options.Submenu("Weather Menu", WeatherView, "Control world weather, force storms, fog, and more.")
     Draw.Options.Submenu("Test Buttons", testMenu, "Go to test menu")

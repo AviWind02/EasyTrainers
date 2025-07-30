@@ -24,7 +24,7 @@ function VehicleSpawner.RequestVehicle(tweakDBIDStr, spawnDist)
     transform:SetPosition(transform, spawnPos)
 
     local vehicleID = TweakDBID.new(tweakDBIDStr)
-    Draw.Notifier.Push(string.format("[EasyTrainerVehicleSpawner] Requesting vehicle '%s' at (%.2f, %.2f, %.2f)", tweakDBIDStr, spawnPos.x, spawnPos.y, spawnPos.z))
+    Draw.Notifier.Push(string.format("Requesting vehicle '%s' at (%.2f, %.2f, %.2f)", tweakDBIDStr, spawnPos.x, spawnPos.y, spawnPos.z))
     Game.GetPreventionSpawnSystem():RequestUnitSpawn(vehicleID, transform)
 end
 
@@ -46,7 +46,7 @@ function VehicleSpawner.TestSpawnAndMount(tweakDBIDStr, spawnDist)
     local recordID = TweakDBID.new(tweakDBIDStr)
     local entityID = exEntitySpawner.SpawnRecord(recordID, transform)
     local entity = Game.FindEntityByID(entityID)
-    Draw.Notifier.Push(string.format("[EasyTrainerVehicleSpawner] Spawning vehicle '%s' at (%.2f, %.2f, %.2f)", tweakDBIDStr, spawnPos.x, spawnPos.y, spawnPos.z))
+    Draw.Notifier.Push(string.format("Spawning vehicle '%s' at (%.2f, %.2f, %.2f)", tweakDBIDStr, spawnPos.x, spawnPos.y, spawnPos.z))
 
 end
 
