@@ -63,6 +63,16 @@ function Inventory.RemoveItem(tweakID, quantity)
 	end
 end
 
+function Inventory.GetItemCount(tdbid)
+    local items = Inventory.GetAllItems()
+    for _, item in ipairs(items) do
+        if item.id == tdbid then
+            return item.quantity or 0
+        end
+    end
+    return 0
+end
+
 
 function Inventory.GetAllItems()
     local player = Game.GetPlayer()
@@ -94,7 +104,32 @@ end
 
 
 
+function Inventory.SpawnItemDropInFront(tweakDBIDStr, spawnDist)
+    local player = Game.GetPlayer()
+    if not player then return end
 
+    local forward = player:GetWorldForward()
+    local offset = Vector3.new(forward.x * spawnDist, forward.y * spawnDist, 0.5)
+
+    local transform = player:GetWorldTransform()
+    local pos = transform.Position:ToVector4()
+    local spawnPos = Vector4.new(pos.x + offset.x, pos.y + offset.y, pos.z + offset.z, 1.0)
+
+    transform:SetPosition(transform, spawnPos)
+
+    local itemID = ItemID.FromTDBID(tweakDBIDStr)
+    local tags = { CName.new("EasyTrainer") }
+
+    Game.GetTransactionSystem():GiveItem(Vendor:GetVendorObject(), itemID, 1, tags) -- bool check
+    
+    local success = Game.GetLootManager():SpawnItemDrop(Vendor:GetVendorObject(), itemID, spawnPos, Quaternion.new(0, 0, 0, 1))
+
+    if success then
+        Logger.Log(string.format("Spawned consumable at (%.2f, %.2f, %.2f)", spawnPos.x, spawnPos.y, spawnPos.z))
+    else
+        Logger.Log("Failed to spawn consumable.")
+    end
+end
 
 
 

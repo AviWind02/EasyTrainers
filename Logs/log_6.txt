@@ -1,10 +1,7 @@
-[2025-07-30 00:24:28] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
-[2025-07-30 00:24:28] [EasyTrainerInit] Starting initialization
-[2025-07-30 00:24:28] [EasyTrainerInit] Performing data dumps and loading to memory.
-[2025-07-30 00:24:28] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
-[2025-07-30 00:24:28] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
-[2025-07-30 00:24:28] [EasyTrainerGeneralLoader] Loaded 4731 items.
-[2025-07-30 00:24:28] [EasyTrainerInit] Observing BaseProjectile.ProjectileHit
-[2025-07-30 00:24:28] [EasyTrainerInit] Observing PlayerPuppet.OnAction
-[2025-07-30 00:24:28] [EasyTrainerInit] Initialization complete.
-[2025-07-30 00:25:42] [EasyTrainerStatModifiers] ClearAll failed: context missing
+[2025-08-04 00:08:22] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
+[2025-08-04 00:08:22] [EasyTrainerInit] Starting initialization
+[2025-08-04 00:08:22] [EasyTrainerInit] Performing data dumps and loading to memory.
+[2025-08-04 00:08:22] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
+[2025-08-04 00:08:23] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
+[2025-08-04 00:08:23] [EasyTrainerGeneralLoader] Loaded 4731 items.
+[2025-08-04 00:08:23] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.

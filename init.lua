@@ -12,7 +12,9 @@ local Vehicle = require("Features/Vehicle")
 local WeaponLoader = require("Features/DataExtractors/WeaponLoader")
 local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
 local GeneralLoader = require("Features/DataExtractors/GeneralLoader")
+local PerkLoader = require("Features/DataExtractors/PerkLoader")
 
+local Session = require("Core/Kit/GameSession")
 
 
 registerForEvent("onInit", function()
@@ -23,7 +25,8 @@ registerForEvent("onInit", function()
     WeaponLoader:LoadAll()
     VehicleLoader:LoadAll()
     GeneralLoader:LoadAll()
-
+    PerkLoader:LoadAll()
+    LogPerkTree()
     Observe("BaseProjectile", "ProjectileHit", function(self, eventData)
         WeaponsTick.HandleProjectileHit(self, eventData)
     end)
@@ -40,7 +43,12 @@ registerForEvent("onInit", function()
 
     Logger.Log("[EasyTrainerInit] Initialization complete.")
 end)
+
 registerForEvent("onUpdate", function(deltaTime)
+    
+    if not Session.IsLoaded() then return end
+
+
     SelfTick.TickHandler()
     WeaponsTick.TickHandler(deltaTime)
     -- Move to tick func later

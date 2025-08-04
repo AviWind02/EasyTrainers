@@ -1,7 +1,7 @@
 local VehicleSpawner = {}
 
 local Draw = require("UI")
-
+local GameP = require("Gameplay")
 -- Requests the vehicle in front of the player
 function VehicleSpawner.RequestVehicle(tweakDBIDStr, spawnDist)
     local player = Game.GetPlayer()

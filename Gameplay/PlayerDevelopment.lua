@@ -1,5 +1,7 @@
 local PlayerDevelopment = {}
 local Logger = require("Core/Logger")
+local Draw = require("UI")
+
 
 local function GetPlayerData()
     local player = Game.GetPlayer()
@@ -26,9 +28,15 @@ end
 function PlayerDevelopment.SetLevel(profType, level)
     local data = GetPlayerData()
     if not data then return end
-    data:SetLevel(profType, level, telemetryLevelGainReason.DebugCheat, true)
+    data:SetLevel(profType, level, telemetryLevelGainReason.Gameplay, true)
     Logger.Log(string.format("[EasyTrainerPlayerDevelopment] Level set: %s = %d", tostring(profType), level))
 end
+function PlayerDevelopment.GetMaxLevel(profType)
+    local data = PlayerDevelopmentSystem.GetData(Game.GetPlayer())
+    if not data then return 60 end 
+    return data:GetProficiencyAbsoluteMaxLevel(profType)
+end
+
 
 function PlayerDevelopment.AddXP(profType, amount)
     local data = GetPlayerData()
@@ -62,5 +70,59 @@ function PlayerDevelopment.GetDevPoints(pointType)
     if not data then return -1 end
     return data:GetDevPoints(pointType)
 end
+
+function PlayerDevelopment.HasPerk(perkType)
+    local player = Game.GetPlayer()
+    if not player then return false end
+    return PlayerDevelopmentSystem.GetData(player):IsNewPerkBought(perkType) > 0
+end
+
+function PlayerDevelopment.IsPerkUnlocked(perkType)
+    local player = Game.GetPlayer()
+    if not player then return false end
+    return PlayerDevelopmentSystem.GetData(player):IsNewPerkUnlocked(perkType)
+end
+
+function PlayerDevelopment.BuyPerk(perkType, force)
+    local data = GetPlayerData()
+    if not data then return false end
+    local success = data:BuyNewPerk(perkType, force or false)
+    if success then
+        Draw.Notifier.Push(string.format("Perk bought: %s", tostring(perkType)))
+    else
+        Draw.Notifier.Push(string.format("Failed to buy perk: %s\nYou may need to unlock earlier perks first.", tostring(perkType)))
+
+    end
+    return success
+end
+
+
+function PlayerDevelopment.GetPerkMaxLevel(perkType)
+    local data = PlayerDevelopmentSystem.GetData(Game.GetPlayer())
+    if not data then return 1 end
+    return data:GetNewPerkMaxLevel(perkType)
+end
+
+
+function PlayerDevelopment.RemovePerk(perkType)
+    local data = GetPlayerData()
+    if not data then return false end
+    local success, level = data:ForceSellNewPerk(perkType)
+    if success then
+        Draw.Notifier.Push(string.format("Perk removed: %s | Level Removed: %d", tostring(perkType), level))
+    else
+        Draw.Notifier.Push(string.format("Failed to remove perk: %s", tostring(perkType)))
+    end
+    return success, level
+end
+
+function PlayerDevelopment.UnlockPerksForAttribute(attributeType)
+    local data = GetPlayerData()
+    if not data then return end
+    data:UnlockFreeNewPerks(attributeType)
+    Logger.Log(string.format("[EasyTrainerPlayerDevelopment] Unlocked perks for attribute: %s", tostring(attributeType)))
+end
+
+
 
 return PlayerDevelopment

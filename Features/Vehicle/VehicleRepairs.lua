@@ -28,13 +28,13 @@ end
 function VehicleRepairs.Tick()
     local player = Game.GetPlayer()
     if not Game.GetWorkspotSystem():IsActorInWorkspot(player) then
-        Draw.Notifier.Push("[EasyTrainerFixVehicle] You're not in a vehicle!")
+        Draw.Notifier.Push("You're not in a vehicle!")
         return
     end
 
     local vehicle = Game['GetMountedVehicle;GameObject'](player)
     if not vehicle then
-        Draw.Notifier.Push("[EasyTrainerFixVehicle] No mounted vehicle found.")
+        Draw.Notifier.Push("No mounted vehicle found.")
         return
     end
 
@@ -43,7 +43,7 @@ function VehicleRepairs.Tick()
     local name = vehicle:GetDisplayName()
     local type = vehicle:GetVehicleType().value
 
-    Draw.Notifier.Push(string.format("[EasyTrainerFixVehicle] Repairing: %s", name))
+    Draw.Notifier.Push(string.format("Repairing: %s", name))
 
     -- Reset damage level
     vc.damageLevel = 0

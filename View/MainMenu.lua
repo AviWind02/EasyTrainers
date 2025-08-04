@@ -4,12 +4,15 @@ local Logger = require("Core/Logger")
 
 local SelfView = require("View/Self/SelfMenuView")
 local PlayerStatsView = require("View/Self/PlayerStatsView")
+local PlayerDevelopmentView = require("View/Self/PlayerDevelopmentView")
+
 local TeleportView = require("View/World/TeleportView")
 local WeatherView = require("View/World/WeatherView")
 local TimeView = require("View/World/TimeView")
 local GameFactsView = require("View/World/FactView")
 
 
+local Vehicle = require("Features/Vehicle")
 
 local WeaponView = require("View/Weapon/WeaponMenuView")
 local VehicleMenuView = require("View/Vehicle/VehicleMenuView")
@@ -49,7 +52,10 @@ local function SecondaryView()
     end
     Draw.Options.Option(nil, "Centered Option", nil, "Tip: Centered Option")
     Draw.Options.Break("Section Break", nil, nil)
-    Draw.Options.Option("Option 1", nil, "Right")
+    if Draw.Options.Option("Option 1", nil, "Right") then
+        Gameplay.Inventory.SpawnItemDropInFront("Items.TopQualityAlcohol10", 5)
+
+    end
     Draw.Options.Dropdown("Weapon Type", dropdownRef, weaponTypes)
     Draw.Options.Dropdown("Language", languageRef, languages)
     Draw.Options.Toggle("Test Toggle", testToggle, "Tip: Test Toggle")
@@ -62,15 +68,15 @@ local testMenu = { title = "Test Menu", view = SecondaryView }
 
 local function MainMenuView()
     Draw.Options.Submenu("Self Menu", SelfView, "Modify player stats, movement, stealth, and health behavior.")
-    Draw.Options.Submenu("Player Stats", PlayerStatsView, "Manage all ability cooldowns and recovery rates such as grenades, cloaking, and quickhacks.")
-    -- Draw.Options.Submenu("Custom Modifiers", CustomModifiersView, "")
+    Draw.Options.Submenu("Development Menu", PlayerDevelopmentView, "Adjust attributes and toggle individual perks.")
+    Draw.Options.Submenu("Modifiers Menu", PlayerStatsView, "Manage all ability cooldowns and recovery rates such as grenades, cloaking, and quickhacks.")
     Draw.Options.Submenu("Teleport Menu", TeleportView, "Teleport instantly to preset locations in Night City.")
     Draw.Options.Submenu("Weapon Menu", WeaponView, "Access various weapon-related features including special abilities, projectile behavior, and customization.")
     Draw.Options.Submenu("Vehicle Menu", VehicleMenuView, "Manage vehicles, spawn new ones, and control vehicle Elements ")
-    Draw.Options.Submenu("Game Facts", GameFactsView, "Set story flags, censorship states, and progression facts.")
+    Draw.Options.Submenu("Facts Menu", GameFactsView, "Set story flags, censorship states, and progression facts.")
     Draw.Options.Submenu("Time Menu", TimeView, "Control time of day, time skip, freezing, syncing, and speed multipliers.")
     Draw.Options.Submenu("Weather Menu", WeatherView, "Control world weather, force storms, fog, and more.")
-    Draw.Options.Submenu("Test Buttons", testMenu, "Go to test menu")
+    -- Draw.Options.Submenu("Test Buttons", testMenu, "Go to test menu")
 
 end
 
