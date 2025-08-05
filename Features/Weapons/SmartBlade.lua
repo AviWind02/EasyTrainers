@@ -3,7 +3,8 @@ local SmartBlade = {}
 SmartBlade.enabled = { value = false }
 
 
--- Bring blade back to player (SmartBlade)
+-- I'm not sure why no one has ever made this or I couldn't just find a mod
+-- but maybe there is a modifier I can use to get rid of the throwing knife time but this works very nicely so far
 function SmartBlade.Tick(self)
     if not SmartBlade.enabled.value then
         return

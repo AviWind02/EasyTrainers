@@ -1,3 +1,5 @@
+-- I'm so glad there was teleport data available online
+
 return {
     { name = "Arasaka Orbital Station", category = "Location", creator = "Dank Rafft and capncoolio2", position = { x = 4743.650879, y = -1091.755127, z = 1310.439575 } },
     { name = "Arasaka Tower Jungle", category = "Location", creator = "Dank Rafft and capncoolio2", position = { x = -1449.256470, y = 118.300171, z = 321.639038 } },

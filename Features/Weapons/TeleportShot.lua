@@ -7,7 +7,7 @@ local lastTeleportTime = -1
 TeleportShot.enabled = { value = false }
 
 
--- Teleport player to look-at position when shooting (TeleyGun)
+-- Same as the FlyingThunderGod but since I don't know how to track hitscans in the game this checks where the players looking and then waits for them to shoot
 function TeleportShot.Tick()
 
     if not TeleportShot.enabled.value then

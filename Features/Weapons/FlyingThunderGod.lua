@@ -1,7 +1,6 @@
 local FlyingThunderGod = {}
 FlyingThunderGod.enabled = { value = false }
 
--- Teleport player to hit position of projectile (Flying Thunder God)
 function FlyingThunderGod.Tick(eventData)
     
     if not FlyingThunderGod.enabled.value then

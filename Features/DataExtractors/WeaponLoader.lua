@@ -1,9 +1,9 @@
 local Logger = require("Core/Logger")
-
+local utils = require("Features/DataExtractors/Utils")
 
 local WeaponLoader = {
-    weapons = {}, -- array of WeaponData
-    indexById = {}, -- map id -> WeaponData
+    weapons = {},
+    indexById = {},
     typeMap = {
         handgun = "Handgun",
         revolver = "Revolver",
@@ -56,51 +56,7 @@ local WeaponLoader = {
     }
 }
 
--- Local helpers
-local function safeCall(fn, ...)
-    local ok, res = pcall(fn, ...)
-    return ok and res or nil
-end
-
-local function escapeString(s)
-    if type(s) ~= "string" or s == "" then
-        return "Unknown"
-    end
-    return s:gsub("([\\\"])", "\\%1")
-end
-
-local function getTags(record)
-    local raw = safeCall(function() return record:Tags() end)
-    if type(raw) ~= "table" then
-        return {}
-    end
-    local out = {}
-    for _, tag in ipairs(raw) do
-        if tag.value then
-            table.insert(out, tag.value)
-        end
-    end
-    return out
-end
-
-local function getRarity(recordId, record)
-    local quality = safeCall(function() return record:Quality() end)
-    local val = safeCall(function() return quality:Type().value end) or ""
-    val = val:lower()
-    for key, label in pairs(WeaponLoader.rarityMap) do
-        if val:find(key) then
-            return label
-        end
-    end
-    for key, label in pairs(WeaponLoader.rarityMap) do
-        if recordId:lower():find(key) then
-            return label
-        end
-    end
-    return val ~= "" and val or "Standard"
-end
-
-local function getType(tags)
+local function GetType(tags)
     local lowerTags = {}
     for _, t in ipairs(tags) do
         lowerTags[t:lower()] = true
@@ -115,13 +71,23 @@ local function getType(tags)
     return lowerTags.rangedweapon and "Ranged" or "Miscellaneous"
 end
 
-local function hasTag(tags, name)
-    for _, tag in ipairs(tags) do
-        if tag:lower() == name then
-            return true
+local function GetRarity(recordId, record)
+    local quality = utils.SafeCall(function() return record:Quality() end)
+    local val = utils.SafeCall(function() return quality:Type().value end) or ""
+    val = val:lower()
+
+    for key, label in pairs(WeaponLoader.rarityMap) do
+        if val:find(key) then
+            return label
         end
     end
-    return false
+    for key, label in pairs(WeaponLoader.rarityMap) do
+        if recordId:lower():find(key) then
+            return label
+        end
+    end
+
+    return val ~= "" and val or "Standard"
 end
 
 function WeaponLoader:LoadAll()
@@ -130,27 +96,39 @@ function WeaponLoader:LoadAll()
         Logger.Log("[EasyTrainerWeaponLoader] No weapon records found.")
         return
     end
+
     for _, rec in ipairs(records) do
-        local id = safeCall(function() return rec:GetID().value end)
+        local id = utils.SafeCall(function() return rec:GetID().value end)
         if id and id:find("^Items%.") then
-            local tags = getTags(rec)
+            local tags = utils.GetTags(rec)
+
             local data = {
                 id = id,
-                displayName = escapeString(safeCall(function() return Game.GetLocalizedTextByKey(rec:DisplayName()) end) or "Unknown"),
-                type = getType(tags),
-                rarity = getRarity(id, rec),
-                manufacturer = escapeString(safeCall(function() return rec:Manufacturer():Name() end) or "Unlisted"),
-                iconic = hasTag(tags, "iconicweapon"),
-                isTech = hasTag(tags, "techweapon"),
-                isSmart = hasTag(tags, "smartweapon"),
-                isPower = hasTag(tags, "powerweapon"),
+                displayName = utils.EscapeString(
+                    utils.SafeCall(function()
+                        return Game.GetLocalizedTextByKey(rec:DisplayName())
+                    end) or "Unknown"
+                ),
+                type = GetType(tags),
+                rarity = GetRarity(id, rec),
+                manufacturer = utils.EscapeString(
+                    utils.SafeCall(function()
+                        return rec:Manufacturer():Name()
+                    end) or "Unlisted"
+                ),
+                iconic = utils.HasTag(tags, "iconicweapon"),
+                isTech = utils.HasTag(tags, "techweapon"),
+                isSmart = utils.HasTag(tags, "smartweapon"),
+                isPower = utils.HasTag(tags, "powerweapon"),
                 onWall = WeaponLoader.wallWeaponIds[id] == true,
                 tags = tags
             }
+
             table.insert(self.weapons, data)
             self.indexById[id] = data
         end
     end
+
     Logger.Log(string.format("[EasyTrainerWeaponLoader] Loaded %d weapons.", #self.weapons))
 end
 

@@ -1,15 +1,16 @@
 local Facts = {}
 local logger = require("Core/Logger")
 
-local QS = Game.GetQuestsSystem()
 
 function Facts.Get(factName)
+    local QS = Game.GetQuestsSystem()
     local result = QS:GetFactStr(factName)
     logger.Log(string.format("[Facts] %s = %s", factName, tostring(result)))
     return result
 end
 
 function Facts.Set(factName, value)
+    local QS = Game.GetQuestsSystem()
     QS:SetFactStr(factName, value)
     logger.Log(string.format("[Facts] %s set to %s", factName, tostring(value)))
 end

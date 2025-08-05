@@ -1,7 +1,7 @@
 local Welcome = {}
 local Draw = require("UI")
 
-local windowW, windowH = 600, 640
+local windowW, windowH = 600, 700
 local JsonHelper = require("Core/JsonHelper")
 local configPath = "config.json"
 

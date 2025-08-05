@@ -1,7 +1,7 @@
 local VehicleSpawner = {}
 
 local Draw = require("UI")
-local GameP = require("Gameplay")
+
 -- Requests the vehicle in front of the player
 function VehicleSpawner.RequestVehicle(tweakDBIDStr, spawnDist)
     local player = Game.GetPlayer()
@@ -28,7 +28,9 @@ function VehicleSpawner.RequestVehicle(tweakDBIDStr, spawnDist)
     Game.GetPreventionSpawnSystem():RequestUnitSpawn(vehicleID, transform)
 end
 
--- Spawns the vehicle in front of the player
+-- Spawns the vehicle in front of the player 
+-- it makes the vehicle unusable I don't know how to use this correctly
+-- It does return the entity ID so maybe I can mount the player to the vehicle
 function VehicleSpawner.TestSpawnAndMount(tweakDBIDStr, spawnDist)
     local player = Game.GetPlayer()
     if not player then

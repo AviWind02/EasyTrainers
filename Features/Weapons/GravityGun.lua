@@ -7,9 +7,10 @@ local grabDistance = 7.0
 
 GravityGun.enabled = { value = false }
 
+-- Testing with this function to see if I can apply force to the object so it can keep its physics like an actual gravity gun
 function ApplyForceToEntity(entity, forceX, forceY, forceZ)
     if not entity then
-        print("[ApplyForce] Invalid entity.")
+        logger.Log("[ApplyForce] Invalid entity.")
         return
     end
 
@@ -38,14 +39,15 @@ function GravityGun.Tick()
 
     local player = Game.GetPlayer()
     local targetingSystem = Game.GetTargetingSystem()
-    if not player or not targetingSystem then return end
+    local teleportSystem = Game.GetTeleportationFacility()
+    if not player or not targetingSystem or not teleportSystem then return end
 
     local isAiming = player.isAiming
     if isAiming and not heldObject then
         local obj = targetingSystem:GetLookAtObject(player, true, false)
         if obj then
             heldObject = obj
-            logger.Log("[EasyTrainerGravityGun] Grabbed object: " .. tostring(obj:GetDisplayName()))
+            print("[EasyTrainerGravityGun] Grabbed object: " .. tostring(obj:GetDisplayName()))
         end
     end
 
@@ -54,7 +56,6 @@ function GravityGun.Tick()
             local camOrigin = player:GetWorldPosition()
             local lookAt = targetingSystem:GetLookAtPosition(player, true, false)
 
-            -- Get the direction vector from camera to crosshair target
             local dir = {
                 x = lookAt.x - camOrigin.x,
                 y = lookAt.y - camOrigin.y,
@@ -63,33 +64,21 @@ function GravityGun.Tick()
             local mag = math.sqrt(dir.x^2 + dir.y^2 + dir.z^2)
             dir.x, dir.y, dir.z = dir.x / mag, dir.y / mag, dir.z / mag
 
-            -- Target position in front of player based on grab distance
-            local targetPos = Vector3.new(
+            local targetPos = Vector4.new(
                 camOrigin.x + dir.x * grabDistance,
                 camOrigin.y + dir.y * grabDistance,
-                camOrigin.z + dir.z * grabDistance
+                camOrigin.z + dir.z * grabDistance,
+                1.0
             )
 
-            local objectPos = heldObject:GetWorldPosition()
-            local delta = {
-                x = targetPos.x - objectPos.x,
-                y = targetPos.y - objectPos.y,
-                z = targetPos.z - objectPos.z
-            }
-
-            -- Force multiplier for responsiveness (tweakable)
-            local forceStrength = 0.2
-            ApplyForceToEntity(heldObject,
-                delta.x * forceStrength,
-                delta.y * forceStrength,
-                delta.z * forceStrength
-            )
+            teleportSystem:Teleport(heldObject, targetPos, EulerAngles.new(0, 0, 0))
         else
-            logger.Log("[EasyTrainerGravityGun] Released object.")
+            print("[EasyTrainerGravityGun] Released object.")
             heldObject = nil
         end
     end
 end
+
 
 
 return GravityGun

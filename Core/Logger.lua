@@ -8,13 +8,11 @@ local Logger = {
     showTimestamps = true
 }
 
--- Get current timestamp string
-local function getTimestamp()
+local function GetTimestamp()
     return os.date("[%Y-%m-%d %H:%M:%S]")
 end
 
--- Get next log file index
-local function getNextLogIndex()
+local function GetNextLogIndex()
     local index = 1
     while true do
         local path = string.format("%s/log_%d.txt", Logger.logDir, index)
@@ -26,8 +24,7 @@ local function getNextLogIndex()
     return index
 end
 
--- Rotate logs (keep max 6, delete older ones)
-local function rotateLogs()
+local function RotateLogs()
     local files = {}
     for i = 1, 100 do
         local path = string.format("%s/log_%d.txt", Logger.logDir, i)
@@ -47,8 +44,7 @@ local function rotateLogs()
     end
 end
 
--- Internal write to both log files
-local function writeToFile(msg)
+local function WriteToFile(msg)
     local f1 = io.open(Logger.numberedLogFile, "a")
     if f1 then
         f1:write(msg .. "\n")
@@ -62,18 +58,16 @@ local function writeToFile(msg)
     end
 end
 
--- Public: log message
 function Logger.Log(msg)
-    local timestamped = getTimestamp() .. " " .. msg
+    local timestamped = GetTimestamp() .. " " .. msg
     table.insert(Logger.logWindow, timestamped)
-    writeToFile(timestamped)
+    WriteToFile(timestamped)
     print(msg)
 end
 
--- Setup logger
 function Logger.Initialize()
-    rotateLogs()
-    local index = getNextLogIndex()
+    RotateLogs()
+    local index = GetNextLogIndex()
     Logger.numberedLogFile = string.format("%s/log_%d.txt", Logger.logDir, index)
     Logger.currentLogFile = string.format("%s/log_current.txt", Logger.logDir)
 

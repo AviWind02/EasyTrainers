@@ -18,7 +18,7 @@ function JsonHelper.Read(path)
     return result, nil
 end
 
-local function serialize(tbl, indent)
+local function Serialize(tbl, indent)
     indent = indent or 0
     local spacing = string.rep("  ", indent)
 
@@ -50,7 +50,7 @@ function JsonHelper.Write(path, data)
     local file = io.open(path, "w")
     if not file then return false, "Could not open file for writing: " .. path end
 
-    file:write(serialize(data))
+    file:write(Serialize(data))
     file:close()
     return true
 end
