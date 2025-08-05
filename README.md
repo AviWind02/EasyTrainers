@@ -9,10 +9,8 @@ This is my first Lua project and a personal tool I made to enhance my own playth
 
 ## Note
 This isn’t meant to be a "perfect" trainer. It’s a passion project that grew over time.  
-If it makes your Cyberpunk sessions more fun: I think I did well! :) 
+If it makes your Cyberpunk sessions more fun: I think I did well!  
 If you want to help improve it, even better.
-Thanks for stopping by.
-— Avi
 
 ---
 
