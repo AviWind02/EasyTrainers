@@ -79,7 +79,7 @@ If you want to add your own views, logic, or visuals, go for it. Pull requests a
 
 - **Created by:** Avi  
 - **Inspired by:** SimpleMenu by **Dank Rafft** and **capncoolio2**  
-- **Special Thanks:** [LocationKingGRP](https://www.nexusmods.com/cyberpunk2077/mods/3553) (Teleport data from Nexus came in super clutch) 🙏 
+- **Special Thanks:** [LocationKingGRP](https://next.nexusmods.com/profile/LocationKingGRP/mods) (Teleport data from Nexus came in super clutch) 🙏 
 
 ---
 
