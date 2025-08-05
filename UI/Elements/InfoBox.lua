@@ -19,7 +19,42 @@ function InfoBox.SetText(text)
     end
 end
 
+local lastTipIndex = -1
+
+function InfoBox.GetRandomFallbackTip()
+    local tips = {
+        "Just don't run straight through the main story. Side jobs and gigs are a big part of the game, mix it up.",
+        "Don't rush it. Don't drive to objectives when you have the chance - a stroll through Night City is a fuckin' experience, man.",
+        "Messed up your build? Head to the Development menu to adjust your perks and skills.",
+        "Keep dying or stuck on a mission? Try enabling God Mode in the Self menu.",
+        "Want to clean up your ride list? Go to the Vehicle menu > Vehicle List to lock or unlock any vehicle.",
+        "Inventory cluttered? Head to the Weapon menu, switch to Inventory Mode, and remove what you don't want.",
+        "Lost your stash weapon? Use the Weapon Inventory menu to recover stash or iconic weapons.",
+        "Running low on funds? Check the Development > Resources menu - hand yourself a few extra eddies.",
+        "Want the free Rayfield Caliburn? Look in the Vehicle menu, or find it in the Badlands tunnel container.",
+        "Too lazy to drive to a ripperdoc? Open the Teleport menu - vendor locations are ready to go.",
+        "Spent too many perk points or need more relic points? Development menu's got you covered in the Resources tab.",
+        "Like walking Night City but it's too slow? Check the Self menu - you can boost your walk speed.",
+        "Looking for iconic weapons? Use the Weapon Inventory filters to find wall stash and iconic gear.",
+        "Some in-game actions get blocked while using arrow keys. Switch to controller input to avoid it.",
+        "You can hold D-Pad Right + A to open EasyTrainer on controller. (Not configurable right now.)"
+    }
+
+    local newIndex
+    repeat
+        newIndex = math.random(1, #tips)
+    until newIndex ~= lastTipIndex
+
+    lastTipIndex = newIndex
+    return tips[newIndex]
+end
+
+
 function InfoBox.Render(menuX, menuY, menuW, menuH)
+   if InfoBox.currentText == "" or InfoBox.currentText == nil then
+        InfoBox.currentText = InfoBox.GetRandomFallbackTip()
+    end
+
 
     local now = ImGui.GetTime()
 

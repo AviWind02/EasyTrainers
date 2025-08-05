@@ -64,7 +64,7 @@ local function ViewWorldWeather()
 
     Buttons.Break("", "Weather Type")
 
-    Buttons.Radio("Weather Type", weatherRadio, weatherOptions, "Choose the weather.", function()
+    Buttons.Radio("Weather Type", weatherRadio, weatherOptions, "Change to this weather type.", function()
         local selectedWeather = weatherMap[weatherRadio.index]
         WorldWeather.SetWeather(selectedWeather, transitionSeconds.value)
     end)

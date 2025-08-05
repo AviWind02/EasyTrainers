@@ -383,14 +383,12 @@ end
 
 
 function OptionManager.Radio(label, ref, options, tip)
-    if OptionManager.IsSelected() then
-        InfoBox.SetText(tip or "")
-    end
+
 
     local changed = false
     for i, option in ipairs(options) do
         local isSelected = (ref.index == i)
-        local clicked = OptionManager.Option(option)
+        local clicked = OptionManager.Option(option, "", "", tip)
 
         local pos = OptionManager._calcPosition()
         if pos then
@@ -411,7 +409,6 @@ function OptionManager.Radio(label, ref, options, tip)
             end
         end
     end
-
     return changed
 end
 

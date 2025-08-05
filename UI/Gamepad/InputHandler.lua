@@ -125,7 +125,7 @@ local function Misc() return ImGui.IsKeyPressed(ImGuiKey.LeftCtrl) end
 -- This could go into gameplay once I create a status effect menu
 function InputHandler.setStatusEffect(effect, enabled)
     local statusSystem = Game.GetStatusEffectSystem()
-    local player = GetPlayer()
+    local player = Game.GetPlayer()
     local entityID = player:GetEntityID()
 
     if enabled then

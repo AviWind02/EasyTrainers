@@ -1,13 +1,10 @@
 local Draw = require("UI")
-local MainMenu = require("View/MainMenu")
 local Welcome = require("View/Welcome")
 local Logger = require("Core/Logger")
 local Gameplay = require("Gameplay")
 
 local SelfTick = require("Features/Self/Tick")
 local WeaponsTick = require("Features/Weapons/Tick")
-local World = require("Features/World")
-local Vehicle = require("Features/Vehicle")
 
 local WeaponLoader = require("Features/DataExtractors/WeaponLoader")
 local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
@@ -18,19 +15,32 @@ local Session = require("Core/cp2077-cet-kit/GameSession")
 local Cron = require("Core/cp2077-cet-kit/Cron")
 
 GameState = {}
-local SessionLoaded = false
 
 local function GetGameState()
-        GameState = Session.GetState()
+    GameState = Session.GetState()
+end
+
+local MainMenu, World, Vehicle
+
+local modulesLoaded = false
+local function TryLoadModules()
+    if GameState.isLoaded and not modulesLoaded then
+        modulesLoaded = true
+
+        MainMenu = require("View/MainMenu")
+        World = require("Features/World")
+        Vehicle = require("Features/Vehicle")
+
+        Logger.Log("[EasyTrainer] Game modules initialized.")
+    end
 end
 
 local function UpdateSessionState()
     GameState.isLoaded = Session.IsLoaded()
-
-    if GameState.isLoaded then
-        SessionLoaded = true
-    end
+    TryLoadModules()
 end
+
+
 
 registerForEvent("onInit", function()
     
@@ -69,7 +79,7 @@ end)
 Draw.InputHandler.RegisterInput()
 
 registerForEvent("onUpdate", function(deltaTime)
-    if not SessionLoaded then return end
+    if not modulesLoaded then return end
 
     SelfTick.TickHandler()
     WeaponsTick.TickHandler(deltaTime)
@@ -81,11 +91,13 @@ registerForEvent("onUpdate", function(deltaTime)
 end)
 
 
+
 registerForEvent("onDraw", function()
     Draw.InputHandler.HandleInputTick()
+    Draw.Notifier.Render()
     Welcome.Render()
 
-    if not Draw.InputHandler.IsMenuOpen() or not SessionLoaded then return end
+    if not Draw.InputHandler.IsMenuOpen() or not modulesLoaded then return end
 
     local menuX, menuY, menuW, menuH
     ImGui.SetNextWindowSize(300, 500, ImGuiCond.FirstUseEver)
@@ -99,14 +111,11 @@ registerForEvent("onDraw", function()
     end
 
     Draw.InfoBox.Render(menuX, menuY, menuW, menuH)
-    Draw.Notifier.Render()
 end)
-
-
 
 registerForEvent("onShutdown", function()
     Gameplay.StatModifiers.ClearAll()
-    Draw.InputHandler.ClearMenuRestrictions()
+    Draw.InputHandler.ClearMenuRestrictions() -- I don't know what status effects work but I believe they apply to the save?
 end)
 
 
