@@ -1,7 +1,7 @@
 # EasyTrainer (Cyberpunk 2077)
 
 **Created by Avi**  
-A lightweight, GTA-style trainer for Cyberpunk 2077 built in Lua using Cyber Engine Tweaks (CET).  
+A lightweight, GTA-style trainer for Cyberpunk 2077 built in Lua using Cyber Engine Tweaks.  
 This is my first Lua project and a personal tool I made to enhance my own playthroughs.
 
 ---
