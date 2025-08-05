@@ -60,7 +60,7 @@ EasyTrainer gives you access to a bunch of simple in-game tools via an in-game m
 Still a work-in-progress. Some stuff I want to add down the line:
 
 - ❌ No language localization support yet
-- ❌ No config saving — options reset on reload
+- ❌ No config saving - options reset on reload
 - ❌ No search/filter system in menus
 
 I’ll keep chipping away at it over time.
@@ -69,11 +69,9 @@ I’ll keep chipping away at it over time.
 
 ##  Contributing
 
-I’d *love* to see people fork this, clone it, mess with it, improve it, or just learn from it(If that is do able lol).
+I’d love to see people fork this, clone it, mess with it, improve it - or even just peek at the code (if you can make sense of it, lol).
 
 If you want to add your own views, logic, or visuals, go for it. Pull requests and ideas are welcome.
-
-**GitHub:** [https://github.com/AviWind02/EasyTrainers](https://github.com/AviWind02/EasyTrainers)
 
 ---
 
