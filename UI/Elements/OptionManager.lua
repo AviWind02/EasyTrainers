@@ -1,5 +1,6 @@
 local OptionManager = {}
-
+-- To do add variables into style sheet To be edited later in the settings menu
+-- Also need to move each option into its own file
 local UI = require("UI/Core/Style")
 local DrawHelpers = require("UI/Core/DrawHelpers")
 local Controls = require("UI/Gamepad/InputHandler")
@@ -64,17 +65,18 @@ function OptionManager.RawOption(left, center, right, textColor, highlightColor)
     local hovered = mouseX >= pos.x and mouseX <= (pos.x + pos.w) and
                     mouseY >= pos.y and mouseY <= (pos.y + pos.h)
 
-    if hovered and ImGui.IsMouseClicked(0) then
-        Submenus.currentOption = Submenus.optionIndex
+    if Controls.overlayOpen then
+        if hovered and ImGui.IsMouseClicked(0) then
+            Submenus.currentOption = Submenus.optionIndex
+        end
     end
 
-    local isActive = Submenus.optionIndex == Submenus.currentOption
 
-    if hovered then
+    if hovered and Controls.overlayOpen then
         DrawHelpers.RectFilled(pos.x, pos.y, pos.w, pos.h, UI.Colors.MutedText, UI.Layout.FrameRounding)
     end
 
-    if isActive then
+    if OptionManager.IsSelected() then
         OptionManager.smoothY = OptionManager.smoothY + (pos.y - OptionManager.smoothY) * UI.Animation.SmoothSpeed
         DrawHelpers.RectFilled(pos.x, OptionManager.smoothY, pos.w, pos.h, highlightColor, UI.Layout.FrameRounding)
     end
@@ -95,7 +97,7 @@ function OptionManager.RawOption(left, center, right, textColor, highlightColor)
         DrawHelpers.Text(rightX, pos.fontY, textColor, right)
     end
 
-    return isActive and (Controls.selectPressed or (hovered and ImGui.IsMouseClicked(0)))
+    return OptionManager.IsSelected() and (Controls.selectPressed or (Controls.overlayOpen and (hovered and ImGui.IsMouseClicked(0))))
 end
 
 

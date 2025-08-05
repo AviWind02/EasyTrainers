@@ -1,7 +1,9 @@
-[2025-08-04 00:08:22] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
-[2025-08-04 00:08:22] [EasyTrainerInit] Starting initialization
-[2025-08-04 00:08:22] [EasyTrainerInit] Performing data dumps and loading to memory.
-[2025-08-04 00:08:22] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
-[2025-08-04 00:08:23] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
-[2025-08-04 00:08:23] [EasyTrainerGeneralLoader] Loaded 4731 items.
-[2025-08-04 00:08:23] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
+[2025-08-05 01:54:17] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
+[2025-08-05 01:54:17] [EasyTrainer] Initialization started
+[2025-08-05 01:54:17] [EasyTrainer] Game session States
+[2025-08-05 01:54:17] [EasyTrainer] Loading data...
+[2025-08-05 01:54:17] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
+[2025-08-05 01:54:17] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
+[2025-08-05 01:54:17] [EasyTrainerGeneralLoader] Loaded 4731 items.
+[2025-08-05 01:54:17] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
+[2025-08-05 01:54:17] [EasyTrainer] Init complete.

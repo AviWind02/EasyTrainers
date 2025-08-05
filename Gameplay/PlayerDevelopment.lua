@@ -91,7 +91,7 @@ function PlayerDevelopment.BuyPerk(perkType, force)
         Draw.Notifier.Push(string.format("Perk bought: %s", tostring(perkType)))
     else
         Draw.Notifier.Push(string.format("Failed to buy perk: %s\nYou may need to unlock earlier perks first.", tostring(perkType)))
-
+        -- Later in the data extractor I'll look into adding a check to see what park needs to be purchased prior and then adjust the notification accordingly
     end
     return success
 end

@@ -33,6 +33,9 @@ function SubmenuManager.GetBreadcrumbTitle()
     return stack[#stack].title or ""
 end
 
+function SubmenuManager.IsAtRootMenu()
+    return #SubmenuManager.menuStack <= 1
+end
 --[[
 function SubmenuManager.GetBreadcrumbTitle()
     local sep = " > "

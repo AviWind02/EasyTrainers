@@ -45,6 +45,7 @@ end
 local selectedTarget = { index = 1 }
 
 
+-- Test menu for all the buttons created and sometimes just funcs in here
 local function SecondaryView()
     if Draw.Options.Option("Basic Option", nil, nil, "Tip: Basic Option") then
         print("Basic Option selected")

@@ -81,15 +81,13 @@ local function AddMoney(amount)
     Inventory.GiveItem("Items.money", amount)
 end
 
-local function RemoveMoney(amount)
-    Inventory.RemoveItem("Items.money", amount)
-end
 
 local eddieInput = { value = 1000, min = 1, max = 1000000, step = 100 }
 local perkInput = { value = 1, min = 1, max = 100, step = 1 }
 local attrInput = { value = 1, min = 1, max = 100, step = 1 }
 
 local function ResourceView()
+    -- This only displays one because nobody has more quantities of money in their inventory I'll need to look into how to see how much money the player actually has
     -- local eddies = Inventory.GetItemCount("Items.money") or 0
     local perkPoints = PlayerDevelopment.GetDevPoints(gamedataDevelopmentPointType.Primary) or 0
     local attrPoints = PlayerDevelopment.GetDevPoints(gamedataDevelopmentPointType.Attribute) or 0
@@ -110,7 +108,7 @@ local function ResourceView()
     Buttons.Option("Add 100,000 Eddies", "Because sometimes crime does pay.", function() AddMoney(100000) end)
     Buttons.Int("Custom Eddie Amount", eddieInput, "Set custom amount to add/remove")
     Buttons.Option("Add Eddies (Custom)", "Adds the specified amount", function() AddMoney(eddieInput.value) end)
-    Buttons.Option("Remove Eddies (Custom)", "Removes the specified amount", function() RemoveMoney(eddieInput.value) end)
+    Buttons.Option("Remove Eddies (Custom)", "Removes the specified amount", function()  Inventory.RemoveItem("Items.money", eddieInput.value) end)
 
     Buttons.Break("Perk Points")
 
@@ -149,7 +147,7 @@ local function ResourceView()
     end)
     Buttons.Break("Relic Points")
     Buttons.Option("Add 1 Relic Point", "", function()
-        PlayerDevelopment.AddDevPoints(gamedataDevelopmentPointType.Espionage, 1)
+        PlayerDevelopment.AddDevPoints(gamedataDevelopmentPointType.Espionage, 1) -- I love all this is called Espionage sounds very cool
     end)
     Buttons.Option("Remove 1 Relic Point", "", function()
         PlayerDevelopment.AddDevPoints(gamedataDevelopmentPointType.Espionage, -1)
@@ -169,6 +167,8 @@ local function DrawPerksForAttribute(attr)
     local perks = PerkLoader.attribute[attr] or {}
 
     for id, perk in pairs(perks) do
+        -- There's a native to get the current park level but it's overloaded with another parameter type and I wasn't able to figure out how to call it
+        -- We'll look into that another day
         local maxLevel = PlayerDevelopment.GetPerkMaxLevel(perk.type)
         local isActive = PlayerDevelopment.HasPerk(perk.type)
 
@@ -186,7 +186,7 @@ local function DrawPerksForAttribute(attr)
         if maxLevel > 1 then
             perkLevels[id].enabled = perkLevelCache[id] > 0
             tip = string.format("%s\nCategory: %s\n\nThis perk has %d levels. Use Arrow keys to adjust the level.", perk.description, perk.category, maxLevel)
-
+            -- Certain perks have multiple levels and you have to purchase the perk multiple times to get to those levels
             Buttons.Int(perk.name, perkLevels[id], tip, function()
                 local cached = perkLevelCache[id]
                 local target = perkLevels[id].value
