@@ -6,6 +6,16 @@ This is my first Lua project and a personal tool I made to enhance my own playth
 
 ---
 
+
+## Note
+This isn’t meant to be a "perfect" trainer. It’s a passion project that grew over time.  
+If it makes your Cyberpunk sessions more fun: I think I did well! :) 
+If you want to help improve it, even better.
+Thanks for stopping by.
+— Avi
+
+---
+
 ## What It Does
 
 EasyTrainer gives you access to a bunch of simple in-game tools via an in-game menu:
@@ -38,7 +48,7 @@ EasyTrainer gives you access to a bunch of simple in-game tools via an in-game m
 
 ---
 
-## 🧠 Menu Tips
+## Menu Tips
 
 - **Integer / Float Inputs:** Use ← → keys to adjust values
 - **Toggles:** Press Enter / A to enable/disable
@@ -84,17 +94,8 @@ If you want to add your own views, logic, or visuals, go for it. Pull requests a
 
 ---
 
-## 📁 Installation
+## Installation
 
 1. Install CET if you haven’t already
 2. Drop the EasyTrainer folder into your `Cyberpunk 2077\bin\x64\plugins\cyber_engine_tweaks\mods\` directory
 3. Launch the game, press F4 (or your configured key)
-
----
-
-## Note
-This isn’t meant to be a "perfect" trainer. It’s a passion project that grew over time.  
-If it makes your Cyberpunk sessions more fun: I think I did well! :) 
-If you want to help improve it, even better.
-Thanks for stopping by.
-— Avi
