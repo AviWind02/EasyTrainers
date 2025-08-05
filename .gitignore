@@ -3,4 +3,6 @@ EasyTrainers.log
 EasyTrainers1.log
 EasyTrainers2.log
 EasyTrainers3.log
-
+Logs.txt
+config.json
+db.sqlite3
