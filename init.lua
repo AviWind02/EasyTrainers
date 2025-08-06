@@ -16,9 +16,6 @@ local Cron = require("Core/cp2077-cet-kit/Cron")
 
 GameState = {}
 
-local function GetGameState()
-    GameState = Session.GetState()
-end
 
 local MainMenu, World, Vehicle
 
@@ -33,6 +30,11 @@ local function TryLoadModules()
 
         Logger.Log("[EasyTrainer] Game modules initialized.")
     end
+end
+
+;
+local function GetGameState()
+    GameState = Session.GetState()
 end
 
 local function UpdateSessionState()
@@ -66,6 +68,8 @@ registerForEvent("onInit", function()
     end)
 
     Observe("PlayerPuppet", "OnAction", function(_, action)
+        -- local actionName = Game.NameToString(action:GetName(action))
+        -- local actionType = action:GetType(action).value
         Draw.InputHandler.HandleControllerInput(action)
         Gameplay.WeaponInput.HandleInputAction(action)
         -- Draw.InputHandler.LogAction(actionName, actionType)
@@ -115,7 +119,7 @@ end)
 
 registerForEvent("onShutdown", function()
     Gameplay.StatModifiers.ClearAll()
-    Draw.InputHandler.ClearMenuRestrictions() -- I don't know what status effects work but I believe they apply to the save?
+    Draw.InputHandler.ClearMenuRestrictions() -- I don't know how status effects work but I believe they apply to the save?
 end)
 
 

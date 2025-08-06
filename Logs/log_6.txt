@@ -1,12 +1,30 @@
-[2025-08-05 13:35:16] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
-[2025-08-05 13:35:16] [EasyTrainer] Initialization started
-[2025-08-05 13:35:16] [EasyTrainer] Game session States
-[2025-08-05 13:35:16] [EasyTrainer] Loading data...
-[2025-08-05 13:35:16] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
-[2025-08-05 13:35:16] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 449 new).
-[2025-08-05 13:35:17] [EasyTrainerGeneralLoader] Loaded 4731 items.
-[2025-08-05 13:35:17] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
-[2025-08-05 13:35:17] [EasyTrainer] Init complete.
-[2025-08-05 13:37:02] [EasyTrainer] Game modules initialized.
-[2025-08-05 13:37:25] [EasyTrainerWeapons] Total matched weapons: 44
-[2025-08-05 13:38:12] [EasyTrainerStatModifiers] ClearAll failed: context missing
+[2025-08-05 21:44:00] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
+[2025-08-05 21:44:00] [EasyTrainer] Initialization started
+[2025-08-05 21:44:00] [EasyTrainer] Game session States
+[2025-08-05 21:44:00] [EasyTrainer] Loading data...
+[2025-08-05 21:44:00] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
+[2025-08-05 21:44:00] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
+[2025-08-05 21:44:01] [EasyTrainerGeneralLoader] Loaded 4731 items.
+[2025-08-05 21:44:01] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
+[2025-08-05 21:44:01] [EasyTrainer] Init complete.
+[2025-08-05 21:44:03] [Logged Action] Name: UI_FakeCamera | Type: RELATIVE_CHANGE | Key: Unknown
+[2025-08-05 21:44:03] [Logged Action] Name: UI_TutorFakeCamera | Type: RELATIVE_CHANGE | Key: Unknown
+[2025-08-05 21:44:03] [Logged Action] Name: mouse_x | Type: RELATIVE_CHANGE | Key: Unknown
+[2025-08-05 21:44:03] [Logged Action] Name: mouse_y | Type: RELATIVE_CHANGE | Key: Unknown
+[2025-08-05 21:44:03] [Logged Action] Name: CameraMouseX | Type: RELATIVE_CHANGE | Key: Unknown
+[2025-08-05 21:44:03] [Logged Action] Name: CameraMouseY | Type: RELATIVE_CHANGE | Key: Unknown
+[2025-08-05 21:44:04] [Logged Action] Name: __DEVICE_CHANGED__ | Type:  | Key: Unknown
+[2025-08-05 21:44:08] [Logged Action] Name: UI_smart_frame_close | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:08] [Logged Action] Name: UI_vehicle_customization_cancel | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:08] [Logged Action] Name: OpenPauseMenu | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:08] [Logged Action] Name: system_quit_game | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:08] [Logged Action] Name: UI_Cancel | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:08] [Logged Action] Name: cancel | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:08] [Logged Action] Name: back | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:08] [Logged Action] Name: close_tutorial | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:08] [Logged Action] Name: close_popup | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:08] [Logged Action] Name: CloseMenuSingleKey | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:08] [EasyTrainer] Game modules initialized.
+[2025-08-05 21:44:10] [Logged Action] Name: SwitchItem | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:44:10] [Logged Action] Name: WeaponWheel | Type: BUTTON_PRESSED | Key: Unknown
+[2025-08-05 21:45:06] [EasyTrainerStatModifiers] ClearAll failed: context missing

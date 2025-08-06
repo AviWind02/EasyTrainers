@@ -37,8 +37,8 @@ InputHandler.ControllerInput = {
     dpad_left = { value = false },
     dpad_down = { value = false },
     dpad_right = { value = false },
-    close_tutorial = { value = false }, -- (click) this dose all front-end clicking
-    cancel = { value = false }          -- (back) this dose all front-end back
+    system_notification_confirm = { value = false }, 
+    UI_FakeDodge = { value = false }  
 }
 
 function InputHandler.HandleControllerInput(action)
@@ -115,10 +115,10 @@ local function Up() return ImGui.IsKeyPressed(ImGuiKey.UpArrow) or InputHandler.
 local function Down() return ImGui.IsKeyPressed(ImGuiKey.DownArrow) or InputHandler.ControllerInput.dpad_down.value end
 local function Left() return ImGui.IsKeyPressed(ImGuiKey.LeftArrow) or InputHandler.ControllerInput.dpad_left.value end
 local function Right() return ImGui.IsKeyPressed(ImGuiKey.RightArrow) or InputHandler.ControllerInput.dpad_right.value end
-local function Select() return ImGui.IsKeyPressed(ImGuiKey.Enter) or InputHandler.ControllerInput.close_tutorial.value end
-local function Back() return ImGui.IsKeyPressed(ImGuiKey.Backspace) or InputHandler.ControllerInput.cancel.value end
+local function Select() return ImGui.IsKeyPressed(ImGuiKey.Enter) or InputHandler.ControllerInput.system_notification_confirm.value end
+local function Back() return ImGui.IsKeyPressed(ImGuiKey.Backspace) or InputHandler.ControllerInput.UI_FakeDodge.value end
 local function ToggleMenu() return ImGui.IsKeyPressed(ImGuiKey.F4) or
-    (InputHandler.ControllerInput.close_tutorial.value and InputHandler.ControllerInput.dpad_right.value) end
+    (InputHandler.ControllerInput.system_notification_confirm.value and InputHandler.ControllerInput.dpad_right.value) end
 local function ToggleMouse() return ImGui.IsKeyPressed(ImGuiKey.X) end
 local function Misc() return ImGui.IsKeyPressed(ImGuiKey.LeftCtrl) end
 
