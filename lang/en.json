@@ -1,0 +1,487 @@
+{
+  "mainmenu": {
+    "title": "Main Menu",
+    "self": {
+      "label": "Self Menu",
+      "tip": "Modify player stats, movement, stealth, and health behavior."
+    },
+    "development": {
+      "label": "Development Menu",
+      "tip": "Adjust attributes and toggle individual perks."
+    },
+    "modifiers": {
+      "label": "Modifiers Menu",
+      "tip": "Manage all ability cooldowns and recovery rates such as grenades, cloaking, and quickhacks."
+    },
+    "teleport": {
+      "label": "Teleport Menu",
+      "tip": "Teleport instantly to preset locations in Night City."
+    },
+    "weapon": {
+      "label": "Weapon Menu",
+      "tip": "Access various weapon-related features including special abilities, projectile behavior, and customization."
+    },
+    "vehicle": {
+      "label": "Vehicle Menu",
+      "tip": "Manage vehicles, spawn new ones, and control vehicle Elements."
+    },
+    "facts": {
+      "label": "Facts Menu",
+      "tip": "Set story flags, censorship states, and progression facts."
+    },
+    "time": {
+      "label": "Time Menu",
+      "tip": "Control time of day, time skip, freezing, syncing, and speed multipliers."
+    },
+    "weather": {
+      "label": "Weather Menu",
+      "tip": "Control world weather, force storms, fog, and more."
+    }
+  },
+  "self": {
+    "title": "Self Menu",
+    "godmode": {
+      "label": "God Mode",
+      "tip": "Makes you invincible to all forms of damage."
+    },
+    "invisibility": {
+      "label": "Invisibility",
+      "tip": "Applies the optical cloaking effect. Enemies may still detect you if provoked."
+    },
+    "superspeed": {
+      "label": "Super Speed",
+      "tip": "Enables rapid movement via time dilation.\nTip: Combine with Player Speed Multiplier for better effect."
+    },
+    "playerspeedmultiplier": {
+      "label": "Player Speed Multiplier",
+      "tip": "Scales the player's top movement speed."
+    },
+    "jumpheightmultiplier": {
+      "label": "Jump Height Multiplier",
+      "tip": "Adjusts how high the player can jump."
+    },
+    "quicksilversandevistan": {
+      "label": "Quicksilver's Sandevistan",
+      "tip": "Modifies your Sandevistan to feel like Quicksilver extreme slowdown when activated."
+    },
+    "wanted": {
+      "label": "Wanted Level"
+    },
+    "neverwanted": {
+      "label": "Never Wanted",
+      "tip": "Prevents the police from engaging or pursuing you."
+    },
+    "wantedlevel": {
+      "label": "Wanted Level",
+      "tip": "Set and optionally lock your current wanted level."
+    },
+    "clearwanted": {
+      "label": "Clear Wanted Level",
+      "tip": "Temporarily disables the police system to reset wanted level"
+    },
+    "healthdefense": {
+      "label": "Health & Defense"
+    },
+    "refillhealth": {
+      "label": "Refill Health (loop)",
+      "tip": "Automatically refills health to 100% when it drops below 98%."
+    },
+    "healthregen": {
+      "label": "Health Regen + Boost",
+      "tip": "Enables extreme passive regeneration and a bonus health buffer."
+    },
+    "armorboost": {
+      "label": "Armor Boost",
+      "tip": "Applies a massive armor increase for defense."
+    },
+    "resistances": {
+      "label": "Damage Resistances",
+      "tip": "Maximizes all resistance stats."
+    },
+    "combatregen": {
+      "label": "Combat Regen",
+      "tip": "Allows health regeneration during combat."
+    },
+    "nofalldamage": {
+      "label": "No Fall Damage",
+      "tip": "Eliminates all damage from falling."
+    },
+    "stealthhacking": {
+      "label": "Stealth & Hacking"
+    },
+    "nonthreat": {
+      "label": "Non-Threat Status",
+      "tip": "Enemies will notice and track you, but won't enter combat unless you interact or attack."
+    },
+    "lowtracerate": {
+      "label": "Low Trace Rate",
+      "tip": "Reduces the trace speed from enemy netrunners."
+    },
+    "refillmemory": {
+      "label": "Refill Memory (loop)",
+      "tip": "Refills cyberdeck memory to 100% if it drops below 98%."
+    }
+  },
+  "modifiers": {
+    "title": "Player Stats",
+    "custom": {
+      "label": "Custom Modifiers (Not Tested Enough)",
+      "tip": "Create and manage your own stat modifiers for player, weapons, or vehicles."
+    },
+    "infinite_stamina": {
+      "label": "Infinite Stamina",
+      "tip": "Removes stamina constraints permanently."
+    },
+    "refill_stamina": {
+      "label": "Refill Stamina (loop)",
+      "tip": "Automatically restores stamina to 100% below 98%."
+    },
+    "infinite_oxygen": {
+      "label": "Infinite Oxygen",
+      "tip": "Allows indefinite underwater breathing."
+    },
+    "refill_oxygen": {
+      "label": "Refill Oxygen (loop)",
+      "tip": "Automatically restores oxygen when it drops."
+    },
+    "cooldowns": "Cooldowns",
+    "cooldown_heal": {
+      "label": "Heal",
+      "tip": "Removes healing item recharge cooldown."
+    },
+    "cooldown_grenade": {
+      "label": "Grenade",
+      "tip": "Removes grenade recharge cooldown."
+    },
+    "cooldown_projectile": {
+      "label": "Projectile Launcher",
+      "tip": "Removes projectile launcher cooldown."
+    },
+    "cooldown_cloak": {
+      "label": "Optical Cloak",
+      "tip": "Eliminates optical camo cooldown and boosts regen."
+    },
+    "cooldown_sande": {
+      "label": "Sandevistan",
+      "tip": "Removes cooldown for Sandevistan activations."
+    },
+    "cooldown_berserk": {
+      "label": "Berserk",
+      "tip": "Greatly increases berserk regeneration rate."
+    },
+    "cooldown_keren": {
+      "label": "Kerenzikov",
+      "tip": "Reduces Kerenzikov cooldown to near-zero."
+    },
+    "cooldown_overclock": {
+      "label": "Overclock",
+      "tip": "Boosts Overclock regen and removes cooldown."
+    },
+    "cooldown_quickhacks": {
+      "label": "Quickhacks",
+      "tip": "Reduces all quickhack cooldowns drastically."
+    },
+    "memory_stats": "Memory & Stats",
+    "reduce_quickhack_cost": {
+      "label": "Reduce Quickhack Cost",
+      "tip": "Removes all memory costs from quickhacks."
+    },
+    "memory_regen": {
+      "label": "Memory Regen",
+      "tip": "Increases memory regeneration rate."
+    },
+    "set_memory_stat": {
+      "label": "Set Memory Stat",
+      "tip": "Overrides base memory stat for cyberdeck."
+    },
+    "mobility": "Mobility",
+    "air_thruster_boots": {
+      "label": "Air Thruster Boots",
+      "tip": "Hold jump in mid-air to reduce fall damage impact."
+    },
+    "air_hover": {
+      "label": "Air Hover",
+      "tip": "Allows hovering in the air after jumping."
+    },
+    "carry_capacity": {
+      "label": "Carry Capacity",
+      "tip": "Overrides your carry weight capacity."
+    },
+    "sandevistan": "Cyberware: Sandevistan",
+    "sandevistan_duration": {
+      "label": "Sandevistan Duration",
+      "tip": "Extends duration of your Sandevistan mode."
+    },
+    "sandevistan_scale": {
+      "label": "Sandevistan Time Scale",
+      "tip": "Controls time dilation while Sandevistan is active."
+    }
+  },
+  "playerdev": {
+    "title": "Player Development",
+    "submenus": {
+      "proficiencies": {
+        "label": "Proficiencies Levels",
+        "tip": "Edit your level values and XP tracks for every Proficiency."
+      },
+      "resources": {
+        "label": "Resources",
+        "tip": "Add or remove money, perk points, and attribute points."
+      }
+    },
+    "attributes": {
+      "label": "Attribute",
+      "setlevel": {
+        "label": "Set Attribute Level",
+        "tip": "Set base level for this attribute"
+      },
+      "body": "Body",
+      "cool": "Cool",
+      "intelligence": "Intelligence",
+      "reflexes": "Reflexes",
+      "technical": "Technical Ability",
+      "relic": "Relic"
+    },
+    "perks": {
+      "activeonly": "Show Only Active Perks",
+      "inactiveonly": "Show Only Inactive Perks",
+      "header": "Perks",
+      "tip_single": "Category: {category}\n\nThis perk only has 1 level. Toggle on/off to apply or remove it.",
+      "tip_multi": "Category: {category}\n\nThis perk has {levels} levels. Use Arrow keys to adjust the level."
+    },
+    "eddies": {
+      "label": "Eurodollar",
+      "add1k": {
+        "label": "Add 1,000 Eddies",
+        "tip": "Feeling broke? Here's lunch money."
+      },
+      "add10k": {
+        "label": "Add 10,000 Eddies",
+        "tip": "Treat yourself. You earned it (maybe)."
+      },
+      "add100k": {
+        "label": "Add 100,000 Eddies",
+        "tip": "Because sometimes crime does pay."
+      },
+      "custom": {
+        "label": "Custom Eddie Amount",
+        "tip": "Set custom amount to add/remove"
+      },
+      "addcustom": {
+        "label": "Add Eddies (Custom)",
+        "tip": "Adds the specified amount"
+      },
+      "removecustom": {
+        "label": "Remove Eddies (Custom)",
+        "tip": "Removes the specified amount"
+      }
+    },
+    "perkpoints": {
+      "label": "Perk Points",
+      "add1": "Add 1 Perk Point",
+      "remove1": "Remove 1 Perk Point",
+      "custom": "Custom Perk Points",
+      "addcustom": "Add Perk Points (Custom)",
+      "removecustom": "Remove Perk Points (Custom)",
+      "available": {
+        "label": "Available Perk Points:",
+        "tip": "Available points to spend on perks. You can add or remove points using the options below."
+      }
+    },
+    "attributepoints": {
+      "label": "Attribute Points",
+      "add1": "Add 1 Attribute Point",
+      "remove1": "Remove 1 Attribute Point",
+      "custom": "Custom Attribute Points",
+      "addcustom": "Add Attribute Points (Custom)",
+      "removecustom": "Remove Attribute Points (Custom)",
+      "available": {
+        "label": "Available Attribute Points:",
+        "tip": "Available points to spend on attributes. You can add or remove points using the options below."
+      }
+    },
+    "relicpoints": {
+      "label": "Relic Points",
+      "add1": "Add 1 Relic Point",
+      "remove1": "Remove 1 Relic Point",
+      "available": {
+        "label": "Available Relic Points:",
+        "tip": "Available points to unlock Relic-based perks."
+      }
+    },
+    "perkattributes": "Attributes Perks",
+    "proficiencies": {
+      "player_level": "Player Level",
+      "street_cred": "Street Cred",
+      "assault": "Assault",
+      "athletics": "Athletics",
+      "brawling": "Brawling",
+      "cold_blood": "Cold Blood",
+      "combat_hacking": "Combat Hacking",
+      "cool": "Cool",
+      "crafting": "Crafting",
+      "demolition": "Demolition",
+      "engineering": "Engineering",
+      "espionage": "Espionage",
+      "gunslinger": "Gunslinger",
+      "hacking": "Hacking",
+      "intelligence": "Intelligence",
+      "kenjutsu": "Kenjutsu",
+      "reflexes": "Reflexes",
+      "stealth": "Stealth",
+      "strength": "Strength",
+      "technical": "Technical Ability"
+    }
+  },
+  "custom_modifiers": {
+    "title": "Custom Modifiers",
+    "modes": [
+      "Create New Modifier",
+      "View Existing Modifiers",
+      "Recently Used Modifiers"
+    ],
+    "filters": [
+      "A to Z",
+      "Z to A",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "targets": [
+      "Player",
+      "Right Weapon",
+      "Vehicle"
+    ],
+    "types": [
+      "Additive",
+      "Multiplier",
+      "Percentage"
+    ],
+    "labels": {
+      "mode": "Mode",
+      "filter": "Filter",
+      "stat_modifiers": "Stat Modifiers",
+      "selected_modifier": "Selected Modifier",
+      "target": "Target",
+      "modifier_type": "Modifier Type",
+      "value": "Value",
+      "apply": "Apply Modifier",
+      "active": "Active",
+      "remove": "Remove Modifier",
+      "no_modifiers": "No modifiers created",
+      "no_modifiers_tip": "Switch to 'Create' mode to add new ones.",
+      "no_recent": "No recent modifiers",
+      "no_recent_tip": "Create or delete a modifier to track it here."
+    },
+    "tips": {
+      "filter": "Filter stat names",
+      "value": "Amount to apply",
+      "apply": "Create and apply this modifier",
+      "active": "Enable/Disable modifier",
+      "modifier_type": "Change modifier calculation type",
+      "value_adjust": "Adjust modifier value",
+      "remove": "Delete this modifier",
+      "edit": "Edit or delete this modifier",
+      "create": "Configure a custom modifier for this stat",
+      "recreate": "Re-create modifier for this stat"
+    }
+  },
+  "vehicle_lights": {
+    "title": "Vehicle Light Controls",
+    "set_all_color": {
+      "label": "Set All Lights Color",
+      "tip": "Applies the selected color to all light types."
+    },
+    "apply_all_color": {
+      "label": "Apply All Light Colors",
+      "tip": "Sets all lights to the selected color."
+    },
+    "reset_all_color": {
+      "label": "Reset All Light Colors",
+      "tip": "Resets the color of all lights."
+    },
+    "disable_all": {
+      "label": "Disable All Lights",
+      "tip": "Turns off all vehicle lights."
+    },
+    "rgb_fade": {
+      "label": "RGB Fade Lights",
+      "tip": "Automatically cycles light colors through an RGB fade effect."
+    },
+    "adjust_selected": "Adjust Selected Light",
+    "light_type": {
+      "label": "Light Type",
+      "tip": "Choose which light type to configure."
+    },
+    "head": "Headlights",
+    "brake": "Brake Lights",
+    "left": "Left Blinker",
+    "right": "Right Blinker",
+    "reverse": "Reverse Lights",
+    "interior": "Interior Lights",
+    "utility": "Utility Lights",
+    "default": "Default Lights",
+    "blinkers": "Blinkers (All)",
+    "color": {
+      "label": "Color",
+      "tip": "Color for {light}"
+    },
+    "apply_color": {
+      "label": "Apply Color",
+      "tip": "Applies color to {light}"
+    },
+    "strength": {
+      "label": "Strength",
+      "tip": "Brightness of {light}"
+    },
+    "apply_strength": {
+      "label": "Apply Strength",
+      "tip": "Sets strength for {light}"
+    },
+    "reset_color": {
+      "label": "Reset Color",
+      "tip": "Resets color for {light}"
+    },
+    "reset_strength": {
+      "label": "Reset Strength",
+      "tip": "Resets strength for {light}"
+    },
+    "reset_all": {
+      "label": "Reset Parameters",
+      "tip": "Resets all parameters for {light}"
+    },
+    "toggle_on": {
+      "label": "Toggle On",
+      "tip": "Turns on {light}"
+    },
+    "toggle_off": {
+      "label": "Toggle Off",
+      "tip": "Turns off {light}"
+    }
+  }
+
+
+}

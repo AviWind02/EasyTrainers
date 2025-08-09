@@ -7,20 +7,31 @@ local StatNames = require("Features/Self/StatModifiers/StatNames")
 local ModifierManager = {}
 
 local Modes = {
-    "Create New Modifier",
-    "View Existing Modifiers",
-    "Recently Used Modifiers"
+    "custom_modifiers.modes.1",
+    "custom_modifiers.modes.2",
+    "custom_modifiers.modes.3"
 }
 
-local Targets = { "Player", "Right Weapon", "Vehicle" }
-local Types = { "Additive", "Multiplier", "Percentage" }
+local Targets = {
+    "custom_modifiers.targets.1",
+    "custom_modifiers.targets.2",
+    "custom_modifiers.targets.3"
+}
+
+local Types = {
+    "custom_modifiers.types.1",
+    "custom_modifiers.types.2",
+    "custom_modifiers.types.3"
+}
 
 local Filters = {
-    "A to Z",
-    "Z to A",
-    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
-    "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
-    "U", "V", "W", "X", "Y", "Z"
+    "custom_modifiers.filters.1", -- A to Z
+    "custom_modifiers.filters.2", -- Z to A
+    "custom_modifiers.filters.3", "custom_modifiers.filters.4", "custom_modifiers.filters.5", "custom_modifiers.filters.6", "custom_modifiers.filters.7", "custom_modifiers.filters.8",
+    "custom_modifiers.filters.9", "custom_modifiers.filters.10", "custom_modifiers.filters.11", "custom_modifiers.filters.12", "custom_modifiers.filters.13", "custom_modifiers.filters.14",
+    "custom_modifiers.filters.15", "custom_modifiers.filters.16", "custom_modifiers.filters.17", "custom_modifiers.filters.18", "custom_modifiers.filters.19", "custom_modifiers.filters.20",
+    "custom_modifiers.filters.21", "custom_modifiers.filters.22", "custom_modifiers.filters.23", "custom_modifiers.filters.24", "custom_modifiers.filters.25", "custom_modifiers.filters.26",
+    "custom_modifiers.filters.27", "custom_modifiers.filters.28"
 }
 
 local selectedMode = { index = 1, expanded = false }
@@ -68,77 +79,101 @@ local function CreateModifierConfig(statName)
     return {
         title = "Configure " .. statName,
         view = function()
-            Buttons.OptionExtended("Selected Modifier", "", statName)
-
-            Buttons.Dropdown("Target", selectedTarget, Targets)
-            Buttons.Dropdown("Modifier Type", selectedType, Types)
-            Buttons.Float("Value", valueInput, "Amount to apply")
-
-            Buttons.Option("Apply Modifier", "Create and apply this modifier", function()
-                local entry = {
-                    name = statName,
-                    statType = statName,
-                    modifierType = Types[selectedType.index or 1],
-                    target = Targets[selectedTarget.index or 1],
-                    value = valueInput.value,
-                    enabled = false,
-                    handle = nil
-                }
-                ApplyModifier(entry)
-                table.insert(customModifiers, entry)
-                recentStats[statName] = true
-            end)
+            Buttons.OptionExtended(L("custom_modifiers.labels.selected_modifier"), "", statName)
+            Buttons.Dropdown(L("custom_modifiers.labels.target"), selectedTarget, Targets)
+            Buttons.Dropdown(L("custom_modifiers.labels.modifier_type"), selectedType, Types)
+            Buttons.Float(L("custom_modifiers.labels.value"), valueInput, tip("custom_modifiers.tips.value"))
+            Buttons.Option(
+                L("custom_modifiers.labels.apply"),
+                tip("custom_modifiers.tips.apply"),
+                function()
+                    local entry = {
+                        name = statName,
+                        statType = statName,
+                        modifierType = Types[selectedType.index or 1],
+                        target = Targets[selectedTarget.index or 1],
+                        value = valueInput.value,
+                        enabled = false,
+                        handle = nil
+                    }
+                    ApplyModifier(entry)
+                    table.insert(customModifiers, entry)
+                    recentStats[statName] = true
+                end
+            )
         end
     }
 end
 
 local function CreateModifierEditor(entry)
     local valueSlider = { value = entry.value, min = -10000, max = 10000, step = 0.5 }
-    local selectedType = { index = (function()
-        for i, v in ipairs(Types) do if v == entry.modifierType then return i end end
-        return 1
-    end)(), expanded = false }
+    local selectedType = {
+        index = (function()
+            for i, v in ipairs(Types) do if v == entry.modifierType then return i end end
+            return 1
+        end)(),
+        expanded = false
+    }
 
     return {
         title = "Modify " .. entry.name,
         view = function()
-            Buttons.Toggle("Active", { value = entry.enabled }, "Enable/Disable modifier", function()
-                if entry.enabled then
-                    RemoveModifier(entry)
-                    entry.enabled = false
-                else
-                    ApplyModifier(entry)
-                    entry.enabled = true
-                end
-            end)
-
-            Buttons.Dropdown("Modifier Type", selectedType, Types, "Change modifier calculation type")
-            Buttons.Float("Value", valueSlider, "Adjust modifier value", function()
-                entry.value = valueSlider.value
-                entry.modifierType = Types[selectedType.index or 1]
-                if entry.enabled then
-                    RemoveModifier(entry)
-                    ApplyModifier(entry)
-                end
-            end)
-
-            Buttons.Option("Remove Modifier", "Delete this modifier", function()
-                RemoveModifier(entry)
-                entry.enabled = false
-                for i = #customModifiers, 1, -1 do
-                    if customModifiers[i] == entry then
-                        table.remove(customModifiers, i)
-                        break
+            Buttons.Toggle(
+                L("custom_modifiers.labels.active"),
+                { value = entry.enabled },
+                tip("custom_modifiers.tips.active"),
+                function()
+                    if entry.enabled then
+                        RemoveModifier(entry)
+                        entry.enabled = false
+                    else
+                        ApplyModifier(entry)
+                        entry.enabled = true
                     end
                 end
-                SubmenuManager.CloseSubmenu()
-            end)
+            )
+
+            Buttons.Dropdown(
+                L("custom_modifiers.labels.modifier_type"),
+                selectedType, Types,
+                tip("custom_modifiers.tips.modifier_type")
+            )
+
+            Buttons.Float(
+                L("custom_modifiers.labels.value"),
+                valueSlider,
+                tip("custom_modifiers.tips.value_adjust"),
+                function()
+                    entry.value = valueSlider.value
+                    entry.modifierType = Types[selectedType.index or 1]
+                    if entry.enabled then
+                        RemoveModifier(entry)
+                        ApplyModifier(entry)
+                    end
+                end
+            )
+
+            Buttons.Option(
+                L("custom_modifiers.labels.remove"),
+                tip("custom_modifiers.tips.remove"),
+                function()
+                    RemoveModifier(entry)
+                    entry.enabled = false
+                    for i = #customModifiers, 1, -1 do
+                        if customModifiers[i] == entry then
+                            table.remove(customModifiers, i)
+                            break
+                        end
+                    end
+                    SubmenuManager.CloseSubmenu()
+                end
+            )
         end
     }
 end
 
 local function GetFilteredStats(sourceList)
-    local filter = Filters[selectedFilter.index or 1]
+    local filter = L(Filters[selectedFilter.index or 1])
     local filtered = {}
 
     for _, name in ipairs(sourceList) do
@@ -159,30 +194,41 @@ local function GetFilteredStats(sourceList)
 end
 
 function ModifierManager.View()
-    Buttons.Dropdown("Mode", selectedMode, Modes)
+    Buttons.Dropdown(L("custom_modifiers.labels.mode"), selectedMode, Modes)
+
     local mode = selectedMode.index
 
     if mode == 1 then
-        Buttons.StringCycler("Filter", selectedFilter, Filters, "Filter stat names")
+        Buttons.StringCycler(
+            L("custom_modifiers.labels.filter"),
+            selectedFilter, Filters,
+            tip("custom_modifiers.tips.filter")
+        )
     end
 
-    Buttons.Break("Stat Modifiers")
+    Buttons.Break(L("custom_modifiers.labels.stat_modifiers"))
 
     if mode == 1 then
         for _, statName in ipairs(GetFilteredStats(StatNames)) do
-            Buttons.Submenu(statName, CreateModifierConfig(statName), "Configure a custom modifier for this stat")
+            Buttons.Submenu(
+                statName,
+                CreateModifierConfig(statName),
+                tip("custom_modifiers.tips.create")
+            )
         end
-
     elseif mode == 2 then
         if #customModifiers == 0 then
-            Buttons.Text("No modifiers created", "Switch to 'Create' mode to add new ones.")
+            Buttons.Text(L("custom_modifiers.labels.no_modifiers"), tip("custom_modifiers.labels.no_modifiers_tip"))
             return
         end
 
         for _, entry in ipairs(customModifiers) do
-            Buttons.Submenu(entry.name, CreateModifierEditor(entry), "Edit or delete this modifier")
+            Buttons.Submenu(
+                entry.name,
+                CreateModifierEditor(entry),
+                tip("custom_modifiers.tips.edit")
+            )
         end
-
     elseif mode == 3 then
         local names = {}
         for statName in pairs(recentStats) do
@@ -190,18 +236,22 @@ function ModifierManager.View()
         end
 
         if #names == 0 then
-            Buttons.Text("No recent modifiers", "Create or delete a modifier to track it here.")
+            Buttons.Text(L("custom_modifiers.labels.no_recent"), tip("custom_modifiers.labels.no_recent_tip"))
             return
         end
 
         table.sort(names)
         for _, statName in ipairs(names) do
-            Buttons.Submenu(statName, CreateModifierConfig(statName), "Re-create modifier for this stat")
+            Buttons.Submenu(
+                statName,
+                CreateModifierConfig(statName),
+                tip("custom_modifiers.tips.recreate")
+            )
         end
     end
 end
 
 return {
-    title = "Custom Modifiers",
+    title = "custom_modifiers.title",
     view = ModifierManager.View
 }

@@ -1,5 +1,4 @@
 local Decorators = {}
-
 local UI = require("UI/Core/Style")
 local DrawHelpers = require("UI/Core/DrawHelpers")
 local Submenus = require("UI/Core/SubmenuManager")
@@ -24,7 +23,7 @@ function Decorators.DrawTitleBar(menuX, menuY, menuW)
     DrawHelpers.Text(titleX, titleY, header.TextColor, staticText, header.FontSize)
 
     -- Breadcrumb (bottom-right, shifted down)
-    local breadcrumb = Submenus.GetBreadcrumbTitle() or ""
+    local breadcrumb = L(Submenus.GetBreadcrumbTitle()) or ""
     local breadcrumbWidth = ImGui.CalcTextSize(breadcrumb)
     local breadcrumbX = x + w - breadcrumbWidth - 10
     local breadcrumbY = y + h - header.FontSizeSub - 5 -- move slightly down

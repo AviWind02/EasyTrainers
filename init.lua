@@ -1,6 +1,12 @@
 local Draw = require("UI")
 local Welcome = require("View/Welcome")
+
 local Logger = require("Core/Logger")
+local Language = require("Core/Language")
+local JsonHelper = require("Core/JsonHelper")
+local Session = require("Core/cp2077-cet-kit/GameSession")
+local Cron = require("Core/cp2077-cet-kit/Cron")
+
 local Gameplay = require("Gameplay")
 
 local SelfTick = require("Features/Self/Tick")
@@ -11,11 +17,9 @@ local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
 local GeneralLoader = require("Features/DataExtractors/GeneralLoader")
 local PerkLoader = require("Features/DataExtractors/PerkLoader")
 
-local Session = require("Core/cp2077-cet-kit/GameSession")
-local Cron = require("Core/cp2077-cet-kit/Cron")
-
 GameState = {}
 
+local config = JsonHelper.Read("config.json")
 
 local MainMenu, World, Vehicle
 
@@ -43,12 +47,15 @@ local function UpdateSessionState()
 end
 
 
-
 registerForEvent("onInit", function()
     
     Logger.Initialize()
     Logger.Log("[EasyTrainer] Initialization started")
-    
+    Language.Load(config and config.Lang or "en")
+
+    Cron.After(0.5, RunETTest)
+
+
     Cron.After(0.3, GetGameState)
     Session.Listen(UpdateSessionState)
 
@@ -68,11 +75,11 @@ registerForEvent("onInit", function()
     end)
 
     Observe("PlayerPuppet", "OnAction", function(_, action)
-        -- local actionName = Game.NameToString(action:GetName(action))
-        -- local actionType = action:GetType(action).value
+        local actionName = Game.NameToString(action:GetName(action))
+        local actionType = action:GetType(action).value
         Draw.InputHandler.HandleControllerInput(action)
         Gameplay.WeaponInput.HandleInputAction(action)
-        -- Draw.InputHandler.LogAction(actionName, actionType)
+        Draw.InputHandler.LogAction(actionName, actionType)
     end)
 
 
@@ -82,8 +89,8 @@ end)
 
 Draw.InputHandler.RegisterInput()
 
-registerForEvent("onUpdate", function(deltaTime)
-    if not modulesLoaded then return end
+registerForEvent("onUpdate", function(deltaTime)  
+
 
     SelfTick.TickHandler()
     WeaponsTick.TickHandler(deltaTime)
@@ -102,7 +109,7 @@ registerForEvent("onDraw", function()
     Welcome.Render()
 
     if not Draw.InputHandler.IsMenuOpen() or not modulesLoaded then return end
-
+    
     local menuX, menuY, menuW, menuH
     ImGui.SetNextWindowSize(300, 500, ImGuiCond.FirstUseEver)
 
@@ -121,5 +128,4 @@ registerForEvent("onShutdown", function()
     Gameplay.StatModifiers.ClearAll()
     Draw.InputHandler.ClearMenuRestrictions() -- I don't know how status effects work but I believe they apply to the save?
 end)
-
 

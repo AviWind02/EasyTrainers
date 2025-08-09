@@ -1,7 +1,35 @@
 local Submenus = require("UI/Core/SubmenuManager")
 local Logger = require("Core/Logger")
 local InputHandler = {}
+-- Created a plugin that exposes native keyboard and gamepad input checks to CET Lua scripts
+local ETInput = nil
 
+local function GetETInput()
+    if not ETInput then
+        ETInput = EasyTrainerInputHandler.new()
+    end
+    return ETInput
+end
+
+-- keyboard VK codes
+local VK_UP = 38
+local VK_DOWN = 40
+local VK_LEFT = 37
+local VK_RIGHT = 39
+local VK_ENTER = 13
+local VK_BACKSPACE = 8
+local VK_F4 = 115
+local VK_X = 88
+local VK_CTRL = 17
+
+-- gamepad codes
+local GP_DPAD_UP = 1
+local GP_DPAD_DOWN = 2
+local GP_DPAD_LEFT = 4
+local GP_DPAD_RIGHT = 8
+local GP_RIGHT_BUMP = 512
+local GP_A = 4096
+local GP_B = 8192
 local scrollDelayBase = 200
 local scrollAcceleration = 20
 local scrollMinDelay = 50
@@ -23,49 +51,7 @@ InputHandler.upPressed = false
 InputHandler.overlayOpen = false
 
 
---[[
-    [Logged Action] Name: dpad_up | Type: BUTTON_PRESSED | Key: Unknown
-    [Logged Action] Name: dpad_left | Type: BUTTON_PRESSED | Key: Unknown
-    [Logged Action] Name: dpad_down | Type: BUTTON_PRESSED | Key: Unknown
-    [Logged Action] Name: dpad_right | Type: BUTTON_PRESSED | Key: Unknown
-    [Logged Action] Name: click | Type: BUTTON_PRESSED | Key: Unknown
-    [Logged Action] Name: back | Type: BUTTON_PRESSED | Key: Unknown
-]] --
 
-InputHandler.ControllerInput = {
-    dpad_up = { value = false },
-    dpad_left = { value = false },
-    dpad_down = { value = false },
-    dpad_right = { value = false },
-    system_notification_confirm = { value = false }, 
-    UI_FakeDodge = { value = false }  
-}
-
-function InputHandler.HandleControllerInput(action)
-    local actionName = Game.NameToString(action:GetName(action))
-
-    if InputHandler.ControllerInput[actionName] then
-        if action:IsButtonJustPressed() then
-            InputHandler.ControllerInput[actionName].value = true
-            -- print("[ControllerInput] " .. actionName .. " just pressed.")
-            lastInputDevice = "Controller"
-        elseif action:IsButtonJustReleased() then
-            InputHandler.ControllerInput[actionName].value = false
-            -- print("[ControllerInput] " .. actionName .. " just released.")
-        end
-    end
-end
-
-function InputHandler.UpdateInputDevice()
-    if not menuOpen then return end
-
-    if ImGui.IsKeyPressed(ImGuiKey.UpArrow)
-        or ImGui.IsKeyPressed(ImGuiKey.DownArrow)
-        or ImGui.IsKeyPressed(ImGuiKey.LeftArrow)
-        or ImGui.IsKeyPressed(ImGuiKey.RightArrow) then
-        lastInputDevice = "Keyboard"
-    end
-end
 
 local controllerRestrictions = {
     "GameplayRestriction.NoPhone",
@@ -78,23 +64,34 @@ local controllerRestrictions = {
 
 local keyboardOnlyRestriction = "GameplayRestriction.NoDriving"
 
+
+function InputHandler.UpdateInputDevice()
+    if not menuOpen then return end
+
+    if GetETInput():IsKeyboardActive() then
+        lastInputDevice = "Keyboard"
+    elseif GetETInput():IsGamepadActive() then
+        lastInputDevice = "Controller"
+    end
+end
+
+local function IsUsingController()
+    return lastInputDevice == "Controller"
+end
+
 local function ApplyMenuRestrictions()
     InputHandler.UpdateInputDevice()
-    local usingController = lastInputDevice == "Controller"
+    local usingController = IsUsingController()
 
     if menuOpen == lastMenuOpen and usingController == lastWasController then return end
 
-    -- Notify player when input device switches while menu is open
     if menuOpen and usingController ~= lastWasController then
-        local msg = usingController and "[EasyTrainerInputHandler] Switched to Controller restrictions" or
-        " [EasyTrainerInputHandler] Switched to Keyboard restrictions"
+        local msg = usingController and "[EasyTrainerInputHandler] Switched to Controller restrictions"
+            or "[EasyTrainerInputHandler] Switched to Keyboard restrictions"
         Logger.Log(msg)
     end
 
-    -- Apply/Remove NoDriving (only matters for keyboard)
     InputHandler.setStatusEffect(keyboardOnlyRestriction, menuOpen and not usingController)
-
-    -- Apply/Remove controller-specific restrictions
     for _, restriction in ipairs(controllerRestrictions) do
         InputHandler.setStatusEffect(restriction, menuOpen and usingController)
     end
@@ -102,6 +99,7 @@ local function ApplyMenuRestrictions()
     lastMenuOpen = menuOpen
     lastWasController = usingController
 end
+
 
 function InputHandler.ClearMenuRestrictions()
     InputHandler.setStatusEffect(keyboardOnlyRestriction, false)
@@ -111,16 +109,43 @@ function InputHandler.ClearMenuRestrictions()
 end
 
 
-local function Up() return ImGui.IsKeyPressed(ImGuiKey.UpArrow) or InputHandler.ControllerInput.dpad_up.value end
-local function Down() return ImGui.IsKeyPressed(ImGuiKey.DownArrow) or InputHandler.ControllerInput.dpad_down.value end
-local function Left() return ImGui.IsKeyPressed(ImGuiKey.LeftArrow) or InputHandler.ControllerInput.dpad_left.value end
-local function Right() return ImGui.IsKeyPressed(ImGuiKey.RightArrow) or InputHandler.ControllerInput.dpad_right.value end
-local function Select() return ImGui.IsKeyPressed(ImGuiKey.Enter) or InputHandler.ControllerInput.system_notification_confirm.value end
-local function Back() return ImGui.IsKeyPressed(ImGuiKey.Backspace) or InputHandler.ControllerInput.UI_FakeDodge.value end
-local function ToggleMenu() return ImGui.IsKeyPressed(ImGuiKey.F4) or
-    (InputHandler.ControllerInput.system_notification_confirm.value and InputHandler.ControllerInput.dpad_right.value) end
-local function ToggleMouse() return ImGui.IsKeyPressed(ImGuiKey.X) end
-local function Misc() return ImGui.IsKeyPressed(ImGuiKey.LeftCtrl) end
+
+local function Select()
+    return GetETInput():IsKeyPressed(VK_ENTER) or GetETInput():IsGamepadButtonPressed(GP_A)
+end
+
+local function Back()
+    return GetETInput():IsKeyPressed(VK_BACKSPACE) or GetETInput():IsGamepadButtonPressed(GP_B)
+end
+
+local function Up()
+    return GetETInput():IsKeyPressed(VK_UP) or GetETInput():IsGamepadButtonPressed(GP_DPAD_UP)
+end
+
+local function Down()
+    return GetETInput():IsKeyPressed(VK_DOWN) or GetETInput():IsGamepadButtonPressed(GP_DPAD_DOWN)
+end
+
+local function Left()
+    return GetETInput():IsKeyPressed(VK_LEFT) or GetETInput():IsGamepadButtonPressed(GP_DPAD_LEFT)
+end
+
+local function Right()
+    return GetETInput():IsKeyPressed(VK_RIGHT) or GetETInput():IsGamepadButtonPressed(GP_DPAD_RIGHT)
+end
+
+local function ToggleMenu()
+    return GetETInput():IsKeyPressed(VK_F4) or
+        (GetETInput():IsGamepadButtonPressed(GP_A) and GetETInput():IsGamepadButtonPressed(GP_DPAD_RIGHT))
+end
+
+local function ToggleMouse()
+    return GetETInput():IsKeyPressed(VK_X)
+end
+
+local function Misc()
+    return GetETInput():IsKeyPressed(VK_CTRL)
+end
 
 -- This could go into gameplay once I create a status effect menu
 function InputHandler.setStatusEffect(effect, enabled)
@@ -148,16 +173,18 @@ function InputHandler.RegisterInput()
     end)
 end
 
--- Main input tick
+-- Tuning for scroll speed and acceleration
+local kbVertSpeed = scrollAcceleration
+local kbHorzSpeed = scrollAcceleration * 2.5
+local ctrlVertSpeed = scrollAcceleration * 0.25
+local ctrlHorzSpeed = scrollAcceleration * 2.5
+local holdMult = 2.0
+
 function InputHandler.HandleInputTick()
-    local now = os.clock() * 1000 -- ms
+    local now = os.clock() * 1000
     InputHandler.freshlyPressedKeys = {}
 
-    -- I'll make a menu later where restrictions can be turned on and off by the user
     ApplyMenuRestrictions()
-
-
-
 
     InputHandler.leftPressed = false
     InputHandler.rightPressed = false
@@ -166,10 +193,10 @@ function InputHandler.HandleInputTick()
     InputHandler.downPressed = false
     InputHandler.upPressed = false
 
-    local isHoldingUp = ImGui.IsKeyDown(ImGuiKey.UpArrow)
-    local isHoldingDown = ImGui.IsKeyDown(ImGuiKey.DownArrow)
-    local isHoldingLeft = ImGui.IsKeyDown(ImGuiKey.LeftArrow)
-    local isHoldingRight = ImGui.IsKeyDown(ImGuiKey.RightArrow)
+    local isUp = Up()
+    local isDown = Down()
+    local isLeft = Left()
+    local isRight = Right()
 
     if ToggleMenu() and now - lastKeyTick > scrollDelay then
         menuOpen = not menuOpen
@@ -179,43 +206,50 @@ function InputHandler.HandleInputTick()
 
     if not menuOpen then return end
 
-    local acceleratedScroll = scrollAcceleration
-    if isHoldingUp or isHoldingDown then
-        acceleratedScroll = scrollAcceleration * 2.0
-    elseif isHoldingLeft or isHoldingRight then
-        acceleratedScroll = scrollAcceleration * 1.5
+    local function getBaseSpeed(vertical)
+        if IsUsingController() then
+            return vertical and ctrlVertSpeed or ctrlHorzSpeed
+        else
+            return vertical and kbVertSpeed or kbHorzSpeed
+        end
     end
 
-    if Up() and now - lastKeyTick > scrollDelay then
-        Submenus.currentOption = (Submenus.currentOption > 1)
-            and (Submenus.currentOption - 1)
-            or Submenus.optionIndex
+    if isUp and now - lastKeyTick > scrollDelay then
+        Submenus.currentOption = (Submenus.currentOption > 1) and (Submenus.currentOption - 1) or Submenus.optionIndex
         InputHandler.upPressed = true
         lastKeyTick = now
-        scrollDelay = math.max(scrollMinDelay, scrollDelay - acceleratedScroll)
-    elseif Down() and now - lastKeyTick > scrollDelay then
-        Submenus.currentOption = (Submenus.currentOption < Submenus.optionIndex)
-            and (Submenus.currentOption + 1)
-            or 1
+        if not isDown and not isLeft and not isRight then scrollDelay = scrollDelayBase end
+        local spd = getBaseSpeed(true)
+        if isUp then spd = spd * holdMult end
+        scrollDelay = math.max(scrollMinDelay, scrollDelay - spd)
+    elseif isDown and now - lastKeyTick > scrollDelay then
+        Submenus.currentOption = (Submenus.currentOption < Submenus.optionIndex) and (Submenus.currentOption + 1) or 1
         InputHandler.downPressed = true
         lastKeyTick = now
-        scrollDelay = math.max(scrollMinDelay, scrollDelay - acceleratedScroll)
-    elseif Left() and now - lastKeyTick > scrollDelay then
+        if not isUp and not isLeft and not isRight then scrollDelay = scrollDelayBase end
+        local spd = getBaseSpeed(true)
+        if isDown then spd = spd * holdMult end
+        scrollDelay = math.max(scrollMinDelay, scrollDelay - spd)
+    elseif isLeft and now - lastKeyTick > scrollDelay then
         InputHandler.leftPressed = true
         lastKeyTick = now
-        scrollDelay = math.max(scrollMinDelay, scrollDelay - acceleratedScroll)
-    elseif Right() and now - lastKeyTick > scrollDelay then
+        if not isUp and not isDown and not isRight then scrollDelay = scrollDelayBase end
+        local spd = getBaseSpeed(false)
+        if isLeft then spd = spd * holdMult end
+        scrollDelay = math.max(scrollMinDelay, scrollDelay - spd)
+    elseif isRight and now - lastKeyTick > scrollDelay then
         InputHandler.rightPressed = true
         lastKeyTick = now
-        scrollDelay = math.max(scrollMinDelay, scrollDelay - acceleratedScroll)
+        if not isUp and not isDown and not isLeft then scrollDelay = scrollDelayBase end
+        local spd = getBaseSpeed(false)
+        if isRight then spd = spd * holdMult end
+        scrollDelay = math.max(scrollMinDelay, scrollDelay - spd)
     elseif Select() and now - lastKeyTick > scrollDelay then
         InputHandler.selectPressed = true
         lastKeyTick = now
         scrollDelay = scrollDelayBase
     elseif Back() and now - lastKeyTick > scrollDelay then
-        if Submenus.IsAtRootMenu() then
-            menuOpen = false
-        end
+        if Submenus.IsAtRootMenu() then menuOpen = false end
         Submenus.CloseSubmenu()
         lastKeyTick = now
         scrollDelay = scrollDelayBase
@@ -231,6 +265,8 @@ function InputHandler.HandleInputTick()
 
     Submenus.optionIndex = 0
 end
+
+
 
 function InputHandler.IsMenuOpen()
     return menuOpen
@@ -314,18 +350,4 @@ function InputHandler.LogAction(actionName, actionType)
     permanentlyLoggedActions[actionName] = true
 end
 
---[[
-    if menuOpen then
-        for key, name in pairs(keyNames) do
-            local isDown = ImGui.IsKeyDown(key)
-            local wasDown = lastFrameKeyDown[key] or false
-
-            if isDown and not wasDown then
-                InputHandler.freshlyPressedKeys[name] = true
-            end
-
-            lastFrameKeyDown[key] = isDown
-        end
-    end
-]] --
 return InputHandler

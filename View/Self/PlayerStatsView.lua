@@ -7,44 +7,41 @@ local Buttons = Draw.Buttons
 
 local CustomModifiersView = require("View/Self/CustomModifiersView")
 
-
 local function PlayerStatsView()
-    Buttons.Submenu("Custom Modifiers (Not Tested Enough)", CustomModifiersView, "Create and manage your own stat modifiers for player, weapons, or vehicles.")
+    Buttons.Submenu(L("modifiers.custom.label"), CustomModifiersView, tip("modifiers.custom.tip"))
 
-    Buttons.Toggle("Infinite Stamina", StatModifiers.Enhancements.toggleInfiniteStamina, "Removes stamina constraints permanently.")
-    Buttons.Toggle("Infinite Oxygen", StatModifiers.Enhancements.toggleInfiniteOxygen, "Allows indefinite underwater breathing.")
-    Buttons.Toggle("Refill Stamina (loop)", StatModifiers.Enhancements.toggleSetStaminaFull, "Automatically restores stamina to 100% below 98%.")
-    Buttons.Toggle("Refill Oxygen (loop)", StatModifiers.Enhancements.toggleSetOxygenFull, "Automatically restores oxygen when it drops.")
+    Buttons.Toggle(L("modifiers.infinite_stamina.label"), StatModifiers.Enhancements.toggleInfiniteStamina, tip("modifiers.infinite_stamina.tip"))
+    Buttons.Toggle(L("modifiers.infinite_oxygen.label"), StatModifiers.Enhancements.toggleInfiniteOxygen, tip("modifiers.infinite_oxygen.tip"))
+    Buttons.Toggle(L("modifiers.refill_stamina.label"), StatModifiers.Enhancements.toggleSetStaminaFull, tip("modifiers.refill_stamina.tip"))
+    Buttons.Toggle(L("modifiers.refill_oxygen.label"), StatModifiers.Enhancements.toggleSetOxygenFull, tip("modifiers.refill_oxygen.tip"))
 
-    Buttons.Break("Cooldowns")
-    Buttons.Toggle("Heal", Cooldown.toggleHeal, "Removes healing item recharge cooldown.")
-    Buttons.Toggle("Grenade", Cooldown.toggleGrenade, "Removes grenade recharge cooldown.")
-    Buttons.Toggle("Projectile Launcher", Cooldown.toggleProjectile, "Removes projectile launcher cooldown.")
-    Buttons.Toggle("Optical Cloak", Cooldown.toggleCloak, "Eliminates optical camo cooldown and boosts regen.")
-    Buttons.Toggle("Sandevistan", Cooldown.toggleSande, "Removes cooldown for Sandevistan activations.")
-    Buttons.Toggle("Berserk", Cooldown.toggleBerserk, "Greatly increases berserk regeneration rate.")
-    Buttons.Toggle("Kerenzikov", Cooldown.toggleKeren, "Reduces Kerenzikov cooldown to near-zero.")
-    Buttons.Toggle("Overclock", Cooldown.toggleOverclock, "Boosts Overclock regen and removes cooldown.")
-    Buttons.Toggle("Quickhacks", Cooldown.toggleQuickhack, "Reduces all quickhack cooldowns drastically.")
+    Buttons.Break(L("modifiers.cooldowns"))
+    Buttons.Toggle(L("modifiers.cooldown_heal.label"), Cooldown.toggleHeal, tip("modifiers.cooldown_heal.tip"))
+    Buttons.Toggle(L("modifiers.cooldown_grenade.label"), Cooldown.toggleGrenade, tip("modifiers.cooldown_grenade.tip"))
+    Buttons.Toggle(L("modifiers.cooldown_projectile.label"), Cooldown.toggleProjectile, tip("modifiers.cooldown_projectile.tip"))
+    Buttons.Toggle(L("modifiers.cooldown_cloak.label"), Cooldown.toggleCloak, tip("modifiers.cooldown_cloak.tip"))
+    Buttons.Toggle(L("modifiers.cooldown_sande.label"), Cooldown.toggleSande, tip("modifiers.cooldown_sande.tip"))
+    Buttons.Toggle(L("modifiers.cooldown_berserk.label"), Cooldown.toggleBerserk, tip("modifiers.cooldown_berserk.tip"))
+    Buttons.Toggle(L("modifiers.cooldown_keren.label"), Cooldown.toggleKeren, tip("modifiers.cooldown_keren.tip"))
+    Buttons.Toggle(L("modifiers.cooldown_overclock.label"), Cooldown.toggleOverclock, tip("modifiers.cooldown_overclock.tip"))
+    Buttons.Toggle(L("modifiers.cooldown_quickhacks.label"), Cooldown.toggleQuickhack, tip("modifiers.cooldown_quickhacks.tip"))
 
-    Buttons.Break("Memory & Stats")
-    Buttons.Toggle("Reduce Quickhack Cost", Cooldown.toggleHackCost, "Removes all memory costs from quickhacks.")
-    Buttons.Toggle("Memory Regen", Cooldown.toggleMemoryRegen, "Increases memory regeneration rate.")
-    Buttons.Float("Set Memory Stat", StatModifiers.Enhancements.memoryStatValue, "Overrides base memory stat for cyberdeck.")
+    Buttons.Break(L("modifiers.memory_stats"))
+    Buttons.Toggle(L("modifiers.reduce_quickhack_cost.label"), Cooldown.toggleHackCost, tip("modifiers.reduce_quickhack_cost.tip"))
+    Buttons.Toggle(L("modifiers.memory_regen.label"), Cooldown.toggleMemoryRegen, tip("modifiers.memory_regen.tip"))
+    Buttons.Float(L("modifiers.set_memory_stat.label"), StatModifiers.Enhancements.memoryStatValue, tip("modifiers.set_memory_stat.tip"))
 
-    Buttons.Break("Mobility")
-    Buttons.Toggle("Air Thruster Boots", Self.AirThrusterBoots.enabled, "Hold jump in mid-air to reduce fall damage impact.")
-    Buttons.Toggle("Air Hover", Self.AdvancedMobility.toggleAirHover, "Allows hovering in the air after jumping.")
-    Buttons.Int("Carry Capacity", Self.StatModifiers.Utility.capacityValue, "Overrides your carry weight capacity.")
+    Buttons.Break(L("modifiers.mobility"))
+    Buttons.Toggle(L("modifiers.air_thruster_boots.label"), Self.AirThrusterBoots.enabled, tip("modifiers.air_thruster_boots.tip"))
+    Buttons.Toggle(L("modifiers.air_hover.label"), Self.AdvancedMobility.toggleAirHover, tip("modifiers.air_hover.tip"))
+    Buttons.Int(L("modifiers.carry_capacity.label"), StatModifiers.Utility.capacityValue, tip("modifiers.carry_capacity.tip"))
 
-    Buttons.Break("Cyberware: Sandevistan")
-    Buttons.Float("Sandevistan Duration", StatModifiers.Movement.sandevistanDurationMultiplier,
-        "Extends duration of your Sandevistan mode.")
-    Buttons.Float("Sandevistan Time Scale", StatModifiers.Movement.sandevistanTimeScaleMultiplier,
-        "Controls time dilation while Sandevistan is active.")
+    Buttons.Break(L("modifiers.sandevistan"))
+    Buttons.Float(L("modifiers.sandevistan_duration.label"), StatModifiers.Movement.sandevistanDurationMultiplier, tip("modifiers.sandevistan_duration.tip"))
+    Buttons.Float(L("modifiers.sandevistan_scale.label"), StatModifiers.Movement.sandevistanTimeScaleMultiplier, tip("modifiers.sandevistan_scale.tip"))
 end
 
 return {
-    title = "Player Stats",
+    title = "modifiers.title",
     view = PlayerStatsView
 }

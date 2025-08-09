@@ -132,7 +132,7 @@ function OptionManager.Dropdown(label, ref, options, tip)
     local keyTip = "Tip: Press Enter or Click to expand and select option."
     local fullTip = keyTip .. (tip and ("\n\n" .. tip) or "")
     local arrow = ref.expanded and IconGlyphs.CircleExpand or IconGlyphs.ArrowExpandAll
-    local selectedLabel = options[ref.index or 1] or "None"
+    local selectedLabel = L(options[ref.index or 1]) or "None"
     local clicked = OptionManager.Option(label, nil, selectedLabel .. " " .. arrow, fullTip)
 
     if clicked then
@@ -159,7 +159,7 @@ function OptionManager.Dropdown(label, ref, options, tip)
         end
 
         for i = 1, (ref.revealProgress or 0) do
-            local label = "- " .. options[i]
+            local label = "- " .. L(options[i])
             local isSelected = (ref.index == i)
 
             if OptionManager.Option(label, nil, isSelected and IconGlyphs.CheckBold or "") then
@@ -422,7 +422,7 @@ function OptionManager.StringCycler(label, ref, options, tip)
     local Layout, Colors = UI.Layout, UI.Colors
 
     local currentIndex = ref.index or 1
-    local currentText = options[currentIndex] or "None"
+    local currentText = L(options[currentIndex]) or "None"
     local valueTextWidth = ImGui.CalcTextSize(currentText)
 
     local framePadding = 6

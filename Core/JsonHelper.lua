@@ -1,5 +1,6 @@
 local JsonHelper = {}
 
+
 function JsonHelper.Read(path)
     local file = io.open(path, "r")
     if not file then return nil, "Could not open file: " .. path end

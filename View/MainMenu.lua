@@ -68,20 +68,20 @@ end
 local testMenu = { title = "Test Menu", view = SecondaryView }
 
 local function MainMenuView()
-    Draw.Options.Submenu("Self Menu", SelfView, "Modify player stats, movement, stealth, and health behavior.")
-    Draw.Options.Submenu("Development Menu", PlayerDevelopmentView, "Adjust attributes and toggle individual perks.")
-    Draw.Options.Submenu("Modifiers Menu", PlayerStatsView, "Manage all ability cooldowns and recovery rates such as grenades, cloaking, and quickhacks.")
-    Draw.Options.Submenu("Teleport Menu", TeleportView, "Teleport instantly to preset locations in Night City.")
-    Draw.Options.Submenu("Weapon Menu", WeaponView, "Access various weapon-related features including special abilities, projectile behavior, and customization.")
-    Draw.Options.Submenu("Vehicle Menu", VehicleMenuView, "Manage vehicles, spawn new ones, and control vehicle Elements ")
-    Draw.Options.Submenu("Facts Menu", GameFactsView, "Set story flags, censorship states, and progression facts.")
-    Draw.Options.Submenu("Time Menu", TimeView, "Control time of day, time skip, freezing, syncing, and speed multipliers.")
-    Draw.Options.Submenu("Weather Menu", WeatherView, "Control world weather, force storms, fog, and more.")
-    -- Draw.Options.Submenu("Test Buttons", testMenu, "Go to test menu")
-
+    Draw.Options.Submenu(L("mainmenu.self.label"), SelfView, tip("mainmenu.self.tip"))
+    Draw.Options.Submenu(L("mainmenu.development.label"), PlayerDevelopmentView, tip("mainmenu.development.tip"))
+    Draw.Options.Submenu(L("mainmenu.modifiers.label"), PlayerStatsView, tip("mainmenu.modifiers.tip"))
+    Draw.Options.Submenu(L("mainmenu.teleport.label"), TeleportView, tip("mainmenu.teleport.tip"))
+    Draw.Options.Submenu(L("mainmenu.weapon.label"), WeaponView, tip("mainmenu.weapon.tip"))
+    Draw.Options.Submenu(L("mainmenu.vehicle.label"), VehicleMenuView, tip("mainmenu.vehicle.tip"))
+    Draw.Options.Submenu(L("mainmenu.facts.label"), GameFactsView, tip("mainmenu.facts.tip"))
+    Draw.Options.Submenu(L("mainmenu.time.label"), TimeView, tip("mainmenu.time.tip"))
+    Draw.Options.Submenu(L("mainmenu.weather.label"), WeatherView, tip("mainmenu.weather.tip"))
+    -- Draw.Options.Submenu(L("mainmenu.test"), testMenu, tip("mainmenu.test.tip"))
 end
 
-local mainMenu = { title = "Main Menu", view = MainMenuView }
+
+local mainMenu = { title = "mainmenu.title", view = MainMenuView }
 
 local initialized = false
 
