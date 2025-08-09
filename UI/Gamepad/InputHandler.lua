@@ -1,7 +1,6 @@
 local Submenus = require("UI/Core/SubmenuManager")
 local Logger = require("Core/Logger")
 local InputHandler = {}
--- Created a plugin that exposes native keyboard and gamepad input checks to CET Lua scripts
 local ETInput = nil
 
 local function GetETInput()
@@ -11,7 +10,6 @@ local function GetETInput()
     return ETInput
 end
 
--- keyboard VK codes
 local VK_UP = 38
 local VK_DOWN = 40
 local VK_LEFT = 37
@@ -22,7 +20,6 @@ local VK_F4 = 115
 local VK_X = 88
 local VK_CTRL = 17
 
--- gamepad codes
 local GP_DPAD_UP = 1
 local GP_DPAD_DOWN = 2
 local GP_DPAD_LEFT = 4
