@@ -5,21 +5,21 @@ local WorldWeather = require("Features/World").WorldWeather
 local weatherRadio = { index = 1 }
 
 local weatherOptions = {
-    "Sunny",
-    "Light Clouds",
-    "Cloudy",
-    "Heavy Clouds",
-    "Fog",
-    "Rain",
-    "Toxic Rain",
-    "Pollution",
-    "Sandstorm",
-    "Deeb Blue",
-    "Rain (Light)",
-    "Squat Morning",
-    "Cloudy (Morning)",
-    "Rain (Night)",
-    "Clouds (Courier)"
+    L("worldweather.options.sunny"),
+    L("worldweather.options.lightclouds"),
+    L("worldweather.options.cloudy"),
+    L("worldweather.options.heavyclouds"),
+    L("worldweather.options.fog"),
+    L("worldweather.options.rain"),
+    L("worldweather.options.toxicrain"),
+    L("worldweather.options.pollution"),
+    L("worldweather.options.sandstorm"),
+    L("worldweather.options.deebblue"),
+    L("worldweather.options.lightRain"),
+    L("worldweather.options.squatmorning"),
+    L("worldweather.options.cloudymorning"),
+    L("worldweather.options.rainnight"),
+    L("worldweather.options.cloudscourier")
 }
 
 local weatherMap = {
@@ -52,26 +52,25 @@ end
 
 local transitionSeconds = { value = 1, min = 1, max = 60, step = 1 }
 
-
 local function ViewWorldWeather()
     weatherRadio.index = GetCurrentWeatherIndex()
 
-    Buttons.OptionExtended("Current Weather:", "", WorldWeather.GetCurrentWeather())
-    Buttons.Toggle("Freeze Weather", WorldWeather.freezeWeather, "Prevents weather from changing naturally.")
-    Buttons.Option("Random Weather", "Apply a random weather preset.", WorldWeather.SetRandomWeather)
-    Buttons.Option("Reset Weather", "Reset to default dynamic weather system.", WorldWeather.ResetWeather)
-    Buttons.Int("Transition Duration (s)", transitionSeconds, "Weather transition time in seconds.")
+    Buttons.OptionExtended(L("worldweather.current.label"), "", WorldWeather.GetCurrentWeather(), L("worldweather.current.tip"))
+    Buttons.Toggle(L("worldweather.freeze.label"), WorldWeather.freezeWeather, L("worldweather.freeze.tip"))
+    Buttons.Option(L("worldweather.random.label"), L("worldweather.random.tip"), WorldWeather.SetRandomWeather)
+    Buttons.Option(L("worldweather.reset.label"), L("worldweather.reset.tip"), WorldWeather.ResetWeather)
+    Buttons.Int(L("worldweather.transitionduration.label"), transitionSeconds, L("worldweather.transitionduration.tip"))
 
-    Buttons.Break("", "Weather Type")
+    Buttons.Break("", L("worldweather.weathertypebreak.label"))
 
-    Buttons.Radio("Weather Type", weatherRadio, weatherOptions, "Change to this weather type.", function()
+    Buttons.Radio(L("worldweather.weathertype.label"), weatherRadio, weatherOptions, L("worldweather.weathertype.tip"), function()
         local selectedWeather = weatherMap[weatherRadio.index]
         WorldWeather.SetWeather(selectedWeather, transitionSeconds.value)
     end)
 end
 
 local WorldWeatherView = {
-    title = "World Weather",
+    title = "worldweather.title",
     view = ViewWorldWeather
 }
 

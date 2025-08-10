@@ -8,46 +8,41 @@ local VehicleFeaures = require("Features/Vehicle")
 local Gameplay = require("Gameplay").StatModifiers
 
 local doorStateRef = { index = 1, expanded = false }
-local doorStateOptions = { "Open", "Closed", "Detached" }
+local doorStateOptions = { L("vehiclemenu.vehicledoormenu.doorstateoptions.open"), L("vehiclemenu.vehicledoormenu.doorstateoptions.closed"), L("vehiclemenu.vehicledoormenu.doorstateoptions.detached") }
 
 local function VehicleDoorViewFunction()
+    Buttons.Dropdown(L("vehiclemenu.vehicledoormenu.doorstate.label"), doorStateRef, doorStateOptions, L("vehiclemenu.vehicledoormenu.doorstate.tip"))
+    Buttons.Break(L("vehiclemenu.vehicledoormenu.selectdoor"))
 
-    Buttons.Dropdown("Door State", doorStateRef, doorStateOptions, "Select the desired state for the door.")
-    Buttons.Break("Select Door")
-
-    local selectedState = VehicleFeaures.Doors.VehicleDoorState[doorStateOptions[doorStateRef.index]]
+    local selectedStateKey = doorStateOptions[doorStateRef.index]
+    local selectedState = VehicleFeaures.Doors.VehicleDoorState[selectedStateKey]
 
     local doorTargets = {
-        { label = "Front Left", id = VehicleFeaures.Doors.EVehicleDoor.FrontLeft },
-        { label = "Front Right", id = VehicleFeaures.Doors.EVehicleDoor.FrontRight },
-        { label = "Rear Left", id = VehicleFeaures.Doors.EVehicleDoor.RearLeft },
-        { label = "Rear Right", id = VehicleFeaures.Doors.EVehicleDoor.RearRight },
-        { label = "Hood", id = VehicleFeaures.Doors.EVehicleDoor.Hood },
-        { label = "Trunk", id = VehicleFeaures.Doors.EVehicleDoor.Trunk },
+        { key = "frontleft", id = VehicleFeaures.Doors.EVehicleDoor.FrontLeft },
+        { key = "frontright", id = VehicleFeaures.Doors.EVehicleDoor.FrontRight },
+        { key = "rearleft", id = VehicleFeaures.Doors.EVehicleDoor.RearLeft },
+        { key = "rearright", id = VehicleFeaures.Doors.EVehicleDoor.RearRight },
+        { key = "hood", id = VehicleFeaures.Doors.EVehicleDoor.Hood },
+        { key = "trunk", id = VehicleFeaures.Doors.EVehicleDoor.Trunk }
     }
 
     for _, door in ipairs(doorTargets) do
-        local label = door.label
-        local tip = "Set " .. label:lower() .. " to " .. doorStateOptions[doorStateRef.index]:lower()
-        local action = function()
-            VehicleFeaures.Doors.SetDoorState(door.id, selectedState)
-        end
-        Buttons.Option(label, tip, action)
+        local label = L("vehiclemenu.vehicledoormenu.doors." .. door.key)
+        local tipText = tip("vehiclemenu.vehicledoormenu.doortips.set", { door = label, state = string.lower(selectedStateKey) })
+        Buttons.Option(label, tipText, function() VehicleFeaures.Doors.SetDoorState(door.id, selectedState) end)
     end
 end
 
-local VehicleDoorView = { title = "Vehicle Door Controls", view = VehicleDoorViewFunction }
-
+local VehicleDoorView = { title = L("vehiclemenu.vehicledoormenu.title"), view = VehicleDoorViewFunction }
 
 local function VehicleViewFunction()
-    if Buttons.Submenu("Vehicle List", VehicleListView, "View all vehicles and toggle which ones are enabled or disabled in your owned vehicle menu.") then VehicleFeaures.enableVehicleSpawnerMode = false end
-    if Buttons.Submenu("Vehicle Spawner", VehicleListView, "Request any vehicles directly in front of the player. Does not add them to your owned list.") then VehicleFeaures.enableVehicleSpawnerMode = true end
-    Buttons.Submenu("Vehicle Headlights", VehicleHeadLightView, "Control vehicle headlights and light types.")
-    Buttons.Submenu("Vehicle Doors", VehicleDoorView, "Open and close vehicle doors.")
-    Buttons.Option("Repair Vehicle", "Repair current vehicle", Vehicle.Repairs.Tick)
+    if Buttons.Submenu(L("vehiclemenu.vehiclelist.label"), VehicleListView, L("vehiclemenu.vehiclelist.tip")) then VehicleFeaures.enableVehicleSpawnerMode = false end
+    if Buttons.Submenu(L("vehiclemenu.vehiclespawner.label"), VehicleListView, L("vehiclemenu.vehiclespawner.tip")) then VehicleFeaures.enableVehicleSpawnerMode = true end
+    Buttons.Submenu(L("vehiclemenu.vehicleheadlights.label"), VehicleHeadLightView, L("vehiclemenu.vehicleheadlights.tip"))
+    Buttons.Submenu(L("vehiclemenu.vehicledoors.label"), VehicleDoorView, L("vehiclemenu.vehicledoors.tip"))
+    Buttons.Option(L("vehiclemenu.repairvehicle.label"), L("vehiclemenu.repairvehicle.tip"), Vehicle.Repairs.Tick)
 end
 
-
-local VehicleView = { title = "Vehicle Menu", view = VehicleViewFunction }
+local VehicleView = { title = L("vehiclemenu.title"), view = VehicleViewFunction }
 
 return VehicleView

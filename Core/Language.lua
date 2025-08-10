@@ -48,11 +48,10 @@ function Language.Get(key)
     local lastPart = nil
 
     for part in string.gmatch(key, "[^%.]+") do
-        local cleanPart = part:gsub("^%s*%-?%s*", ""):gsub("[^%w_]", "")
-        lastPart = cleanPart
+        lastPart = part 
 
         if type(val) == "table" then
-            val = val[cleanPart]
+            val = val[part]
             if type(val) == "string" then
                 lastStr = val
             end
@@ -63,6 +62,7 @@ function Language.Get(key)
 
     return lastStr or lastPart or key
 end
+
 
 
 function Language.tip(key, placeholders)

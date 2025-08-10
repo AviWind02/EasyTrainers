@@ -7,31 +7,31 @@ local StatNames = require("Features/Self/StatModifiers/StatNames")
 local ModifierManager = {}
 
 local Modes = {
-    "custom_modifiers.modes.1",
-    "custom_modifiers.modes.2",
-    "custom_modifiers.modes.3"
+    "custommodifiers.modes1",
+    "custommodifiers.modes2",
+    "custommodifiers.modes3"
 }
-
-local Targets = {
-    "custom_modifiers.targets.1",
-    "custom_modifiers.targets.2",
-    "custom_modifiers.targets.3"
-}
-
-local Types = {
-    "custom_modifiers.types.1",
-    "custom_modifiers.types.2",
-    "custom_modifiers.types.3"
-}
-
 local Filters = {
-    "custom_modifiers.filters.1", -- A to Z
-    "custom_modifiers.filters.2", -- Z to A
-    "custom_modifiers.filters.3", "custom_modifiers.filters.4", "custom_modifiers.filters.5", "custom_modifiers.filters.6", "custom_modifiers.filters.7", "custom_modifiers.filters.8",
-    "custom_modifiers.filters.9", "custom_modifiers.filters.10", "custom_modifiers.filters.11", "custom_modifiers.filters.12", "custom_modifiers.filters.13", "custom_modifiers.filters.14",
-    "custom_modifiers.filters.15", "custom_modifiers.filters.16", "custom_modifiers.filters.17", "custom_modifiers.filters.18", "custom_modifiers.filters.19", "custom_modifiers.filters.20",
-    "custom_modifiers.filters.21", "custom_modifiers.filters.22", "custom_modifiers.filters.23", "custom_modifiers.filters.24", "custom_modifiers.filters.25", "custom_modifiers.filters.26",
-    "custom_modifiers.filters.27", "custom_modifiers.filters.28"
+    "custommodifiers.filters1", "custommodifiers.filters2",
+    "custommodifiers.filters3", "custommodifiers.filters4", "custommodifiers.filters5",
+    "custommodifiers.filters6", "custommodifiers.filters7", "custommodifiers.filters8",
+    "custommodifiers.filters9", "custommodifiers.filters10", "custommodifiers.filters11",
+    "custommodifiers.filters12", "custommodifiers.filters13", "custommodifiers.filters14",
+    "custommodifiers.filters15", "custommodifiers.filters16", "custommodifiers.filters17",
+    "custommodifiers.filters18", "custommodifiers.filters19", "custommodifiers.filters20",
+    "custommodifiers.filters21", "custommodifiers.filters22", "custommodifiers.filters23",
+    "custommodifiers.filters24", "custommodifiers.filters25", "custommodifiers.filters26",
+    "custommodifiers.filters27", "custommodifiers.filters28"
+}
+local Targets = {
+    "custommodifiers.targets1",
+    "custommodifiers.targets2",
+    "custommodifiers.targets3"
+}
+local Types = {
+    "custommodifiers.types1",
+    "custommodifiers.types2",
+    "custommodifiers.types3"
 }
 
 local selectedMode = { index = 1, expanded = false }
@@ -79,13 +79,13 @@ local function CreateModifierConfig(statName)
     return {
         title = "Configure " .. statName,
         view = function()
-            Buttons.OptionExtended(L("custom_modifiers.labels.selected_modifier"), "", statName)
-            Buttons.Dropdown(L("custom_modifiers.labels.target"), selectedTarget, Targets)
-            Buttons.Dropdown(L("custom_modifiers.labels.modifier_type"), selectedType, Types)
-            Buttons.Float(L("custom_modifiers.labels.value"), valueInput, tip("custom_modifiers.tips.value"))
+            Buttons.OptionExtended(L("custommodifiers.selectedmodifier.label"), "", statName)
+            Buttons.Dropdown(L("custommodifiers.target.label"), selectedTarget, Targets)
+            Buttons.Dropdown(L("custommodifiers.modifiertype.label"), selectedType, Types)
+            Buttons.Float(L("custommodifiers.value.label"), valueInput, tip("custommodifiers.value.tip"))
             Buttons.Option(
-                L("custom_modifiers.labels.apply"),
-                tip("custom_modifiers.tips.apply"),
+                L("custommodifiers.apply.label"),
+                tip("custommodifiers.apply.tip"),
                 function()
                     local entry = {
                         name = statName,
@@ -119,9 +119,9 @@ local function CreateModifierEditor(entry)
         title = "Modify " .. entry.name,
         view = function()
             Buttons.Toggle(
-                L("custom_modifiers.labels.active"),
+                L("custommodifiers.active.label"),
                 { value = entry.enabled },
-                tip("custom_modifiers.tips.active"),
+                tip("custommodifiers.active.tip"),
                 function()
                     if entry.enabled then
                         RemoveModifier(entry)
@@ -134,15 +134,15 @@ local function CreateModifierEditor(entry)
             )
 
             Buttons.Dropdown(
-                L("custom_modifiers.labels.modifier_type"),
+                L("custommodifiers.modifiertype.label"),
                 selectedType, Types,
-                tip("custom_modifiers.tips.modifier_type")
+                tip("custommodifiers.modifiertype.tip")
             )
 
             Buttons.Float(
-                L("custom_modifiers.labels.value"),
+                L("custommodifiers.value.label"),
                 valueSlider,
-                tip("custom_modifiers.tips.value_adjust"),
+                tip("custommodifiers.valueadjust.tip"),
                 function()
                     entry.value = valueSlider.value
                     entry.modifierType = Types[selectedType.index or 1]
@@ -154,8 +154,8 @@ local function CreateModifierEditor(entry)
             )
 
             Buttons.Option(
-                L("custom_modifiers.labels.remove"),
-                tip("custom_modifiers.tips.remove"),
+                L("custommodifiers.remove.label"),
+                tip("custommodifiers.remove.tip"),
                 function()
                     RemoveModifier(entry)
                     entry.enabled = false
@@ -194,31 +194,31 @@ local function GetFilteredStats(sourceList)
 end
 
 function ModifierManager.View()
-    Buttons.Dropdown(L("custom_modifiers.labels.mode"), selectedMode, Modes)
+    Buttons.Dropdown(L("custommodifiers.mode.label"), selectedMode, Modes)
 
     local mode = selectedMode.index
 
     if mode == 1 then
         Buttons.StringCycler(
-            L("custom_modifiers.labels.filter"),
+            L("custommodifiers.filter.label"),
             selectedFilter, Filters,
-            tip("custom_modifiers.tips.filter")
+            tip("custommodifiers.filter.tip")
         )
     end
 
-    Buttons.Break(L("custom_modifiers.labels.stat_modifiers"))
+    Buttons.Break(L("custommodifiers.statmodifiers.label"))
 
     if mode == 1 then
         for _, statName in ipairs(GetFilteredStats(StatNames)) do
             Buttons.Submenu(
                 statName,
                 CreateModifierConfig(statName),
-                tip("custom_modifiers.tips.create")
+                tip("custommodifiers.create.tip")
             )
         end
     elseif mode == 2 then
         if #customModifiers == 0 then
-            Buttons.Text(L("custom_modifiers.labels.no_modifiers"), tip("custom_modifiers.labels.no_modifiers_tip"))
+            Buttons.Text(L("custommodifiers.nomodifiers.label"), tip("custommodifiers.nomodifiers.tip"))
             return
         end
 
@@ -226,7 +226,7 @@ function ModifierManager.View()
             Buttons.Submenu(
                 entry.name,
                 CreateModifierEditor(entry),
-                tip("custom_modifiers.tips.edit")
+                tip("custommodifiers.edit.tip")
             )
         end
     elseif mode == 3 then
@@ -236,7 +236,7 @@ function ModifierManager.View()
         end
 
         if #names == 0 then
-            Buttons.Text(L("custom_modifiers.labels.no_recent"), tip("custom_modifiers.labels.no_recent_tip"))
+            Buttons.Text(L("custommodifiers.norecent.label"), tip("custommodifiers.norecent.tip"))
             return
         end
 
@@ -245,13 +245,13 @@ function ModifierManager.View()
             Buttons.Submenu(
                 statName,
                 CreateModifierConfig(statName),
-                tip("custom_modifiers.tips.recreate")
+                tip("custommodifiers.recreate.tip")
             )
         end
     end
 end
 
 return {
-    title = "custom_modifiers.title",
+    title = "custommodifiers.title",
     view = ModifierManager.View
 }

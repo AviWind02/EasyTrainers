@@ -2,7 +2,6 @@ local WorldTime = require("Features/World").WorldTime
 local Draw = require("UI")
 local Buttons = Draw.Buttons
 
--- Declare UI-only controls
 WorldTime.customHour = { value = 12, min = 0, max = 23, step = 1 }
 WorldTime.customMinute = { value = 0, min = 0, max = 59, step = 1 }
 WorldTime.customSecond = { value = 0, min = 0, max = 59, step = 1 }
@@ -10,8 +9,6 @@ WorldTime.customTimeEdited = false
 
 WorldTime.skipDaysAmount = { value = 1, min = 1, max = 100, step = 1 }
 WorldTime.skipStepSize = { value = 500, min = 100, max = 5000, step = 100 }
-
-
 
 function WorldTime.ApplyCustomGameTime()
     WorldTime.SetGameTime(WorldTime.customHour.value, WorldTime.customMinute.value, WorldTime.customSecond.value)
@@ -36,61 +33,56 @@ end
 local function WorldTimeViewFunction()
     local time = WorldTime.GetTime()
 
-
     if not WorldTime.customTimeEdited then
         WorldTime.customHour.value = time.hours
         WorldTime.customMinute.value = time.minutes
-        -- WorldTime.customSecond.value = time.seconds -- Fights User when in use and trying to change to much work to get it right
+        -- WorldTime.customSecond.value = time.seconds -- Causes conflicts when editing
     end
 
-
-    -- Buttons.OptionExtended("Current Hour", "", string.format("%02d", time.hours))
-    -- Buttons.OptionExtended("Current Minute", "", string.format("%02d", time.minutes))
-    -- Buttons.OptionExtended("Current Second", "", string.format("%02d", time.seconds))
-    -- Buttons.OptionExtended("Current Day", "", tostring(time.day)) -- not working
-    
     local time24 = FormatTime24(time.hours, time.minutes, time.seconds)
-    Buttons.OptionExtended("Current Time (24H)", "", time24)
+    Buttons.OptionExtended(L("worldtime.currenttime24.label"), "", time24, L("worldtime.currenttime24.tip"))
 
     local time12 = FormatTime12(time.hours, time.minutes, time.seconds)
-    Buttons.OptionExtended("Current Time (12H)", "", time12)
+    Buttons.OptionExtended(L("worldtime.currenttime12.label"), "", time12, L("worldtime.currenttime12.tip"))
 
-    Buttons.Int("Hour", WorldTime.customHour, string.format("Set custom hour value. (%s)", FormatTime12(WorldTime.customHour.value, 0, 0)), OnCustomTimeChanged)
-    Buttons.Int("Minute", WorldTime.customMinute, "Set custom minute value.", OnCustomTimeChanged)
-    Buttons.Int("Second", WorldTime.customSecond, "Set custom second value.", OnCustomTimeChanged)
+    Buttons.Int(
+        L("worldtime.hour.label"),
+        WorldTime.customHour,
+        tip("worldtime.hour.tip", { formatted_time = FormatTime12(WorldTime.customHour.value, 0, 0) }),
+        OnCustomTimeChanged
+    )
+    Buttons.Int(L("worldtime.minute.label"), WorldTime.customMinute, L("worldtime.minute.tip"), OnCustomTimeChanged)
+    Buttons.Int(L("worldtime.second.label"), WorldTime.customSecond, L("worldtime.second.tip"), OnCustomTimeChanged)
     WorldTime.customTimeEdited = false
     
-    Buttons.Toggle("Sync to PC Time", WorldTime.toggleSyncToSystemClock, "Matches in-game time to your real-world PC time.")
+    Buttons.Toggle(L("worldtime.synctopc.label"), WorldTime.toggleSyncToSystemClock, L("worldtime.synctopc.tip"))
     
-    Buttons.Break("Quick Set")
-    Buttons.Option("Set Time: Morning", "Sets time to 6:00 AM", WorldTime.SetTimeMorning)
-    Buttons.Option("Set Time: Noon", "Sets time to 12:00 PM", WorldTime.SetTimeNoon)
-    Buttons.Option("Set Time: Afternoon", "Sets time to 3:00 PM", WorldTime.SetTimeAfternoon)
-    Buttons.Option("Set Time: Evening", "Sets time to 6:00 PM", WorldTime.SetTimeEvening)
-    Buttons.Option("Set Time: Night", "Sets time to 10:00 PM", WorldTime.SetTimeNight)
+    Buttons.Break(L("worldtime.quickset.label"))
+    Buttons.Option(L("worldtime.setmorning.label"), L("worldtime.setmorning.tip"), WorldTime.SetTimeMorning)
+    Buttons.Option(L("worldtime.setnoon.label"), L("worldtime.setnoon.tip"), WorldTime.SetTimeNoon)
+    Buttons.Option(L("worldtime.setafternoon.label"), L("worldtime.setafternoon.tip"), WorldTime.SetTimeAfternoon)
+    Buttons.Option(L("worldtime.setevening.label"), L("worldtime.setevening.tip"), WorldTime.SetTimeEvening)
+    Buttons.Option(L("worldtime.setnight.label"), L("worldtime.setnight.tip"), WorldTime.SetTimeNight)
 
-    Buttons.Break("Time Skip & Multiplier")
-    Buttons.Int("Skip Days", WorldTime.skipDaysAmount, "How many in-game days to skip.")
-    Buttons.Int("Skip Step Speed", WorldTime.skipStepSize, "Controls how fast time skips. Higher = faster.")
-    Buttons.Option("Start Skipping", "Begin time skip over the specified number of days", function()
+    Buttons.Break(L("worldtime.skipmultiplier.label"))
+    Buttons.Int(L("worldtime.skipdays.label"), WorldTime.skipDaysAmount, L("worldtime.skipdays.tip"))
+    Buttons.Int(L("worldtime.skipstepspeed.label"), WorldTime.skipStepSize, L("worldtime.skipstepspeed.tip"))
+    Buttons.Option(L("worldtime.startskipping.label"), L("worldtime.startskipping.tip"), function()
         WorldTime.SkipDays(WorldTime.skipDaysAmount.value, WorldTime.skipStepSize.value)
     end)
 
-    Buttons.Break("Freeze & Fast Forward")
-    Buttons.Toggle("Freeze Time", WorldTime.toggleFreezeTime, "Freezes the current game time.")
-    Buttons.Float("Faster Day Speed", WorldTime.daySpeedMultiplier, "Enable and set daytime speed multiplier.")
-    Buttons.Float("Faster Night Speed", WorldTime.nightSpeedMultiplier, "Enable and set nighttime speed multiplier.")
+    Buttons.Break(L("worldtime.freezefast.label"))
+    Buttons.Toggle(L("worldtime.freezetime.label"), WorldTime.toggleFreezeTime, L("worldtime.freezetime.tip"))
+    Buttons.Float(L("worldtime.fasterdayspeed.label"), WorldTime.daySpeedMultiplier, L("worldtime.fasterdayspeed.tip"))
+    Buttons.Float(L("worldtime.fasternightspeed.label"), WorldTime.nightSpeedMultiplier, L("worldtime.fasternightspeed.tip"))
 
-    
-    Buttons.Break("Time Lapse")
-    Buttons.Toggle("Enable Time-Lapse", WorldTime.toggleTimeLapse, "Continuously advances time.")
-    Buttons.Int("Time-Lapse Multiplier", WorldTime.timeLapseMultiplier, "How fast time speeds forward.")
-
-
+    Buttons.Break(L("worldtime.timelapse.label"))
+    Buttons.Toggle(L("worldtime.enabletimelapse.label"), WorldTime.toggleTimeLapse, L("worldtime.enabletimelapse.tip"))
+    Buttons.Int(L("worldtime.timelapsemultiplier.label"), WorldTime.timeLapseMultiplier, L("worldtime.timelapsemultiplier.tip"))
 end
 
 local WorldTimeView = {
-    title = "World Time",
+    title = "worldtime.title",
     view = WorldTimeViewFunction
 }
 

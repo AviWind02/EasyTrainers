@@ -16,6 +16,7 @@ local WeaponLoader = require("Features/DataExtractors/WeaponLoader")
 local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
 local GeneralLoader = require("Features/DataExtractors/GeneralLoader")
 local PerkLoader = require("Features/DataExtractors/PerkLoader")
+local Telport = require("Features/Teleports/TeleportLocations")
 
 GameState = {}
 
@@ -53,9 +54,6 @@ registerForEvent("onInit", function()
     Logger.Log("[EasyTrainer] Initialization started")
     Language.Load(config and config.Lang or "en")
 
-    Cron.After(0.5, RunETTest)
-
-
     Cron.After(0.3, GetGameState)
     Session.Listen(UpdateSessionState)
 
@@ -69,17 +67,17 @@ registerForEvent("onInit", function()
     VehicleLoader:LoadAll()
     GeneralLoader:LoadAll()
     PerkLoader:LoadAll()
+    Telport.LoadAll()
 
     Observe("BaseProjectile", "ProjectileHit", function(self, eventData)
         WeaponsTick.HandleProjectileHit(self, eventData)
     end)
 
     Observe("PlayerPuppet", "OnAction", function(_, action)
-        local actionName = Game.NameToString(action:GetName(action))
-        local actionType = action:GetType(action).value
-        Draw.InputHandler.HandleControllerInput(action)
+        -- local actionName = Game.NameToString(action:GetName(action))
+        -- local actionType = action:GetType(action).value
         Gameplay.WeaponInput.HandleInputAction(action)
-        Draw.InputHandler.LogAction(actionName, actionType)
+        -- Draw.InputHandler.LogAction(actionName, actionType)
     end)
 
 

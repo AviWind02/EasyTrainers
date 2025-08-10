@@ -81,12 +81,12 @@ local function GetManufacturer(record)
     return "Unlisted"
 end
 
-function VehicleLoader:InjectVehicle(id)
+function VehicleLoader:AddVehicleToList(id)
     local listID = TweakDBID.new("Vehicle.vehicle_list.list")
     local currentList = TweakDB:GetFlat(listID)
 
     if type(currentList) ~= "table" then
-        Logger.Log("[EasyTrainerInjectVehicle] Failed to read vehicle list.")
+        Logger.Log("[EasyTrainerVehicleList] Failed to read vehicle list.")
         return false
     end
 
@@ -98,12 +98,13 @@ function VehicleLoader:InjectVehicle(id)
 
     local success = TweakDB:SetFlat(listID, currentList)
     if not success then
-        Logger.Log("[EasyTrainerInjectVehicle] Failed to write updated vehicle list.")
+        Logger.Log("[EasyTrainerVehicleList] Failed to update vehicle list.")
         return false
     end
 
     return true
 end
+
 
 function VehicleLoader:LoadAll()
     local records = TweakDB:GetRecords("gamedataVehicle_Record")
@@ -134,9 +135,10 @@ function VehicleLoader:LoadAll()
             table.insert(self.vehicles, data)
             self.indexById[id] = data
 
-            if self:InjectVehicle(id) then
-                injectedCount = injectedCount + 1
-            end
+            -- Adding vehicles to the player list is breaking twin tone: Need to look into this
+            --if self:AddVehicleToList(id) then
+                --injectedCount = injectedCount + 1
+            --end
         end
     end
 

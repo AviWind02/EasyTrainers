@@ -6,23 +6,23 @@ local GameFacts = require("Features/World/Quest/GameFacts") -- Single table retu
 local Facts = require("Features/World/Quest/Facts")
 
 local factCategories = {
-    { key = "RomanceFlags", label = "Romance" },
-    { key = "StoryOutcomeFlags", label = "Story Outcomes" },
-    { key = "SmartWeaponStates", label = "Skippy States" },
-    { key = "GameplayToggles", label = "Gameplay Toggles" },
-    -- { key = "LifePathFlags", label = "Life Path" },
-    { key = "WorldEventFlags", label = "World Events" },
-    { key = "CensorshipFlags", label = "Censorship" }
+    { key = "RomanceFlags", label = "gamefacts.categories.romance" },
+    { key = "StoryOutcomeFlags", label = "gamefacts.categories.storyoutcomes" },
+    { key = "SmartWeaponStates", label = "gamefacts.categories.skippystates" },
+    { key = "GameplayToggles", label = "gamefacts.categories.gameplaytoggles" },
+    -- { key = "LifePathFlags", label = "gamefacts.categories.lifepath" },
+    { key = "WorldEventFlags", label = "gamefacts.categories.worldevents" },
+    { key = "CensorshipFlags", label = "gamefacts.categories.censorship" }
 }
 
 local factLabels = {
-    "Romance",
-    "Story Outcomes",
-    "Skippy States",
-    "Gameplay Toggles",
-    -- "Life Path",
-    "World Events",
-    "Censorship"
+    "gamefacts.categories.romance",
+    "gamefacts.categories.storyoutcomes",
+    "gamefacts.categories.skippystates",
+    "gamefacts.categories.gameplaytoggles",
+    -- "gamefacts.categories.lifepath",
+    "gamefacts.categories.worldevents",
+    "gamefacts.categories.censorship"
 }
 
 local selectedCategory = { index = 1, expanded = false }
@@ -47,35 +47,45 @@ local function InitializeCategory(categoryKey)
 end
 
 local function DrawRelationshipFacts()
-    Buttons.Break("Relationship Tracking")
+    Buttons.Break(L("gamefacts.relationshiptracking.label"))
     for _, entry in ipairs(GameFacts.RelationshipTrackingFacts) do
         local rawValue = Facts.Get(entry.id)
-        local display = (rawValue ~= nil and rawValue ~= "") and tostring(rawValue) or "N/A"
+        local display = (rawValue ~= nil and rawValue ~= "") and tostring(rawValue) or L("gamefacts.notavailable.label")
         Buttons.OptionExtended(entry.name, nil, display)
     end
 end
 
 local function GameFactsView()
-    Buttons.Dropdown("Category", selectedCategory, factLabels, "Choose a fact category to view")
+    Buttons.Dropdown(
+        L("gamefacts.category.label"),
+        selectedCategory,
+        factLabels,
+        L("gamefacts.category.tip")
+    )
 
     local categoryKey = factCategories[selectedCategory.index].key
+    local categoryLabel = L(factCategories[selectedCategory.index].label)
 
     local entries = GameFacts.FactFlags[categoryKey]
     InitializeCategory(categoryKey)
 
-    Buttons.Break("", factLabels[selectedCategory.index] .. " Flags")
+    Buttons.Break("", tip("gamefacts.flagsbreak.tip", { category = categoryLabel }))
 
     for _, entry in ipairs(entries) do
         local toggle = GetOrCreateToggle(entry)
         Buttons.Toggle(entry.name, toggle, entry.desc, function()
             toggle.value = not Facts.IsTrue(entry.id)
             Facts.SetBool(entry.id, toggle.value)
-            NotificationManager.Push(entry.name .. ": " .. (toggle.value and "Enabled" or "Disabled"))
+            NotificationManager.Push(
+                toggle.value
+                    and tip("gamefacts.factnotification.enabled", { name = entry.name })
+                    or tip("gamefacts.factnotification.disabled", { name = entry.name })
+            )
         end)
     end
 end
 
 return {
-    title = "Game Fact Manager",
+    title = "gamefacts.title",
     view = GameFactsView
 }

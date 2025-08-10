@@ -160,7 +160,7 @@ UI.Footer = {
     BackgroundColor = 0xFF191926,
     TextColor = 0xFFAAAAAA,
     FontSize = 12,
-    Text = "vPreview Build | By Avi",
+    Text = "vPreview Build 2 | By Avi",
 }
 
 UI.Scroll = {

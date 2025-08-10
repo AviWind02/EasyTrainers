@@ -7,78 +7,67 @@ local WeaponItemsMenu = require("View/Weapon/WeaponsItemsView")
 local Buttons = Draw.Buttons
 
 local ammoTypes = {
-        { id = "Ammo.HandgunAmmo",     label = "Handgun Ammo" },
-        { id = "Ammo.ShotgunAmmo",     label = "Shotgun Ammo" },
-        { id = "Ammo.RifleAmmo",       label = "Rifle Ammo" },
-        { id = "Ammo.SniperRifleAmmo", label = "Sniper Ammo" },
-        { id = "Ammo.Special",         label = "Special Ammo" }
+    { id = "Ammo.HandgunAmmo", label = L("weaponsmenu.ammoitems.types.handgun") },
+    { id = "Ammo.ShotgunAmmo", label = L("weaponsmenu.ammoitems.types.shotgun") },
+    { id = "Ammo.RifleAmmo", label = L("weaponsmenu.ammoitems.types.rifle") },
+    { id = "Ammo.SniperRifleAmmo", label = L("weaponsmenu.ammoitems.types.sniper") },
+    { id = "Ammo.Special", label = L("weaponsmenu.ammoitems.types.special") }
 }
 
 local addAmmoValues = {}
 local removeAmmoValues = {}
 
 for _, ammo in ipairs(ammoTypes) do
-        addAmmoValues[ammo.id] = { step = 10, value = 50, min = 1, max = 999 }
-        removeAmmoValues[ammo.id] = { step = 10, value = 10, min = 1, max = 999 }
+    addAmmoValues[ammo.id] = { step = 10, value = 50, min = 1, max = 999 }
+    removeAmmoValues[ammo.id] = { step = 10, value = 10, min = 1, max = 999 }
 end
 
 local function AmmoItemsView()
-        Buttons.Option("Give 100 of Each Ammo Type", "Adds 100 ammo for each type", function()
-                for _, ammo in ipairs(ammoTypes) do -- Make this a method one day
-                        Inventory.GiveItem(ammo.id, 100)
-                end
-        end)
-        Buttons.Option("Remove 25 of Each Ammo Type", "Removes 25 ammo from each type", function()
-                for _, ammo in ipairs(ammoTypes) do
-                        Inventory.RemoveItem(ammo.id, 25)
-                end
-        end)
-        Buttons.Break("", "Add Ammo")
+    Buttons.Option(L("weaponsmenu.ammoitems.giveeach100.label"), tip("weaponsmenu.ammoitems.giveeach100.tip"), function()
         for _, ammo in ipairs(ammoTypes) do
-                Buttons.Int(ammo.label, addAmmoValues[ammo.id], "Click to add " .. ammo.label, function()
-                        Inventory.GiveItem(ammo.id, addAmmoValues[ammo.id].value)
-                end)
+            Inventory.GiveItem(ammo.id, 100)
         end
+    end)
+    Buttons.Option(L("weaponsmenu.ammoitems.removeeach25.label"), tip("weaponsmenu.ammoitems.removeeach25.tip"), function()
+        for _, ammo in ipairs(ammoTypes) do
+            Inventory.RemoveItem(ammo.id, 25)
+        end
+    end)
+    Buttons.Break("", L("weaponsmenu.ammoitems.addammo"))
+    for _, ammo in ipairs(ammoTypes) do
+        Buttons.Int(ammo.label, addAmmoValues[ammo.id], tip("weaponsmenu.ammoitems.addtip", { ammo = ammo.label }), function()
+            Inventory.GiveItem(ammo.id, addAmmoValues[ammo.id].value)
+        end)
+    end
 
-        Buttons.Break("", "Remove Ammo")
-        for _, ammo in ipairs(ammoTypes) do
-                Buttons.Int(ammo.label, removeAmmoValues[ammo.id], "Click to remove " .. ammo.label, function()
-                        Inventory.RemoveItem(ammo.id, removeAmmoValues[ammo.id].value)
-                end)
-        end
+    Buttons.Break("", L("weaponsmenu.ammoitems.removeammo"))
+    for _, ammo in ipairs(ammoTypes) do
+        Buttons.Int(ammo.label, removeAmmoValues[ammo.id], tip("weaponsmenu.ammoitems.removetip", { ammo = ammo.label }), function()
+            Inventory.RemoveItem(ammo.id, removeAmmoValues[ammo.id].value)
+        end)
+    end
 end
-local ammoItemsSubmenu = { title = "Ammo Items", view = AmmoItemsView }
-
+local ammoItemsSubmenu = { title = L("weaponsmenu.ammoitems.title"), view = AmmoItemsView }
 
 local function WeaponsViewFunction()
-        Buttons.Submenu("Weapon Items", WeaponItemsMenu,
-                "Add any weapon item to your inventory, including iconic and stash wall variants.")
-        Buttons.Submenu("Ammo Manager", ammoItemsSubmenu, "Add or remove ammo types")
+    Buttons.Submenu(L("weaponsmenu.weaponitems.label"), WeaponItemsMenu, tip("weaponsmenu.weaponitems.tip"))
+    Buttons.Submenu(L("weaponsmenu.ammomanager.label"), ammoItemsSubmenu, tip("weaponsmenu.ammomanager.tip"))
 
-        Buttons.Option("Give All Wall Weapons", "Gives you all weapons that can be mounted on your apartment wall.", WeaponItemsMenu.GiveAllWallWeapons)
-        Buttons.Option("Give All Iconic Weapons", "Adds all iconic weapons to your inventory.", WeaponItemsMenu.GiveAllIconicWeapons)
-        Buttons.Option("Remove All Weapons", "Removes every weapon from your inventory.", WeaponItemsMenu.RemoveAllWeapons)
-        -- Buttons.Option("Remove Base Weapons", "Removes only base and common tier weapons from your inventory.", WeaponItemsMenu.RemoveBaseWeapons)
+    Buttons.Option(L("weaponsmenu.giveallwallweapons.label"), tip("weaponsmenu.giveallwallweapons.tip"), WeaponItemsMenu.GiveAllWallWeapons)
+    Buttons.Option(L("weaponsmenu.givealliconicweapons.label"), tip("weaponsmenu.givealliconicweapons.tip"), WeaponItemsMenu.GiveAllIconicWeapons)
+    Buttons.Option(L("weaponsmenu.removeallweapons.label"), tip("weaponsmenu.removeallweapons.tip"), WeaponItemsMenu.RemoveAllWeapons)
 
-        Buttons.Toggle("Infinite Ammo", Weapons.InfiniteAmmo.enabled,
-                "Your ammo never runs out. Each time you shoot, you instantly get the bullet back.")
-        Buttons.Toggle("No Reload", Weapons.NoReloading.toggleNoReloading,
-                "Removes reload time. Fire continuously without waiting to reload.")
-        Buttons.Toggle("Speed Cola", Weapons.FastReload.toggleFastReload, "Greatly reduces reload time.")
-        Buttons.Toggle("No Recoil", Weapons.NoRecoil.toggleNoRecoil,
-                "Removes recoil from all weapons. No more shaking when firing.\nTip: Great with Problem Solver.")
+    Buttons.Toggle(L("weaponsmenu.infiniteammo.label"), Weapons.InfiniteAmmo.enabled, tip("weaponsmenu.infiniteammo.tip"))
+    Buttons.Toggle(L("weaponsmenu.noreload.label"), Weapons.NoReloading.toggleNoReloading, tip("weaponsmenu.noreload.tip"))
+    Buttons.Toggle(L("weaponsmenu.speedcola.label"), Weapons.FastReload.toggleFastReload, tip("weaponsmenu.speedcola.tip"))
+    Buttons.Toggle(L("weaponsmenu.norecoil.label"), Weapons.NoRecoil.toggleNoRecoil, tip("weaponsmenu.norecoil.tip"))
 
-        Buttons.Toggle("Flying Thunder God Technique", Weapons.FlyingThunderGod.enabled,
-                "Throw a knife to instantly teleport to its location upon impact")
-        Buttons.Toggle("Gravity Gun", Weapons.GravityGun.enabled,
-                "Pick up and move vehicles or objects by aiming at them.")
-        Buttons.Toggle("Smart Blade Return", Weapons.SmartBlade.enabled,
-                "Thrown knives or projectiles automatically return to you after hitting a target or surface.")
-        Buttons.Toggle("Teley Gun", Weapons.TeleportShot.enabled, "Shoot bullets that teleport you to where they land.")
-
+    Buttons.Toggle(L("weaponsmenu.flyingthundergod.label"), Weapons.FlyingThunderGod.enabled, tip("weaponsmenu.flyingthundergod.tip"))
+    Buttons.Toggle(L("weaponsmenu.gravitygun.label"), Weapons.GravityGun.enabled, tip("weaponsmenu.gravitygun.tip"))
+    Buttons.Toggle(L("weaponsmenu.smartbladereturn.label"), Weapons.SmartBlade.enabled, tip("weaponsmenu.smartbladereturn.tip"))
+    Buttons.Toggle(L("weaponsmenu.teleygun.label"), Weapons.TeleportShot.enabled, tip("weaponsmenu.teleygun.tip"))
 end
 
-
-local WeaponsView = { title = "Weapons Menu", view = WeaponsViewFunction }
+local WeaponsView = { title = L("weaponsmenu.title"), view = WeaponsViewFunction }
 
 return WeaponsView

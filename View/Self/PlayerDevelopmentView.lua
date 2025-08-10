@@ -40,13 +40,13 @@ local initializedLevelInit = false
 local profLevels = {}
 
 local Proficiencies = {
-    { name = "playerdev.proficiencies.player_level", type = gamedataProficiencyType.Level },
-    { name = "playerdev.proficiencies.street_cred", type = gamedataProficiencyType.StreetCred },
+    { name = "playerdev.proficiencies.playerlevel", type = gamedataProficiencyType.Level },
+    { name = "playerdev.proficiencies.streetcred", type = gamedataProficiencyType.StreetCred },
     { name = "playerdev.proficiencies.assault", type = gamedataProficiencyType.Assault },
     { name = "playerdev.proficiencies.athletics", type = gamedataProficiencyType.Athletics },
     { name = "playerdev.proficiencies.brawling", type = gamedataProficiencyType.Brawling },
-    { name = "playerdev.proficiencies.cold_blood", type = gamedataProficiencyType.ColdBlood },
-    { name = "playerdev.proficiencies.combat_hacking", type = gamedataProficiencyType.CombatHacking },
+    { name = "playerdev.proficiencies.coldblood", type = gamedataProficiencyType.ColdBlood },
+    { name = "playerdev.proficiencies.combathacking", type = gamedataProficiencyType.CombatHacking },
     { name = "playerdev.proficiencies.cool", type = gamedataProficiencyType.CoolSkill },
     { name = "playerdev.proficiencies.crafting", type = gamedataProficiencyType.Crafting },
     { name = "playerdev.proficiencies.demolition", type = gamedataProficiencyType.Demolition },
@@ -59,7 +59,7 @@ local Proficiencies = {
     { name = "playerdev.proficiencies.reflexes", type = gamedataProficiencyType.ReflexesSkill },
     { name = "playerdev.proficiencies.stealth", type = gamedataProficiencyType.Stealth },
     { name = "playerdev.proficiencies.strength", type = gamedataProficiencyType.StrengthSkill },
-    { name = "playerdev.proficiencies.technical", type = gamedataProficiencyType.TechnicalAbilitySkill },
+    { name = "playerdev.proficiencies.technical", type = gamedataProficiencyType.TechnicalAbilitySkill }
 }
 
 local function LevelInit()
@@ -172,7 +172,7 @@ local function DrawPerksForAttribute(attrKey)
         local info
         if maxLevel > 1 then
             perkLevels[id].enabled = perkLevelCache[id] > 0
-            info = tip("playerdev.perks.tip_multi", { category = perk.category, levels = maxLevel })
+            info = tip("playerdev.perks.tipmulti", { category = perk.category, levels = maxLevel })
             Buttons.Int(perk.name, perkLevels[id], info, function()
                 local cached = perkLevelCache[id]
                 local target = perkLevels[id].value
@@ -190,7 +190,7 @@ local function DrawPerksForAttribute(attrKey)
                 perkLevels[id].enabled = cached > 0
             end)
         else
-            info = tip("playerdev.perks.tip_single", { category = perk.category })
+            info = tip("playerdev.perks.tipsingle", { category = perk.category })
             Buttons.Toggle(perk.name, { value = isActive }, info, function()
                 if isActive then
                     PlayerDevelopment.RemovePerk(perk.type)

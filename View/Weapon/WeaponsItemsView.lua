@@ -1,5 +1,3 @@
-
-
 local Draw = require("UI")
 local Logger = require("Core/Logger")
 local Inventory = require("Gameplay").Inventory
@@ -7,27 +5,23 @@ local WeaponLoader = require("Features/DataExtractors/WeaponLoader")
 
 local Buttons = Draw.Buttons
 
-
-
-
 local selectedMode = { index = 1, expanded = false }
 local modeOptions = {
-    "Weapon Categories",
-    "Show Only Iconic Weapons",
-    "Show Only Wall Weapons",
-    "Show Only Inventory Weapons"
+    "weaponsitems.categories.label",
+    "weaponsitems.onlyiconic.label",
+    "weaponsitems.onlywall.label",
+    "weaponsitems.onlyinventory.label"
 }
 
 local actionMode = { index = 1, expanded = false }
-local actionOptions = { "Add Weapon (+1)", "Remove Weapon (-1)" }
+local actionOptions = { "Add Weapon (+1)", "Remove Weapon (-1)" } -- could be localized if desired
 
 local selectedSort = { index = 1, expanded = false }
-local sortModes = { "Quantity (High to Low)", "Quantity (Low to High)"}
+local sortModes = { "Quantity (High to Low)", "Quantity (Low to High)" }
 
 local showTech = { value = true }
 local showSmart = { value = true }
 local showPower = { value = true }
-
 
 local matchedWeapons = {}
 
@@ -61,21 +55,13 @@ local function MatchInventoryToKnownWeapons()
                     count = item.quantity or 1
                 }
             end
-
-            -- Logger.Log(string.format("[EasyTrainerWeapons] Matched item: %s (%s) x%d", data.displayName, data.id, item.quantity or 1))
         end
     end
 
     for _, weapon in pairs(weaponMap) do
         table.insert(matchedWeapons, weapon)
     end
-
-    Logger.Log(string.format("[EasyTrainerWeapons] Total matched weapons: %d", #matchedWeapons))
-    Draw.Notifier.Push(string.format("Loaded %d weapon(s) from inventory.", #matchedWeapons))
 end
-
-
-
 
 local selectedCategory = ""
 local function WeaponCategorySubmenuView()
@@ -88,9 +74,9 @@ local function WeaponCategorySubmenuView()
         end
     end
 
-    if hasTech then Buttons.Toggle("Show Tech Weapons", showTech) end
-    if hasSmart then Buttons.Toggle("Show Smart Weapons", showSmart) end
-    if hasPower then Buttons.Toggle("Show Power Weapons", showPower) end
+    if hasTech then Buttons.Toggle(L("weaponsitems.categorytoggle_tech.label"), showTech, tip("weaponsitems.categorytoggle_tech.tip", { category = selectedCategory })) end
+    if hasSmart then Buttons.Toggle(L("weaponsitems.categorytoggle_smart.label"), showSmart, tip("weaponsitems.categorytoggle_smart.tip", { category = selectedCategory })) end
+    if hasPower then Buttons.Toggle(L("weaponsitems.categorytoggle_power.label"), showPower, tip("weaponsitems.categorytoggle_power.tip", { category = selectedCategory })) end
 
     local weapons = WeaponLoader:Filter(function(w)
         if w.type ~= selectedCategory then return false end
@@ -100,25 +86,27 @@ local function WeaponCategorySubmenuView()
         return true
     end)
 
-    Buttons.Break("", selectedCategory .. " Weapons")
+    Buttons.Break("", tip("weaponsitems.categorybreak.tip", { category = selectedCategory }))
 
     for _, w in ipairs(weapons) do
-        local tip = string.format("TweakDBID: %s\nRarity: %s\nManufacturer: %s", w.id, w.rarity, w.manufacturer)
-        if w.iconic then tip = tip .. "\nIconic Weapon" end
-        if w.onWall then tip = tip .. "\nWall-Mountable" end
-        Buttons.OptionExtended(w.displayName, "", "(" .. w.rarity .. ")", tip, function()
+        local tipData = {
+            id = w.id,
+            type = w.type,
+            rarity = w.rarity,
+            manufacturer = w.manufacturer,
+            iconic = w.iconic and "\nIconic Weapon" or "",
+            wall = w.onWall and "\nWall-Mountable" or ""
+        }
+        Buttons.OptionExtended(w.displayName, "", "(" .. w.rarity .. ")", tip("weaponsitems.weaponentry.tip", tipData), function()
             Inventory.GiveItem(w.id, 1)
         end)
     end
 end
 
 local categorySubmenu = {
-    title = "Category Weapons",
+    title = "weaponsitems.categories.label",
     view = WeaponCategorySubmenuView
 }
-
-
-
 
 local initialized = false
 local weaponTypes = {}
@@ -134,10 +122,9 @@ local function BuildWeaponTypeList()
     table.sort(weaponTypes)
 end
 
-
 local function DrawWeaponCategories()
     for _, weaponType in ipairs(weaponTypes) do
-        Buttons.Submenu(weaponType, categorySubmenu, "View all " .. weaponType .. " weapons", function()
+        Buttons.Submenu(weaponType, categorySubmenu, tip("weaponsitems.categorybreak.tip", { category = weaponType }), function()
             selectedCategory = weaponType
             showTech.value = true
             showSmart.value = true
@@ -158,7 +145,6 @@ local rarityOrder = {
     base = 1
 }
 
-
 local function getRarityWeight(weapon)
     if weapon.iconic then
         return rarityOrder["iconic"]
@@ -170,36 +156,30 @@ end
 local function DrawInventoryWeapons()
     table.sort(matchedWeapons, function(a, b)
         local mode = sortModes[selectedSort.index or 1]
-
         if mode == "Quantity (High to Low)" then
-            if a.count == b.count then
-                return a.name < b.name
-            end
+            if a.count == b.count then return a.name < b.name end
             return a.count > b.count
         elseif mode == "Quantity (Low to High)" then
-            if a.count == b.count then
-                return a.name < b.name
-            end
+            if a.count == b.count then return a.name < b.name end
             return a.count < b.count
-        elseif mode == "Rarity" then -- keeps overlapping for some reason even with a secondary check for name sorting
+        elseif mode == "Rarity" then
             local weightA = getRarityWeight(a)
             local weightB = getRarityWeight(b)
-
-            if weightA == weightB then
-                return a.name < b.name
-            end
+            if weightA == weightB then return a.name < b.name end
             return weightA > weightB
         end
     end)
 
-
     for _, w in ipairs(matchedWeapons) do
-        local tip = string.format("TweakDBID: %s\nType: %s\nRarity: %s\nManufacturer: %s", w.id, w.type, w.rarity,
-            w.manufacturer)
-        if w.iconic then tip = tip .. "\nIconic Weapon" end
-        if w.onWall then tip = tip .. "\nWall-Mountable" end
-
-        Buttons.OptionExtended(w.name, "", "x" .. tostring(w.count), tip, function()
+        local tipData = {
+            id = w.id,
+            type = w.type,
+            rarity = w.rarity,
+            manufacturer = w.manufacturer,
+            iconic = w.iconic and "\nIconic Weapon" or "",
+            wall = w.onWall and "\nWall-Mountable" or ""
+        }
+        Buttons.OptionExtended(w.name, "", "x" .. tostring(w.count), tip("weaponsitems.weaponentry.tip", tipData), function()
             local action = actionOptions[actionMode.index or 1]
             if action == "Add Weapon (+1)" then
                 Inventory.GiveItem(w.id, 1)
@@ -209,43 +189,45 @@ local function DrawInventoryWeapons()
                     Inventory.RemoveItem(w.id, 1)
                     w.count = w.count - 1
                 else
-                    Draw.Notifier.Push("No more of this item in inventory.")
+                    Draw.Notifier.Push(L("weaponsitems.noinventoryweapons.label"))
                 end
             end
         end)
     end
 
     if #matchedWeapons == 0 then
-        Buttons.Break("", "No weapons found in inventory.")
+        Buttons.Break("", L("weaponsitems.noinventoryweapons.label"))
     end
 end
 
-
 local function DrawFilteredWeapons(mode)
     local filtered = WeaponLoader:Filter(function(w)
-        if mode == "Show Only Iconic Weapons" then
+        if mode == L("weaponsitems.onlyiconic.label") then
             return w.iconic
-        elseif mode == "Show Only Wall Weapons" then
+        elseif mode == L("weaponsitems.onlywall.label") then
             return w.onWall
         end
         return false
     end)
 
     for _, w in ipairs(filtered) do
-        local tip = string.format("TweakDBID: %s\nType: %s\nRarity: %s\nManufacturer: %s", w.id, w.type, w.rarity, w.manufacturer)
-        if w.iconic then tip = tip .. "\nIconic Weapon" end
-        if w.onWall then tip = tip .. "\nWall-Mountable" end
-
-        Buttons.OptionExtended(w.displayName, "", "(" .. w.rarity .. ")", tip, function()
+        local tipData = {
+            id = w.id,
+            type = w.type,
+            rarity = w.rarity,
+            manufacturer = w.manufacturer,
+            iconic = w.iconic and "\nIconic Weapon" or "",
+            wall = w.onWall and "\nWall-Mountable" or ""
+        }
+        Buttons.OptionExtended(w.displayName, "", "(" .. w.rarity .. ")", tip("weaponsitems.weaponentry.tip", tipData), function()
             Inventory.GiveItem(w.id, 1)
         end)
     end
 
     if #filtered == 0 then
-        Buttons.Break("", "No weapons found")
+        Buttons.Break("", L("weaponsitems.noweaponsfound.label"))
     end
 end
-
 
 local function WeaponMainView()
     if not initialized then
@@ -254,118 +236,66 @@ local function WeaponMainView()
         initialized = true
     end
 
-    Buttons.Dropdown("Mode", selectedMode, modeOptions, "Choose what to display")
+    Buttons.Dropdown(L("weaponsitems.mode.label"), selectedMode, modeOptions, L("weaponsitems.mode.tip"))
 
     local mode = modeOptions[selectedMode.index or 1]
-    if mode == "Show Only Inventory Weapons" then
-        Buttons.Dropdown("Inventory Action", actionMode, actionOptions, "Choose whether to add or remove weapons from Inventory")
-        Buttons.Option("Refresh Inventory", "Update the weapon list from current inventory.", MatchInventoryToKnownWeapons)
-        Buttons.Dropdown("Sort Inventory By", selectedSort, sortModes, "Choose sorting method")
+    if mode == "weaponsitems.onlyinventory.label" then
+        Buttons.Dropdown(L("weaponsitems.actionmode.label"), actionMode, actionOptions, L("weaponsitems.actionmode.tip"))
+        Buttons.Option(L("weaponsitems.refreshinventory.label"), L("weaponsitems.refreshinventory.tip"), MatchInventoryToKnownWeapons)
+        Buttons.Dropdown(L("weaponsitems.sortinventory.label"), selectedSort, sortModes, L("weaponsitems.sortinventory.tip"))
     end
 
-    Buttons.Break("", "Weapon List")
+    Buttons.Break("", L("weaponsitems.title"))
 
-    if mode == "Weapon Categories" then
+    if mode == "weaponsitems.categories.label" then
         DrawWeaponCategories()
-    elseif mode == "Show Only Inventory Weapons" then
+    elseif mode == "weaponsitems.onlyinventory.label" then
         DrawInventoryWeapons()
     else
-        DrawFilteredWeapons(mode)
+        DrawFilteredWeapons(L(mode))
     end
 end
 
-
-
 local function GiveAllWallWeapons()
-    local wallWeapons = WeaponLoader:Filter(function(w)
-        return w.onWall
-    end)
-
-    for _, w in ipairs(wallWeapons) do
-        Inventory.GiveItem(w.id, 1)
-    end
-
-     Draw.Notifier.Push(string.format("Gave %d wall weapons.", #wallWeapons))
+    local wallWeapons = WeaponLoader:Filter(function(w) return w.onWall end)
+    for _, w in ipairs(wallWeapons) do Inventory.GiveItem(w.id, 1) end
 end
 
 local function RemoveAllWeapons(rarity)
     local inventoryItems = Inventory:GetAllItems()
-    local removedCount = 0
-
     for _, item in ipairs(inventoryItems) do
         if item and item.id and tostring(item.id):find("^Items%.") then
             local weaponData = WeaponLoader:GetById(item.id)
             if weaponData then
-                local isMatch = false
-
-                if not rarity then
-                    isMatch = true
-                elseif weaponData.rarity and weaponData.rarity:lower() == rarity:lower() then
-                    isMatch = true
-                end
-
-                if isMatch then
-                    Inventory.RemoveItem(item.id, item.count or 1)
-                    removedCount = removedCount + 1
-                    Logger.Log(string.format("[RemoveAllWeapons] Removed %s x%d", item.id, item.count or 1))
-                end
+                local isMatch = not rarity or (weaponData.rarity and weaponData.rarity:lower() == rarity:lower())
+                if isMatch then Inventory.RemoveItem(item.id, item.count or 1) end
             end
         end
-    end
-
-
-    if rarity then
-        Draw.Notifier.Push(string.format("Removed %d weapons with rarity: %s", removedCount, rarity))
-    else
-         Draw.Notifier.Push(string.format("Removed %d weapons (all rarities).", removedCount))
     end
 end
 
 local function GiveAllIconicWeapons()
-    local iconicWeapons = WeaponLoader:Filter(function(w)
-        return w.iconic
-    end)
-
-    for _, w in ipairs(iconicWeapons) do
-        Inventory.GiveItem(w.id, 1)
-    end
-
-     Draw.Notifier.Push(string.format("Gave %d iconic weapons.", #iconicWeapons))
+    local iconicWeapons = WeaponLoader:Filter(function(w) return w.iconic end)
+    for _, w in ipairs(iconicWeapons) do Inventory.GiveItem(w.id, 1) end
 end
 
-
 local function GiveWeaponsByCategory(category)
-    local filtered = WeaponLoader:Filter(function(w)
-        return w.category == category
-    end)
-
-    for _, w in ipairs(filtered) do
-        Inventory.GiveItem(w.id, 1)
-    end
-
-     Draw.Notifier.Push(string.format("Gave %d weapons in category: %s", #filtered, category))
+    local filtered = WeaponLoader:Filter(function(w) return w.category == category end)
+    for _, w in ipairs(filtered) do Inventory.GiveItem(w.id, 1) end
 end
 
 local function GiveWeaponsByRarity(rarity)
-    local filtered = WeaponLoader:Filter(function(w)
-        return (w.rarity or ""):lower() == rarity:lower()
-    end)
-
-    for _, w in ipairs(filtered) do
-        Inventory.GiveItem(w.id, 1)
-    end
-
-     Draw.Notifier.Push(string.format("Gave %d weapons of rarity: %s", #filtered, rarity))
+    local filtered = WeaponLoader:Filter(function(w) return (w.rarity or ""):lower() == rarity:lower() end)
+    for _, w in ipairs(filtered) do Inventory.GiveItem(w.id, 1) end
 end
 
 local function RemoveBaseWeapons()
     RemoveAllWeapons("Common")
     RemoveAllWeapons("Base")
-    
 end
 
-return { -- special return statement one of a kind 
-    title = "Weapon Unlocker",
+return {
+    title = "weaponsitems.title",
     view = WeaponMainView,
     GiveAllWallWeapons = GiveAllWallWeapons,
     RemoveAllWeapons = RemoveAllWeapons,
@@ -374,4 +304,3 @@ return { -- special return statement one of a kind
     GiveWeaponsByRarity = GiveWeaponsByRarity,
     RemoveBaseWeapons = RemoveBaseWeapons
 }
-

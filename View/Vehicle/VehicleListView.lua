@@ -2,34 +2,28 @@ local Draw = require("UI")
 local Logger = require("Core/Logger")
 local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
 
-local VehicleFeaures = require("Features/Vehicle")
-local VehicleSystem = VehicleFeaures.VehicleUnlocker
-local VehicleSpawner = VehicleFeaures.Spawner
-
-local VehicleListView = {}
+local VehicleFeatures = require("Features/Vehicle")
+local VehicleSystem = VehicleFeatures.VehicleUnlocker
+local VehicleSpawner = VehicleFeatures.Spawner
 
 local Buttons = Draw.Buttons
 
 local filterModes = {
-    "All Vehicles",
-    "Player Vehicles",
-    "By Category",
-    "By Manufacturer",
-    "By Affiliation"
-}
-local productionYearsList = { "All Years" }
-local visibilityModes = {
-    "All Vehicles",
-    "Unlocked Only",
-    "Locked Only"
+    L("vehiclelist.mode_all"),
+    L("vehiclelist.mode_player"),
+    L("vehiclelist.mode_category"),
+    L("vehiclelist.mode_manufacturer"),
+    L("vehiclelist.mode_affiliation")
 }
 
-local filterModeTip = "Filter Modes:\n" ..
-"- All Vehicles: Shows all vehicles (Can be laggy)\n" ..
-"- Player Vehicles: Classified as player-ownable\n" ..
-"- By Category: Filter by vehicle category\n" ..
-"- By Manufacturer: Filter by vehicle brand\n" ..
-"- By Affiliation: Filter by faction or group"
+local productionYearsList = { L("vehiclelist.year_all") }
+
+local visibilityModes = {
+    L("vehiclelist.visibility_all"),
+    L("vehiclelist.visibility_unlocked"),
+    L("vehiclelist.visibility_locked")
+}
+
 
 local selectedVisibility = { index = 1, expanded = false }
 local selectedProductionYear = { index = 1, expanded = false }
@@ -42,43 +36,52 @@ local manufacturers = {}
 local affiliations = {}
 local vehicleSpawnDis = { value = 7.0, min = 3.0, max = 25.0, step = 0.5 }
 
-local function BuildFilters()
-    local seenCat, seenMan, seenAff = {}, {}, {}
-    for _, vehicle in ipairs(VehicleLoader:GetAll()) do
-        if not seenCat[vehicle.category] then
-            seenCat[vehicle.category] = true
-            table.insert(categories, vehicle.category)
-        end
-        if vehicle.manufacturer and not seenMan[vehicle.manufacturer] then
-            seenMan[vehicle.manufacturer] = true
-            table.insert(manufacturers, vehicle.manufacturer)
-        end
-        if vehicle.faction and vehicle.faction ~= "Player" and not seenAff[vehicle.faction] then
-            seenAff[vehicle.faction] = true
-            table.insert(affiliations, vehicle.faction)
-        end
-    end
+local filterModes = {}
+local lastSpawnerMode = nil
+-- Temporarily adding this to only show vehicle players that can be unlockable since it was causing issues with Twintone
 
+
+local function BuildFilters()
+    categories = {}
+    manufacturers = {}
+    affiliations = {}
+    productionYearsList = { L("vehiclelist.year_all") }
+
+    local seenCat, seenMan, seenAff = {}, {}, {}
     local seenYears = {}
 
     for _, vehicle in ipairs(VehicleLoader:GetAll()) do
-        local yearStr = vehicle.productionYear
-        if yearStr and yearStr:match("^%d+$") then
-            local year = tonumber(yearStr)
-            if not seenYears[year] then
-                seenYears[year] = true
-                table.insert(productionYearsList, year)
+        -- In unlock mode, skip non-player vehicles entirely
+        if VehicleFeatures.enableVehicleSpawnerMode or vehicle.faction == "Player" then
+            if not seenCat[vehicle.category] then
+                seenCat[vehicle.category] = true
+                table.insert(categories, vehicle.category)
+            end
+            if vehicle.manufacturer and not seenMan[vehicle.manufacturer] then
+                seenMan[vehicle.manufacturer] = true
+                table.insert(manufacturers, vehicle.manufacturer)
+            end
+            if vehicle.faction and vehicle.faction ~= "Player" and not seenAff[vehicle.faction] then
+                seenAff[vehicle.faction] = true
+                table.insert(affiliations, vehicle.faction)
+            end
+
+            local yearStr = vehicle.productionYear
+            if yearStr and yearStr:match("^%d+$") then
+                local year = tonumber(yearStr)
+                if not seenYears[year] then
+                    seenYears[year] = true
+                    table.insert(productionYearsList, year)
+                end
             end
         end
     end
 
     table.sort(productionYearsList, function(a, b)
-        if a == "All Years" then return true end
-        if b == "All Years" then return false end
+        if a == L("vehiclelist.year_all") then return true end
+        if b == L("vehiclelist.year_all") then return false end
         return a < b
     end)
-
-
 
     table.sort(categories)
     table.sort(manufacturers)
@@ -86,39 +89,54 @@ local function BuildFilters()
 end
 
 
-local function DrawVehicleRow(vehicle)
-    local name = vehicle.displayName
-
-    local tip = table.concat({
-        "TweakDBID: " .. vehicle.id,
-        "Manufacturer: " .. (vehicle.manufacturer or "Unknown"),
-        "Category: " .. (vehicle.category or "Unknown"),
-        "Affiliation: " .. (vehicle.faction or "Unknown"),
-        "Production Year: " .. (vehicle.productionYear or "Unknown"),
-        "Description: " .. (vehicle.description or "None")
-    }, "\n")
-
-    if VehicleFeaures.enableVehicleSpawnerMode then
-        local spawnTip = "Note: You may need to click twice to request the vehicle.\n\n" .. tip 
-        Buttons.Option(name, spawnTip, function()
-            VehicleSpawner.RequestVehicle(vehicle.id, vehicleSpawnDis.value)
-        end)
+local function BuildFilterModes()
+    filterModes = {}
+    BuildFilters()
+    if VehicleFeatures.enableVehicleSpawnerMode then
+        table.insert(filterModes, L("vehiclelist.mode_all"))
+        table.insert(filterModes, L("vehiclelist.mode_player"))
     else
-        local state = { value = VehicleSystem.IsVehicleUnlocked(vehicle.id) }
-        local unlockTip = "Note: Enabled vehicles are unlocked and appear in your owned menu. Click to toggle them on or off.\n\n" .. tip
-
-        local function onClick()
-            local current = VehicleSystem.IsVehicleUnlocked(vehicle.id)
-            VehicleSystem.SetPlayerVehicleState(vehicle.id, not current)
-        end
-
-        Buttons.Toggle(name, state, unlockTip, onClick)
+        table.insert(filterModes, L("vehiclelist.mode_all"))
+    end
+    if #categories > 0 then
+        table.insert(filterModes, L("vehiclelist.mode_category"))
+    end
+    if #manufacturers > 0 then
+        table.insert(filterModes, L("vehiclelist.mode_manufacturer"))
+    end
+    if #affiliations > 0 then
+        table.insert(filterModes, L("vehiclelist.mode_affiliation"))
     end
 end
 
 
+
+local function DrawVehicleRow(vehicle)
+    local name = vehicle.displayName
+    local detailsTip = tip("vehiclelist.vehicledetails", {
+        id = vehicle.id,
+        manufacturer = vehicle.manufacturer or "Unknown",
+        category = vehicle.category or "Unknown",
+        faction = vehicle.faction or "Unknown",
+        year = vehicle.productionYear or "Unknown",
+        description = vehicle.description or "None"
+    })
+
+    if VehicleFeatures.enableVehicleSpawnerMode then
+        Buttons.Option(name, tip("vehiclelist.spawntip", { details = detailsTip }), function()
+            VehicleSpawner.RequestVehicle(vehicle.id, vehicleSpawnDis.value)
+        end)
+    else
+        local state = { value = VehicleSystem.IsVehicleUnlocked(vehicle.id) }
+        Buttons.Toggle(name, state, tip("vehiclelist.unlockedtip", { details = detailsTip }), function()
+            local current = VehicleSystem.IsVehicleUnlocked(vehicle.id)
+            VehicleSystem.SetPlayerVehicleState(vehicle.id, not current)
+        end)
+    end
+end
+
 local function YearMatches(vehicleYearStr, selectedYear)
-    if selectedYear == "All Years" or not vehicleYearStr then
+    if selectedYear == L("vehiclelist.year_all") or not vehicleYearStr then
         return true
     end
 
@@ -139,54 +157,54 @@ local function YearMatches(vehicleYearStr, selectedYear)
     return false
 end
 
-
 local function VehicleFilteredSubmenuView()
     local mode = filterModes[selectedMode.index or 1]
 
-    -- Only show dropdowns here for filtered modes
-
-    
-   
-
-    if mode ~= "All Vehicles" and mode ~= "Player Vehicles" then
-        Buttons.Dropdown("Year", selectedProductionYear, productionYearsList, "Filter by production year")
-        Buttons.Dropdown("Visibility", selectedVisibility, visibilityModes, "Show unlocked/locked vehicles")
-        if VehicleFeaures.enableVehicleSpawnerMode then
-            Buttons.Int("Spawn Distance", vehicleSpawnDis, "Distance the vehicle spawns in front of the player")
+    if mode ~= L("vehiclelist.mode_all") and mode ~= L("vehiclelist.mode_player") then
+        -- Buttons.Dropdown(L("vehiclelist.year.label"), selectedProductionYear, productionYearsList, L("vehiclelist.year.tip"))
+        Buttons.StringCycler(L("vehiclelist.year.label"), selectedProductionYear, productionYearsList,
+            tip("vehiclelist.year.tip"))
+        Buttons.Dropdown(L("vehiclelist.visibility.label"), selectedVisibility, visibilityModes,
+            L("vehiclelist.visibility.tip"))
+        if VehicleFeatures.enableVehicleSpawnerMode then
+            Buttons.Int(L("vehiclelist.spawndistance.label"), vehicleSpawnDis, L("vehiclelist.spawndistance.tip"))
         end
-        Buttons.Break("", "Filtered Vehicle List")
+        Buttons.Break("", L("vehiclelist.filteredlist.label"))
     end
 
     local selectedYear = productionYearsList[selectedProductionYear.index or 1]
     local visibilityFilter = visibilityModes[selectedVisibility.index or 1]
 
     local vehicles = VehicleLoader:Filter(function(v)
-        if mode == "Player Vehicles" and v.faction ~= "Player" then
-            return false
-        end
-        if mode == "By Category" and v.category ~= selectedValue then
-            return false
-        end
-        if mode == "By Manufacturer" and v.manufacturer ~= selectedValue then
-            return false
-        end
-        if mode == "By Affiliation" and v.faction ~= selectedValue then
+        if not VehicleFeatures.enableVehicleSpawnerMode and v.faction ~= "Player" then
             return false
         end
 
-      if not YearMatches(v.productionYear, productionYearsList[selectedProductionYear.index or 1]) then
-        return false
+        if mode == L("vehiclelist.mode_player") and v.faction ~= "Player" then
+            return false
+        end
+        if mode == L("vehiclelist.mode_category") and v.category ~= selectedValue then
+            return false
+        end
+        if mode == L("vehiclelist.mode_manufacturer") and v.manufacturer ~= selectedValue then
+            return false
+        end
+        if mode == L("vehiclelist.mode_affiliation") and v.faction ~= selectedValue then
+            return false
+        end
+        if not YearMatches(v.productionYear, productionYearsList[selectedProductionYear.index or 1]) then
+            return false
         end
 
         local isUnlocked = VehicleSystem.IsVehicleUnlocked(v.id)
-        if visibilityFilter == "Unlocked Only" and not isUnlocked then return false end
-        if visibilityFilter == "Locked Only" and isUnlocked then return false end
+        if visibilityFilter == L("vehiclelist.visibility_unlocked") and not isUnlocked then return false end
+        if visibilityFilter == L("vehiclelist.visibility_locked") and isUnlocked then return false end
 
         return true
     end)
 
     if #vehicles == 0 then
-        Buttons.Break("", "No matching vehicles found.")
+        Buttons.Break("", L("vehiclelist.nofound.label"))
         return
     end
 
@@ -196,56 +214,63 @@ local function VehicleFilteredSubmenuView()
 end
 
 local filteredSubmenu = {
-    title = "Filtered Vehicles",
+    title = L("vehiclelist.filteredlist.label"),
     view = VehicleFilteredSubmenuView
 }
 
 local function VehicleMainView()
+    local currentMode = VehicleFeatures.enableVehicleSpawnerMode
+    if lastSpawnerMode ~= currentMode then
+        BuildFilterModes()
+        selectedMode.index = currentMode and 2 or 1
+        lastSpawnerMode = currentMode
+    end
+
     if not initialized then
         BuildFilters()
         initialized = true
     end
 
-    Buttons.Dropdown("Mode", selectedMode, filterModes, filterModeTip)
+    Buttons.Dropdown(L("vehiclelist.mode.label"), selectedMode, filterModes, L("vehiclelist.mode.tip"))
 
     local mode = filterModes[selectedMode.index or 1]
-    if mode == "All Vehicles" or mode == "Player Vehicles" then
-        Buttons.Dropdown("Year", selectedProductionYear, productionYearsList, "Filter by production year")
-        Buttons.Dropdown("Visibility", selectedVisibility, visibilityModes, "Show unlocked/locked vehicles")
-        if VehicleFeaures.enableVehicleSpawnerMode then
-            Buttons.Int("Spawn Distance", vehicleSpawnDis, "Distance the vehicle spawns in front of the player")
+    if mode == L("vehiclelist.mode_all") or mode == L("vehiclelist.mode_player") then
+        --Buttons.Dropdown(L("vehiclelist.year.label"), selectedProductionYear, productionYearsList, L("vehiclelist.year.tip"))
+        Buttons.StringCycler(L("vehiclelist.year.label"), selectedProductionYear, productionYearsList,
+            tip("vehiclelist.year.tip"))
+
+        Buttons.Dropdown(L("vehiclelist.visibility.label"), selectedVisibility, visibilityModes,
+            L("vehiclelist.visibility.tip"))
+        if VehicleFeatures.enableVehicleSpawnerMode then
+            Buttons.Int(L("vehiclelist.spawndistance.label"), vehicleSpawnDis, L("vehiclelist.spawndistance.tip"))
         end
-        Buttons.Break("", "Filtered Vehicle List")
+        Buttons.Break("", L("vehiclelist.filteredlist.label"))
     end
 
-    -- For By Category / Manufacturer / Affiliation: show submenu links
-    local list = nil
-    local labelPrefix = ""
-
-    if mode == "By Category" then
+    local list, labelPrefix
+    if mode == L("vehiclelist.mode_category") then
         list = categories
-        labelPrefix = "Category: "
-    elseif mode == "By Manufacturer" then
+        labelPrefix = L("vehiclelist.categoryprefix")
+    elseif mode == L("vehiclelist.mode_manufacturer") then
         list = manufacturers
-        labelPrefix = "Manufacturer: "
-    elseif mode == "By Affiliation" then
+        labelPrefix = L("vehiclelist.manufacturerprefix")
+    elseif mode == L("vehiclelist.mode_affiliation") then
         list = affiliations
-        labelPrefix = "Affiliation: "
+        labelPrefix = L("vehiclelist.affiliationprefix")
     end
 
     if list then
         for _, value in ipairs(list) do
-            Buttons.Submenu(value, filteredSubmenu, labelPrefix .. value, function()
+            Buttons.Submenu(value, filteredSubmenu, labelPrefix:gsub("{value}", value), function()
                 selectedValue = value
             end)
         end
     else
-        -- always render list here (for All/Player Vehicles)
         VehicleFilteredSubmenuView()
     end
 end
 
-
-local VehicleListView = { title = "Vehicle List", view = VehicleMainView}
-
-return VehicleListView
+return {
+    title = "vehiclelist.title",
+    view = VehicleMainView
+}

@@ -1,19 +1,28 @@
-[2025-08-09 01:02:49] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
-[2025-08-09 01:02:49] [EasyTrainer] Initialization started
-[2025-08-09 01:02:49] [EasyTrainer] Game session States
-[2025-08-09 01:02:49] [EasyTrainer] Loading data...
-[2025-08-09 01:02:49] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
-[2025-08-09 01:02:49] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
-[2025-08-09 01:02:49] [EasyTrainerGeneralLoader] Loaded 4731 items.
-[2025-08-09 01:02:49] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
-[2025-08-09 01:02:49] [EasyTrainer] Init complete.
-[2025-08-09 01:02:53] [EasyTrainer] Game modules initialized.
-[2025-08-09 01:02:54] [EasyTrainerInputHandler] Switched to Controller restrictions
-[2025-08-09 01:02:56] [EasyTrainerInputHandler] Switched to Keyboard restrictions
-[2025-08-09 01:02:58] [EasyTrainerInputHandler] Switched to Controller restrictions
-[2025-08-09 01:03:07] [EasyTrainerInputHandler] Switched to Keyboard restrictions
-[2025-08-09 01:03:10] [EasyTrainerInputHandler] Switched to Controller restrictions
-[2025-08-09 01:03:17] [EasyTrainerInputHandler] Switched to Keyboard restrictions
-[2025-08-09 01:03:21] [EasyTrainerInputHandler] Switched to Controller restrictions
-[2025-08-09 01:04:20] [EasyTrainerInputHandler] Switched to Keyboard restrictions
-[2025-08-09 01:04:22] [EasyTrainerStatModifiers] ClearAll failed: context missing
+[2025-08-10 00:51:01] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
+[2025-08-10 00:51:01] [EasyTrainer] Initialization started
+[2025-08-10 00:51:01] [EasyTrainer] Game session States
+[2025-08-10 00:51:01] [EasyTrainer] Loading data...
+[2025-08-10 00:51:01] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
+[2025-08-10 00:51:01] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
+[2025-08-10 00:51:02] [EasyTrainerGeneralLoader] Loaded 4731 items.
+[2025-08-10 00:51:02] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
+[2025-08-10 00:51:02] [EasyTrainerTeleportLocations] Loaded 834 teleports
+[2025-08-10 00:51:02] [EasyTrainer] Init complete.
+[2025-08-10 00:51:03] [EasyTrainer] Game modules initialized.
+[2025-08-10 00:52:19] [Facts] judy_romanceable = 0
+[2025-08-10 00:52:19] [Facts] judy_romanceable = 0
+[2025-08-10 00:52:19] [Facts] sq030_judy_lover = 0
+[2025-08-10 00:52:19] [Facts] sq030_judy_lover = 0
+[2025-08-10 00:52:19] [Facts] panam_romanceable = 1
+[2025-08-10 00:52:19] [Facts] panam_romanceable = 1
+[2025-08-10 00:52:19] [Facts] sq027_panam_lover = 1
+[2025-08-10 00:52:19] [Facts] sq027_panam_lover = 1
+[2025-08-10 00:52:19] [Facts] river_romanceable = 0
+[2025-08-10 00:52:19] [Facts] river_romanceable = 0
+[2025-08-10 00:52:19] [Facts] sq029_river_lover = 0
+[2025-08-10 00:52:19] [Facts] sq029_river_lover = 0
+[2025-08-10 00:52:19] [Facts] kerry_romanceable = 1
+[2025-08-10 00:52:19] [Facts] kerry_romanceable = 1
+[2025-08-10 00:52:19] [Facts] sq028_kerry_lover = 1
+[2025-08-10 00:52:19] [Facts] sq028_kerry_lover = 1
+[2025-08-10 00:54:18] [EasyTrainerStatModifiers] ClearAll failed: context missing

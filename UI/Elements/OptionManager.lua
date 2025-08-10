@@ -129,10 +129,10 @@ end
 
 
 function OptionManager.Dropdown(label, ref, options, tip)
-    local keyTip = "Tip: Press Enter or Click to expand and select option."
+    local keyTip = L("optionmanager.dropdown_tip")
     local fullTip = keyTip .. (tip and ("\n\n" .. tip) or "")
     local arrow = ref.expanded and IconGlyphs.CircleExpand or IconGlyphs.ArrowExpandAll
-    local selectedLabel = L(options[ref.index or 1]) or "None"
+    local selectedLabel = L(options[ref.index or 1]) or L("optionmanager.none")
     local clicked = OptionManager.Option(label, nil, selectedLabel .. " " .. arrow, fullTip)
 
     if clicked then
@@ -186,7 +186,7 @@ function OptionManager.Toggle(label, ref, tip)
     local toggleY = pos.y + (pos.h - toggleSize) * 0.5
 
     if pos.isActive then
-        local stateText = ref.value and "ON" or "OFF"
+        local stateText = ref.value and L("optionmanager.on") or L("optionmanager.off")
         local stateTextWidth = ImGui.CalcTextSize(stateText)
         local padding = 6
         local spacing = 8
@@ -223,7 +223,7 @@ end
 
 
 function OptionManager.IntToggle(label, ref, tip)
-    local keyTip = "Tip: Use Left and Right arrow keys to switch value."
+    local keyTip = L("optionmanager.inttoggle_tip")
     local fullTip = keyTip .. (tip and ("\n\n" .. tip) or "")
     local clicked = OptionManager.Option(label, "", "", fullTip)
     local pos = OptionManager._calcPosition()
@@ -299,7 +299,7 @@ end
 
 
 function OptionManager.FloatToggle(label, ref, tip)
-    local keyTip = "Tip: Use Left and Right arrow keys to switch value"
+    local keyTip = L("optionmanager.float_toggle_tip")
     local fullTip = keyTip .. (tip and ("\n\n" .. tip) or "")
     local clicked = OptionManager.Option(label, "", "", fullTip)
     local pos = OptionManager._calcPosition()
@@ -413,7 +413,7 @@ function OptionManager.Radio(label, ref, options, tip)
 end
 
 function OptionManager.StringCycler(label, ref, options, tip)
-    local keyTip = "Tip: Use Left and Right arrow keys to switch value."
+    local keyTip = L("optionmanager.stringcycler_tip")
     local fullTip = keyTip .. (tip and ("\n\n" .. tip) or "")
     local clicked = OptionManager.Option(label, "", "", fullTip)
     local pos = OptionManager._calcPosition()
@@ -455,7 +455,7 @@ end
 
 
 function OptionManager.Color(label, ref, tip)
-    local keyTip = "Press Enter or Click to expand.\nUse Arrow keys to adjust color channels."
+    local keyTip = L("optionmanager.color_tip")
     local fullTip = (tip and (tip .. "\n\n") or "") .. keyTip
     local clicked = OptionManager.Option(label, "", "", fullTip)
     local pos = OptionManager._calcPosition()

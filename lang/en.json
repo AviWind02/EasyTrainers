@@ -1,4 +1,5 @@
 {
+  "loadmessage": "Language set to English. Welcome, choomba!",
   "mainmenu": {
     "title": "Main Menu",
     "self": {
@@ -36,6 +37,10 @@
     "weather": {
       "label": "Weather Menu",
       "tip": "Control world weather, force storms, fog, and more."
+    },
+    "translations": {
+      "label": "Translations",
+      "tip": "Change the language used for the trainer's interface."
     }
   },
   "self": {
@@ -128,91 +133,91 @@
       "label": "Custom Modifiers (Not Tested Enough)",
       "tip": "Create and manage your own stat modifiers for player, weapons, or vehicles."
     },
-    "infinite_stamina": {
+    "infinitestamina": {
       "label": "Infinite Stamina",
       "tip": "Removes stamina constraints permanently."
     },
-    "refill_stamina": {
+    "refillstamina": {
       "label": "Refill Stamina (loop)",
       "tip": "Automatically restores stamina to 100% below 98%."
     },
-    "infinite_oxygen": {
+    "infiniteoxygen": {
       "label": "Infinite Oxygen",
       "tip": "Allows indefinite underwater breathing."
     },
-    "refill_oxygen": {
+    "refilloxygen": {
       "label": "Refill Oxygen (loop)",
       "tip": "Automatically restores oxygen when it drops."
     },
     "cooldowns": "Cooldowns",
-    "cooldown_heal": {
+    "cooldownheal": {
       "label": "Heal",
       "tip": "Removes healing item recharge cooldown."
     },
-    "cooldown_grenade": {
+    "cooldowngrenade": {
       "label": "Grenade",
       "tip": "Removes grenade recharge cooldown."
     },
-    "cooldown_projectile": {
+    "cooldownprojectile": {
       "label": "Projectile Launcher",
       "tip": "Removes projectile launcher cooldown."
     },
-    "cooldown_cloak": {
+    "cooldowncloak": {
       "label": "Optical Cloak",
       "tip": "Eliminates optical camo cooldown and boosts regen."
     },
-    "cooldown_sande": {
+    "cooldownsande": {
       "label": "Sandevistan",
       "tip": "Removes cooldown for Sandevistan activations."
     },
-    "cooldown_berserk": {
+    "cooldownberserk": {
       "label": "Berserk",
       "tip": "Greatly increases berserk regeneration rate."
     },
-    "cooldown_keren": {
+    "cooldownkeren": {
       "label": "Kerenzikov",
       "tip": "Reduces Kerenzikov cooldown to near-zero."
     },
-    "cooldown_overclock": {
+    "cooldownoverclock": {
       "label": "Overclock",
       "tip": "Boosts Overclock regen and removes cooldown."
     },
-    "cooldown_quickhacks": {
+    "cooldownquickhacks": {
       "label": "Quickhacks",
       "tip": "Reduces all quickhack cooldowns drastically."
     },
-    "memory_stats": "Memory & Stats",
-    "reduce_quickhack_cost": {
+    "memorystats": "Memory & Stats",
+    "reducequickhackcost": {
       "label": "Reduce Quickhack Cost",
       "tip": "Removes all memory costs from quickhacks."
     },
-    "memory_regen": {
+    "memoryregen": {
       "label": "Memory Regen",
       "tip": "Increases memory regeneration rate."
     },
-    "set_memory_stat": {
+    "setmemorystat": {
       "label": "Set Memory Stat",
       "tip": "Overrides base memory stat for cyberdeck."
     },
     "mobility": "Mobility",
-    "air_thruster_boots": {
+    "airthrusterboots": {
       "label": "Air Thruster Boots",
       "tip": "Hold jump in mid-air to reduce fall damage impact."
     },
-    "air_hover": {
+    "airhover": {
       "label": "Air Hover",
       "tip": "Allows hovering in the air after jumping."
     },
-    "carry_capacity": {
+    "carrycapacity": {
       "label": "Carry Capacity",
       "tip": "Overrides your carry weight capacity."
     },
     "sandevistan": "Cyberware: Sandevistan",
-    "sandevistan_duration": {
+    "sandevistanduration": {
       "label": "Sandevistan Duration",
       "tip": "Extends duration of your Sandevistan mode."
     },
-    "sandevistan_scale": {
+    "sandevistanscale": {
       "label": "Sandevistan Time Scale",
       "tip": "Controls time dilation while Sandevistan is active."
     }
@@ -233,7 +238,7 @@
       "label": "Attribute",
       "setlevel": {
         "label": "Set Attribute Level",
-        "tip": "Set base level for this attribute"
+        "tip": "Set base level for this attribute."
       },
       "body": "Body",
       "cool": "Cool",
@@ -246,8 +251,8 @@
       "activeonly": "Show Only Active Perks",
       "inactiveonly": "Show Only Inactive Perks",
       "header": "Perks",
-      "tip_single": "Category: {category}\n\nThis perk only has 1 level. Toggle on/off to apply or remove it.",
-      "tip_multi": "Category: {category}\n\nThis perk has {levels} levels. Use Arrow keys to adjust the level."
+      "tipsingle": "Category: {category}\n\nThis perk only has 1 level. Toggle on/off to apply or remove it.",
+      "tipmulti": "Category: {category}\n\nThis perk has {levels} levels. Use Arrow keys to adjust the level."
     },
     "eddies": {
       "label": "Eurodollar",
@@ -265,15 +270,15 @@
       },
       "custom": {
         "label": "Custom Eddie Amount",
-        "tip": "Set custom amount to add/remove"
+        "tip": "Set custom amount to add/remove."
       },
       "addcustom": {
         "label": "Add Eddies (Custom)",
-        "tip": "Adds the specified amount"
+        "tip": "Adds the specified amount."
       },
       "removecustom": {
         "label": "Remove Eddies (Custom)",
-        "tip": "Removes the specified amount"
+        "tip": "Removes the specified amount."
       }
     },
     "perkpoints": {
@@ -311,13 +316,13 @@
     },
     "perkattributes": "Attributes Perks",
     "proficiencies": {
-      "player_level": "Player Level",
-      "street_cred": "Street Cred",
+      "playerlevel": "Player Level",
+      "streetcred": "Street Cred",
       "assault": "Assault",
       "athletics": "Athletics",
       "brawling": "Brawling",
-      "cold_blood": "Cold Blood",
-      "combat_hacking": "Combat Hacking",
+      "coldblood": "Cold Blood",
+      "combathacking": "Combat Hacking",
       "cool": "Cool",
       "crafting": "Crafting",
       "demolition": "Demolition",
@@ -333,106 +338,130 @@
       "technical": "Technical Ability"
     }
   },
-  "custom_modifiers": {
+  "custommodifiers": {
     "title": "Custom Modifiers",
-    "modes": [
-      "Create New Modifier",
-      "View Existing Modifiers",
-      "Recently Used Modifiers"
-    ],
-    "filters": [
-      "A to Z",
-      "Z to A",
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "I",
-      "J",
-      "K",
-      "L",
-      "M",
-      "N",
-      "O",
-      "P",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "Z"
-    ],
-    "targets": [
-      "Player",
-      "Right Weapon",
-      "Vehicle"
-    ],
-    "types": [
-      "Additive",
-      "Multiplier",
-      "Percentage"
-    ],
-    "labels": {
-      "mode": "Mode",
-      "filter": "Filter",
-      "stat_modifiers": "Stat Modifiers",
-      "selected_modifier": "Selected Modifier",
-      "target": "Target",
-      "modifier_type": "Modifier Type",
-      "value": "Value",
-      "apply": "Apply Modifier",
-      "active": "Active",
-      "remove": "Remove Modifier",
-      "no_modifiers": "No modifiers created",
-      "no_modifiers_tip": "Switch to 'Create' mode to add new ones.",
-      "no_recent": "No recent modifiers",
-      "no_recent_tip": "Create or delete a modifier to track it here."
+    "modes1": "Create New Modifier",
+    "modes2": "View Existing Modifiers",
+    "modes3": "Recently Used Modifiers",
+    "filters1": "A to Z",
+    "filters2": "Z to A",
+    "filters3": "A",
+    "filters4": "B",
+    "filters5": "C",
+    "filters6": "D",
+    "filters7": "E",
+    "filters8": "F",
+    "filters9": "G",
+    "filters10": "H",
+    "filters11": "I",
+    "filters12": "J",
+    "filters13": "K",
+    "filters14": "L",
+    "filters15": "M",
+    "filters16": "N",
+    "filters17": "O",
+    "filters18": "P",
+    "filters19": "Q",
+    "filters20": "R",
+    "filters21": "S",
+    "filters22": "T",
+    "filters23": "U",
+    "filters24": "V",
+    "filters25": "W",
+    "filters26": "X",
+    "filters27": "Y",
+    "filters28": "Z",
+    "targets1": "Player",
+    "targets2": "Right Weapon",
+    "targets3": "Vehicle",
+    "types1": "Additive",
+    "types2": "Multiplier",
+    "types3": "Percentage",
+    "mode": {
+      "label": "Mode",
+      "tip": "Select the mode for custom modifiers."
     },
-    "tips": {
-      "filter": "Filter stat names",
-      "value": "Amount to apply",
-      "apply": "Create and apply this modifier",
-      "active": "Enable/Disable modifier",
-      "modifier_type": "Change modifier calculation type",
-      "value_adjust": "Adjust modifier value",
-      "remove": "Delete this modifier",
-      "edit": "Edit or delete this modifier",
-      "create": "Configure a custom modifier for this stat",
-      "recreate": "Re-create modifier for this stat"
+    "filter": {
+      "label": "Filter",
+      "tip": "Filter stat names."
+    },
+    "statmodifiers": {
+      "label": "Stat Modifiers",
+      "tip": "List of created modifiers."
+    },
+    "selectedmodifier": {
+      "label": "Selected Modifier",
+      "tip": "Currently highlighted modifier."
+    },
+    "target": {
+      "label": "Target",
+      "tip": "Select the target to apply the modifier to."
+    },
+    "modifiertype": {
+      "label": "Modifier Type",
+      "tip": "Change the modifier calculation type."
+    },
+    "value": {
+      "label": "Value",
+      "tip": "Amount to apply."
+    },
+    "apply": {
+      "label": "Apply Modifier",
+      "tip": "Create and apply this modifier."
+    },
+    "active": {
+      "label": "Active",
+      "tip": "Enable or disable this modifier."
+    },
+    "remove": {
+      "label": "Remove Modifier",
+      "tip": "Delete this modifier."
+    },
+    "nomodifiers": {
+      "label": "No Modifiers Created",
+      "tip": "Switch to 'Create' mode to add new ones."
+    },
+    "norecent": {
+      "label": "No Recent Modifiers",
+      "tip": "Create or delete a modifier to track it here."
+    },
+    "edit": {
+      "label": "Edit Modifier",
+      "tip": "Edit or delete this modifier."
+    },
+    "create": {
+      "label": "Create Modifier",
+      "tip": "Configure a custom modifier for this stat."
+    },
+    "recreate": {
+      "label": "Re-create Modifier",
+      "tip": "Re-create a modifier for this stat."
     }
   },
-  "vehicle_lights": {
+  "vehiclelights": {
     "title": "Vehicle Light Controls",
-    "set_all_color": {
+    "setallcolor": {
       "label": "Set All Lights Color",
       "tip": "Applies the selected color to all light types."
     },
-    "apply_all_color": {
+    "applyallcolor": {
       "label": "Apply All Light Colors",
       "tip": "Sets all lights to the selected color."
     },
-    "reset_all_color": {
+    "resetallcolor": {
       "label": "Reset All Light Colors",
       "tip": "Resets the color of all lights."
     },
-    "disable_all": {
+    "disableall": {
       "label": "Disable All Lights",
       "tip": "Turns off all vehicle lights."
     },
-    "rgb_fade": {
+    "rgbfade": {
       "label": "RGB Fade Lights",
       "tip": "Automatically cycles light colors through an RGB fade effect."
     },
-    "adjust_selected": "Adjust Selected Light",
-    "light_type": {
+    "adjustselected": "Adjust Selected Light",
+    "lighttype": {
       "label": "Light Type",
       "tip": "Choose which light type to configure."
     },
@@ -449,7 +478,7 @@
       "label": "Color",
       "tip": "Color for {light}"
     },
-    "apply_color": {
+    "applycolor": {
       "label": "Apply Color",
       "tip": "Applies color to {light}"
     },
@@ -457,31 +486,518 @@
       "label": "Strength",
       "tip": "Brightness of {light}"
     },
-    "apply_strength": {
+    "applystrength": {
       "label": "Apply Strength",
       "tip": "Sets strength for {light}"
     },
-    "reset_color": {
+    "resetcolor": {
       "label": "Reset Color",
       "tip": "Resets color for {light}"
     },
-    "reset_strength": {
+    "resetstrength": {
       "label": "Reset Strength",
       "tip": "Resets strength for {light}"
     },
-    "reset_all": {
+    "resetall": {
       "label": "Reset Parameters",
       "tip": "Resets all parameters for {light}"
     },
-    "toggle_on": {
+    "toggleon": {
       "label": "Toggle On",
       "tip": "Turns on {light}"
     },
-    "toggle_off": {
+    "toggleoff": {
       "label": "Toggle Off",
       "tip": "Turns off {light}"
     }
+  },
+  "vehiclelist": {
+    "title": "Vehicle List",
+    "mode": {
+      "label": "Mode",
+      "tip": "Filter Modes:\n- All Vehicles: Shows all vehicles (Can be laggy)\n- Player Vehicles: Classified as player-ownable\n- By Category: Filter by vehicle category\n- By Manufacturer: Filter by vehicle brand\n- By Affiliation: Filter by faction or group"
+    },
+    "mode_all": "All Vehicles",
+    "mode_player": "Player Vehicles",
+    "mode_category": "By Category",
+    "mode_manufacturer": "By Manufacturer",
+    "mode_affiliation": "By Affiliation",
+    "year": {
+      "label": "Year",
+      "tip": "Filter by production year."
+    },
+    "year_all": "All Years",
+    "visibility": {
+      "label": "Visibility",
+      "tip": "Show unlocked/locked vehicles."
+    },
+    "visibility_all": "All Vehicles",
+    "visibility_unlocked": "Unlocked Only",
+    "visibility_locked": "Locked Only",
+    "spawndistance": {
+      "label": "Spawn Distance",
+      "tip": "Distance the vehicle spawns in front of the player."
+    },
+    "filteredlist": {
+      "label": "Filtered Vehicle List",
+      "tip": "List of vehicles matching the selected filters."
+    },
+    "nofound": {
+      "label": "No Matching Vehicles Found",
+      "tip": "No vehicles match the current filter."
+    },
+    "categoryprefix": "Category: {value}",
+    "manufacturerprefix": "Manufacturer: {value}",
+    "affiliationprefix": "Affiliation: {value}",
+    "unlockedtip": "Note: Enabled vehicles are unlocked and appear in your owned menu. Click to toggle them on or off.\n\n{details}",
+    "spawntip": "Note: You may need to click twice to request the vehicle.\n\n{details}",
+    "vehicledetails": "TweakDBID: {id}\nManufacturer: {manufacturer}\nCategory: {category}\nAffiliation: {faction}\nProduction Year: {year}\nDescription: {description}"
+  },
+  "vehiclemenu": {
+    "title": "Vehicle Menu",
+    "vehiclelist": {
+      "label": "Vehicle List",
+      "tip": "View all vehicles and toggle which ones are enabled or disabled in your owned vehicle menu."
+    },
+    "vehiclespawner": {
+      "label": "Vehicle Spawner",
+      "tip": "Request any vehicles directly in front of the player. Does not add them to your owned list."
+    },
+    "vehicleheadlights": {
+      "label": "Vehicle Headlights",
+      "tip": "Control vehicle headlights and light types."
+    },
+    "vehicledoors": {
+      "label": "Vehicle Doors",
+      "tip": "Open and close vehicle doors."
+    },
+    "repairvehicle": {
+      "label": "Repair Vehicle",
+      "tip": "Repair current vehicle."
+    },
+    "vehicledoormenu": {
+      "title": "Vehicle Door Controls",
+      "doorstate": {
+        "label": "Door State",
+        "tip": "Select the desired state for the door."
+      },
+      "selectdoor": "Select Door",
+      "doorstateoptions": {
+        "open": "Open",
+        "closed": "Closed",
+        "detached": "Detached"
+      },
+      "doors": {
+        "frontleft": "Front Left",
+        "frontright": "Front Right",
+        "rearleft": "Rear Left",
+        "rearright": "Rear Right",
+        "hood": "Hood",
+        "trunk": "Trunk"
+      },
+      "doortips": {
+        "set": "Set {door} to {state}"
+      }
+    }
+  },
+  "weaponsmenu": {
+    "title": "Weapons Menu",
+    "weaponitems": {
+      "label": "Weapon Items",
+      "tip": "Add any weapon item to your inventory, including iconic and stash wall variants."
+    },
+    "ammomanager": {
+      "label": "Ammo Manager",
+      "tip": "Add or remove ammo types"
+    },
+    "giveallwallweapons": {
+      "label": "Give All Wall Weapons",
+      "tip": "Gives you all weapons that can be mounted on your apartment wall."
+    },
+    "givealliconicweapons": {
+      "label": "Give All Iconic Weapons",
+      "tip": "Adds all iconic weapons to your inventory."
+    },
+    "removeallweapons": {
+      "label": "Remove All Weapons",
+      "tip": "Removes every weapon from your inventory."
+    },
+    "infiniteammo": {
+      "label": "Infinite Ammo",
+      "tip": "Your ammo never runs out. Each time you shoot, you instantly get the bullet back."
+    },
+    "noreload": {
+      "label": "No Reload",
+      "tip": "Removes reload time. Fire continuously without waiting to reload."
+    },
+    "speedcola": {
+      "label": "Speed Cola",
+      "tip": "Greatly reduces reload time."
+    },
+    "norecoil": {
+      "label": "No Recoil",
+      "tip": "Removes recoil from all weapons. No more shaking when firing.\nTip: Great with Problem Solver."
+    },
+    "flyingthundergod": {
+      "label": "Flying Thunder God Technique",
+      "tip": "Throw a knife to instantly teleport to its location upon impact"
+    },
+    "gravitygun": {
+      "label": "Gravity Gun",
+      "tip": "Pick up and move vehicles or objects by aiming at them."
+    },
+    "smartbladereturn": {
+      "label": "Smart Blade Return",
+      "tip": "Thrown knives or projectiles automatically return to you after hitting a target or surface."
+    },
+    "teleygun": {
+      "label": "Teley Gun",
+      "tip": "Shoot bullets that teleport you to where they land."
+    },
+    "ammoitems": {
+      "title": "Ammo Items",
+      "giveeach100": {
+        "label": "Give 100 of Each Ammo Type",
+        "tip": "Adds 100 ammo for each type"
+      },
+      "removeeach25": {
+        "label": "Remove 25 of Each Ammo Type",
+        "tip": "Removes 25 ammo from each type"
+      },
+      "addammo": "Add Ammo",
+      "removeammo": "Remove Ammo",
+      "types": {
+        "handgun": "Handgun Ammo",
+        "shotgun": "Shotgun Ammo",
+        "rifle": "Rifle Ammo",
+        "sniper": "Sniper Ammo",
+        "special": "Special Ammo"
+      },
+      "addtip": "Click to add {ammo}",
+      "removetip": "Click to remove {ammo}"
+    }
+  },
+  "weaponsitems": {
+    "title": "Weapon Items",
+    "mode": {
+      "label": "Mode",
+      "tip": "Choose what set of weapons to display or manage."
+    },
+    "actionmode": {
+      "label": "Inventory Action",
+      "tip": "Choose whether to add or remove weapons from your inventory."
+    },
+    "refreshinventory": {
+      "label": "Refresh Inventory",
+      "tip": "Updates the weapon list from your current inventory."
+    },
+    "sortinventory": {
+      "label": "Sort Inventory By",
+      "tip": "Choose sorting method for inventory weapons."
+    },
+    "categories": {
+      "label": "Weapon Categories",
+      "tip": "View all weapons organized by type and apply filters for Tech, Smart, or Power variants."
+    },
+    "categorytoggle_tech": {
+      "label": "Show Tech Weapons",
+      "tip": "Toggle visibility of Tech-type {category} weapons."
+    },
+    "categorytoggle_smart": {
+      "label": "Show Smart Weapons",
+      "tip": "Toggle visibility of Smart-type {category} weapons."
+    },
+    "categorytoggle_power": {
+      "label": "Show Power Weapons",
+      "tip": "Toggle visibility of Power-type {category} weapons."
+    },
+    "categorybreak": {
+      "label": "",
+      "tip": "{category} Weapons"
+    },
+    "onlyiconic": {
+      "label": "Show Only Iconic Weapons",
+      "tip": "Display only iconic weapons in the list."
+    },
+    "onlywall": {
+      "label": "Show Only Wall Weapons",
+      "tip": "Display only wall-mountable weapons."
+    },
+    "onlyinventory": {
+      "label": "Show Only Inventory Weapons",
+      "tip": "Display only the weapons you currently own in your inventory."
+    },
+    "weaponentry": {
+      "label": "{weapon_name}",
+      "tip": "TweakDBID: {id}\nType: {type}\nRarity: {rarity}\nManufacturer: {manufacturer}{iconic}{wall}"
+    },
+    "giveallwall": {
+      "label": "Give All Wall Weapons",
+      "tip": "Adds every wall-mountable weapon to your inventory."
+    },
+    "removeall": {
+      "label": "Remove All Weapons",
+      "tip": "Removes all weapons from your inventory."
+    },
+    "removeallrarity": {
+      "label": "Remove All Weapons by Rarity",
+      "tip": "Removes all weapons with rarity: {rarity}."
+    },
+    "givealliconic": {
+      "label": "Give All Iconic Weapons",
+      "tip": "Adds every iconic weapon to your inventory."
+    },
+    "givebycategory": {
+      "label": "Give Weapons by Category",
+      "tip": "Adds all weapons in category: {category}."
+    },
+    "givebyrarity": {
+      "label": "Give Weapons by Rarity",
+      "tip": "Adds all weapons with rarity: {rarity}."
+    },
+    "removebase": {
+      "label": "Remove Base Weapons",
+      "tip": "Removes all weapons with Common or Base rarity from your inventory."
+    },
+    "noweaponsfound": {
+      "label": "No Weapons Found",
+      "tip": "No weapons match the current filter."
+    },
+    "noinventoryweapons": {
+      "label": "No Weapons in Inventory",
+      "tip": "Your inventory does not currently contain any weapons."
+    }
+  },
+  "gamefacts": {
+    "title": "Game Fact Manager",
+    "category": {
+      "label": "Category",
+      "tip": "Choose a fact category to view."
+    },
+    "categories": {
+      "romance": "Romance",
+      "storyoutcomes": "Story Outcomes",
+      "skippystates": "Skippy States",
+      "gameplaytoggles": "Gameplay Toggles",
+      "worldevents": "World Events",
+      "censorship": "Censorship"
+    },
+    "flagsbreak": {
+      "label": "{category} Flags",
+      "tip": "Toggle fact flags for the {category} category."
+    },
+    "relationshiptracking": {
+      "label": "Relationship Tracking",
+      "tip": "Displays current relationship tracking facts."
+    },
+    "factentry": {
+      "label": "{name}",
+      "tip": "{desc}"
+    },
+    "facttoggle": {
+      "label": "{name}",
+      "tip": "{desc}"
+    },
+    "factnotification": {
+      "enabled": "{name}: Enabled",
+      "disabled": "{name}: Disabled"
+    },
+    "notavailable": {
+      "label": "N/A",
+      "tip": "No value set for this fact."
+    }
+  },
+  "worldtime": {
+    "title": "World Time",
+    "currenttime24": {
+      "label": "Current Time (24H)",
+      "tip": "Displays the current in-game time in 24-hour format."
+    },
+    "currenttime12": {
+      "label": "Current Time (12H)",
+      "tip": "Displays the current in-game time in 12-hour format with AM/PM."
+    },
+    "hour": {
+      "label": "Hour",
+      "tip": "Set custom hour value. ({formatted_time})"
+    },
+    "minute": {
+      "label": "Minute",
+      "tip": "Set custom minute value."
+    },
+    "second": {
+      "label": "Second",
+      "tip": "Set custom second value."
+    },
+    "synctopc": {
+      "label": "Sync to PC Time",
+      "tip": "Matches in-game time to your real-world PC time."
+    },
+    "quickset": {
+      "label": "Quick Set",
+      "tip": "Quickly set the game time to a preset hour."
+    },
+    "setmorning": {
+      "label": "Set Time: Morning",
+      "tip": "Sets time to 6:00 AM."
+    },
+    "setnoon": {
+      "label": "Set Time: Noon",
+      "tip": "Sets time to 12:00 PM."
+    },
+    "setafternoon": {
+      "label": "Set Time: Afternoon",
+      "tip": "Sets time to 3:00 PM."
+    },
+    "setevening": {
+      "label": "Set Time: Evening",
+      "tip": "Sets time to 6:00 PM."
+    },
+    "setnight": {
+      "label": "Set Time: Night",
+      "tip": "Sets time to 10:00 PM."
+    },
+    "skipmultiplier": {
+      "label": "Time Skip & Multiplier",
+      "tip": "Skip in-game days or adjust time skip speed."
+    },
+    "skipdays": {
+      "label": "Skip Days",
+      "tip": "How many in-game days to skip."
+    },
+    "skipstepspeed": {
+      "label": "Skip Step Speed",
+      "tip": "Controls how fast time skips. Higher = faster."
+    },
+    "startskipping": {
+      "label": "Start Skipping",
+      "tip": "Begin time skip over the specified number of days."
+    },
+    "freezefast": {
+      "label": "Freeze & Fast Forward",
+      "tip": "Freeze time or adjust day/night speed multipliers."
+    },
+    "freezetime": {
+      "label": "Freeze Time",
+      "tip": "Freezes the current game time."
+    },
+    "fasterdayspeed": {
+      "label": "Faster Day Speed",
+      "tip": "Enable and set daytime speed multiplier."
+    },
+    "fasternightspeed": {
+      "label": "Faster Night Speed",
+      "tip": "Enable and set nighttime speed multiplier."
+    },
+    "timelapse": {
+      "label": "Time Lapse",
+      "tip": "Continuously advance in-game time."
+    },
+    "enabletimelapse": {
+      "label": "Enable Time-Lapse",
+      "tip": "Enables continuous time advancement."
+    },
+    "timelapsemultiplier": {
+      "label": "Time-Lapse Multiplier",
+      "tip": "How fast time speeds forward during time-lapse."
+    }
+  },
+  "worldweather": {
+    "title": "World Weather",
+    "current": {
+      "label": "Current Weather:",
+      "tip": "Displays the current in-game weather preset."
+    },
+    "freeze": {
+      "label": "Freeze Weather",
+      "tip": "Prevents weather from changing naturally."
+    },
+    "random": {
+      "label": "Random Weather",
+      "tip": "Apply a random weather preset."
+    },
+    "reset": {
+      "label": "Reset Weather",
+      "tip": "Reset to default dynamic weather system."
+    },
+    "transitionduration": {
+      "label": "Transition Duration (s)",
+      "tip": "Weather transition time in seconds."
+    },
+    "weathertypebreak": {
+      "label": "Weather Type",
+      "tip": "Select and apply a specific weather type."
+    },
+    "weathertype": {
+      "label": "Weather Type",
+      "tip": "Change to this weather type."
+    },
+    "options": {
+      "sunny": "Sunny",
+      "lightclouds": "Light Clouds",
+      "cloudy": "Cloudy",
+      "heavyclouds": "Heavy Clouds",
+      "fog": "Fog",
+      "rain": "Rain",
+      "toxicrain": "Toxic Rain",
+      "pollution": "Pollution",
+      "sandstorm": "Sandstorm",
+      "deebblue": "Deeb Blue",
+      "lightRain": "Rain (Light)",
+      "squatmorning": "Squat Morning",
+      "cloudymorning": "Cloudy (Morning)",
+      "rainnight": "Rain (Night)",
+      "cloudscourier": "Clouds (Courier)"
+    }
+  },
+  "teleport": {
+    "title": "Teleport Menu",
+    "forwarddistance": {
+      "label": "Forward Distance",
+      "tip": "Set how far forward to teleport (in meters)."
+    },
+    "teleportforward": {
+      "label": "Teleport Forward",
+      "tip": "Teleport forward based on current direction."
+    },
+    "creator": {
+      "label": "Creator",
+      "tip": "Filter teleport locations by their creator."
+    },
+    "categoriesbreak": {
+      "label": "Teleport Categories",
+      "tip": "Browse available teleport categories."
+    },
+    "categorysubmenu": {
+      "label": "{category}",
+      "tip": "View teleport locations in {category}."
+    },
+    "selectedteleports": {
+      "label": "Selected Teleport Locations",
+      "tip": "List of teleport locations for the selected category and creator."
+    },
+    "teleportoption": {
+      "label": "{location_name}",
+      "tip": "Created by: {creator}\nTeleport to {location_name} in {category}."
+    },
+    "creator_all": "All"
+  },
+  "languagemenu": {
+    "label": "Select Language",
+    "tip": "Choose your preferred UI language.",
+    "reload": {
+    "label": "Refresh Languages",
+    "tip": "Refreshes the available language list to include newly added files."
+    }
+  },
+  "optionmanager": {
+    "dropdown_tip": "Tip: Press Enter or Click to expand and select option.",
+    "float_toggle_tip": "Tip: Use Left and Right arrow keys to switch value",
+    "color_tip": "Press Enter or Click to expand.\nUse Arrow keys to adjust color channels.",
+    "stringcycler_tip": "Tip: Use Left and Right arrow keys to switch value.",
+    "inttoggle_tip": "Tip: Use Left and Right arrow keys to switch value.",
+    "none": "None",
+    "on": "ON",
+    "off": "OFF"
   }
-
-
 }
