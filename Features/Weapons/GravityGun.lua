@@ -70,7 +70,7 @@ function GravityGun.Tick()
                 camOrigin.z + dir.z * grabDistance,
                 1.0
             )
-
+            
             teleportSystem:Teleport(heldObject, targetPos, EulerAngles.new(0, 0, 0))
         else
             print("[EasyTrainerGravityGun] Released object.")

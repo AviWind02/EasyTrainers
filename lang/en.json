@@ -69,6 +69,10 @@
       "label": "Quicksilver's Sandevistan",
       "tip": "Modifies your Sandevistan to feel like Quicksilver extreme slowdown when activated."
     },
+    "noclip": {
+      "label": "Noclip(No Collision)",
+      "tip": "Enables free movement through the world, ignoring collision and gravity. Gameplay restrictions are applied while active.\n\nKeyboard: W/S = Forward/Back, A/D = Strafe, Space = Up, Ctrl = Down, Shift = Boost, Mouse = Look\nController: Left Stick = Move, Right Stick = Look, RB = Up, LB = Down, LS Click = Boost"
+    },
     "wanted": {
       "label": "Wanted Level"
     },
@@ -986,8 +990,8 @@
     "label": "Select Language",
     "tip": "Choose your preferred UI language.",
     "reload": {
-    "label": "Refresh Languages",
-    "tip": "Refreshes the available language list to include newly added files."
+      "label": "Refresh Languages",
+      "tip": "Refreshes the available language list to include newly added files."
     }
   },
   "optionmanager": {

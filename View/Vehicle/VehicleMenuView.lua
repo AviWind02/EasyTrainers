@@ -35,12 +35,19 @@ end
 
 local VehicleDoorView = { title = L("vehiclemenu.vehicledoormenu.title"), view = VehicleDoorViewFunction }
 
+function test()
+    local player = Game.GetPlayer()
+    local vehicle = Game.GetMountedVehicle(player)
+    vehicle:EnableAirControl(true)
+end
+
 local function VehicleViewFunction()
     if Buttons.Submenu(L("vehiclemenu.vehiclelist.label"), VehicleListView, L("vehiclemenu.vehiclelist.tip")) then VehicleFeaures.enableVehicleSpawnerMode = false end
     if Buttons.Submenu(L("vehiclemenu.vehiclespawner.label"), VehicleListView, L("vehiclemenu.vehiclespawner.tip")) then VehicleFeaures.enableVehicleSpawnerMode = true end
     Buttons.Submenu(L("vehiclemenu.vehicleheadlights.label"), VehicleHeadLightView, L("vehiclemenu.vehicleheadlights.tip"))
     Buttons.Submenu(L("vehiclemenu.vehicledoors.label"), VehicleDoorView, L("vehiclemenu.vehicledoors.tip"))
     Buttons.Option(L("vehiclemenu.repairvehicle.label"), L("vehiclemenu.repairvehicle.tip"), Vehicle.Repairs.Tick)
+    test()
 end
 
 local VehicleView = { title = L("vehiclemenu.title"), view = VehicleViewFunction }

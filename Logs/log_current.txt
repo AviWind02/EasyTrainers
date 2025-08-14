@@ -1,28 +1,12 @@
-[2025-08-10 00:51:01] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
-[2025-08-10 00:51:01] [EasyTrainer] Initialization started
-[2025-08-10 00:51:01] [EasyTrainer] Game session States
-[2025-08-10 00:51:01] [EasyTrainer] Loading data...
-[2025-08-10 00:51:01] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
-[2025-08-10 00:51:01] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
-[2025-08-10 00:51:02] [EasyTrainerGeneralLoader] Loaded 4731 items.
-[2025-08-10 00:51:02] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
-[2025-08-10 00:51:02] [EasyTrainerTeleportLocations] Loaded 834 teleports
-[2025-08-10 00:51:02] [EasyTrainer] Init complete.
-[2025-08-10 00:51:03] [EasyTrainer] Game modules initialized.
-[2025-08-10 00:52:19] [Facts] judy_romanceable = 0
-[2025-08-10 00:52:19] [Facts] judy_romanceable = 0
-[2025-08-10 00:52:19] [Facts] sq030_judy_lover = 0
-[2025-08-10 00:52:19] [Facts] sq030_judy_lover = 0
-[2025-08-10 00:52:19] [Facts] panam_romanceable = 1
-[2025-08-10 00:52:19] [Facts] panam_romanceable = 1
-[2025-08-10 00:52:19] [Facts] sq027_panam_lover = 1
-[2025-08-10 00:52:19] [Facts] sq027_panam_lover = 1
-[2025-08-10 00:52:19] [Facts] river_romanceable = 0
-[2025-08-10 00:52:19] [Facts] river_romanceable = 0
-[2025-08-10 00:52:19] [Facts] sq029_river_lover = 0
-[2025-08-10 00:52:19] [Facts] sq029_river_lover = 0
-[2025-08-10 00:52:19] [Facts] kerry_romanceable = 1
-[2025-08-10 00:52:19] [Facts] kerry_romanceable = 1
-[2025-08-10 00:52:19] [Facts] sq028_kerry_lover = 1
-[2025-08-10 00:52:19] [Facts] sq028_kerry_lover = 1
-[2025-08-10 00:54:18] [EasyTrainerStatModifiers] ClearAll failed: context missing
+[2025-08-14 00:35:39] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
+[2025-08-14 00:35:39] [EasyTrainer] Initialization started
+[2025-08-14 00:35:39] [EasyTrainer] Game session States
+[2025-08-14 00:35:40] [EasyTrainer] Loading data...
+[2025-08-14 00:35:40] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
+[2025-08-14 00:35:40] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Added 0 new).
+[2025-08-14 00:35:40] [EasyTrainerGeneralLoader] Loaded 4731 items.
+[2025-08-14 00:35:40] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
+[2025-08-14 00:35:40] [EasyTrainerTeleportLocations] Loaded 834 teleports
+[2025-08-14 00:35:40] [EasyTrainer] Init complete.
+[2025-08-14 00:35:44] [EasyTrainer] Game modules initialized.
+[2025-08-14 00:41:58] [EasyTrainerStatModifiers] ClearAll failed: context missing

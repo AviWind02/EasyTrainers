@@ -65,6 +65,7 @@ function SelfTick.TickOtherFeatures()
     Self.SuperSpeed.Tick()
     Self.AirThrusterBoots.Tick()
     Self.AdvancedMobility.Tick()
+    Self.NoClip.Tick()
 end
 
 function SelfTick.TickHandler()
@@ -75,6 +76,7 @@ function SelfTick.TickHandler()
     SelfTick.TickUtility()
     SelfTick.TickWantedLevel()
     SelfTick.TickOtherFeatures()
+    
 end
 
 return SelfTick

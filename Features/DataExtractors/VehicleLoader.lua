@@ -104,6 +104,24 @@ function VehicleLoader:AddVehicleToList(id)
 
     return true
 end
+-- This function fixes the issue where twin tone wasn't available for all vehicles when set into the list
+function VehicleLoader:HandleTwinToneScan(this, wrappedMethod) -- Function taken from Make All Vehicles Unlockable - With TwinTone Fix Created by TheManualEnhancer
+
+    if this.scannedObject ~= nil then
+        local obj = this.scannedObject
+        if obj and obj:IsVehicle() and obj:GetRecord() then
+            local id = utils.SafeCall(function() return obj:GetRecord():GetID().value end)
+                or utils.SafeCall(function() return obj:GetRecord():GetRecordID().value end)
+
+            if id and not Game.GetVehicleSystem():IsVehiclePlayerUnlocked(TweakDBID.new(id)) then
+                this.twintoneAvailable = true
+                return true
+            end
+        end
+    end
+    return wrappedMethod()
+end
+
 
 
 function VehicleLoader:LoadAll()
@@ -135,14 +153,13 @@ function VehicleLoader:LoadAll()
             table.insert(self.vehicles, data)
             self.indexById[id] = data
 
-            -- Adding vehicles to the player list is breaking twin tone: Need to look into this
-            --if self:AddVehicleToList(id) then
-                --injectedCount = injectedCount + 1
-            --end
+            if self:AddVehicleToList(id) then
+                injectedCount = injectedCount + 1
+            end
         end
     end
 
-    Logger.Log(string.format("[EasyTrainerVehicleLoader] Loaded %d vehicles (Injected %d new).", #self.vehicles, injectedCount))
+    Logger.Log(string.format("[EasyTrainerVehicleLoader] Loaded %d vehicles (Added %d new).", #self.vehicles, injectedCount))
 end
 
 function VehicleLoader:GetAll()

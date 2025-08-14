@@ -7,6 +7,7 @@ SelfFeatures.AirThrusterBoots = require("Features/Self/AirThrusterBoots")
 SelfFeatures.CombatIgnore = require("Features/Self/CombatIgnore")
 SelfFeatures.AdvancedMobility = require("Features/Self/AdvancedMobility")
 SelfFeatures.WantedLevel = require("Features/Self/WantedLevel")
+SelfFeatures.NoClip = require("Features/Self/NoClip")
 
 SelfFeatures.StatModifiers = {
 	Movement = require("Features/Self/StatModifiers/Movement"),
