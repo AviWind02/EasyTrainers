@@ -1,12 +1,10 @@
-[2025-08-14 00:35:39] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
-[2025-08-14 00:35:39] [EasyTrainer] Initialization started
-[2025-08-14 00:35:39] [EasyTrainer] Game session States
-[2025-08-14 00:35:40] [EasyTrainer] Loading data...
-[2025-08-14 00:35:40] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
-[2025-08-14 00:35:40] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Added 0 new).
-[2025-08-14 00:35:40] [EasyTrainerGeneralLoader] Loaded 4731 items.
-[2025-08-14 00:35:40] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
-[2025-08-14 00:35:40] [EasyTrainerTeleportLocations] Loaded 834 teleports
-[2025-08-14 00:35:40] [EasyTrainer] Init complete.
-[2025-08-14 00:35:44] [EasyTrainer] Game modules initialized.
-[2025-08-14 00:41:58] [EasyTrainerStatModifiers] ClearAll failed: context missing
+[2025-08-16 16:21:44] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
+[2025-08-16 16:21:44] [EasyTrainer] Initialization started
+[2025-08-16 16:21:44] [EasyTrainer] Game session States
+[2025-08-16 16:21:44] [EasyTrainer] Loading data...
+[2025-08-16 16:21:44] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
+[2025-08-16 16:21:44] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Added 0 new).
+[2025-08-16 16:21:44] [EasyTrainerGeneralLoader] Loaded 4731 items.
+[2025-08-16 16:21:44] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
+[2025-08-16 16:21:51] [EasyTrainer] Game modules initialized.
+[2025-08-16 16:25:26] [EasyTrainerStatModifiers] ClearAll failed: context missing

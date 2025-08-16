@@ -11,12 +11,14 @@ local Gameplay = require("Gameplay")
 
 local SelfTick = require("Features/Self/Tick")
 local WeaponsTick = require("Features/Weapons/Tick")
+local TeleportTick = require("Features/Teleports/Teleport")
 
 local WeaponLoader = require("Features/DataExtractors/WeaponLoader")
 local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
 local GeneralLoader = require("Features/DataExtractors/GeneralLoader")
 local PerkLoader = require("Features/DataExtractors/PerkLoader")
-local Telport = require("Features/Teleports/TeleportLocations")
+local Teleport = require("Features/Teleports/TeleportLocations")
+
 local SelfNoClip = require("Features/Self/NoClip")
 
 GameState = {}
@@ -45,53 +47,10 @@ end
 
 local function UpdateSessionState()
     GameState.isLoaded = Session.IsLoaded()
+    GameState.IsPaused = Session.IsPaused() 
+    GameState.IsDead = Session.IsDead()
     TryLoadModules()
 end
-
-
-function AddAllVehiclesToPlayerList()
-    local listID = TweakDBID.new("Vehicle.vehicle_list.list")
-    local vehList = TweakDB:GetFlat(listID)
-    local allVehs = TweakDB:GetRecords("gamedataVehicle_Record")
-
-    if type(vehList) ~= "table" then
-        Logger.Log("[EasyTrainerVehicleList] Failed to read vehicle list.")
-        return
-    end
-
-    Logger.Log("[EasyTrainerVehicleList] Vehicles in list before update: " .. tostring(#vehList))
-
-    for _, v in ipairs(allVehs) do
-        local allVehID =
-            (v.GetRecordID and v:GetRecordID() and v:GetRecordID().value)
-            or (v.GetID and v:GetID() and v:GetID().value)
-            or nil
-
-        if allVehID
-        and not string.find(allVehID:lower(), "broke")
-        and not string.find(allVehID:lower(), "disable")
-        and not string.find(allVehID:lower(), "interact")
-        and not string.find(allVehID:lower(), "vehicle.q")
-        then
-            local foundListVeh = false
-            for _, k in ipairs(vehList) do
-                if k.value and k.value == allVehID then
-                    foundListVeh = true
-                    break
-                end
-            end
-
-            if not foundListVeh then
-                table.insert(vehList, TweakDBID.new(allVehID))
-                TweakDB:SetFlat("Vehicle.vehicle_list.list", vehList)
-                TweakDB:Update("Vehicle.vehicle_list.list")
-            end
-        end
-    end
-
-    Logger.Log("[EasyTrainerVehicleList] Vehicles in list after update: " .. tostring(#vehList))
-end
-
 
 registerForEvent("onInit", function()
     
@@ -112,26 +71,22 @@ registerForEvent("onInit", function()
     VehicleLoader:LoadAll()
     GeneralLoader:LoadAll()
     PerkLoader:LoadAll()
-    Telport.LoadAll()
+    Teleport.LoadAll()
 
+    Logger.Log("[EasyTrainer] Registering overrides...")
     Override("scannerDetailsGameController", "ShouldDisplayTwintoneTab", function(this, wrappedMethod)
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)
     end)
 
-
+    Logger.Log("[EasyTrainer] Registering observers...")
     Observe("BaseProjectile", "ProjectileHit", function(self, eventData)
         WeaponsTick.HandleProjectileHit(self, eventData)
     end)
     
     Observe("PlayerPuppet", "OnAction", function(_, action)
-        local actionName = Game.NameToString(action:GetName(action))
-        local actionType = action:GetType(action).value
         Gameplay.WeaponInput.HandleInputAction(action)
         SelfNoClip.HandleMouseLook(action)
-        -- Draw.InputHandler.LogAction(actionName, actionType)
     end)
-
-
 
     Logger.Log("[EasyTrainer] Init complete.")
 end)
@@ -140,14 +95,19 @@ Draw.InputHandler.RegisterInput()
 
 registerForEvent("onUpdate", function(deltaTime)  
 
+     if not GameState.isLoaded or GameState.IsPaused or GameState.IsDead then
+        return
+    end
+
 
     SelfTick.TickHandler()
     WeaponsTick.TickHandler(deltaTime)
     World.WorldTime.Update(deltaTime)
     World.WorldWeather.Update()
     Vehicle.Headlights.UpdateRGB(deltaTime)
-
+    TeleportTick.Tick(deltaTime)
     Cron.Update(deltaTime)
+
 end)
 
 

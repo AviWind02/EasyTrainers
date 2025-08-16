@@ -3,8 +3,6 @@ local UI = {}
 local Color = {}
 function Color.new(c) return { r = c.Red, g = c.Green, b = c.Blue, a = c.Alpha } end
 
-
-
 UI.ColPalette = {
     PureWhite = 0xFFFFFFFF,
     DesaturatedBlueGray = 0xFFA08C78,
@@ -52,26 +50,25 @@ UI.ColPalette = {
     SteelBorderGray = 0xFF505A6E,
     CoolSkyBlue = 0xFF3A6EA5,
     HotCyberPink = 0xFFFF1493,
-    
 }
 
+UI.Colors = {
+    Text = UI.ColPalette.PureWhite,
+    MutedText = UI.ColPalette.DesaturatedSlateBlue,
 
-UI.Colors={
-    Text=UI.ColPalette.PureWhite,
-    MutedText=UI.ColPalette.DesaturatedSlateBlue,
+    Background = UI.ColPalette.DeepIndigoBlack,
+    FrameBg = UI.ColPalette.DarkCharcoal,
 
-    Background=UI.ColPalette.DeepIndigoBlack,
-    FrameBg=UI.ColPalette.DarkCharcoal,
+    Border = UI.ColPalette.SteelBorderGray,
+    Highlight = UI.ColPalette.CoolSkyBlue,
+    ActiveHighlight = UI.ColPalette.TranslucentAqua,
+    HoverBg = UI.ColPalette.SoftCyanHighlight,
+    Active = UI.ColPalette.HotCyberPink,
+    Grab = UI.ColPalette.NeonTeal,
 
-    Border=UI.ColPalette.SteelBorderGray,
-    Highlight=UI.ColPalette.CoolSkyBlue,
-    ActiveHighlight=UI.ColPalette.TranslucentAqua,
-    HoverBg=UI.ColPalette.SoftCyanHighlight,
-    Active=UI.ColPalette.HotCyberPink,
-    Grab=UI.ColPalette.NeonTeal,
-
-    Transparent=UI.ColPalette.Transparent
+    Transparent = UI.ColPalette.Transparent
 }
+
 UI.Layout = {
     Padding = 14.0,
     FrameRounding = 6.0,
@@ -90,13 +87,19 @@ UI.Layout = {
 UI.Toggle = {
     OnColor = UI.ColPalette.SoftWhite,
     OffColor = UI.ColPalette.SoftYellow,
-    Size = 10.0,
-    Rounding = 4.0,
+    Size = 18.0,
+    Rounding = 6.0,
 
     FramePadding = UI.Layout.FramePadding,
     ItemSpacing = UI.Layout.ItemSpacing,
     BorderSize = 1.0,
     ToggleOffsetX = 4.0,
+
+    Inset = 2.0,
+    StatePadding = 6.0,
+    StateSpacing = 8.0,
+    BorderColor = UI.Colors.Text,
+    FrameBg = UI.Colors.FrameBg
 }
 
 UI.Slider = {
@@ -135,8 +138,9 @@ UI.Dropdown = {
     LabelOffsetX = UI.Layout.LabelOffsetX,
     SelectedColor = UI.Toggle.OnColor,
     TextColor = UI.Colors.Text,
-}
 
+    FramesPerOption = 3
+}
 
 UI.Radio = {
     Radius = 6.0,
@@ -144,6 +148,8 @@ UI.Radio = {
     Segments = 20,
     SelectedColor = UI.Toggle.OnColor,
     UnselectedColor = UI.Colors.Text,
+
+    LineThickness = 1.5
 }
 
 UI.Header = {
@@ -160,7 +166,7 @@ UI.Footer = {
     BackgroundColor = 0xFF191926,
     TextColor = 0xFFAAAAAA,
     FontSize = 12,
-    Text = "vPreview Build 2 | By Avi",
+    Text = "vAlpha1 | By Avi",
 }
 
 UI.Scroll = {
@@ -170,6 +176,36 @@ UI.Scroll = {
 
 UI.Animation = {
     SmoothSpeed = 0.12,
+}
+
+UI.OptionRow = {
+    HoverBg = UI.Colors.HoverBg,
+    HighlightBg = UI.Colors.Highlight,
+    Text = UI.Colors.Text,
+    MutedText = UI.Colors.MutedText,
+    Rounding = UI.Layout.FrameRounding,
+    LabelOffsetX = UI.Layout.LabelOffsetX
+}
+
+UI.Numeric = {
+    BoxFramePadding = 6.0,
+    BoxTextPadding = 3.0,
+    ToggleSize = 18.0,
+    ToggleSpacing = 10.0,
+    Decimals = 2,
+    FrameBg = UI.Colors.FrameBg
+}
+
+UI.StringCycler = {
+    FramePadding = 6.0,
+    TextPadding = 3.0,
+    BoxRounding = UI.Layout.FrameRounding,
+    ValueColor = UI.Colors.Highlight,
+    FrameBg = UI.Colors.FrameBg
+}
+
+UI.Submenu = {
+    Arrow = IconGlyphs.ArrowRight
 }
 
 return UI

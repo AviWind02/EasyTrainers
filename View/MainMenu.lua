@@ -10,7 +10,8 @@ local TeleportView = require("View/World/TeleportView")
 local WeatherView = require("View/World/WeatherView")
 local TimeView = require("View/World/TimeView")
 local GameFactsView = require("View/World/FactView")
-local TranslationsView = require("View/Settings/Translations")
+local TranslationsView = require("View/Settings/TranslationsView")
+local StyleSettingsView = require("View/Settings/SettingsView")
 
 
 local Vehicle = require("Features/Vehicle")
@@ -79,6 +80,7 @@ local function MainMenuView()
     Draw.Options.Submenu(L("mainmenu.time.label"), TimeView, tip("mainmenu.time.tip"))
     Draw.Options.Submenu(L("mainmenu.weather.label"), WeatherView, tip("mainmenu.weather.tip"))
     Draw.Options.Submenu(L("mainmenu.translations.label"), TranslationsView, tip("mainmenu.translations.tip"))
+    Draw.Options.Submenu("Settings Menu", StyleSettingsView, "Adjust menu layout, slider, toggle, colorpicker styles, etc.")
 
     -- Draw.Options.Submenu(L("mainmenu.test"), testMenu, tip("mainmenu.test.tip"))
 end

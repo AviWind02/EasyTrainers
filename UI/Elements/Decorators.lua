@@ -13,16 +13,12 @@ function Decorators.DrawTitleBar(menuX, menuY, menuW)
     local w = menuW
     local h = header.Height
 
-    -- Background
     DrawHelpers.RectFilled(x, y, w, h, header.Bg)
 
-    -- Main title (top-left, shifted up)
-    local staticText = header.Text
     local titleX = x + 10
     local titleY = y + 8 
-    DrawHelpers.Text(titleX, titleY, header.TextColor, staticText, header.FontSize)
+    DrawHelpers.Text(titleX, titleY, header.TextColor, header.Text, header.FontSize)
 
-    -- Breadcrumb (bottom-right, shifted down)
     local breadcrumb = L(Submenus.GetBreadcrumbTitle()) or ""
     local breadcrumbWidth = ImGui.CalcTextSize(breadcrumb)
     local breadcrumbX = x + w - breadcrumbWidth - 10
@@ -54,15 +50,12 @@ function Decorators.DrawFooter(menuX, menuY, menuW, menuH, maxVisible)
     local leftText = footer.Text
     local rightText = string.format("Opt: %d | Pg: %d/%d", current, currentPage, totalPages)
 
-    -- Divider line
     DrawHelpers.Line(x, y, x + w, y, UI.Colors.Border, 1.0)
 
-    -- Text positions
     local leftX = x + 10
     local rightX = x + w - ImGui.CalcTextSize(rightText) + 5
     local textY = y + (h - footer.FontSize) * 0.5
 
-    -- Text rendering
     DrawHelpers.Text(leftX, textY, footer.TextColor, leftText, footer.FontSize)
     DrawHelpers.Text(rightX, textY, footer.TextColor, rightText, footer.FontSize)
 end

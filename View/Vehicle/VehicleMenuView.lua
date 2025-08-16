@@ -47,7 +47,7 @@ local function VehicleViewFunction()
     Buttons.Submenu(L("vehiclemenu.vehicleheadlights.label"), VehicleHeadLightView, L("vehiclemenu.vehicleheadlights.tip"))
     Buttons.Submenu(L("vehiclemenu.vehicledoors.label"), VehicleDoorView, L("vehiclemenu.vehicledoors.tip"))
     Buttons.Option(L("vehiclemenu.repairvehicle.label"), L("vehiclemenu.repairvehicle.tip"), Vehicle.Repairs.Tick)
-    test()
+    -- test()
 end
 
 local VehicleView = { title = L("vehiclemenu.title"), view = VehicleViewFunction }

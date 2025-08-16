@@ -1,27 +1,29 @@
-
 local InfoBox = {}
 
 local UI = require("UI/Core/Style")
 local DrawHelpers = require("UI/Core/DrawHelpers")
-local OptionManager = require("UI/Elements/OptionManager")
 
 InfoBox.currentText = ""
 InfoBox.lastText = ""
 InfoBox.animatedText = ""
 InfoBox.charIndex = 0
 InfoBox.animStartTime = 0.0
+InfoBox.isFallback = false
+InfoBox.lastFallbackTime = 0.0
 
 local charsPerSecond = 100.0
+local _seeded = false
 
-function InfoBox.SetText(text)
-    if text ~= InfoBox.currentText then
-        InfoBox.currentText = text
-    end
+local function _seedRngOnce()
+    if _seeded then return end
+    local t = tostring(os.time()):reverse()
+    math.randomseed(tonumber(t:sub(1, 6)))
+    _seeded = true
 end
 
 local lastTipIndex = -1
-
 function InfoBox.GetRandomFallbackTip()
+    _seedRngOnce()
     local tips = {
         "Just don't run straight through the main story. Side jobs and gigs are a big part of the game, mix it up.",
         "Don't rush it. Don't drive to objectives when you have the chance - a stroll through Night City is a fuckin' experience, man.",
@@ -39,24 +41,40 @@ function InfoBox.GetRandomFallbackTip()
         "Some in-game actions get blocked while using arrow keys. Switch to controller input to avoid it.",
         "You can hold D-Pad Right + A to open EasyTrainer on controller. (Not configurable right now.)"
     }
-
     local newIndex
-    repeat
-        newIndex = math.random(1, #tips)
-    until newIndex ~= lastTipIndex
-
+    repeat newIndex = math.random(1, #tips) until newIndex ~= lastTipIndex
     lastTipIndex = newIndex
     return tips[newIndex]
 end
 
+local function _setFallback(now)
+    InfoBox.currentText = InfoBox.GetRandomFallbackTip()
+    InfoBox.isFallback = true
+    InfoBox.lastFallbackTime = now or ImGui.GetTime()
+end
+
+function InfoBox.SetText(text)
+    local hasText = (type(text) == "string") and text:match("%S") ~= nil
+    if hasText then
+        if text ~= InfoBox.currentText then
+            InfoBox.currentText = text
+            InfoBox.isFallback = false
+        end
+    else
+        if not InfoBox.isFallback then
+            _setFallback()
+        end
+    end
+end
 
 function InfoBox.Render(menuX, menuY, menuW, menuH)
-   if InfoBox.currentText == "" or InfoBox.currentText == nil then
-        InfoBox.currentText = InfoBox.GetRandomFallbackTip()
-    end
-
-
     local now = ImGui.GetTime()
+    local rotateSec = (UI.InfoBox and UI.InfoBox.FallbackRotateSeconds) or 10.0
+    if (not InfoBox.currentText) or InfoBox.currentText == "" then
+        _setFallback(now)
+    elseif InfoBox.isFallback and (now - InfoBox.lastFallbackTime >= rotateSec) then
+        _setFallback(now)
+    end
 
     if InfoBox.currentText ~= InfoBox.lastText then
         InfoBox.lastText = InfoBox.currentText
@@ -75,7 +93,6 @@ function InfoBox.Render(menuX, menuY, menuW, menuH)
     local spacing = 15.0
     local screenW, screenH = GetDisplayResolution()
 
-    
     local boxW = menuW
     local textW, textH = ImGui.CalcTextSize(InfoBox.animatedText, false, boxW - 2 * pad)
     local boxH = textH + 2 * pad
@@ -91,17 +108,13 @@ function InfoBox.Render(menuX, menuY, menuW, menuH)
     ImGui.PushStyleVar(ImGuiStyleVar.WindowRounding, UI.Layout.FrameRounding)
 
     ImGui.Begin("##InfoBoxWindow", ImGuiWindowFlags.NoDecoration + ImGuiWindowFlags.NoInputs + ImGuiWindowFlags.NoSavedSettings)
-    
+
     local winX, winY = ImGui.GetWindowPos()
     local wrapWidth = boxW - 2 * pad
-
     DrawHelpers.TextWrapped(winX + pad, winY + pad, UI.Colors.Text, InfoBox.animatedText, wrapWidth)
-
 
     ImGui.End()
     ImGui.PopStyleVar()
 end
-
-
 
 return InfoBox
