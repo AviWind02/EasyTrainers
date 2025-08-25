@@ -67,7 +67,7 @@ local function _drawRight(pos, color, text)
 end
 
 local function _clickedByMouse(hovered)
-    return Controls.overlayOpen and hovered and ImGui.IsMouseClicked(0)
+    return hovered and ImGui.IsMouseClicked(0)
 end
 
 function OptionManager.RawOption(left, center, right, textColor, highlightColor)
@@ -76,11 +76,11 @@ function OptionManager.RawOption(left, center, right, textColor, highlightColor)
     if not pos then return false end
     local hovered = _mouseHovered(pos)
 
-    if Controls.overlayOpen and hovered and ImGui.IsMouseClicked(0) then
+    if  hovered and ImGui.IsMouseClicked(0) then
         Submenus.currentOption = Submenus.optionIndex
     end
 
-    if hovered and Controls.overlayOpen then
+    if hovered then
         DrawHelpers.RectFilled(pos.x, pos.y, pos.w, pos.h, UI.OptionRow.HoverBg, UI.OptionRow.Rounding)
     end
 

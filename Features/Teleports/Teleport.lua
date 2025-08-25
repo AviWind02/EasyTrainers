@@ -47,7 +47,6 @@ function Teleport.GetClosestPosition(list)
     return nearest, nearestDist
 end
 
-
 function Teleport.TeleportToWaypointMarker(notify)
     local ms = Game.GetMappinSystem()
     if not ms then return false end
@@ -93,6 +92,36 @@ function Teleport.TeleportToQuestMarker(notify)
     Teleport.TeleportEntity(player, pos)
     if notify then Notification.Push("Teleported to tracked quest objective.") end
     return true
+end
+
+function Teleport.GetPlayerPosition()
+    local player = Game.GetPlayer()
+    if not player then return nil end
+    return player:GetWorldPosition()
+end
+
+function Teleport.GetForwardOffset(distance)
+    local player = Game.GetPlayer()
+    if not player then return nil end
+
+    local pos = player:GetWorldPosition()
+    local rot = player:GetWorldOrientation():ToEulerAngles()
+
+    local yaw = rot.yaw
+    local yawRad = math.rad(yaw)
+
+    local xOffset = distance * math.sin(yawRad) * -1.0
+    local yOffset = distance * math.cos(yawRad)
+
+    return Vector4.new(pos.x + xOffset, pos.y + yOffset, pos.z, 1.0)
+end
+
+function Teleport.TeleportPlayerTo(x, y, z)
+    local player = Game.GetPlayer()
+    if not player then return end
+    local facing = player:GetWorldOrientation():ToEulerAngles()
+    local pos = Vector4.new(x, y, z, 1.0)
+    Game.GetTeleportationFacility():Teleport(player, pos, facing)
 end
 
 local tickTimer = 0
@@ -157,39 +186,6 @@ local function GetNearestDropPoint()
     else
         print("[DropPoint] None found")
     end
-end
-
-
-
-
-function Teleport.GetPlayerPosition()
-    local player = Game.GetPlayer()
-    if not player then return nil end
-    return player:GetWorldPosition()
-end
-
-function Teleport.GetForwardOffset(distance)
-    local player = Game.GetPlayer()
-    if not player then return nil end
-
-    local pos = player:GetWorldPosition()
-    local rot = player:GetWorldOrientation():ToEulerAngles()
-
-    local yaw = rot.yaw
-    local yawRad = math.rad(yaw)
-
-    local xOffset = distance * math.sin(yawRad) * -1.0
-    local yOffset = distance * math.cos(yawRad)
-
-    return Vector4.new(pos.x + xOffset, pos.y + yOffset, pos.z, 1.0)
-end
-
-function Teleport.TeleportPlayerTo(x, y, z)
-    local player = Game.GetPlayer()
-    if not player then return end
-    local facing = player:GetWorldOrientation():ToEulerAngles()
-    local pos = Vector4.new(x, y, z, 1.0)
-    Game.GetTeleportationFacility():Teleport(player, pos, facing)
 end
 
 return Teleport

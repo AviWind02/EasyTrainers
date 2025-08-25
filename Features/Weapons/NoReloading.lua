@@ -55,7 +55,7 @@ function NoReloading.Tick(deltaTime)
                 NoReloading.SetNoReloading(true)
                 NoReloading.SetNoReloading(false)
             else
-                Draw.Notifier.Push("This is not a ranged weapon. No Reload won't apply.", 3.5, "Auto", "warning")
+                -- Draw.Notifier.Push("This is not a ranged weapon. No Reload won't apply.", 3.5, "Auto", "warning")
             end
         end
     end

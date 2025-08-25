@@ -14,7 +14,7 @@ local quickTeleport = { index = 1, expanded = false }
 local quickOptions = {}
 
 local showCategoryDistance = { value = true }
-local showQuickDistance = { value = false }
+local showQuickDistance = { value = true }
 
 -- Settings view
 local function TeleportSettingsView()

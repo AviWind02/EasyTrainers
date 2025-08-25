@@ -1,10 +1,18 @@
-[2025-08-16 16:21:44] [EasyTrainerLogger] Logger initialized. Writing to log_6.txt and log_current.txt
-[2025-08-16 16:21:44] [EasyTrainer] Initialization started
-[2025-08-16 16:21:44] [EasyTrainer] Game session States
-[2025-08-16 16:21:44] [EasyTrainer] Loading data...
-[2025-08-16 16:21:44] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
-[2025-08-16 16:21:44] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Added 0 new).
-[2025-08-16 16:21:44] [EasyTrainerGeneralLoader] Loaded 4731 items.
-[2025-08-16 16:21:44] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
-[2025-08-16 16:21:51] [EasyTrainer] Game modules initialized.
-[2025-08-16 16:25:26] [EasyTrainerStatModifiers] ClearAll failed: context missing
+[2025-08-22 20:14:35] [EasyTrainer] Logger initialized. Writing to log_6.txt and log_current.txt
+[2025-08-22 20:14:35] Initialization started
+[2025-08-22 20:14:35] Game session States
+[2025-08-22 20:14:35] Loading data...
+[2025-08-22 20:14:36] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
+[2025-08-22 20:14:36] [EasyTrainerVehicleLoader] Loaded 554 vehicles (Added 443 new).
+[2025-08-22 20:14:36] [EasyTrainerGeneralLoader] Loaded 4731 items.
+[2025-08-22 20:14:36] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
+[2025-08-22 20:14:37] [EasyTrainerTeleportLocations] Loaded 834 teleports.
+[2025-08-22 20:14:37] Registering overrides...
+[2025-08-22 20:14:37] Registering observers...
+[2025-08-22 20:14:37] Init complete.
+[2025-08-22 20:15:50] Game modules initialized.
+[2025-08-22 20:18:44] [EasyTrainerSelf] WantedLevel - Hold Wanted Level enabled (5)
+[2025-08-22 20:19:38] [EasyTrainerSelf] WantedLevel - Hold Wanted Level disabled
+[2025-08-22 20:19:40] WantedLevel - Clear Wanted used
+[2025-08-22 20:19:40] [EasyTrainerPrevention] Police system is disabled.
+[2025-08-22 20:19:48] [EasyTrainerStatModifiers] ClearAll failed: context missing

@@ -1,3 +1,4 @@
+local Logger = require("Core/Logger")
 local json = {
     decode = json.decode,
     encode = json.encode
@@ -22,7 +23,7 @@ function Language.Load(langCode)
 
     local file = io.open(path, "r")
     if not file then
-        print("[Language] Failed to open: " .. path)
+        Logger.Log("Failed to open: " .. path)
         return false
     end
 
@@ -37,7 +38,7 @@ function Language.Load(langCode)
         Language.translations = data
         return true
     else
-        print("[Language] Failed to parse: " .. path)
+         Logger.Log("Failed to parse: " .. path)
         return false
     end
 end

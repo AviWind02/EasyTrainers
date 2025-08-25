@@ -5,7 +5,7 @@ local VehicleListView = require("View/Vehicle/VehicleListView")
 local VehicleHeadLightView = require("View/Vehicle/VehicleHeadLightView")
 local VehicleFeaures = require("Features/Vehicle")
 
-local Gameplay = require("Gameplay").StatModifiers
+local Gameplay = require("Gameplay")
 
 local doorStateRef = { index = 1, expanded = false }
 local doorStateOptions = { L("vehiclemenu.vehicledoormenu.doorstateoptions.open"), L("vehiclemenu.vehicledoormenu.doorstateoptions.closed"), L("vehiclemenu.vehicledoormenu.doorstateoptions.detached") }
@@ -47,7 +47,9 @@ local function VehicleViewFunction()
     Buttons.Submenu(L("vehiclemenu.vehicleheadlights.label"), VehicleHeadLightView, L("vehiclemenu.vehicleheadlights.tip"))
     Buttons.Submenu(L("vehiclemenu.vehicledoors.label"), VehicleDoorView, L("vehiclemenu.vehicledoors.tip"))
     Buttons.Option(L("vehiclemenu.repairvehicle.label"), L("vehiclemenu.repairvehicle.tip"), Vehicle.Repairs.Tick)
-    -- test()
+    Buttons.Option(L("vehiclemenu.basilisk.name"), L("vehiclemenu.basilisk.tip"), function()
+        VehicleFeaures.Spawner.RequestVehicle("Vehicle.v_militech_basilisk_militech", 5)
+    end)
 end
 
 local VehicleView = { title = L("vehiclemenu.title"), view = VehicleViewFunction }

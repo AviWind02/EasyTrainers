@@ -57,6 +57,10 @@
       "label": "Super Speed",
       "tip": "Enables rapid movement via time dilation.\nTip: Combine with Player Speed Multiplier for better effect."
     },
+    "infinitejump": {
+      "label": "Infinite Jumps",
+      "tip": "Allows unlimited mid-air jumps.\n\nRequires Reinforced Tendons cyberware to be equipped.\nSave and reload after toggling to apply or remove the effect."
+    },
     "playerspeedmultiplier": {
       "label": "Player Speed Multiplier",
       "tip": "Scales the player's top movement speed."
@@ -70,7 +74,7 @@
       "tip": "Modifies your Sandevistan to feel like Quicksilver extreme slowdown when activated."
     },
     "noclip": {
-      "label": "Noclip(No Collision)",
+      "label": "Noclip",
       "tip": "Enables free movement through the world, ignoring collision and gravity. Gameplay restrictions are applied while active.\n\nKeyboard: W/S = Forward/Back, A/D = Strafe, Space = Up, Ctrl = Down, Shift = Boost, Mouse = Look\nController: Left Stick = Move, Right Stick = Look, RB = Up, LB = Down, LS Click = Boost"
     },
     "wanted": {
@@ -562,6 +566,10 @@
     "vehiclelist": {
       "label": "Vehicle List",
       "tip": "View all vehicles and toggle which ones are enabled or disabled in your owned vehicle menu."
+    },
+    "basilisk": {
+      "name": "Militech Basilisk",
+      "tip": "Ever wanted to drive a tank in Cyberpunk? Need to spice up your playthrough? Spawn a Basilisk to cruise Night City—or roll through Dogtown in the safest ride around."
     },
     "vehiclespawner": {
       "label": "Vehicle Spawner",

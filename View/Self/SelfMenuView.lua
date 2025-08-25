@@ -12,6 +12,7 @@ local function SelfViewFunction()
     Buttons.Float(L("self.jumpheightmultiplier.label"), Self.StatModifiers.Movement.jumpMultiplier, tip("self.jumpheightmultiplier.tip"))
     Buttons.Toggle(L("self.quicksilversandevistan.label"), Self.StatModifiers.Movement.toggleQuicksilver, tip("self.quicksilversandevistan.tip"))
     Buttons.Toggle(L("self.noclip.label"), Self.NoClip.toggleNoClip, tip("self.noclip.tip"))
+    Buttons.Toggle(L("self.infinitejump.label"), Self.InfiniteJumps.enabled, tip("self.infinitejump.tip")) 
 
     Buttons.Break(L("self.wanted.label"))
     Buttons.Toggle(L("self.neverwanted.label"), Self.WantedLevel.tickNeverWanted, tip("self.neverwanted.tip"))

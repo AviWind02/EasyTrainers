@@ -62,7 +62,7 @@ function Logger.Log(msg)
     local timestamped = GetTimestamp() .. " " .. msg
     table.insert(Logger.logWindow, timestamped)
     WriteToFile(timestamped)
-    print(msg)
+    print("[EasyTrainer] " .. msg)
 end
 
 function Logger.Initialize()
@@ -74,7 +74,7 @@ function Logger.Initialize()
     local clear = io.open(Logger.currentLogFile, "w")
     if clear then clear:close() end
 
-    Logger.Log("[EasyTrainerLogger] Logger initialized. Writing to log_" .. index .. ".txt and log_current.txt")
+    Logger.Log("[EasyTrainer] Logger initialized. Writing to log_" .. index .. ".txt and log_current.txt")
 end
 
 -- Draw log window

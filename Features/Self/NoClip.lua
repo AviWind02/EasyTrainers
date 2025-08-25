@@ -3,7 +3,7 @@ local Teleport = require("Features/Teleports/Teleport")
 
 local function GetETInput()
     if not ETInput then
-        ETInput = EasyTrainerInputHandler.new()
+        ETInput = EasyInputHandler.new()
     end
     return ETInput
 end

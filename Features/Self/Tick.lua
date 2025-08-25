@@ -11,7 +11,8 @@ function SelfTick.TickMovement()
    StatModifiers.HandleDynamicStatModifierToggle(Self.StatModifiers.Movement.jumpMultiplier, Self.StatModifiers.Movement.SetSuperJump)
    StatModifiers.HandleDynamicStatModifierToggle(Self.StatModifiers.Movement.sandevistanTimeScaleMultiplier, Self.StatModifiers.Movement.SetSandevistanTimeScale)
    StatModifiers.HandleDynamicStatModifierToggle(Self.StatModifiers.Movement.sandevistanDurationMultiplier, Self.StatModifiers.Movement.SetSandevistanDuration)
-    
+   StatModifiers.HandleStatModifierToggle(Self.StatModifiers.Movement.canJumpToggle, Self.StatModifiers.Movement.SetCanJump)
+
     StatModifiers.HandleStatModifierToggle(Self.StatModifiers.Movement.toggleQuicksilver, Self.StatModifiers.Movement.SetQuicksilver)
 end
 
@@ -66,6 +67,7 @@ function SelfTick.TickOtherFeatures()
     Self.AirThrusterBoots.Tick()
     Self.AdvancedMobility.Tick()
     Self.NoClip.Tick()
+    Self.InfiniteJumps.Tick()
 end
 
 function SelfTick.TickHandler()

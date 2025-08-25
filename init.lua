@@ -36,7 +36,7 @@ local function TryLoadModules()
         World = require("Features/World")
         Vehicle = require("Features/Vehicle")
 
-        Logger.Log("[EasyTrainer] Game modules initialized.")
+        Logger.Log("Game modules initialized.")
     end
 end
 
@@ -55,30 +55,30 @@ end
 registerForEvent("onInit", function()
     
     Logger.Initialize()
-    Logger.Log("[EasyTrainer] Initialization started")
+    Logger.Log("Initialization started")
     Language.Load(config and config.Lang or "en")
 
     Cron.After(0.3, GetGameState)
     Session.Listen(UpdateSessionState)
 
-    Logger.Log("[EasyTrainer] Game session States")
+    Logger.Log("Game session States")
 
     Cron.Every(0.3, UpdateSessionState)
 
 
-    Logger.Log("[EasyTrainer] Loading data...")
+    Logger.Log("Loading data...")
     WeaponLoader:LoadAll()
     VehicleLoader:LoadAll()
     GeneralLoader:LoadAll()
     PerkLoader:LoadAll()
     Teleport.LoadAll()
 
-    Logger.Log("[EasyTrainer] Registering overrides...")
+    Logger.Log("Registering overrides...")
     Override("scannerDetailsGameController", "ShouldDisplayTwintoneTab", function(this, wrappedMethod)
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)
     end)
 
-    Logger.Log("[EasyTrainer] Registering observers...")
+    Logger.Log("Registering observers...")
     Observe("BaseProjectile", "ProjectileHit", function(self, eventData)
         WeaponsTick.HandleProjectileHit(self, eventData)
     end)
@@ -88,7 +88,7 @@ registerForEvent("onInit", function()
         SelfNoClip.HandleMouseLook(action)
     end)
 
-    Logger.Log("[EasyTrainer] Init complete.")
+    Logger.Log("Init complete.")
 end)
 
 Draw.InputHandler.RegisterInput()

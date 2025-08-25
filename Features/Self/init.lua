@@ -8,6 +8,7 @@ SelfFeatures.CombatIgnore = require("Features/Self/CombatIgnore")
 SelfFeatures.AdvancedMobility = require("Features/Self/AdvancedMobility")
 SelfFeatures.WantedLevel = require("Features/Self/WantedLevel")
 SelfFeatures.NoClip = require("Features/Self/NoClip")
+SelfFeatures.InfiniteJumps = require("Features/Self/InfiniteJumps")
 
 SelfFeatures.StatModifiers = {
 	Movement = require("Features/Self/StatModifiers/Movement"),

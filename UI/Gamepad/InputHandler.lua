@@ -5,7 +5,7 @@ local ETInput = nil
 
 local function GetETInput()
     if not ETInput then
-        ETInput = EasyTrainerInputHandler.new()
+        ETInput = EasyInputHandler.new()
     end
     return ETInput
 end
@@ -189,7 +189,7 @@ function InputHandler.HandleInputTick()
     InputHandler.miscPressed = false
     InputHandler.downPressed = false
     InputHandler.upPressed = false
-
+    
     local isUp = Up()
     local isDown = Down()
     local isLeft = Left()

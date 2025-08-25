@@ -36,10 +36,25 @@ Movement.sandevistanDurationMultiplier = {
     enabled = false
 }
 
+Movement.canJumpToggle = { value = false }
+
 
 Movement.toggleQuicksilver = { value = false }
 Movement.quicksilverDuration = { value = 100.0 }
 Movement.quicksilverTimeScale = { value = 0.005 }
+
+Movement.canJumpHandle = nil
+function Movement.SetCanJump(remove)
+    if remove then
+        if Movement.canJumpHandle then
+            StatModifiers.Remove(Movement.canJumpHandle)
+            Movement.canJumpHandle = nil
+        end
+    else
+        Movement.canJumpHandle = StatModifiers.Create(gamedataStatType.CanJump, gameStatModifierType.Additive, 1.0)
+        StatModifiers.Add(Movement.canJumpHandle)
+    end
+end
 
 Movement.speedHandle = nil
 function Movement.SetMaxSpeed(remove, value)

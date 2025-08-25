@@ -48,9 +48,8 @@ function TeleportLocations.LoadAll()
     end
 
     Logger.Log(string.format(
-        "[EasyTrainerTeleportLocations] Loaded %d teleports (%d vendor categories).",
-        #cache.all,
-        Utils.Count(cache.vendors)
+        "[EasyTrainerTeleportLocations] Loaded %d teleports.",
+        #cache.all
     ))
 end
 
