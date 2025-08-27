@@ -104,7 +104,7 @@ end
 
 function Welcome.Dismiss()
     showWelcome = false
-    JsonHelper.Write(configPath, { shown = true }) 
+    JsonHelper.Update(configPath, { shown = true }) 
 end
 
 function IsControllerConfirmPressed()

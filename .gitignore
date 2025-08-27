@@ -6,3 +6,8 @@ EasyTrainers3.log
 Logs.txt
 config.json
 db.sqlite3
+options.json
+style.json
+lang/en.json
+Logs/log_6.txt
+Logs/log_current.txt

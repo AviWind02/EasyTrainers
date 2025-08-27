@@ -113,7 +113,7 @@ local function DrawVehicleRow(vehicle)
         end)
     else
         local state = { value = VehicleSystem.IsVehicleUnlocked(vehicle.id) }
-        Buttons.Toggle(vehicle.displayName, state, tip("vehiclelist.unlockedtip", { details = detailsTip }), function()
+        Buttons.GhostToggle(vehicle.displayName, state, tip("vehiclelist.unlockedtip", { details = detailsTip }), function()
             local current = VehicleSystem.IsVehicleUnlocked(vehicle.id)
             VehicleSystem.SetPlayerVehicleState(vehicle.id, not current)
         end)

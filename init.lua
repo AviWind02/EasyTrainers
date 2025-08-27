@@ -6,12 +6,14 @@ local Language = require("Core/Language")
 local JsonHelper = require("Core/JsonHelper")
 local Session = require("Core/cp2077-cet-kit/GameSession")
 local Cron = require("Core/cp2077-cet-kit/Cron")
+local StyleConfig = require("Core/StyleConfig")
 
 local Gameplay = require("Gameplay")
 
 local SelfTick = require("Features/Self/Tick")
 local WeaponsTick = require("Features/Weapons/Tick")
 local TeleportTick = require("Features/Teleports/Teleport")
+local VehicleTick = require("Features/Vehicle/VehicleNoClip")
 
 local WeaponLoader = require("Features/DataExtractors/WeaponLoader")
 local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
@@ -101,6 +103,7 @@ registerForEvent("onUpdate", function(deltaTime)
 
 
     SelfTick.TickHandler()
+    VehicleTick.Tick()
     WeaponsTick.TickHandler(deltaTime)
     World.WorldTime.Update(deltaTime)
     World.WorldWeather.Update()
@@ -136,5 +139,6 @@ end)
 registerForEvent("onShutdown", function()
     Gameplay.StatModifiers.ClearAll()
     Draw.InputHandler.ClearMenuRestrictions() -- I don't know how status effects work but I believe they apply to the save?
+    StyleConfig.Save()
 end)
 

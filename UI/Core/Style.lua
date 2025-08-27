@@ -20,6 +20,7 @@ UI.ColPalette = {
     DustySteelBlue = 0xFFA08C78,
     MidnightPurple = 0xFF120A08,
     DarkCharcoal = 0xFF202020,
+    NearBlackGray = 0xFF1A1A1A,
     GunmetalEdge = 0xFF6E5A50,
     DeepSkyAccent = 0xFFA56E3A,
     HotPinkPulse = 0xFF9314FF,
@@ -56,7 +57,7 @@ UI.Colors = {
     Text = UI.ColPalette.PureWhite,
     MutedText = UI.ColPalette.DesaturatedSlateBlue,
 
-    Background = UI.ColPalette.DeepIndigoBlack,
+    Background = UI.ColPalette.NearBlackGray,
     FrameBg = UI.ColPalette.DarkCharcoal,
 
     Border = UI.ColPalette.SteelBorderGray,
@@ -154,7 +155,7 @@ UI.Radio = {
 
 UI.Header = {
     Height = 40.0,
-    BackgroundColor = 0xFF14161C,
+    BackgroundColor = UI.Colors.Background,
     TextColor = 0xFFFFFFFF,
     FontSize = 18,
     FontSizeSub = 16,
@@ -163,7 +164,7 @@ UI.Header = {
 
 UI.Footer = {
     Height = 25.0,
-    BackgroundColor = 0xFF191926,
+    BackgroundColor = UI.Colors.Background,
     TextColor = 0xFFAAAAAA,
     FontSize = 12,
     Text = "vAlpha1 | By Avi",

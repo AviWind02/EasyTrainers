@@ -29,7 +29,7 @@ local GP_A = 4096
 local GP_B = 8192
 local scrollDelayBase = 200
 local scrollAcceleration = 20
-local scrollMinDelay = 50
+local scrollMinDelay = 30
 
 local lastKeyTick = 0
 local scrollDelay = scrollDelayBase
@@ -170,12 +170,14 @@ function InputHandler.RegisterInput()
     end)
 end
 
--- Tuning for scroll speed and acceleration
 local kbVertSpeed = scrollAcceleration
 local kbHorzSpeed = scrollAcceleration * 2.5
 local ctrlVertSpeed = scrollAcceleration * 0.25
 local ctrlHorzSpeed = scrollAcceleration * 2.5
-local holdMult = 2.0
+local accelThreshold = 1250 
+local accelStep = 20
+
+local holdStart = { up = 0, down = 0, left = 0, right = 0 }
 
 function InputHandler.HandleInputTick()
     local now = os.clock() * 1000
@@ -189,7 +191,7 @@ function InputHandler.HandleInputTick()
     InputHandler.miscPressed = false
     InputHandler.downPressed = false
     InputHandler.upPressed = false
-    
+
     local isUp = Up()
     local isDown = Down()
     local isLeft = Left()
@@ -211,37 +213,58 @@ function InputHandler.HandleInputTick()
         end
     end
 
+    -- helper to handle acceleration
+    local function getScrollDelay(key, vertical)
+        if holdStart[key] == 0 then
+            holdStart[key] = now -- first press
+        end
+
+        local heldTime = now - holdStart[key]
+        if heldTime > accelThreshold then
+            -- after threshold, ramp down delay
+            local spd = getBaseSpeed(vertical)
+            return math.max(scrollMinDelay, scrollDelay - accelStep)
+        else
+            -- before threshold: always reset to base delay
+            return scrollDelayBase
+        end
+    end
+
     if isUp and now - lastKeyTick > scrollDelay then
         Submenus.currentOption = (Submenus.currentOption > 1) and (Submenus.currentOption - 1) or Submenus.optionIndex
         InputHandler.upPressed = true
         lastKeyTick = now
-        if not isDown and not isLeft and not isRight then scrollDelay = scrollDelayBase end
-        local spd = getBaseSpeed(true)
-        if isUp then spd = spd * holdMult end
-        scrollDelay = math.max(scrollMinDelay, scrollDelay - spd)
-    elseif isDown and now - lastKeyTick > scrollDelay then
+        scrollDelay = getScrollDelay("up", true)
+    else
+        if not isUp then holdStart.up = 0 end
+    end
+
+    if isDown and now - lastKeyTick > scrollDelay then
         Submenus.currentOption = (Submenus.currentOption < Submenus.optionIndex) and (Submenus.currentOption + 1) or 1
         InputHandler.downPressed = true
         lastKeyTick = now
-        if not isUp and not isLeft and not isRight then scrollDelay = scrollDelayBase end
-        local spd = getBaseSpeed(true)
-        if isDown then spd = spd * holdMult end
-        scrollDelay = math.max(scrollMinDelay, scrollDelay - spd)
-    elseif isLeft and now - lastKeyTick > scrollDelay then
+        scrollDelay = getScrollDelay("down", true)
+    else
+        if not isDown then holdStart.down = 0 end
+    end
+
+    if isLeft and now - lastKeyTick > scrollDelay then
         InputHandler.leftPressed = true
         lastKeyTick = now
-        if not isUp and not isDown and not isRight then scrollDelay = scrollDelayBase end
-        local spd = getBaseSpeed(false)
-        if isLeft then spd = spd * holdMult end
-        scrollDelay = math.max(scrollMinDelay, scrollDelay - spd)
-    elseif isRight and now - lastKeyTick > scrollDelay then
+        scrollDelay = getScrollDelay("left", false)
+    else
+        if not isLeft then holdStart.left = 0 end
+    end
+
+    if isRight and now - lastKeyTick > scrollDelay then
         InputHandler.rightPressed = true
         lastKeyTick = now
-        if not isUp and not isDown and not isLeft then scrollDelay = scrollDelayBase end
-        local spd = getBaseSpeed(false)
-        if isRight then spd = spd * holdMult end
-        scrollDelay = math.max(scrollMinDelay, scrollDelay - spd)
-    elseif Select() and now - lastKeyTick > scrollDelay then
+        scrollDelay = getScrollDelay("right", false)
+    else
+        if not isRight then holdStart.right = 0 end
+    end
+
+    if Select() and now - lastKeyTick > scrollDelay then
         InputHandler.selectPressed = true
         lastKeyTick = now
         scrollDelay = scrollDelayBase
@@ -262,6 +285,7 @@ function InputHandler.HandleInputTick()
 
     Submenus.optionIndex = 0
 end
+
 
 
 

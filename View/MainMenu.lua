@@ -1,10 +1,18 @@
 
 local Draw = require("UI")
 local Logger = require("Core/Logger")
+local ConfigManager = require("Core/ConfigManager")
+local StyleConfig = require("Core/StyleConfig")
 
 local SelfView = require("View/Self/SelfMenuView")
 local PlayerStatsView = require("View/Self/PlayerStatsView")
 local PlayerDevelopmentView = require("View/Self/PlayerDevelopmentView")
+
+local RegisterSelfOptions = require("Features/OptionRegistration/SelfConfig")
+local RegisterTeleportOptions = require("Features/OptionRegistration/TeleportConfig")
+local RegisterVehicleOptions = require("Features/OptionRegistration/VehicleConfig")
+local RegisterWeaponOptions = require("Features/OptionRegistration/WeaponConfig")
+local RegisterWorldOptions = require("Features/OptionRegistration/WorldConfig")
 
 local TeleportView = require("View/World/TeleportView")
 local WeatherView = require("View/World/WeatherView")
@@ -56,7 +64,8 @@ local function SecondaryView()
     Draw.Options.Option(nil, "Centered Option", nil, "Tip: Centered Option")
     Draw.Options.Break("Section Break", nil, nil)
     if Draw.Options.Option("Option 1", nil, "Right") then
-        Gameplay.Inventory.SpawnItemDropInFront("Items.TopQualityAlcohol10", 5)
+        -- Gameplay.Inventory.SpawnItemDropInFront("Items.TopQualityAlcohol10", 5)
+        ConfigManager.Load()
 
     end
     Draw.Options.Dropdown("Weapon Type", dropdownRef, weaponTypes)
@@ -82,7 +91,7 @@ local function MainMenuView()
     Draw.Options.Submenu(L("mainmenu.translations.label"), TranslationsView, tip("mainmenu.translations.tip"))
     Draw.Options.Submenu("Settings Menu", StyleSettingsView, "Adjust menu layout, slider, toggle, colorpicker styles, etc.")
 
-    -- Draw.Options.Submenu(L("mainmenu.test"), testMenu, tip("mainmenu.test.tip"))
+    Draw.Options.Submenu(L("mainmenu.test"), testMenu, tip("mainmenu.test.tip"))
 end
 
 
@@ -96,11 +105,21 @@ function MainMenu.Render(x, y, w, h)
     if not initialized then
         initialized = true
         Draw.Submenus.OpenSubmenu(mainMenu)
+        
+        RegisterSelfOptions()
+        RegisterTeleportOptions()
+        RegisterVehicleOptions()
+        RegisterWeaponOptions()
+        RegisterWorldOptions()
+        
+        ConfigManager.Load()
+
+        StyleConfig.Load()
         Draw.Notifier.Push("EasyTrainer initialized!")
     end
 
     -- Background and title
-    Draw.Helpers.RectFilled(x, y, w, h, 0xFF1A1A1A, 6.0)
+    Draw.Helpers.RectFilled(x, y, w, h, Draw.Style.Colors.Background, 6.0)
     Draw.Decorators.DrawTitleBar(x, y, w)
 
     -- Render current view

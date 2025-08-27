@@ -3,8 +3,12 @@ local Buttons = {}
 
 local OptionManager = require("UI/Elements/OptionManager")
 local Submenus = require("UI/Core/SubmenuManager")
+local ConfigManager = require("Core/ConfigManager")
 
--- Basic Option: left text + tip
+local function makeKey(prefix, label)
+    return (prefix or "ui") .. "." .. tostring(label):gsub("%s+", "_"):lower()
+end
+
 function Buttons.Option(label, tip, action)
     if OptionManager.Option(label, "", "", tip) then
         if action then action() end
@@ -13,7 +17,6 @@ function Buttons.Option(label, tip, action)
     return false
 end
 
--- Option with center/right text and tip
 function Buttons.OptionExtended(left, center, right, tip, action)
     if OptionManager.Option(left, center, right, tip) then
         if action then action() end
@@ -22,12 +25,10 @@ function Buttons.OptionExtended(left, center, right, tip, action)
     return false
 end
 
--- Break entry (not clickable, used for categories or separation)
 function Buttons.Break(left, center, right)
     return OptionManager.Break(left, center, right)
 end
 
--- Submenu entry — should be handled here, not in OptionManager
 function Buttons.Submenu(label, submenuId, tip, action)
     if OptionManager.Option(label, "", IconGlyphs.ArrowRight, tip) then
         if submenuId then
@@ -39,40 +40,51 @@ function Buttons.Submenu(label, submenuId, tip, action)
     return false
 end
 
--- Toggle button (bool reference)
 function Buttons.Toggle(label, ref, tip, action)
+    -- ConfigManager.Register(makeKey("toggle", label), ref, ref.value)
+    if OptionManager.Toggle(label, ref, tip) then
+        if action then action() end
+        ConfigManager.Save()
+        return true
+    end
+    return false
+end
+
+function Buttons.GhostToggle(label, ref, tip, action)
     if OptionManager.Toggle(label, ref, tip) then
         if action then action() end
         return true
     end
     return false
 end
--- Integer setting with optional toggle inside the ref
+
 function Buttons.Int(label, ref, tip, action)
-    if OptionManager.IntToggle(label, ref, tip) and action then
-        action()
+    -- ConfigManager.Register(makeKey("int", label), ref, ref.value)
+    if OptionManager.IntToggle(label, ref, tip) then
+        if action then action() end
+        ConfigManager.Save()
         return true
     end
     return false
 end
 
--- Float setting with optional toggle inside the ref
 function Buttons.Float(label, ref, tip, action)
-    if OptionManager.FloatToggle(label, ref, tip) and action then
-        action()
+    -- ConfigManager.Register(makeKey("float", label), ref, ref.value)
+    if OptionManager.FloatToggle(label, ref, tip) then
+        if action then action() end
+        ConfigManager.Save()
         return true
     end
     return false
 end
 
--- Dropdown wrapper (label, ref table with expanded/index/etc., options list)
 function Buttons.Dropdown(label, ref, options, tip)
     OptionManager.Dropdown(label, ref, options, tip)
 end
 
 function Buttons.Radio(label, ref, options, tip, action)
     if OptionManager.Radio(label, ref, options, tip) then
-        action()
+        if action then action() end
         return true
     end 
     return false
@@ -82,13 +94,8 @@ function Buttons.StringCycler(label, ref, options, tip)
     return OptionManager.StringCycler(label, ref, options, tip)
 end
 
-
 function Buttons.Color(label, ref, tip)
     return OptionManager.Color(label, ref, tip)
 end
-
-
-
-
 
 return Buttons

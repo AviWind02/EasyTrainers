@@ -587,6 +587,10 @@
       "label": "Repair Vehicle",
       "tip": "Repair current vehicle."
     },
+    "vehiclenoclip": {
+      "label": "Vehicle No-Clip",
+      "tip": "Toggle noclip mode for your current vehicle"
+    },
     "vehicledoormenu": {
       "title": "Vehicle Door Controls",
       "doorstate": {

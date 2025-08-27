@@ -1,4 +1,6 @@
+-- OptionManager.lua
 local OptionManager = {}
+
 local UI = require("UI/Core/Style")
 local DrawHelpers = require("UI/Core/DrawHelpers")
 local Controls = require("UI/Gamepad/InputHandler")
@@ -11,10 +13,6 @@ OptionManager.maxVisible, OptionManager.startOpt, OptionManager.endOpt = 0, 1, 1
 
 local function _isSelected()
     return Submenus.optionIndex == Submenus.currentOption
-end
-
-function OptionManager.IsSelected()
-    return _isSelected()
 end
 
 function OptionManager.SetMenuBounds(x, y, w, h)
@@ -33,6 +31,7 @@ end
 function OptionManager._calcPosition()
     if Submenus.optionIndex == 1 then OptionManager._updateScroll() end
     if Submenus.optionIndex < OptionManager.startOpt or Submenus.optionIndex > OptionManager.endOpt then return nil end
+
     local L = UI.Layout
     local rel = Submenus.optionIndex - OptionManager.startOpt
     local x = OptionManager.menuX + L.OptionPaddingX
@@ -41,13 +40,19 @@ function OptionManager._calcPosition()
     local h = L.OptionHeight
     local fontY = y + (h - ImGui.GetFontSize()) * 0.5
     local active = Submenus.optionIndex == Submenus.currentOption
-    if active then OptionManager.smoothY = OptionManager.smoothY + (y - OptionManager.smoothY) * UI.Animation.SmoothSpeed end
-    return {x = x, y = y, w = w, h = h, fontY = fontY, isActive = active}
+
+    if active then
+        OptionManager.smoothY = OptionManager.smoothY + (y - OptionManager.smoothY) * UI.Animation.SmoothSpeed
+    end
+
+    return { x = x, y = y, w = w, h = h, fontY = fontY, isActive = active }
 end
 
-local function _mouseHovered(pos)
+local function _mouseInteraction(pos)
+    if not Controls.overlayOpen then return false, false end
     local mx, my = ImGui.GetMousePos()
-    return mx >= pos.x and mx <= (pos.x + pos.w) and my >= pos.y and my <= (pos.y + pos.h)
+    local hovered = mx >= pos.x and mx <= pos.x + pos.w and my >= pos.y and my <= pos.y + pos.h
+    return hovered, hovered and ImGui.IsMouseClicked(0)
 end
 
 local function _drawLeft(pos, color, text)
@@ -66,26 +71,19 @@ local function _drawRight(pos, color, text)
     DrawHelpers.Text(rx, pos.fontY, color, text)
 end
 
-local function _clickedByMouse(hovered)
-    return hovered and ImGui.IsMouseClicked(0)
-end
-
 function OptionManager.RawOption(left, center, right, textColor, highlightColor)
     Submenus.optionIndex = Submenus.optionIndex + 1
     local pos = OptionManager._calcPosition()
     if not pos then return false end
-    local hovered = _mouseHovered(pos)
 
-    if  hovered and ImGui.IsMouseClicked(0) then
-        Submenus.currentOption = Submenus.optionIndex
-    end
+    local hovered, clicked = _mouseInteraction(pos)
+    if clicked then Submenus.currentOption = Submenus.optionIndex end
 
     if hovered then
         DrawHelpers.RectFilled(pos.x, pos.y, pos.w, pos.h, UI.OptionRow.HoverBg, UI.OptionRow.Rounding)
     end
 
     if _isSelected() then
-        OptionManager.smoothY = OptionManager.smoothY + (pos.y - OptionManager.smoothY) * UI.Animation.SmoothSpeed
         DrawHelpers.RectFilled(pos.x, OptionManager.smoothY, pos.w, pos.h, highlightColor, UI.OptionRow.Rounding)
     end
 
@@ -93,7 +91,7 @@ function OptionManager.RawOption(left, center, right, textColor, highlightColor)
     if center and center ~= "" then _drawCenter(pos, textColor, center) end
     if right and right ~= "" then _drawRight(pos, textColor, right) end
 
-    return _isSelected() and (Controls.selectPressed or _clickedByMouse(hovered))
+    return _isSelected() and (Controls.selectPressed or clicked)
 end
 
 function OptionManager.Option(left, center, right, tip)
@@ -125,31 +123,24 @@ function OptionManager.Dropdown(label, ref, options, tip)
             ref.revealProgress = 0
             ref.lastRevealFrame = ImGui.GetFrameCount()
         else
-            ref.revealProgress = nil
-            ref.lastRevealFrame = nil
+            ref.revealProgress, ref.lastRevealFrame = nil, nil
             Submenus.currentOption = Submenus.optionIndex
         end
     end
-
     if not ref.expanded then return end
 
     local cur = ImGui.GetFrameCount()
     local fpo = UI.Dropdown.FramesPerOption or UI.Dropdown.RevealFrameDelay or 3
-    if (ref.revealProgress or 0) < #options then
-        if cur - (ref.lastRevealFrame or 0) >= fpo then
-            ref.revealProgress = (ref.revealProgress or 0) + 1
-            ref.lastRevealFrame = cur
-        end
+    if (ref.revealProgress or 0) < #options and cur - (ref.lastRevealFrame or 0) >= fpo then
+        ref.revealProgress = (ref.revealProgress or 0) + 1
+        ref.lastRevealFrame = cur
     end
 
     for i = 1, (ref.revealProgress or 0) do
         local rowLabel = "- " .. L(options[i])
         local isSel = (ref.index == i)
         if OptionManager.Option(rowLabel, nil, isSel and IconGlyphs.CheckBold or "") then
-            ref.index = i
-            ref.expanded = false
-            ref.revealProgress = nil
-            ref.lastRevealFrame = nil
+            ref.index, ref.expanded, ref.revealProgress, ref.lastRevealFrame = i, false, nil, nil
             Submenus.currentOption = Submenus.optionIndex - i
             break
         end
@@ -168,11 +159,9 @@ function OptionManager.Toggle(label, ref, tip)
     if pos.isActive then
         local stateText = ref.value and L("optionmanager.on") or L("optionmanager.off")
         local w = ImGui.CalcTextSize(stateText)
-        local pad = UI.Toggle.StatePadding
-        local spacing = UI.Toggle.StateSpacing
+        local pad, spacing = UI.Toggle.StatePadding, UI.Toggle.StateSpacing
         local sx = tx - w - (pad + spacing)
-        local sy = ty - 2
-        DrawHelpers.RectFilled(sx - pad, sy, w + pad * 2, size + 4, UI.Toggle.FrameBg, UI.Toggle.Rounding)
+        DrawHelpers.RectFilled(sx - pad, ty - 2, w + pad * 2, size + 4, UI.Toggle.FrameBg, UI.Toggle.Rounding)
         DrawHelpers.Text(sx, pos.fontY, UI.Colors.Text, stateText)
     end
 
@@ -193,27 +182,14 @@ local function _numericToggleCommon(label, ref, tip, isFloat)
     local pos = OptionManager._calcPosition()
     if not pos then return false end
 
-    local size = UI.Numeric.ToggleSize
-    local spacing = UI.Numeric.ToggleSpacing
-    local fpad = UI.Numeric.BoxFramePadding
-    local tpad = UI.Numeric.BoxTextPadding
-
-    local minVal = ref.min or 0
-    local maxVal = ref.max or (isFloat and 1 or 100)
-    local step = ref.step or (isFloat and 0.1 or 1)
-    local oldVal = ref.value
-    local oldEnabled = ref.enabled
+    local size, spacing, fpad, tpad = UI.Numeric.ToggleSize, UI.Numeric.ToggleSpacing, UI.Numeric.BoxFramePadding, UI.Numeric.BoxTextPadding
+    local minVal, maxVal, step = ref.min or 0, ref.max or (isFloat and 1 or 100), ref.step or (isFloat and 0.1 or 1)
+    local oldVal, oldEnabled = ref.value, ref.enabled
 
     if pos.isActive then
-        if Controls.leftPressed then
-            ref.value = ref.value - step
-            if ref.value < minVal then ref.value = maxVal end
-        elseif Controls.rightPressed then
-            ref.value = ref.value + step
-            if ref.value > maxVal then ref.value = minVal end
-        elseif ref.enabled ~= nil and Controls.selectPressed then
-            ref.enabled = not ref.enabled
-        end
+        if Controls.leftPressed then ref.value = ref.value - step; if ref.value < minVal then ref.value = maxVal end
+        elseif Controls.rightPressed then ref.value = ref.value + step; if ref.value > maxVal then ref.value = minVal end
+        elseif ref.enabled ~= nil and Controls.selectPressed then ref.enabled = not ref.enabled end
     end
 
     if isFloat then
@@ -223,40 +199,32 @@ local function _numericToggleCommon(label, ref, tip, isFloat)
         ref.value = math.max(minVal, math.min(maxVal, ref.value))
     end
 
-    local valueText = isFloat
-        and string.format("%." .. (UI.Numeric.Decimals or 2) .. "f / %.2f", ref.value, maxVal)
+    local valueText = isFloat and string.format("%." .. (UI.Numeric.Decimals or 2) .. "f / %.2f", ref.value, maxVal)
         or string.format("%d / %d", ref.value, maxVal)
 
     local vw = ImGui.CalcTextSize(valueText)
     local toggleX = pos.x + pos.w - UI.Layout.LabelOffsetX - (ref.enabled ~= nil and size or 0)
     local valueX = toggleX - vw - (ref.enabled ~= nil and spacing or 0)
-    local toggleY = pos.y + (pos.h - size) * 0.5
 
-    local totalW = vw + (ref.enabled ~= nil and size + spacing or 0)
-    DrawHelpers.RectFilled(valueX - fpad, pos.y + tpad, totalW + fpad * 2, pos.h - tpad * 2, UI.Numeric.FrameBg, UI.Layout.FrameRounding)
+    DrawHelpers.RectFilled(valueX - fpad, pos.y + tpad, vw + (ref.enabled ~= nil and size + spacing or 0) + fpad * 2,
+        pos.h - tpad * 2, UI.Numeric.FrameBg, UI.Layout.FrameRounding)
 
     local txtColor = (ref.enabled == false) and UI.Colors.MutedText or UI.Colors.Text
     DrawHelpers.Text(valueX, pos.fontY, txtColor, valueText)
 
     if ref.enabled ~= nil then
-        DrawHelpers.Rect(toggleX, toggleY, size, size, UI.Colors.Text, UI.Layout.FrameRounding)
+        DrawHelpers.Rect(toggleX, pos.y + (pos.h - size) * 0.5, size, size, UI.Colors.Text, UI.Layout.FrameRounding)
         if ref.enabled then
             local inset = UI.Toggle.Inset
-            DrawHelpers.RectFilled(toggleX + inset, toggleY + inset, size - inset * 2, size - inset * 2, UI.Toggle.OnColor, UI.Layout.FrameRounding - 2)
+            DrawHelpers.RectFilled(toggleX + inset, pos.y + (pos.h - size) * 0.5 + inset, size - inset * 2, size - inset * 2, UI.Toggle.OnColor, UI.Layout.FrameRounding - 2)
         end
     end
 
-    local changed = (ref.value ~= oldVal) or (ref.enabled ~= oldEnabled)
-    return clicked or changed
+    return clicked or (ref.value ~= oldVal) or (ref.enabled ~= oldEnabled)
 end
 
-function OptionManager.IntToggle(label, ref, tip)
-    return _numericToggleCommon(label, ref, tip, false)
-end
-
-function OptionManager.FloatToggle(label, ref, tip)
-    return _numericToggleCommon(label, ref, tip, true)
-end
+function OptionManager.IntToggle(label, ref, tip) return _numericToggleCommon(label, ref, tip, false) end
+function OptionManager.FloatToggle(label, ref, tip) return _numericToggleCommon(label, ref, tip, true) end
 
 function OptionManager.Submenu(label, submenu, tip)
     if OptionManager.Option(label, "", UI.Submenu.Arrow, tip) and submenu then
@@ -273,16 +241,11 @@ function OptionManager.Radio(label, ref, options, tip)
         local clicked = OptionManager.Option(option, "", "", tip)
         local pos = OptionManager._calcPosition()
         if pos then
-            local r = UI.Radio.Radius
-            local cx = pos.x + pos.w - UI.Layout.LabelOffsetX - r
-            local cy = pos.y + (pos.h * 0.5)
+            local r, cx, cy = UI.Radio.Radius, pos.x + pos.w - UI.Layout.LabelOffsetX - UI.Radio.Radius, pos.y + pos.h * 0.5
             local dl = ImGui.GetWindowDrawList()
-            if isSel then
-                ImGui.ImDrawListAddCircleFilled(dl, cx, cy, r, UI.Radio.SelectedColor)
-            else
-                ImGui.ImDrawListAddCircle(dl, cx, cy, r, UI.Radio.UnselectedColor, UI.Radio.Segments, UI.Radio.LineThickness)
-            end
-            if clicked then ref.index = i; changed = true end
+            if isSel then ImGui.ImDrawListAddCircleFilled(dl, cx, cy, r, UI.Radio.SelectedColor)
+            else ImGui.ImDrawListAddCircle(dl, cx, cy, r, UI.Radio.UnselectedColor, UI.Radio.Segments, UI.Radio.LineThickness) end
+            if clicked then ref.index, changed = i, true end
         end
     end
     return changed
@@ -298,25 +261,18 @@ function OptionManager.StringCycler(label, ref, options, tip)
     local idx = ref.index or 1
     local text = L(options[idx]) or "None"
     local tw = ImGui.CalcTextSize(text)
-    local fpad = UI.StringCycler.FramePadding
-    local tpad = UI.StringCycler.TextPadding
+    local fpad, tpad = UI.StringCycler.FramePadding, UI.StringCycler.TextPadding
     local bx = pos.x + pos.w - UI.Layout.LabelOffsetX - tw - fpad * 2
-    local by = pos.y + tpad
-    local bw = tw + fpad * 2
-    local bh = pos.h - tpad * 2
+    local by, bw, bh = pos.y + tpad, tw + fpad * 2, pos.h - tpad * 2
 
     DrawHelpers.RectFilled(bx, by, bw, bh, UI.StringCycler.FrameBg, UI.StringCycler.BoxRounding)
     DrawHelpers.Text(bx + fpad, pos.fontY, UI.StringCycler.ValueColor, text)
 
     if pos.isActive then
-        if Controls.leftPressed then
-            ref.index = idx - 1
-            if ref.index < 1 then ref.index = #options end
-        elseif Controls.rightPressed then
-            ref.index = idx + 1
-            if ref.index > #options then ref.index = 1 end
-        end
+        if Controls.leftPressed then ref.index = (idx - 2) % #options + 1
+        elseif Controls.rightPressed then ref.index = idx % #options + 1 end
     end
+
     return clicked
 end
 
@@ -328,59 +284,37 @@ function OptionManager.Color(label, ref, tip)
     if not pos then return false end
 
     local size = UI.ColorPicker.ChannelBoxSize
-    local sx = pos.x + pos.w - UI.Layout.LabelOffsetX - size
-    local sy = pos.y + (pos.h - size) * 0.5
-    local u32 = ImGui.ColorConvertFloat4ToU32({
-        ref.Red / 255, ref.Green / 255, ref.Blue / 255, ref.Alpha / 255
-    })
+    local sx, sy = pos.x + pos.w - UI.Layout.LabelOffsetX - size, pos.y + (pos.h - size) * 0.5
+    local u32 = ImGui.ColorConvertFloat4ToU32({ ref.Red / 255, ref.Green / 255, ref.Blue / 255, ref.Alpha / 255 })
     DrawHelpers.RectFilled(sx, sy, size, size, u32, UI.Layout.FrameRounding)
 
-    ref._expanded = ref._expanded or false
-    ref._reveal = ref._reveal or 0
-    ref._lastFrame = ref._lastFrame or 0
-
+    ref._expanded, ref._reveal, ref._lastFrame = ref._expanded or false, ref._reveal or 0, ref._lastFrame or 0
     if clicked then
         ref._expanded = not ref._expanded
-        if ref._expanded then
-            ref._reveal = 0
-            ref._lastFrame = ImGui.GetFrameCount()
-        end
+        if ref._expanded then ref._reveal, ref._lastFrame = 0, ImGui.GetFrameCount() end
     end
     if not ref._expanded then return false end
 
-    local names = {"- Red", "- Green", "- Blue", "- Alpha"}
-    local keys = {"Red", "Green", "Blue", "Alpha"}
-    local changed = false
-    local cur = ImGui.GetFrameCount()
-    local fpo = UI.Dropdown.FramesPerOption or 3
-
-    if ref._reveal < 4 and cur - ref._lastFrame >= fpo then
-        ref._reveal = ref._reveal + 1
-        ref._lastFrame = cur
-    end
+    local names, keys = {"- Red", "- Green", "- Blue", "- Alpha"}, {"Red", "Green", "Blue", "Alpha"}
+    local cur, fpo, changed = ImGui.GetFrameCount(), UI.Dropdown.FramesPerOption or 3, false
+    if ref._reveal < 4 and cur - ref._lastFrame >= fpo then ref._reveal, ref._lastFrame = ref._reveal + 1, cur end
 
     for i = 1, ref._reveal do
-        local k = keys[i]
-        local row = names[i]
-        local val = ref[k] or 0
+        local k, row, val = keys[i], names[i], ref[keys[i]] or 0
         OptionManager.Option(row, "", "", nil)
         local p = OptionManager._calcPosition()
         if not p then break end
 
-        local valueText = string.format("%d / 255", val)
-        local vw = ImGui.CalcTextSize(valueText)
-        local boxW = vw + 10
-        local boxH = p.h - UI.ColorPicker.RowSpacing
-        local boxX = p.x + p.w - UI.Layout.LabelOffsetX - UI.ColorPicker.PreviewBoxSize - boxW - UI.ColorPicker.ChannelPadding
-        local boxY = p.y + (p.h - boxH) * 0.5
+        local valueText, vw = string.format("%d / 255", val), ImGui.CalcTextSize(string.format("%d / 255", val))
+        local boxW, boxH = vw + 10, p.h - UI.ColorPicker.RowSpacing
+        local boxX, boxY = p.x + p.w - UI.Layout.LabelOffsetX - UI.ColorPicker.PreviewBoxSize - boxW - UI.ColorPicker.ChannelPadding, p.y + (p.h - boxH) * 0.5
         DrawHelpers.RectFilled(boxX, boxY, boxW, boxH, UI.Colors.FrameBg, UI.Layout.FrameRounding)
         DrawHelpers.Text(boxX + 5, p.fontY, UI.Colors.Text, valueText)
 
-        local px = p.x + p.w - UI.Layout.LabelOffsetX - UI.ColorPicker.PreviewBoxSize
-        local py = p.y + (p.h - UI.ColorPicker.PreviewBoxSize) * 0.5
-        local prev = {0, 0, 0, 1}
+        local px, py = p.x + p.w - UI.Layout.LabelOffsetX - UI.ColorPicker.PreviewBoxSize, p.y + (p.h - UI.ColorPicker.PreviewBoxSize) * 0.5
+        local prev, u = {0, 0, 0, 1}, nil
         prev[i] = val / 255
-        local u = ImGui.ColorConvertFloat4ToU32(prev)
+        u = ImGui.ColorConvertFloat4ToU32(prev)
         DrawHelpers.Rect(px, py, UI.ColorPicker.PreviewBoxSize, UI.ColorPicker.PreviewBoxSize, UI.Colors.Text, UI.Layout.FrameRounding)
         DrawHelpers.RectFilled(px + 2, py + 2, UI.ColorPicker.PreviewBoxSize - 4, UI.ColorPicker.PreviewBoxSize - 4, u, UI.Layout.FrameRounding - 2)
 

@@ -50,6 +50,7 @@ local function VehicleViewFunction()
     Buttons.Option(L("vehiclemenu.basilisk.name"), L("vehiclemenu.basilisk.tip"), function()
         VehicleFeaures.Spawner.RequestVehicle("Vehicle.v_militech_basilisk_militech", 5)
     end)
+    -- Buttons.Toggle(L("vehiclemenu.vehiclenoclip.label"), VehicleFeaures.VehicleNoClip.toggleNoClip, L("vehiclemenu.vehiclenoclip.tip"))
 end
 
 local VehicleView = { title = L("vehiclemenu.title"), view = VehicleViewFunction }
