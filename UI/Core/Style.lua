@@ -1,182 +1,54 @@
 local UI = {}
 
-local Color = {}
-function Color.new(c) return { r = c.Red, g = c.Green, b = c.Blue, a = c.Alpha } end
-
+-- Colors use ARGB hex format: 0xAARRGGBB
+-- AA = Alpha (opacity, FF = solid, 00 = transparent)
+-- RR = Red   (00–FF)
+-- GG = Green (00–FF)
+-- BB = Blue  (00–FF)
 UI.ColPalette = {
     PureWhite = 0xFFFFFFFF,
-    DesaturatedBlueGray = 0xFFA08C78,
-    DeepBlueBlack = 0xFF120A08,
-    SlightBlueGray = 0xFF221612,
-    MutedSlate = 0xFF6E5A50,
-    BrightNeonAqua = 0xFFB4FF00,
-    TranslucentAqua = 0x5AB4FF00,
-    SoftCyanHighlight = 0xA05A3C1E,
-    CyberpunkPink = 0xFF9314FF,
-    NeonTeal = 0xFFFFFF00,
-
-    Transparent = 0x00000000,
-
-    DustySteelBlue = 0xFFA08C78,
-    MidnightPurple = 0xFF120A08,
-    DarkCharcoal = 0xFF202020,
+    MediumGray = 0xFFAAAAAA,
     NearBlackGray = 0xFF1A1A1A,
-    GunmetalEdge = 0xFF6E5A50,
-    DeepSkyAccent = 0xFFA56E3A,
-    HotPinkPulse = 0xFF9314FF,
-
-    SoftWhite = 0xFFC8C8C8,
-    SoftGreen = 0xFF70C070,
-    SoftYellow = 0xFF80D0D0,
-    SoftRed = 0xFF8080F0,
-    SoftBlue = 0xFFD0B0A0,
-    SoftPurple = 0xFFD080D0,
-    SoftOrange = 0xFFA0C0D0,
-    SoftTeal = 0xFF80C0C0,
-    SoftPink = 0xFFD0A0C0,
-
-    MutedGrey = 0xFF5A5A5A,
-    MutedCyan = 0xFF608080,
-    MutedLime = 0xFF88AA88,
-    MutedRose = 0xFFAA8888,
-
-    GlowGreen = 0xFF88FF00,
-    GlowBlue = 0xFFFFBB00,
-    GlowPurple = 0xFFFF88B3,
-    GlowYellow = 0xFF88FFFF,
-    GlowRed = 0xFF6A6AFF,
-
-    DesaturatedSlateBlue = 0xFF788CA0,
-    DeepIndigoBlack = 0xFF080A12,
+    DarkCharcoal = 0xFF202020,
     SteelBorderGray = 0xFF505A6E,
     CoolSkyBlue = 0xFF3A6EA5,
+    SoftCyanHighlight = 0xA05A3C1E,
     HotCyberPink = 0xFFFF1493,
+    DesaturatedSlateBlue = 0xFF788CA0,
+    
+    Transparent = 0x00000000,
+    
+    GlowGreen = 0xFF88FF00,
+    GlowYellow = 0xFF88FFFF,
+    
+    SoftRed = 0xFF8080F0,
+    SoftWhite = 0xFFC8C8C8,
+    SoftYellow = 0xFF80D0D0,
+
 }
 
 UI.Colors = {
     Text = UI.ColPalette.PureWhite,
     MutedText = UI.ColPalette.DesaturatedSlateBlue,
-
     Background = UI.ColPalette.NearBlackGray,
     FrameBg = UI.ColPalette.DarkCharcoal,
-
     Border = UI.ColPalette.SteelBorderGray,
     Highlight = UI.ColPalette.CoolSkyBlue,
-    ActiveHighlight = UI.ColPalette.TranslucentAqua,
     HoverBg = UI.ColPalette.SoftCyanHighlight,
     Active = UI.ColPalette.HotCyberPink,
-    Grab = UI.ColPalette.NeonTeal,
-
-    Transparent = UI.ColPalette.Transparent
+    Transparent = UI.ColPalette.Transparent,
 }
 
 UI.Layout = {
-    Padding = 14.0,
-    FrameRounding = 6.0,
-    FrameHeight = 22.0,
-    OptionHeight = 28.0,
+    Padding        = 14.0,
+    FrameRounding  = 10.0,
+    FrameHeight    = 22.0,
+    OptionHeight   = 28.0,
     OptionPaddingX = 3.0,
     OptionPaddingY = 5.0,
-    CheckboxSize = 18.0,
-    SliderWidth = 100.0,
-    LabelOffsetX = 8.0,
-
-    ItemSpacing = { x = 8.0, y = 2.0 },
-    FramePadding = { x = 4.0, y = 0.5 },
-}
-
-UI.Toggle = {
-    OnColor = UI.ColPalette.SoftWhite,
-    OffColor = UI.ColPalette.SoftYellow,
-    Size = 18.0,
-    Rounding = 6.0,
-
-    FramePadding = UI.Layout.FramePadding,
-    ItemSpacing = UI.Layout.ItemSpacing,
-    BorderSize = 1.0,
-    ToggleOffsetX = 4.0,
-
-    Inset = 2.0,
-    StatePadding = 6.0,
-    StateSpacing = 8.0,
-    BorderColor = UI.Colors.Text,
-    FrameBg = UI.Colors.FrameBg
-}
-
-UI.Slider = {
-    BgColor = UI.Colors.FrameBg,
-    GrabColor = UI.Colors.Grab,
-    Height = 10.0,
-    Rounding = 6.0,
-
-    FramePadding = UI.Layout.FramePadding,
-    ItemSpacing = UI.Layout.ItemSpacing,
-    BorderSize = 1.0,
-}
-
-UI.ColorPicker = {
-    ChannelBoxSize = 24.0,
-    ChannelPadding = 6.0,
-    PreviewBoxSize = 18.0,
-    LabelOffsetX = 12.0,
-    RowSpacing = 2.0,
-    IconOffsetX = 4.0,
-}
-
-UI.Input = {
-    Bg = 0xFF14141C,
-    Text = UI.Colors.Text,
-    Placeholder = 0x789FA0A0,
-    Height = 20.0,
-    Rounding = UI.Layout.FrameRounding
-}
-
-UI.Dropdown = {
-    ArrowRight = IconGlyphs.ArrowRight,
-    ArrowDown = IconGlyphs.ArrowExpandAll,
-    ItemSpacing = UI.Layout.ItemSpacing,
-    RevealFrameDelay = 3,
-    LabelOffsetX = UI.Layout.LabelOffsetX,
-    SelectedColor = UI.Toggle.OnColor,
-    TextColor = UI.Colors.Text,
-
-    FramesPerOption = 3
-}
-
-UI.Radio = {
-    Radius = 6.0,
-    BorderThickness = 1.5,
-    Segments = 20,
-    SelectedColor = UI.Toggle.OnColor,
-    UnselectedColor = UI.Colors.Text,
-
-    LineThickness = 1.5
-}
-
-UI.Header = {
-    Height = 40.0,
-    BackgroundColor = UI.Colors.Background,
-    TextColor = 0xFFFFFFFF,
-    FontSize = 18,
-    FontSizeSub = 16,
-    Text = "EasyTrainer"
-}
-
-UI.Footer = {
-    Height = 25.0,
-    BackgroundColor = UI.Colors.Background,
-    TextColor = 0xFFAAAAAA,
-    FontSize = 12,
-    Text = "vAlpha1 | By Avi",
-}
-
-UI.Scroll = {
-    MaxVisibleOptions = 10,
-    ScrollSpeed = 3.0,
-}
-
-UI.Animation = {
-    SmoothSpeed = 0.12,
+    LabelOffsetX   = 8.0,
+    ItemSpacing    = { x = 8.0, y = 2.0 },
+    FramePadding   = { x = 4.0, y = 0.5 },
 }
 
 UI.OptionRow = {
@@ -185,28 +57,159 @@ UI.OptionRow = {
     Text = UI.Colors.Text,
     MutedText = UI.Colors.MutedText,
     Rounding = UI.Layout.FrameRounding,
-    LabelOffsetX = UI.Layout.LabelOffsetX
+    LabelOffsetX= UI.Layout.LabelOffsetX,
+
+    SmoothY = 0,
+    SmoothSpeed = 0.25,
+}
+
+UI.Header = {
+    Height = 40.0,
+    BackgroundColor = UI.Colors.Background,
+    TextColor = UI.Colors.Text,
+    FontSize = 18.0,
+    FontSizeSub = 16.0,
+    Text = "EasyTrainer"
+}
+
+UI.Footer = {
+    Height = 25.0,
+    BackgroundColor = UI.Colors.Background,
+    TextColor = UI.ColPalette.MediumGray,
+    FontSize = 12.0,
+    Text = "Beta 1.0 | By Avi"
+}
+
+
+UI.Notification = {
+    Width = 300.0,
+    Padding = 15.0,
+    Spacing = 6.0,
+    Rounding = 6.0,
+    SlideDistance = 40.0,
+    AnimDuration = 0.2,
+
+    BackgroundColor = UI.ColPalette.DarkCharcoal,
+    BorderColor = UI.ColPalette.SteelBorderGray,
+
+    ProgressHeight = 4.0,
+    ProgressOffsetY = -2.0,
+    ProgressColors = {
+        Default = UI.ColPalette.CoolSkyBlue,
+        info = UI.ColPalette.PureWhite,
+        success = UI.ColPalette.GlowGreen,
+        warning = UI.ColPalette.GlowYellow,
+        error = UI.ColPalette.SoftRed,
+    },
+
+    TypeColors = {
+        info = UI.ColPalette.PureWhite,
+        success = UI.ColPalette.GlowGreen,
+        warning = UI.ColPalette.GlowYellow,
+        error = UI.ColPalette.SoftRed,
+    }
+}
+
+UI.InfoBox = {
+    Padding = 14.0,      
+    Rounding = UI.Layout.FrameRounding,
+    Spacing = 15.0, -- distance from menu to infobox
+    TextColor = UI.Colors.Text,
+    BackgroundColor = UI.ColPalette.DarkCharcoal,
+    BorderColor = UI.ColPalette.SteelBorderGray,
+
+    CharsPerSecond = 175.0,    
+    FallbackRotateSeconds = 10.0, 
+}
+
+
+UI.BreakRow = {
+    Text = UI.Colors.MutedText, 
+    HighlightBg = UI.ColPalette.Transparent,
+}
+
+UI.Dropdown = {
+    ArrowRight = IconGlyphs.ArrowRight,
+    ArrowDown = IconGlyphs.ArrowExpandAll,
+
+    FramesPerOption = 3, 
+    RevealFrameDelay = 3, 
+
+    TextColor = UI.Colors.Text,
+    SelectedColor = UI.ColPalette.CoolSkyBlue,
+
+    RowPrefix = "- ",  
+}
+
+UI.Toggle = {
+    Size = 18.0,
+    Rounding = UI.Layout.FrameRounding,
+    Inset = 2.0,
+
+    StatePadding = 6.0,
+    StateSpacing = 8.0,
+
+    OnColor = UI.ColPalette.SoftWhite,
+    OffColor = UI.ColPalette.Transparent,
+    BorderColor = UI.Colors.Text,
+    FrameBg = UI.Colors.FrameBg,
+    TextColor = UI.Colors.Text,
 }
 
 UI.Numeric = {
-    BoxFramePadding = 6.0,
-    BoxTextPadding = 3.0,
     ToggleSize = 18.0,
     ToggleSpacing = 10.0,
+    BoxFramePadding = 6.0,
+    BoxTextPadding = 3.0,
+
+    FrameBg = UI.Colors.FrameBg,
+    TextColor = UI.Colors.Text,
+    DisabledColor = UI.Colors.MutedText,
+
     Decimals = 2,
-    FrameBg = UI.Colors.FrameBg
+    DefaultIntStep = 1,
+    DefaultFloatStep = 0.1,
+}
+
+UI.Radio = {
+    Radius = 6.0,
+    LineThickness = 1.5,
+    Segments = 20,
+
+    SelectedColor = UI.Toggle.OnColor,
+    UnselectedColor = UI.Colors.Text,
 }
 
 UI.StringCycler = {
     FramePadding = 6.0,
     TextPadding = 3.0,
     BoxRounding = UI.Layout.FrameRounding,
-    ValueColor = UI.Colors.Highlight,
-    FrameBg = UI.Colors.FrameBg
+    FrameBg = UI.Colors.FrameBg,
+    ValueColor = UI.ColPalette.CoolSkyBlue,
 }
 
-UI.Submenu = {
-    Arrow = IconGlyphs.ArrowRight
+
+UI.ColorPicker = {
+    ChannelBoxSize = 24.0, 
+    ChannelPadding = 6.0,
+    PreviewBoxSize = 18.0, 
+    RowSpacing = 2.0, 
+
+    FrameBg = UI.Colors.FrameBg,
+    TextColor = UI.Colors.Text,
+    BorderColor = UI.Colors.Border,
+    Rounding = UI.Layout.FrameRounding,
+}
+
+UI.TextInput = {
+    Width = 400.0,
+    Height = 140.0,
+    Padding = 14.0,
+    Rounding = UI.Layout.FrameRounding,
+    BackgroundColor = UI.ColPalette.DarkCharcoal,
+    BorderColor = UI.ColPalette.SteelBorderGray,
+    TextColor = UI.Colors.Text,
+    ButtonSpacing = 10.0,
 }
 
 return UI

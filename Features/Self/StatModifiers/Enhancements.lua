@@ -1,6 +1,6 @@
-local Gameplay = require("Gameplay")
-local StatModifiers = Gameplay.StatModifiers
-local StatPools = Gameplay.StatPoolModifiers
+local Utils = require("Utils")
+local StatModifiers = Utils.StatModifiers
+local StatPools = Utils.StatPoolModifiers
 
 local Enhancements = {}
 
@@ -65,8 +65,8 @@ function Enhancements.SetHealthRegenMods(remove)
     else
         Enhancements.healthRegenHandle = StatModifiers.Create(gamedataStatType.HealthGeneralRegenRateMult, gameStatModifierType.Additive, 9999.9)
         Enhancements.healthBoostHandle = StatModifiers.Create(gamedataStatType.Health, gameStatModifierType.Additive, 99999.9)
-        StatModifiers.Add(Enhancements.healthRegenHandle)
-        StatModifiers.Add(Enhancements.healthBoostHandle)
+        StatModifiers.Apply(Enhancements.healthRegenHandle)
+        StatModifiers.Apply(Enhancements.healthBoostHandle)
     end
 end
 
@@ -76,7 +76,7 @@ function Enhancements.SetArmorMods(remove)
         StatModifiers.Remove(Enhancements.armorHandle)
     else
         Enhancements.armorHandle = StatModifiers.Create(gamedataStatType.Armor, gameStatModifierType.Additive, 99999999.9)
-        StatModifiers.Add(Enhancements.armorHandle)
+        StatModifiers.Apply(Enhancements.armorHandle)
     end
 end
 
@@ -86,7 +86,7 @@ function Enhancements.SetFallDamageMods(remove)
         StatModifiers.Remove(Enhancements.fallDamageHandle)
     else
         Enhancements.fallDamageHandle = StatModifiers.Create(gamedataStatType.FallDamageReduction, gameStatModifierType.Additive, 99.9)
-        StatModifiers.Add(Enhancements.fallDamageHandle)
+        StatModifiers.Apply(Enhancements.fallDamageHandle)
     end
 end
 
@@ -109,7 +109,7 @@ function Enhancements.SetDamageResistances(remove)
             end
         else
             Enhancements.resistanceHandles[key] = StatModifiers.Create(statType, gameStatModifierType.Additive, 99.9)
-            StatModifiers.Add(Enhancements.resistanceHandles[key])
+            StatModifiers.Apply(Enhancements.resistanceHandles[key])
         end
     end
 end
@@ -120,7 +120,7 @@ function Enhancements.SetCombatRegenMods(remove)
         StatModifiers.Remove(Enhancements.combatRegenHandle)
     else
         Enhancements.combatRegenHandle = StatModifiers.Create(gamedataStatType.HealthInCombatRegenEnabled, gameStatModifierType.Additive, 1.0)
-        StatModifiers.Add(Enhancements.combatRegenHandle)
+        StatModifiers.Apply(Enhancements.combatRegenHandle)
     end
 end
 
@@ -130,7 +130,7 @@ function Enhancements.SetInfiniteOxygen(remove)
         StatModifiers.Remove(Enhancements.infiniteOxygenHandle)
     else
         Enhancements.infiniteOxygenHandle = StatModifiers.Create(gamedataStatType.CanBreatheUnderwater, gameStatModifierType.Additive, 1.0)
-        StatModifiers.Add(Enhancements.infiniteOxygenHandle)
+        StatModifiers.Apply(Enhancements.infiniteOxygenHandle)
     end
 end
 
@@ -140,7 +140,7 @@ function Enhancements.SetInfiniteStamina(remove)
         StatModifiers.Remove(Enhancements.infiniteStaminaHandle)
     else
         Enhancements.infiniteStaminaHandle = StatModifiers.Create(gamedataStatType.CanIgnoreStamina, gameStatModifierType.Additive, 1.0)
-        StatModifiers.Add(Enhancements.infiniteStaminaHandle)
+        StatModifiers.Apply(Enhancements.infiniteStaminaHandle)
     end
 end
 
@@ -152,7 +152,7 @@ function Enhancements.SetMemoryStat(remove, value)
     else
         local amount = value or Enhancements.memoryStatValue.value or 20.0
         Enhancements.memoryStatHandle = StatModifiers.Create(gamedataStatType.Memory, gameStatModifierType.Additive, amount)
-        StatModifiers.Add(Enhancements.memoryStatHandle)
+        StatModifiers.Apply(Enhancements.memoryStatHandle)
     end
 end
 

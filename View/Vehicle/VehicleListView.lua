@@ -1,12 +1,14 @@
 local Draw = require("UI")
-local Logger = require("Core/Logger")
-local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
-
-local VehicleFeatures = require("Features/Vehicle")
-local VehicleSystem = VehicleFeatures.VehicleUnlocker
-local VehicleSpawner = VehicleFeatures.Spawner
-
 local Buttons = Draw.Buttons
+local OptionRow = require("UI/Elements/OptionRow")
+
+local VehicleSystem = require("Utils").Vehicle
+local VehicleSpawning = VehicleSystem.VehicleSpawning   
+
+local VehicleFeatures = require("Features/Vehicles")
+local VehiclePreview = require("Features/Vehicles/VehiclePreview")
+local VehicleLoader = require("Utils/DataExtractors/VehicleLoader")
+
 
 local filterModes = {
     L("vehiclelist.mode_all"),
@@ -107,16 +109,22 @@ local function DrawVehicleRow(vehicle)
         description = vehicle.description or "None"
     })
 
-    if VehicleFeatures.enableVehicleSpawnerMode then
+    if VehicleFeatures.VehicleListStates.enableVehicleSpawnerMode then
         Buttons.Option(vehicle.displayName, tip("vehiclelist.spawntip", { details = detailsTip }), function()
-            VehicleSpawner.RequestVehicle(vehicle.id, vehicleSpawnDis.value)
+            VehiclePreview.SetActive(false)
+            VehicleSpawning.SpawnVehicle(vehicle.id, vehicleSpawnDis.value, VehicleFeatures.VehicleListStates.mountOnSpawn.value, 
+            VehicleFeatures.VehicleListStates.deleteLastVehicle.value)
         end)
     else
-        local state = { value = VehicleSystem.IsVehicleUnlocked(vehicle.id) }
+        local state = { value = VehicleSystem.IsUnlocked(vehicle.id) }
         Buttons.GhostToggle(vehicle.displayName, state, tip("vehiclelist.unlockedtip", { details = detailsTip }), function()
-            local current = VehicleSystem.IsVehicleUnlocked(vehicle.id)
+            local current = VehicleSystem.IsUnlocked(vehicle.id)
             VehicleSystem.SetPlayerVehicleState(vehicle.id, not current)
         end)
+    end
+    if OptionRow.IsSelected() then
+        VehiclePreview.SetActive(VehicleFeatures.VehicleListStates.previewVehicle.value)
+        VehiclePreview.Spawn(vehicle.id)
     end
 end
 
@@ -148,7 +156,7 @@ local function VehicleFilteredSubmenuView()
         if mode == L("vehiclelist.mode_affiliation") and v.faction ~= selectedValue then return false end
         if not YearMatches(v.productionYear, selectedYear) then return false end
 
-        local isUnlocked = VehicleSystem.IsVehicleUnlocked(v.id)
+        local isUnlocked = VehicleSystem.IsUnlocked(v.id)
         if visibilityFilter == L("vehiclelist.visibility_unlocked") and not isUnlocked then return false end
         if visibilityFilter == L("vehiclelist.visibility_locked") and isUnlocked then return false end
 
@@ -179,15 +187,19 @@ local function VehicleMainView()
         BuildFilters()
         initialized = true
     end
-
+    VehiclePreview.SetActive(false)
+       if VehicleFeatures.VehicleListStates.enableVehicleSpawnerMode then
+        Buttons.Int(L("vehiclelist.spawndistance.label"), vehicleSpawnDis, L("vehiclelist.spawndistance.tip"))
+        Buttons.Toggle(L("vehiclelist.deletelast.label"), VehicleFeatures.VehicleListStates.deleteLastVehicle, L("vehiclelist.deletelast.tip"))
+        Buttons.Toggle(L("vehiclelist.mountonspawn.label"), VehicleFeatures.VehicleListStates.mountOnSpawn, L("vehiclelist.mountonspawn.tip"))
+    end
+    Buttons.Toggle(L("vehiclelist.previewvehicle.label"), VehicleFeatures.VehicleListStates.previewVehicle, L("vehiclelist.previewvehicle.tip"))
     Buttons.Dropdown(L("vehiclelist.mode.label"), selectedMode, filterModes, L("vehiclelist.mode.tip"))
     Buttons.StringCycler(L("vehiclelist.year.label"), selectedProductionYear, productionYearsList,
         tip("vehiclelist.year.tip"))
     Buttons.Dropdown(L("vehiclelist.visibility.label"), selectedVisibility, visibilityModes,
         L("vehiclelist.visibility.tip"))
-    if VehicleFeatures.enableVehicleSpawnerMode then
-        Buttons.Int(L("vehiclelist.spawndistance.label"), vehicleSpawnDis, L("vehiclelist.spawndistance.tip"))
-    end
+ 
     Buttons.Break("", L("vehiclelist.filteredlist.label"))
 
     local mode = filterModes[selectedMode.index or 1]
@@ -213,5 +225,6 @@ end
 
 return {
     title = "vehiclelist.title",
-    view = VehicleMainView
+    view = VehicleMainView,
+    VehicleSpawenValues = VehicleSpawenValues
 }

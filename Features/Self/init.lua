@@ -1,14 +1,13 @@
 local SelfFeatures = {}
-
-SelfFeatures.GodMode = require("Features/Self/GodMode")
-SelfFeatures.Invisibility = require("Features/Self/Invisibility")
-SelfFeatures.SuperSpeed = require("Features/Self/SuperSpeed")
-SelfFeatures.AirThrusterBoots = require("Features/Self/AirThrusterBoots")
-SelfFeatures.CombatIgnore = require("Features/Self/CombatIgnore")
-SelfFeatures.AdvancedMobility = require("Features/Self/AdvancedMobility")
-SelfFeatures.WantedLevel = require("Features/Self/WantedLevel")
-SelfFeatures.NoClip = require("Features/Self/NoClip")
-SelfFeatures.InfiniteJumps = require("Features/Self/InfiniteJumps")
+-- Moved into another folder so the initial file looks nice
+SelfFeatures.GodMode = require("Features/Self/Abilities/GodMode")
+SelfFeatures.Invisibility = require("Features/Self/Abilities/Invisibility")
+SelfFeatures.SuperSpeed = require("Features/Self/Abilities/SuperSpeed")
+SelfFeatures.AirThrusterBoots = require("Features/Self/Abilities/AirThrusterBoots")
+SelfFeatures.AdvancedMobility = require("Features/Self/Abilities/AdvancedMobility")
+SelfFeatures.WantedLevel = require("Features/Self/Abilities/WantedLevel")
+SelfFeatures.NoClip = require("Features/Self/Abilities/NoClip")
+SelfFeatures.InfiniteJumps = require("Features/Self/Abilities/InfiniteJumps")
 
 SelfFeatures.StatModifiers = {
 	Movement = require("Features/Self/StatModifiers/Movement"),
@@ -18,5 +17,6 @@ SelfFeatures.StatModifiers = {
 	Utility = require("Features/Self/StatModifiers/Utility")
 }
 
+SelfFeatures.ToggleRegistration = require("Features/Self/SelfConfig")
 
 return SelfFeatures

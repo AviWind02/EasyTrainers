@@ -1,8 +1,6 @@
 local Self = require("Features/Self")
-local Draw = require("UI")
-local Gameplay = require("Gameplay")
-
-local Buttons = Draw.Buttons
+local Buttons = require("UI").Buttons
+local Prevention = require("Utils").Prevention
 
 local function SelfViewFunction()
     Buttons.Toggle(L("self.godmode.label"), Self.GodMode.enabled, tip("self.godmode.tip"))
@@ -18,7 +16,7 @@ local function SelfViewFunction()
     Buttons.Toggle(L("self.neverwanted.label"), Self.WantedLevel.tickNeverWanted, tip("self.neverwanted.tip"))
     Buttons.Int(L("self.wantedlevel.label"), Self.WantedLevel.heldWantedLevel, tip("self.wantedlevel.tip"), function()
         if not Self.WantedLevel.heldWantedLevel.enabled then
-            Gameplay.PreventionSystem.SetWantedLevel(Self.WantedLevel.heldWantedLevel.value or 0)
+            Prevention.SetWantedLevel(Self.WantedLevel.heldWantedLevel.value or 0)
         end
     end)
     Buttons.Option(L("self.clearwanted.label"), tip("self.clearwanted.tip"), function()

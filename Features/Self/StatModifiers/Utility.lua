@@ -1,5 +1,4 @@
-local Gameplay = require("Gameplay")
-local StatModifiers = Gameplay.StatModifiers
+local StatModifiers = require("Utils").StatModifiers
 
 local Utility = {}
 
@@ -21,7 +20,7 @@ function Utility.SetCarryCapacityHigh(remove, value)
     else
         local capacity = value or 99999
         Utility.carryCapacityHandle = StatModifiers.Create(gamedataStatType.CarryCapacity, gameStatModifierType.Additive, capacity)
-        StatModifiers.Add(Utility.carryCapacityHandle)
+        StatModifiers.Apply(Utility.carryCapacityHandle)
     end
 end
 

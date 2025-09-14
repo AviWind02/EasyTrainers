@@ -77,7 +77,7 @@ function Logger.Initialize()
     Logger.Log("[EasyTrainer] Logger initialized. Writing to log_" .. index .. ".txt and log_current.txt")
 end
 
--- Draw log window
+-- Draws a log window that can stay open without CET overlay blocking controls
 function Logger.DrawLogWindow()
     ImGui.Begin("Logger Window")
 

@@ -1,5 +1,5 @@
-local Gameplay = require("Gameplay")
-local StatModifiers = Gameplay.StatModifiers
+local StatModifiers = require("Utils").StatModifiers
+
 
 local Stealth = {}
 
@@ -20,9 +20,9 @@ function Stealth.SetDetectionRatelow(remove)
         Stealth.visibilityReductionHandle = StatModifiers.Create(gamedataStatType.VisibilityReduction, gameStatModifierType.Multiplier, 0.00001)
         Stealth.helperHandle = StatModifiers.Create(gamedataStatType.VisibilityReductionModifierHelper, gameStatModifierType.Additive, 99999999.9)
 
-        StatModifiers.Add(Stealth.visibilityHandle)
-        StatModifiers.Add(Stealth.visibilityReductionHandle)
-        StatModifiers.Add(Stealth.helperHandle)
+        StatModifiers.Apply(Stealth.visibilityHandle)
+        StatModifiers.Apply(Stealth.visibilityReductionHandle)
+        StatModifiers.Apply(Stealth.helperHandle)
     end
 end
 
@@ -37,8 +37,8 @@ function Stealth.SetTraceRatelow(remove)
         Stealth.traceHandle = StatModifiers.Create(gamedataStatType.RevealNetrunnerWhenHacked, gameStatModifierType.Additive, -9999.0)
         Stealth.iceHandle = StatModifiers.Create(gamedataStatType.HasICELevelBooster, gameStatModifierType.Additive, 0.0)
 
-        StatModifiers.Add(Stealth.traceHandle)
-        StatModifiers.Add(Stealth.iceHandle)
+        StatModifiers.Apply(Stealth.traceHandle)
+        StatModifiers.Apply(Stealth.iceHandle)
     end
 end
 

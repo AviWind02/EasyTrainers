@@ -1,5 +1,5 @@
-local Gameplay = require("Gameplay")
-local StatModifiers = Gameplay.StatModifiers
+local StatModifiers = require("Utils").StatModifiers
+
 
 
 local Movement = {}
@@ -52,7 +52,7 @@ function Movement.SetCanJump(remove)
         end
     else
         Movement.canJumpHandle = StatModifiers.Create(gamedataStatType.CanJump, gameStatModifierType.Additive, 1.0)
-        StatModifiers.Add(Movement.canJumpHandle)
+        StatModifiers.Apply(Movement.canJumpHandle)
     end
 end
 
@@ -62,7 +62,7 @@ function Movement.SetMaxSpeed(remove, value)
         if Movement.speedHandle then StatModifiers.Remove(Movement.speedHandle) end
     else
         Movement.speedHandle = StatModifiers.Create(gamedataStatType.MaxSpeed, gameStatModifierType.Multiplier, value)
-        StatModifiers.Add(Movement.speedHandle)
+        StatModifiers.Apply(Movement.speedHandle)
     end
 end
 
@@ -72,7 +72,7 @@ function Movement.SetSuperJump(remove, value)
         if Movement.jumpHandle then StatModifiers.Remove(Movement.jumpHandle) end
     else
         Movement.jumpHandle = StatModifiers.Create(gamedataStatType.JumpHeight, gameStatModifierType.Multiplier, value)
-        StatModifiers.Add(Movement.jumpHandle)
+        StatModifiers.Apply(Movement.jumpHandle)
     end
 end
 
@@ -82,7 +82,7 @@ function Movement.SetSandevistanTimeScale(remove, value)
         if Movement.sandeTimeHandle then StatModifiers.Remove(Movement.sandeTimeHandle) end
     else
         Movement.sandeTimeHandle = StatModifiers.Create(gamedataStatType.TimeDilationSandevistanTimeScale, gameStatModifierType.Multiplier, value)
-        StatModifiers.Add(Movement.sandeTimeHandle)
+        StatModifiers.Apply(Movement.sandeTimeHandle)
     end
 end
 
@@ -92,7 +92,7 @@ function Movement.SetSandevistanDuration(remove, value)
         if Movement.sandeDurationHandle then StatModifiers.Remove(Movement.sandeDurationHandle) end
     else
         Movement.sandeDurationHandle = StatModifiers.Create(gamedataStatType.TimeDilationSandevistanDuration, gameStatModifierType.Multiplier, value)
-        StatModifiers.Add(Movement.sandeDurationHandle)
+        StatModifiers.Apply(Movement.sandeDurationHandle)
     end
 end
 
@@ -111,10 +111,10 @@ function Movement.SetQuicksilver(remove)
         end
     else
         Movement.quicksilverDurationHandle = StatModifiers.Create(gamedataStatType.TimeDilationSandevistanDuration, gameStatModifierType.Multiplier, 100.0)
-        StatModifiers.Add(Movement.quicksilverDurationHandle)
+        StatModifiers.Apply(Movement.quicksilverDurationHandle)
 
         Movement.quicksilverTimeScaleHandle = StatModifiers.Create(gamedataStatType.TimeDilationSandevistanTimeScale, gameStatModifierType.Multiplier, 0.005)
-        StatModifiers.Add(Movement.quicksilverTimeScaleHandle)
+        StatModifiers.Apply(Movement.quicksilverTimeScaleHandle)
     end
 end
 

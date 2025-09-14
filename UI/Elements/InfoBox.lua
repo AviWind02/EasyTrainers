@@ -1,7 +1,7 @@
-local InfoBox = {}
-
 local UI = require("UI/Core/Style")
 local DrawHelpers = require("UI/Core/DrawHelpers")
+
+local InfoBox = {}
 
 InfoBox.currentText = ""
 InfoBox.lastText = ""
@@ -11,19 +11,18 @@ InfoBox.animStartTime = 0.0
 InfoBox.isFallback = false
 InfoBox.lastFallbackTime = 0.0
 
-local charsPerSecond = 100.0
 local _seeded = false
+local lastTipIndex = -1
 
-local function _seedRngOnce()
+local function seedRngOnce()
     if _seeded then return end
     local t = tostring(os.time()):reverse()
     math.randomseed(tonumber(t:sub(1, 6)))
     _seeded = true
 end
 
-local lastTipIndex = -1
 function InfoBox.GetRandomFallbackTip()
-    _seedRngOnce()
+    seedRngOnce()
     local tips = {
         "Just don't run straight through the main story. Side jobs and gigs are a big part of the game, mix it up.",
         "Don't rush it. Don't drive to objectives when you have the chance - a stroll through Night City is a fuckin' experience, man.",
@@ -47,7 +46,7 @@ function InfoBox.GetRandomFallbackTip()
     return tips[newIndex]
 end
 
-local function _setFallback(now)
+local function setFallback(now)
     InfoBox.currentText = InfoBox.GetRandomFallbackTip()
     InfoBox.isFallback = true
     InfoBox.lastFallbackTime = now or ImGui.GetTime()
@@ -62,18 +61,20 @@ function InfoBox.SetText(text)
         end
     else
         if not InfoBox.isFallback then
-            _setFallback()
+            setFallback()
         end
     end
 end
 
 function InfoBox.Render(menuX, menuY, menuW, menuH)
     local now = ImGui.GetTime()
-    local rotateSec = (UI.InfoBox and UI.InfoBox.FallbackRotateSeconds) or 10.0
+    local N = UI.InfoBox
+
+    local rotateSec = N.FallbackRotateSeconds or 10.0
     if (not InfoBox.currentText) or InfoBox.currentText == "" then
-        _setFallback(now)
+        setFallback(now)
     elseif InfoBox.isFallback and (now - InfoBox.lastFallbackTime >= rotateSec) then
-        _setFallback(now)
+        setFallback(now)
     end
 
     if InfoBox.currentText ~= InfoBox.lastText then
@@ -83,14 +84,15 @@ function InfoBox.Render(menuX, menuY, menuW, menuH)
         InfoBox.animStartTime = now
     end
 
-    local targetChars = math.floor((now - InfoBox.animStartTime) * charsPerSecond)
+    local cps = N.CharsPerSecond or 100.0
+    local targetChars = math.floor((now - InfoBox.animStartTime) * cps)
     if targetChars > InfoBox.charIndex then
         InfoBox.charIndex = math.min(targetChars, #InfoBox.currentText)
         InfoBox.animatedText = InfoBox.currentText:sub(1, InfoBox.charIndex)
     end
 
-    local pad = UI.Layout.Padding
-    local spacing = 15.0
+    local pad = N.Padding or 14.0
+    local spacing = N.Spacing or 15.0
     local screenW, screenH = GetDisplayResolution()
 
     local boxW = menuW
@@ -105,13 +107,14 @@ function InfoBox.Render(menuX, menuY, menuW, menuH)
 
     ImGui.SetNextWindowPos(finalX, finalY)
     ImGui.SetNextWindowSize(boxW, boxH)
-    ImGui.PushStyleVar(ImGuiStyleVar.WindowRounding, UI.Layout.FrameRounding)
+    ImGui.PushStyleVar(ImGuiStyleVar.WindowRounding, N.Rounding or UI.Layout.FrameRounding)
 
     ImGui.Begin("##InfoBoxWindow", ImGuiWindowFlags.NoDecoration + ImGuiWindowFlags.NoInputs + ImGuiWindowFlags.NoSavedSettings)
 
     local winX, winY = ImGui.GetWindowPos()
     local wrapWidth = boxW - 2 * pad
-    DrawHelpers.TextWrapped(winX + pad, winY + pad, UI.Colors.Text, InfoBox.animatedText, wrapWidth)
+    DrawHelpers.RectFilled(winX, winY, boxW, boxH, N.BackgroundColor, N.Rounding)
+    DrawHelpers.TextWrapped(winX + pad, winY + pad, N.TextColor, InfoBox.animatedText, wrapWidth)
 
     ImGui.End()
     ImGui.PopStyleVar()

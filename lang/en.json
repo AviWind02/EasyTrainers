@@ -256,11 +256,16 @@
       "relic": "Relic"
     },
     "perks": {
-      "activeonly": "Show Only Active Perks",
-      "inactiveonly": "Show Only Inactive Perks",
       "header": "Perks",
       "tipsingle": "Category: {category}\n\nThis perk only has 1 level. Toggle on/off to apply or remove it.",
-      "tipmulti": "Category: {category}\n\nThis perk has {levels} levels. Use Arrow keys to adjust the level."
+      "tipmulti": "Category: {category}\n\nThis perk has {levels} levels. Use Arrow keys to adjust the level.",
+      "filter": {
+        "label": "Perk Filter",
+        "tip": "Choose which perks to display: All, Active only, or Inactive only.",
+        "all": "All Perks",
+        "active": "Active Perks",
+        "inactive": "Inactive Perks"
+      }
     },
     "eddies": {
       "label": "Eurodollar",
@@ -554,6 +559,18 @@
       "label": "No Matching Vehicles Found",
       "tip": "No vehicles match the current filter."
     },
+    "deletelast": {
+      "label": "Delete Last Vehicle",
+      "tip": "When enabled, your previously mounted vehicle will be automatically despawned after you spawn a new one."
+    },
+    "mountonspawn": {
+      "label": "Mount on Spawn",
+      "tip": "When enabled, you will be automatically mounted into the driver seat after spawning a vehicle."
+    },
+    "previewvehicle": {
+      "label": "Preview Vehicle",
+      "tip": "When enabled, a preview of the vehicle will be displayed in front of the player. Warning: collision is still on."
+    },
     "categoryprefix": "Category: {value}",
     "manufacturerprefix": "Manufacturer: {value}",
     "affiliationprefix": "Affiliation: {value}",
@@ -567,9 +584,9 @@
       "label": "Vehicle List",
       "tip": "View all vehicles and toggle which ones are enabled or disabled in your owned vehicle menu."
     },
-    "basilisk": {
-      "name": "Militech Basilisk",
-      "tip": "Ever wanted to drive a tank in Cyberpunk? Need to spice up your playthrough? Spawn a Basilisk to cruise Night City—or roll through Dogtown in the safest ride around."
+    "mountonroof": {
+      "label": "Mount on Roof",
+      "tip": "Unmounts you from the driver seat and places your character sitting on top of the current vehicle."
     },
     "vehiclespawner": {
       "label": "Vehicle Spawner",
@@ -622,9 +639,35 @@
       "label": "Weapon Items",
       "tip": "Add any weapon item to your inventory, including iconic and stash wall variants."
     },
+    "weaponmanagement": {
+      "label": "Weapon Management",
+    },
+    "critandspray": {
+      "label": "Crit & Spray",
+    },
+    "accuracyrange": {
+      "label": "Accuracy & Range",
+    },
+    "specialweapons": {
+      "label": "Special Weapons",
+    },
+    "melee": {
+      "label": "Melee Enhancements",
+    },
+    "smartweapons": {
+      "label": "Smart Weapons",
+    },
     "ammomanager": {
       "label": "Ammo Manager",
       "tip": "Add or remove ammo types"
+    },
+    "explosivebullets": {
+      "label": "Explosive Bullets",
+      "tip": "Shooting causes explosions at your crosshair location, regardless of bullet type or impact."
+    },
+    "forcegun": {
+      "label": "Force Gun",
+      "tip": "Fires a powerful kinetic blast while aiming down sights. Works best on vehicles, launching them away on impact."
     },
     "giveallwallweapons": {
       "label": "Give All Wall Weapons",
@@ -670,6 +713,78 @@
       "label": "Teley Gun",
       "tip": "Shoot bullets that teleport you to where they land."
     },
+    "alwayscrit": {
+      "label": "Always Critical",
+      "tip": "Every attack you make is guaranteed to be a critical hit."
+    },
+    "insanecritdmg": {
+      "label": "Insane Critical Damage",
+      "tip": "Adds an extreme boost to critical hit damage for devastating blows."
+    },
+    "rapidfire": {
+      "label": "Rapid Fire",
+      "tip": "Drastically increases weapon fire rate by reducing cycle time."
+    },
+    "shotgunspray": {
+      "label": "Shotgun Spray",
+      "tip": "Adds extra projectiles per shot, turning any gun into a shotgun."
+    },
+    "melee_highblock": {
+      "label": "High Block",
+      "tip": "Boosts melee block factor, letting you absorb far more incoming damage when blocking."
+    },
+    "melee_lowstamina": {
+      "label": "Low Stamina Cost",
+      "tip": "Reduces stamina cost of melee attacks, letting you chain combos longer without tiring."
+    },
+    "melee_bladecarnage": {
+      "label": "Blade Carnage",
+      "tip": "Greatly increases dismemberment chance with bladed weapons."
+    },
+    "melee_infinitecombo": {
+      "label": "Infinite Combo",
+      "tip": "Removes the combo limit for melee weapons. Chain endless attacks without interruption."
+    },
+    "smart_fastlock": {
+      "label": "Smart Weapon: Fast Lock",
+      "tip": "Speeds up smart weapon lock-on both in ADS and hip-fire modes."
+    },
+    "smart_widelock": {
+      "label": "Smart Weapon: Wide Lock",
+      "tip": "Widens the lock-on rectangle for ADS and hip-fire, making it easier to track targets."
+    },
+    "smart_extratargets": {
+      "label": "Smart Weapon: Extra Targets",
+      "tip": "Allows smart weapons to lock onto additional targets simultaneously."
+    },
+    "smart_perfectacc": {
+      "label": "Smart Weapon: Perfect Accuracy",
+      "tip": "Ensures projectiles never miss once locked. Removes lock error and miss radius."
+    },
+    "smart_fastproj": {
+      "label": "Smart Weapon: Fast Projectiles",
+      "tip": "Increases the speed of smart weapon projectiles for quicker hits."
+    },
+    "smart_longrange": {
+      "label": "Smart Weapon: Long Range",
+      "tip": "Extends smart weapon lock-on and target acquisition range significantly."
+    },
+    "unlimitedrange": {
+      "label": "Higher Range",
+      "tip": "Multiplies weapon effective and maximum range by 200x, allowing hits far beyond normal limits."
+    },
+    "penetrationrounds": {
+      "label": "Penetration Rounds",
+      "tip": "All bullets ignore armor and pierce through cover, just like tech weapons."
+    },
+    "hipfireaccuracy": {
+      "label": "Hipfire Accuracy",
+      "tip": "Tightens weapon spread when firing from the hip. Turns guns into hipfire lasers."
+    },
+    "adsaccuracy": {
+      "label": "ADS Accuracy",
+      "tip": "Tightens weapon spread when aiming down sights for near-perfect precision."
+    },
     "ammoitems": {
       "title": "Ammo Items",
       "giveeach100": {
@@ -695,6 +810,13 @@
   },
   "weaponsitems": {
     "title": "Weapon Items",
+    "iconic": "Iconic Weapon",
+    "wallmount": "Wall-Mountable",
+    "addweapon": "Add Weapon (+1)",
+    "removeweapon": "Remove Weapon (-1)",
+    "quantityH": "Quantity (High to Low)",
+    "quantityL": "Quantity (Low to High)",
+    "rarity": "Rarity (High to Low)",
     "mode": {
       "label": "Mode",
       "tip": "Choose what set of weapons to display or manage."
@@ -968,17 +1090,56 @@
   },
   "teleport": {
     "title": "Teleport Menu",
+    "Auto": {
+      "AutoWaypointNotification": "Auto-teleported to waypoint.",
+      "AutoQuestNotification": "Auto-teleported to quest objective."
+    },
     "forwarddistance": {
       "label": "Forward Distance",
-      "tip": "Set how far forward to teleport (in meters)."
+      "tip": "Set how far forward to teleport."
     },
     "teleportforward": {
       "label": "Teleport Forward",
       "tip": "Teleport forward based on current direction."
     },
+    "quickteleports": {
+      "label": "Quick Teleport",
+      "tip": "Teleport instantly to a frequently used location."
+    },
+    "questmarker": {
+      "label": "Teleport to Quest Marker",
+      "tip": "Teleport to the currently tracked quest objective."
+    },
+    "waypointmarker": {
+      "label": "Teleport to Waypoint Marker",
+      "tip": "Teleport to the currently set map waypoint."
+    },
+    "quickcycler": {
+      "label": "Teleport to:",
+      "tip": "Cycle through quick teleport options (vendors, apartments, etc.)."
+    },
     "creator": {
       "label": "Creator",
       "tip": "Filter teleport locations by their creator."
+    },
+    "creator_all": "All",
+    "district_all": "All Districts",
+    "area_all": "All Areas",
+    "quick_closest_vendor": "Closest",
+    "quick_apartment": "Apartment",
+    "quick_closest_vendor_notify": "Teleported to closest vendor:",
+    "quick_apartment_notify": "Teleported to apartment",
+    "filters": {
+      "label": "Filters",
+      "tip": "Filter teleport locations by creator, district, or area."
+    },
+    "district": {
+      "label": "District",
+      "tip": "Filter teleport locations by parent district."
+    },
+    "area": {
+      "label": "Area",
+      "tip": "Filter teleport locations by child area."
     },
     "categoriesbreak": {
       "label": "Teleport Categories",
@@ -994,9 +1155,64 @@
     },
     "teleportoption": {
       "label": "{location_name}",
-      "tip": "Created by: {creator}\nTeleport to {location_name} in {category}."
+      "tip": "Created by: {creator}\nCategory: {category}\nDistrict: {district_parent} / {district_child}\n\nTeleport to {location_name}."
     },
-    "creator_all": "All"
+    "settingssubmenu": {
+      "label": "Teleport Settings",
+      "tip": "Teleport display settings & custom teleports."
+    },
+    "reloadteleports": {
+      "label": "Reload Teleports",
+      "tip": "Reload all teleport locations from JSON. Use after creating custom teleports."
+    },
+    "customteleports": {
+      "label": "Custom Teleports",
+      "tip": "Create or manage custom teleport locations at your current position."
+    },
+    "autoteleports": {
+      "label": "Auto Teleports",
+      "tip": "Automatic teleport options for quest and waypoint markers."
+    },
+    "autowaypoint": {
+      "label": "Auto Teleport to Waypoint Marker",
+      "tip": "If enabled, automatically teleport to the set waypoint marker."
+    },
+    "autoquest": {
+      "label": "Auto Teleport to Quest Marker",
+      "tip": "If enabled, automatically teleport to the tracked quest marker.\n\nImportant: Some quests may not clear markers properly, causing loops. Use with caution!."
+    },
+    "miscsubmenu": {
+      "label": "Miscellaneous",
+      "tip": "Teleport display settings & Custom Telerports."
+    },
+    "settings": {
+      "label": "Settings",
+      "tip": "Toggle visibility of teleport sections and distance labels."
+    },
+    "showforward": {
+      "label": "Show Fast Forward Section",
+      "tip": "Toggle the forward teleport controls at the top of the menu."
+    },
+    "showquick": {
+      "label": "Show Quick Teleport Section",
+      "tip": "Toggle the quick teleport section (Quest marker, Waypoint, Closest vendor, etc.)."
+    },
+    "showquickdistance": {
+      "label": "Show Quick Distances",
+      "tip": "Show or hide distance text inside the quick teleport list."
+    },
+    "showcategorydistance": {
+      "label": "Show Category Distances",
+      "tip": "Show or hide distance text in teleport category lists."
+    },
+    "showdistrictfilter": {
+      "label": "Show District Filters",
+      "tip": "Toggle the parent/child district filter dropdowns."
+    },
+    "showcreatorfilter": {
+      "label": "Show Creator Filter",
+      "tip": "Toggle the creator filter dropdown (filter teleports by creator)."
+    }
   },
   "languagemenu": {
     "label": "Select Language",
@@ -1015,5 +1231,92 @@
     "none": "None",
     "on": "ON",
     "off": "OFF"
+  },
+  "inputkeys": {
+    "8": "Backspace",
+    "9": "Tab",
+    "13": "Enter",
+    "16": "Shift",
+    "17": "Ctrl",
+    "18": "Alt",
+    "20": "CapsLock",
+    "27": "Escape",
+    "32": "Space",
+    "33": "Page Up",
+    "34": "Page Down",
+    "35": "End",
+    "36": "Home",
+    "37": "Left Arrow",
+    "38": "Up Arrow",
+    "39": "Right Arrow",
+    "40": "Down Arrow",
+    "45": "Insert",
+    "46": "Delete",
+    "48": "0",
+    "49": "1",
+    "50": "2",
+    "51": "3",
+    "52": "4",
+    "53": "5",
+    "54": "6",
+    "55": "7",
+    "56": "8",
+    "57": "9",
+    "65": "A",
+    "66": "B",
+    "67": "C",
+    "68": "D",
+    "69": "E",
+    "70": "F",
+    "71": "G",
+    "72": "H",
+    "73": "I",
+    "74": "J",
+    "75": "K",
+    "76": "L",
+    "77": "M",
+    "78": "N",
+    "79": "O",
+    "80": "P",
+    "81": "Q",
+    "82": "R",
+    "83": "S",
+    "84": "T",
+    "85": "U",
+    "86": "V",
+    "87": "W",
+    "88": "X",
+    "89": "Y",
+    "90": "Z",
+    "112": "F1",
+    "113": "F2",
+    "114": "F3",
+    "115": "F4",
+    "116": "F5",
+    "117": "F6",
+    "118": "F7",
+    "119": "F8",
+    "120": "F9",
+    "121": "F10",
+    "122": "F11",
+    "123": "F12"
+  },
+  "inputbuttons": {
+    "1": "D-Pad Up",
+    "2": "D-Pad Down",
+    "4": "D-Pad Left",
+    "8": "D-Pad Right",
+    "16": "Start/Options",
+    "32": "Back/Share",
+    "64": "Left Stick (Press/L3)",
+    "128": "Right Stick (Press/R3)",
+    "256": "Left Bumper (LB/L1)",
+    "512": "Right Bumper (RB/R1)",
+    "1024": "Left Trigger (LT/L2)",
+    "2048": "Right Trigger (RT/R2)",
+    "4096": "A/Cross",
+    "8192": "B/Circle",
+    "16384": "X/Square",
+    "32768": "Y/Triangle"
   }
 }

@@ -1,6 +1,5 @@
 DrawHelpers = {}
 
--- Rect Filled
 function DrawHelpers.RectFilled(x, y, w, h, color, rounding, flags)
     local drawlist = ImGui.GetWindowDrawList()
     local x2 = x + w
@@ -14,7 +13,6 @@ function DrawHelpers.RectFilled(x, y, w, h, color, rounding, flags)
     end
 end
 
--- Rect Outline
 function DrawHelpers.Rect(x, y, w, h, color, rounding, flags, thickness)
     local drawlist = ImGui.GetWindowDrawList()
     local x2 = x + w
@@ -30,7 +28,6 @@ function DrawHelpers.Rect(x, y, w, h, color, rounding, flags, thickness)
     end
 end
 
--- Line
 function DrawHelpers.Line(x1, y1, x2, y2, color, thickness)
     local drawlist = ImGui.GetWindowDrawList()
     if thickness then
@@ -40,7 +37,6 @@ function DrawHelpers.Line(x1, y1, x2, y2, color, thickness)
     end
 end
 
--- Text
 function DrawHelpers.Text(x, y, color, text, fontSize, wrapWidth)
     local drawlist = ImGui.GetWindowDrawList()
     if fontSize and wrapWidth then
@@ -52,7 +48,6 @@ function DrawHelpers.Text(x, y, color, text, fontSize, wrapWidth)
     end
 end
 
--- WrappedText
 function DrawHelpers.TextWrapped(x, y, color, text, wrapWidth)
     local drawlist = ImGui.GetWindowDrawList()
     local fontSize = ImGui.GetFontSize()

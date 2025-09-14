@@ -1,10 +1,1433 @@
-[2025-07-18 23:54:42] [EasyTrainerLogger] Logger initialized. Writing to log_5.txt and log_current.txt
-[2025-07-18 23:54:42] [EasyTrainerInit] Starting initialization
-[2025-07-18 23:54:42] [EasyTrainerInit] Performing data dumps and loading to memory.
-[2025-07-18 23:54:42] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
-[2025-07-18 23:54:42] [EasyTrainerVehicleLoader] Loaded 534 vehicles (Injected 0 new).
-[2025-07-18 23:54:42] [EasyTrainerGeneralLoader] Loaded 4731 items.
-[2025-07-18 23:54:42] [EasyTrainerInit] Observing BaseProjectile.ProjectileHit
-[2025-07-18 23:54:42] [EasyTrainerInit] Observing PlayerPuppet.OnAction
-[2025-07-18 23:54:42] [EasyTrainerInit] Initialization complete.
-[2025-07-18 23:55:08] [EasyTrainerStatModifiers] Cleared all cached modifiers
+[2025-09-10 01:24:00] [EasyTrainer] Logger initialized. Writing to log_5.txt and log_current.txt
+[2025-09-10 01:24:00] Initialization
+[2025-09-10 01:24:00] Cron Started
+[2025-09-10 01:24:00] Failed to open for read: config.json (config.json: No such file or directory)
+[2025-09-10 01:24:00] Language loaded: en
+[2025-09-10 01:24:00] teleportlocations: loaded 2323 teleports across 96 categories and 45 districts. Added 9 categories to Priority list.
+[2025-09-10 01:24:00] PerkLoader: Loaded 193 perks across 6 attributes.
+[2025-09-10 01:24:00] WeaponLoader: Loaded 1778 weapons.
+[2025-09-10 01:24:01] VehicleLoader: Loaded 554 vehicles (Added 0 new).
+[2025-09-10 01:24:01] DataLoaded
+[2025-09-10 01:24:01] BindingsConfig: Bindings loaded successfully.
+[2025-09-10 01:24:01] Bindings loaded
+[2025-09-10 01:24:01] Failed to open for read: config/JSON/ui.json (Config\JSON\ui.json: No such file or directory)
+[2025-09-10 01:24:01] UIConfig: Failed to load UI settings (Could not open file: config/JSON/ui.json)
+[2025-09-10 01:24:01] UI config loaded
+[2025-09-10 01:24:01] Failed to open for read: config/JSON/navigation.json (Config\JSON\navigation.json: No such file or directory)
+[2025-09-10 01:24:01] NavigationConfig: Failed to load navigation (Could not open file: config/JSON/navigation.json)
+[2025-09-10 01:24:01] Navigation config loaded
+[2025-09-10 01:24:01] Event: Observing PlayerPuppet.OnAction
+[2025-09-10 01:24:01] Event: Observing BaseProjectile.ProjectileHit
+[2025-09-10 01:24:01] Event: Overriding scannerDetailsGameController.ShouldDisplayTwintoneTab
+[2025-09-10 01:24:02] Game modules initialized.
+[2025-09-10 01:24:02] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-10 01:24:02] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-10 01:24:05] Controls: Menu toggled false
+[2025-09-10 01:24:41] Controls: Menu toggled true
+[2025-09-10 01:24:41] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-10 01:24:41] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-10 01:24:45] StatModifiers: created ID 1 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:45] StatModifiers: applied ID 1
+[2025-09-10 01:24:45] StatModifiers: created ID 2 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:45] StatModifiers: applied ID 2
+[2025-09-10 01:24:45] StatModifiers: created ID 3 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:45] StatModifiers: applied ID 3
+[2025-09-10 01:24:45] StatModifiers: created ID 4 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:45] StatModifiers: applied ID 4
+[2025-09-10 01:24:45] Controls: Menu toggled false
+[2025-09-10 01:24:48] StatModifiers: removed ID 1
+[2025-09-10 01:24:48] StatModifiers: removed ID 2
+[2025-09-10 01:24:48] StatModifiers: removed ID 3
+[2025-09-10 01:24:48] StatModifiers: removed ID 4
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 5 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 5
+[2025-09-10 01:24:48] StatModifiers: created ID 6 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 6
+[2025-09-10 01:24:48] StatModifiers: created ID 7 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 7
+[2025-09-10 01:24:48] StatModifiers: created ID 8 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 8
+[2025-09-10 01:24:48] StatModifiers: removed ID 5
+[2025-09-10 01:24:48] StatModifiers: removed ID 6
+[2025-09-10 01:24:48] StatModifiers: removed ID 7
+[2025-09-10 01:24:48] StatModifiers: removed ID 8
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 9 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 9
+[2025-09-10 01:24:48] StatModifiers: created ID 10 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 10
+[2025-09-10 01:24:48] StatModifiers: created ID 11 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 11
+[2025-09-10 01:24:48] StatModifiers: created ID 12 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 12
+[2025-09-10 01:24:48] StatModifiers: removed ID 9
+[2025-09-10 01:24:48] StatModifiers: removed ID 10
+[2025-09-10 01:24:48] StatModifiers: removed ID 11
+[2025-09-10 01:24:48] StatModifiers: removed ID 12
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 13 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 13
+[2025-09-10 01:24:48] StatModifiers: created ID 14 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 14
+[2025-09-10 01:24:48] StatModifiers: created ID 15 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 15
+[2025-09-10 01:24:48] StatModifiers: created ID 16 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 16
+[2025-09-10 01:24:48] StatModifiers: removed ID 13
+[2025-09-10 01:24:48] StatModifiers: removed ID 14
+[2025-09-10 01:24:48] StatModifiers: removed ID 15
+[2025-09-10 01:24:48] StatModifiers: removed ID 16
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 17 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 17
+[2025-09-10 01:24:48] StatModifiers: created ID 18 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 18
+[2025-09-10 01:24:48] StatModifiers: created ID 19 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 19
+[2025-09-10 01:24:48] StatModifiers: created ID 20 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 20
+[2025-09-10 01:24:48] StatModifiers: removed ID 17
+[2025-09-10 01:24:48] StatModifiers: removed ID 18
+[2025-09-10 01:24:48] StatModifiers: removed ID 19
+[2025-09-10 01:24:48] StatModifiers: removed ID 20
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 21 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 21
+[2025-09-10 01:24:48] StatModifiers: created ID 22 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 22
+[2025-09-10 01:24:48] StatModifiers: created ID 23 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 23
+[2025-09-10 01:24:48] StatModifiers: created ID 24 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 24
+[2025-09-10 01:24:48] StatModifiers: removed ID 21
+[2025-09-10 01:24:48] StatModifiers: removed ID 22
+[2025-09-10 01:24:48] StatModifiers: removed ID 23
+[2025-09-10 01:24:48] StatModifiers: removed ID 24
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 25 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 25
+[2025-09-10 01:24:48] StatModifiers: created ID 26 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 26
+[2025-09-10 01:24:48] StatModifiers: created ID 27 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 27
+[2025-09-10 01:24:48] StatModifiers: created ID 28 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 28
+[2025-09-10 01:24:48] StatModifiers: removed ID 25
+[2025-09-10 01:24:48] StatModifiers: removed ID 26
+[2025-09-10 01:24:48] StatModifiers: removed ID 27
+[2025-09-10 01:24:48] StatModifiers: removed ID 28
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 29 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 29
+[2025-09-10 01:24:48] StatModifiers: created ID 30 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 30
+[2025-09-10 01:24:48] StatModifiers: created ID 31 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 31
+[2025-09-10 01:24:48] StatModifiers: created ID 32 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 32
+[2025-09-10 01:24:48] StatModifiers: removed ID 29
+[2025-09-10 01:24:48] StatModifiers: removed ID 30
+[2025-09-10 01:24:48] StatModifiers: removed ID 31
+[2025-09-10 01:24:48] StatModifiers: removed ID 32
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 33 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 33
+[2025-09-10 01:24:48] StatModifiers: created ID 34 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 34
+[2025-09-10 01:24:48] StatModifiers: created ID 35 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 35
+[2025-09-10 01:24:48] StatModifiers: created ID 36 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 36
+[2025-09-10 01:24:48] StatModifiers: removed ID 33
+[2025-09-10 01:24:48] StatModifiers: removed ID 34
+[2025-09-10 01:24:48] StatModifiers: removed ID 35
+[2025-09-10 01:24:48] StatModifiers: removed ID 36
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 37 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 37
+[2025-09-10 01:24:48] StatModifiers: created ID 38 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 38
+[2025-09-10 01:24:48] StatModifiers: created ID 39 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 39
+[2025-09-10 01:24:48] StatModifiers: created ID 40 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 40
+[2025-09-10 01:24:48] StatModifiers: removed ID 37
+[2025-09-10 01:24:48] StatModifiers: removed ID 38
+[2025-09-10 01:24:48] StatModifiers: removed ID 39
+[2025-09-10 01:24:48] StatModifiers: removed ID 40
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 41 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 41
+[2025-09-10 01:24:48] StatModifiers: created ID 42 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 42
+[2025-09-10 01:24:48] StatModifiers: created ID 43 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 43
+[2025-09-10 01:24:48] StatModifiers: created ID 44 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 44
+[2025-09-10 01:24:48] StatModifiers: removed ID 41
+[2025-09-10 01:24:48] StatModifiers: removed ID 42
+[2025-09-10 01:24:48] StatModifiers: removed ID 43
+[2025-09-10 01:24:48] StatModifiers: removed ID 44
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 45 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 45
+[2025-09-10 01:24:48] StatModifiers: created ID 46 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 46
+[2025-09-10 01:24:48] StatModifiers: created ID 47 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 47
+[2025-09-10 01:24:48] StatModifiers: created ID 48 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 48
+[2025-09-10 01:24:48] StatModifiers: removed ID 45
+[2025-09-10 01:24:48] StatModifiers: removed ID 46
+[2025-09-10 01:24:48] StatModifiers: removed ID 47
+[2025-09-10 01:24:48] StatModifiers: removed ID 48
+[2025-09-10 01:24:48] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:48] StatModifiers: created ID 49 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 49
+[2025-09-10 01:24:48] StatModifiers: created ID 50 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 50
+[2025-09-10 01:24:48] StatModifiers: created ID 51 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:48] StatModifiers: applied ID 51
+[2025-09-10 01:24:48] StatModifiers: created ID 52 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 52
+[2025-09-10 01:24:49] StatModifiers: removed ID 49
+[2025-09-10 01:24:49] StatModifiers: removed ID 50
+[2025-09-10 01:24:49] StatModifiers: removed ID 51
+[2025-09-10 01:24:49] StatModifiers: removed ID 52
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 53 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 53
+[2025-09-10 01:24:49] StatModifiers: created ID 54 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 54
+[2025-09-10 01:24:49] StatModifiers: created ID 55 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 55
+[2025-09-10 01:24:49] StatModifiers: created ID 56 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 56
+[2025-09-10 01:24:49] StatModifiers: removed ID 53
+[2025-09-10 01:24:49] StatModifiers: removed ID 54
+[2025-09-10 01:24:49] StatModifiers: removed ID 55
+[2025-09-10 01:24:49] StatModifiers: removed ID 56
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 57 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 57
+[2025-09-10 01:24:49] StatModifiers: created ID 58 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 58
+[2025-09-10 01:24:49] StatModifiers: created ID 59 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 59
+[2025-09-10 01:24:49] StatModifiers: created ID 60 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 60
+[2025-09-10 01:24:49] StatModifiers: removed ID 57
+[2025-09-10 01:24:49] StatModifiers: removed ID 58
+[2025-09-10 01:24:49] StatModifiers: removed ID 59
+[2025-09-10 01:24:49] StatModifiers: removed ID 60
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 61 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 61
+[2025-09-10 01:24:49] StatModifiers: created ID 62 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 62
+[2025-09-10 01:24:49] StatModifiers: created ID 63 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 63
+[2025-09-10 01:24:49] StatModifiers: created ID 64 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 64
+[2025-09-10 01:24:49] StatModifiers: removed ID 61
+[2025-09-10 01:24:49] StatModifiers: removed ID 62
+[2025-09-10 01:24:49] StatModifiers: removed ID 63
+[2025-09-10 01:24:49] StatModifiers: removed ID 64
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 65 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 65
+[2025-09-10 01:24:49] StatModifiers: created ID 66 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 66
+[2025-09-10 01:24:49] StatModifiers: created ID 67 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 67
+[2025-09-10 01:24:49] StatModifiers: created ID 68 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 68
+[2025-09-10 01:24:49] StatModifiers: removed ID 65
+[2025-09-10 01:24:49] StatModifiers: removed ID 66
+[2025-09-10 01:24:49] StatModifiers: removed ID 67
+[2025-09-10 01:24:49] StatModifiers: removed ID 68
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 69 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 69
+[2025-09-10 01:24:49] StatModifiers: created ID 70 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 70
+[2025-09-10 01:24:49] StatModifiers: created ID 71 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 71
+[2025-09-10 01:24:49] StatModifiers: created ID 72 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 72
+[2025-09-10 01:24:49] StatModifiers: removed ID 69
+[2025-09-10 01:24:49] StatModifiers: removed ID 70
+[2025-09-10 01:24:49] StatModifiers: removed ID 71
+[2025-09-10 01:24:49] StatModifiers: removed ID 72
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 73 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 73
+[2025-09-10 01:24:49] StatModifiers: created ID 74 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 74
+[2025-09-10 01:24:49] StatModifiers: created ID 75 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 75
+[2025-09-10 01:24:49] StatModifiers: created ID 76 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 76
+[2025-09-10 01:24:49] StatModifiers: removed ID 73
+[2025-09-10 01:24:49] StatModifiers: removed ID 74
+[2025-09-10 01:24:49] StatModifiers: removed ID 75
+[2025-09-10 01:24:49] StatModifiers: removed ID 76
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 77 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 77
+[2025-09-10 01:24:49] StatModifiers: created ID 78 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 78
+[2025-09-10 01:24:49] StatModifiers: created ID 79 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 79
+[2025-09-10 01:24:49] StatModifiers: created ID 80 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 80
+[2025-09-10 01:24:49] StatModifiers: removed ID 77
+[2025-09-10 01:24:49] StatModifiers: removed ID 78
+[2025-09-10 01:24:49] StatModifiers: removed ID 79
+[2025-09-10 01:24:49] StatModifiers: removed ID 80
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 81 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 81
+[2025-09-10 01:24:49] StatModifiers: created ID 82 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 82
+[2025-09-10 01:24:49] StatModifiers: created ID 83 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 83
+[2025-09-10 01:24:49] StatModifiers: created ID 84 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 84
+[2025-09-10 01:24:49] StatModifiers: removed ID 81
+[2025-09-10 01:24:49] StatModifiers: removed ID 82
+[2025-09-10 01:24:49] StatModifiers: removed ID 83
+[2025-09-10 01:24:49] StatModifiers: removed ID 84
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 85 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 85
+[2025-09-10 01:24:49] StatModifiers: created ID 86 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 86
+[2025-09-10 01:24:49] StatModifiers: created ID 87 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 87
+[2025-09-10 01:24:49] StatModifiers: created ID 88 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 88
+[2025-09-10 01:24:49] StatModifiers: removed ID 85
+[2025-09-10 01:24:49] StatModifiers: removed ID 86
+[2025-09-10 01:24:49] StatModifiers: removed ID 87
+[2025-09-10 01:24:49] StatModifiers: removed ID 88
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 89 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 89
+[2025-09-10 01:24:49] StatModifiers: created ID 90 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 90
+[2025-09-10 01:24:49] StatModifiers: created ID 91 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 91
+[2025-09-10 01:24:49] StatModifiers: created ID 92 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 92
+[2025-09-10 01:24:49] StatModifiers: removed ID 89
+[2025-09-10 01:24:49] StatModifiers: removed ID 90
+[2025-09-10 01:24:49] StatModifiers: removed ID 91
+[2025-09-10 01:24:49] StatModifiers: removed ID 92
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 93 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 93
+[2025-09-10 01:24:49] StatModifiers: created ID 94 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 94
+[2025-09-10 01:24:49] StatModifiers: created ID 95 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 95
+[2025-09-10 01:24:49] StatModifiers: created ID 96 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 96
+[2025-09-10 01:24:49] StatModifiers: removed ID 93
+[2025-09-10 01:24:49] StatModifiers: removed ID 94
+[2025-09-10 01:24:49] StatModifiers: removed ID 95
+[2025-09-10 01:24:49] StatModifiers: removed ID 96
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 97 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 97
+[2025-09-10 01:24:49] StatModifiers: created ID 98 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 98
+[2025-09-10 01:24:49] StatModifiers: created ID 99 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 99
+[2025-09-10 01:24:49] StatModifiers: created ID 100 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 100
+[2025-09-10 01:24:49] StatModifiers: removed ID 97
+[2025-09-10 01:24:49] StatModifiers: removed ID 98
+[2025-09-10 01:24:49] StatModifiers: removed ID 99
+[2025-09-10 01:24:49] StatModifiers: removed ID 100
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 101 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 101
+[2025-09-10 01:24:49] StatModifiers: created ID 102 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 102
+[2025-09-10 01:24:49] StatModifiers: created ID 103 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 103
+[2025-09-10 01:24:49] StatModifiers: created ID 104 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 104
+[2025-09-10 01:24:49] StatModifiers: removed ID 101
+[2025-09-10 01:24:49] StatModifiers: removed ID 102
+[2025-09-10 01:24:49] StatModifiers: removed ID 103
+[2025-09-10 01:24:49] StatModifiers: removed ID 104
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 105 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 105
+[2025-09-10 01:24:49] StatModifiers: created ID 106 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 106
+[2025-09-10 01:24:49] StatModifiers: created ID 107 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 107
+[2025-09-10 01:24:49] StatModifiers: created ID 108 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 108
+[2025-09-10 01:24:49] StatModifiers: removed ID 105
+[2025-09-10 01:24:49] StatModifiers: removed ID 106
+[2025-09-10 01:24:49] StatModifiers: removed ID 107
+[2025-09-10 01:24:49] StatModifiers: removed ID 108
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 109 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 109
+[2025-09-10 01:24:49] StatModifiers: created ID 110 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 110
+[2025-09-10 01:24:49] StatModifiers: created ID 111 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 111
+[2025-09-10 01:24:49] StatModifiers: created ID 112 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 112
+[2025-09-10 01:24:49] StatModifiers: removed ID 109
+[2025-09-10 01:24:49] StatModifiers: removed ID 110
+[2025-09-10 01:24:49] StatModifiers: removed ID 111
+[2025-09-10 01:24:49] StatModifiers: removed ID 112
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 113 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 113
+[2025-09-10 01:24:49] StatModifiers: created ID 114 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 114
+[2025-09-10 01:24:49] StatModifiers: created ID 115 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 115
+[2025-09-10 01:24:49] StatModifiers: created ID 116 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 116
+[2025-09-10 01:24:49] StatModifiers: removed ID 113
+[2025-09-10 01:24:49] StatModifiers: removed ID 114
+[2025-09-10 01:24:49] StatModifiers: removed ID 115
+[2025-09-10 01:24:49] StatModifiers: removed ID 116
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 117 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 117
+[2025-09-10 01:24:49] StatModifiers: created ID 118 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 118
+[2025-09-10 01:24:49] StatModifiers: created ID 119 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 119
+[2025-09-10 01:24:49] StatModifiers: created ID 120 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 120
+[2025-09-10 01:24:49] StatModifiers: removed ID 117
+[2025-09-10 01:24:49] StatModifiers: removed ID 118
+[2025-09-10 01:24:49] StatModifiers: removed ID 119
+[2025-09-10 01:24:49] StatModifiers: removed ID 120
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 121 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 121
+[2025-09-10 01:24:49] StatModifiers: created ID 122 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 122
+[2025-09-10 01:24:49] StatModifiers: created ID 123 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 123
+[2025-09-10 01:24:49] StatModifiers: created ID 124 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 124
+[2025-09-10 01:24:49] StatModifiers: removed ID 121
+[2025-09-10 01:24:49] StatModifiers: removed ID 122
+[2025-09-10 01:24:49] StatModifiers: removed ID 123
+[2025-09-10 01:24:49] StatModifiers: removed ID 124
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 125 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 125
+[2025-09-10 01:24:49] StatModifiers: created ID 126 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 126
+[2025-09-10 01:24:49] StatModifiers: created ID 127 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 127
+[2025-09-10 01:24:49] StatModifiers: created ID 128 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 128
+[2025-09-10 01:24:49] StatModifiers: removed ID 125
+[2025-09-10 01:24:49] StatModifiers: removed ID 126
+[2025-09-10 01:24:49] StatModifiers: removed ID 127
+[2025-09-10 01:24:49] StatModifiers: removed ID 128
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 129 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 129
+[2025-09-10 01:24:49] StatModifiers: created ID 130 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 130
+[2025-09-10 01:24:49] StatModifiers: created ID 131 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 131
+[2025-09-10 01:24:49] StatModifiers: created ID 132 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 132
+[2025-09-10 01:24:49] StatModifiers: removed ID 129
+[2025-09-10 01:24:49] StatModifiers: removed ID 130
+[2025-09-10 01:24:49] StatModifiers: removed ID 131
+[2025-09-10 01:24:49] StatModifiers: removed ID 132
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 133 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 133
+[2025-09-10 01:24:49] StatModifiers: created ID 134 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 134
+[2025-09-10 01:24:49] StatModifiers: created ID 135 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 135
+[2025-09-10 01:24:49] StatModifiers: created ID 136 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 136
+[2025-09-10 01:24:49] StatModifiers: removed ID 133
+[2025-09-10 01:24:49] StatModifiers: removed ID 134
+[2025-09-10 01:24:49] StatModifiers: removed ID 135
+[2025-09-10 01:24:49] StatModifiers: removed ID 136
+[2025-09-10 01:24:49] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:24:49] StatModifiers: created ID 137 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 137
+[2025-09-10 01:24:49] StatModifiers: created ID 138 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 138
+[2025-09-10 01:24:49] StatModifiers: created ID 139 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 139
+[2025-09-10 01:24:49] StatModifiers: created ID 140 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:24:49] StatModifiers: applied ID 140
+[2025-09-10 01:24:50] Controls: Menu toggled true
+[2025-09-10 01:24:50] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-10 01:24:50] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-10 01:24:50] StatModifiers: removed ID 137
+[2025-09-10 01:24:50] StatModifiers: removed ID 138
+[2025-09-10 01:24:50] StatModifiers: removed ID 139
+[2025-09-10 01:24:50] StatModifiers: removed ID 140
+[2025-09-10 01:24:50] Controls: Menu toggled false
+[2025-09-10 01:25:01] Controls: Menu toggled true
+[2025-09-10 01:25:01] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-10 01:25:01] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-10 01:25:02] StatModifiers: created ID 141 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:02] StatModifiers: applied ID 141
+[2025-09-10 01:25:02] StatModifiers: created ID 142 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:02] StatModifiers: applied ID 142
+[2025-09-10 01:25:02] StatModifiers: created ID 143 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:02] StatModifiers: applied ID 143
+[2025-09-10 01:25:02] StatModifiers: created ID 144 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:02] StatModifiers: applied ID 144
+[2025-09-10 01:25:03] Controls: Menu toggled false
+[2025-09-10 01:25:08] Controls: Menu toggled true
+[2025-09-10 01:25:08] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-10 01:25:08] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-10 01:25:08] StatModifiers: removed ID 141
+[2025-09-10 01:25:08] StatModifiers: removed ID 142
+[2025-09-10 01:25:08] StatModifiers: removed ID 143
+[2025-09-10 01:25:08] StatModifiers: removed ID 144
+[2025-09-10 01:25:08] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:08] StatModifiers: created ID 145 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 145
+[2025-09-10 01:25:08] StatModifiers: created ID 146 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 146
+[2025-09-10 01:25:08] StatModifiers: created ID 147 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 147
+[2025-09-10 01:25:08] StatModifiers: created ID 148 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 148
+[2025-09-10 01:25:08] StatModifiers: removed ID 145
+[2025-09-10 01:25:08] StatModifiers: removed ID 146
+[2025-09-10 01:25:08] StatModifiers: removed ID 147
+[2025-09-10 01:25:08] StatModifiers: removed ID 148
+[2025-09-10 01:25:08] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:08] StatModifiers: created ID 149 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 149
+[2025-09-10 01:25:08] StatModifiers: created ID 150 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 150
+[2025-09-10 01:25:08] StatModifiers: created ID 151 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 151
+[2025-09-10 01:25:08] StatModifiers: created ID 152 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 152
+[2025-09-10 01:25:08] StatModifiers: removed ID 149
+[2025-09-10 01:25:08] StatModifiers: removed ID 150
+[2025-09-10 01:25:08] StatModifiers: removed ID 151
+[2025-09-10 01:25:08] StatModifiers: removed ID 152
+[2025-09-10 01:25:08] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:08] StatModifiers: created ID 153 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 153
+[2025-09-10 01:25:08] StatModifiers: created ID 154 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 154
+[2025-09-10 01:25:08] StatModifiers: created ID 155 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 155
+[2025-09-10 01:25:08] StatModifiers: created ID 156 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 156
+[2025-09-10 01:25:08] StatModifiers: removed ID 153
+[2025-09-10 01:25:08] StatModifiers: removed ID 154
+[2025-09-10 01:25:08] StatModifiers: removed ID 155
+[2025-09-10 01:25:08] StatModifiers: removed ID 156
+[2025-09-10 01:25:08] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:08] StatModifiers: created ID 157 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 157
+[2025-09-10 01:25:08] StatModifiers: created ID 158 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 158
+[2025-09-10 01:25:08] StatModifiers: created ID 159 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 159
+[2025-09-10 01:25:08] StatModifiers: created ID 160 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 160
+[2025-09-10 01:25:08] StatModifiers: removed ID 157
+[2025-09-10 01:25:08] StatModifiers: removed ID 158
+[2025-09-10 01:25:08] StatModifiers: removed ID 159
+[2025-09-10 01:25:08] StatModifiers: removed ID 160
+[2025-09-10 01:25:08] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:08] StatModifiers: created ID 161 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 161
+[2025-09-10 01:25:08] StatModifiers: created ID 162 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 162
+[2025-09-10 01:25:08] StatModifiers: created ID 163 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 163
+[2025-09-10 01:25:08] StatModifiers: created ID 164 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 164
+[2025-09-10 01:25:08] StatModifiers: removed ID 161
+[2025-09-10 01:25:08] StatModifiers: removed ID 162
+[2025-09-10 01:25:08] StatModifiers: removed ID 163
+[2025-09-10 01:25:08] StatModifiers: removed ID 164
+[2025-09-10 01:25:08] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:08] StatModifiers: created ID 165 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 165
+[2025-09-10 01:25:08] StatModifiers: created ID 166 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 166
+[2025-09-10 01:25:08] StatModifiers: created ID 167 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 167
+[2025-09-10 01:25:08] StatModifiers: created ID 168 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:08] StatModifiers: applied ID 168
+[2025-09-10 01:25:09] StatModifiers: removed ID 165
+[2025-09-10 01:25:09] StatModifiers: removed ID 166
+[2025-09-10 01:25:09] StatModifiers: removed ID 167
+[2025-09-10 01:25:09] StatModifiers: removed ID 168
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 169 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 169
+[2025-09-10 01:25:09] StatModifiers: created ID 170 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 170
+[2025-09-10 01:25:09] StatModifiers: created ID 171 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 171
+[2025-09-10 01:25:09] StatModifiers: created ID 172 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 172
+[2025-09-10 01:25:09] StatModifiers: removed ID 169
+[2025-09-10 01:25:09] StatModifiers: removed ID 170
+[2025-09-10 01:25:09] StatModifiers: removed ID 171
+[2025-09-10 01:25:09] StatModifiers: removed ID 172
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 173 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 173
+[2025-09-10 01:25:09] StatModifiers: created ID 174 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 174
+[2025-09-10 01:25:09] StatModifiers: created ID 175 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 175
+[2025-09-10 01:25:09] StatModifiers: created ID 176 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 176
+[2025-09-10 01:25:09] StatModifiers: removed ID 173
+[2025-09-10 01:25:09] StatModifiers: removed ID 174
+[2025-09-10 01:25:09] StatModifiers: removed ID 175
+[2025-09-10 01:25:09] StatModifiers: removed ID 176
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 177 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 177
+[2025-09-10 01:25:09] StatModifiers: created ID 178 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 178
+[2025-09-10 01:25:09] StatModifiers: created ID 179 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 179
+[2025-09-10 01:25:09] StatModifiers: created ID 180 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 180
+[2025-09-10 01:25:09] StatModifiers: removed ID 177
+[2025-09-10 01:25:09] StatModifiers: removed ID 178
+[2025-09-10 01:25:09] StatModifiers: removed ID 179
+[2025-09-10 01:25:09] StatModifiers: removed ID 180
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 181 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 181
+[2025-09-10 01:25:09] StatModifiers: created ID 182 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 182
+[2025-09-10 01:25:09] StatModifiers: created ID 183 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 183
+[2025-09-10 01:25:09] StatModifiers: created ID 184 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 184
+[2025-09-10 01:25:09] StatModifiers: removed ID 181
+[2025-09-10 01:25:09] StatModifiers: removed ID 182
+[2025-09-10 01:25:09] StatModifiers: removed ID 183
+[2025-09-10 01:25:09] StatModifiers: removed ID 184
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 185 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 185
+[2025-09-10 01:25:09] StatModifiers: created ID 186 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 186
+[2025-09-10 01:25:09] StatModifiers: created ID 187 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 187
+[2025-09-10 01:25:09] StatModifiers: created ID 188 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 188
+[2025-09-10 01:25:09] StatModifiers: removed ID 185
+[2025-09-10 01:25:09] StatModifiers: removed ID 186
+[2025-09-10 01:25:09] StatModifiers: removed ID 187
+[2025-09-10 01:25:09] StatModifiers: removed ID 188
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 189 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 189
+[2025-09-10 01:25:09] StatModifiers: created ID 190 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 190
+[2025-09-10 01:25:09] StatModifiers: created ID 191 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 191
+[2025-09-10 01:25:09] StatModifiers: created ID 192 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 192
+[2025-09-10 01:25:09] StatModifiers: removed ID 189
+[2025-09-10 01:25:09] StatModifiers: removed ID 190
+[2025-09-10 01:25:09] StatModifiers: removed ID 191
+[2025-09-10 01:25:09] StatModifiers: removed ID 192
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 193 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 193
+[2025-09-10 01:25:09] StatModifiers: created ID 194 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 194
+[2025-09-10 01:25:09] StatModifiers: created ID 195 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 195
+[2025-09-10 01:25:09] StatModifiers: created ID 196 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 196
+[2025-09-10 01:25:09] StatModifiers: removed ID 193
+[2025-09-10 01:25:09] StatModifiers: removed ID 194
+[2025-09-10 01:25:09] StatModifiers: removed ID 195
+[2025-09-10 01:25:09] StatModifiers: removed ID 196
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 197 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 197
+[2025-09-10 01:25:09] StatModifiers: created ID 198 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 198
+[2025-09-10 01:25:09] StatModifiers: created ID 199 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 199
+[2025-09-10 01:25:09] StatModifiers: created ID 200 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 200
+[2025-09-10 01:25:09] StatModifiers: removed ID 197
+[2025-09-10 01:25:09] StatModifiers: removed ID 198
+[2025-09-10 01:25:09] StatModifiers: removed ID 199
+[2025-09-10 01:25:09] StatModifiers: removed ID 200
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 201 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 201
+[2025-09-10 01:25:09] StatModifiers: created ID 202 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 202
+[2025-09-10 01:25:09] StatModifiers: created ID 203 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 203
+[2025-09-10 01:25:09] StatModifiers: created ID 204 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 204
+[2025-09-10 01:25:09] StatModifiers: removed ID 201
+[2025-09-10 01:25:09] StatModifiers: removed ID 202
+[2025-09-10 01:25:09] StatModifiers: removed ID 203
+[2025-09-10 01:25:09] StatModifiers: removed ID 204
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 205 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 205
+[2025-09-10 01:25:09] StatModifiers: created ID 206 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 206
+[2025-09-10 01:25:09] StatModifiers: created ID 207 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 207
+[2025-09-10 01:25:09] StatModifiers: created ID 208 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 208
+[2025-09-10 01:25:09] StatModifiers: removed ID 205
+[2025-09-10 01:25:09] StatModifiers: removed ID 206
+[2025-09-10 01:25:09] StatModifiers: removed ID 207
+[2025-09-10 01:25:09] StatModifiers: removed ID 208
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 209 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 209
+[2025-09-10 01:25:09] StatModifiers: created ID 210 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 210
+[2025-09-10 01:25:09] StatModifiers: created ID 211 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 211
+[2025-09-10 01:25:09] StatModifiers: created ID 212 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 212
+[2025-09-10 01:25:09] StatModifiers: removed ID 209
+[2025-09-10 01:25:09] StatModifiers: removed ID 210
+[2025-09-10 01:25:09] StatModifiers: removed ID 211
+[2025-09-10 01:25:09] StatModifiers: removed ID 212
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 213 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 213
+[2025-09-10 01:25:09] StatModifiers: created ID 214 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 214
+[2025-09-10 01:25:09] StatModifiers: created ID 215 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 215
+[2025-09-10 01:25:09] StatModifiers: created ID 216 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 216
+[2025-09-10 01:25:09] Controls: Menu toggled false
+[2025-09-10 01:25:09] StatModifiers: removed ID 213
+[2025-09-10 01:25:09] StatModifiers: removed ID 214
+[2025-09-10 01:25:09] StatModifiers: removed ID 215
+[2025-09-10 01:25:09] StatModifiers: removed ID 216
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 217 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 217
+[2025-09-10 01:25:09] StatModifiers: created ID 218 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 218
+[2025-09-10 01:25:09] StatModifiers: created ID 219 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 219
+[2025-09-10 01:25:09] StatModifiers: created ID 220 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 220
+[2025-09-10 01:25:09] StatModifiers: removed ID 217
+[2025-09-10 01:25:09] StatModifiers: removed ID 218
+[2025-09-10 01:25:09] StatModifiers: removed ID 219
+[2025-09-10 01:25:09] StatModifiers: removed ID 220
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 221 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 221
+[2025-09-10 01:25:09] StatModifiers: created ID 222 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 222
+[2025-09-10 01:25:09] StatModifiers: created ID 223 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 223
+[2025-09-10 01:25:09] StatModifiers: created ID 224 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 224
+[2025-09-10 01:25:09] StatModifiers: removed ID 221
+[2025-09-10 01:25:09] StatModifiers: removed ID 222
+[2025-09-10 01:25:09] StatModifiers: removed ID 223
+[2025-09-10 01:25:09] StatModifiers: removed ID 224
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 225 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 225
+[2025-09-10 01:25:09] StatModifiers: created ID 226 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 226
+[2025-09-10 01:25:09] StatModifiers: created ID 227 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 227
+[2025-09-10 01:25:09] StatModifiers: created ID 228 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 228
+[2025-09-10 01:25:09] StatModifiers: removed ID 225
+[2025-09-10 01:25:09] StatModifiers: removed ID 226
+[2025-09-10 01:25:09] StatModifiers: removed ID 227
+[2025-09-10 01:25:09] StatModifiers: removed ID 228
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 229 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 229
+[2025-09-10 01:25:09] StatModifiers: created ID 230 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 230
+[2025-09-10 01:25:09] StatModifiers: created ID 231 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 231
+[2025-09-10 01:25:09] StatModifiers: created ID 232 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 232
+[2025-09-10 01:25:09] StatModifiers: removed ID 229
+[2025-09-10 01:25:09] StatModifiers: removed ID 230
+[2025-09-10 01:25:09] StatModifiers: removed ID 231
+[2025-09-10 01:25:09] StatModifiers: removed ID 232
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 233 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 233
+[2025-09-10 01:25:09] StatModifiers: created ID 234 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 234
+[2025-09-10 01:25:09] StatModifiers: created ID 235 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 235
+[2025-09-10 01:25:09] StatModifiers: created ID 236 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 236
+[2025-09-10 01:25:09] StatModifiers: removed ID 233
+[2025-09-10 01:25:09] StatModifiers: removed ID 234
+[2025-09-10 01:25:09] StatModifiers: removed ID 235
+[2025-09-10 01:25:09] StatModifiers: removed ID 236
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 237 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 237
+[2025-09-10 01:25:09] StatModifiers: created ID 238 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 238
+[2025-09-10 01:25:09] StatModifiers: created ID 239 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 239
+[2025-09-10 01:25:09] StatModifiers: created ID 240 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 240
+[2025-09-10 01:25:09] StatModifiers: removed ID 237
+[2025-09-10 01:25:09] StatModifiers: removed ID 238
+[2025-09-10 01:25:09] StatModifiers: removed ID 239
+[2025-09-10 01:25:09] StatModifiers: removed ID 240
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 241 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 241
+[2025-09-10 01:25:09] StatModifiers: created ID 242 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 242
+[2025-09-10 01:25:09] StatModifiers: created ID 243 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 243
+[2025-09-10 01:25:09] StatModifiers: created ID 244 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 244
+[2025-09-10 01:25:09] StatModifiers: removed ID 241
+[2025-09-10 01:25:09] StatModifiers: removed ID 242
+[2025-09-10 01:25:09] StatModifiers: removed ID 243
+[2025-09-10 01:25:09] StatModifiers: removed ID 244
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 245 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 245
+[2025-09-10 01:25:09] StatModifiers: created ID 246 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 246
+[2025-09-10 01:25:09] StatModifiers: created ID 247 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 247
+[2025-09-10 01:25:09] StatModifiers: created ID 248 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 248
+[2025-09-10 01:25:09] StatModifiers: removed ID 245
+[2025-09-10 01:25:09] StatModifiers: removed ID 246
+[2025-09-10 01:25:09] StatModifiers: removed ID 247
+[2025-09-10 01:25:09] StatModifiers: removed ID 248
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 249 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 249
+[2025-09-10 01:25:09] StatModifiers: created ID 250 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 250
+[2025-09-10 01:25:09] StatModifiers: created ID 251 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 251
+[2025-09-10 01:25:09] StatModifiers: created ID 252 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 252
+[2025-09-10 01:25:09] StatModifiers: removed ID 249
+[2025-09-10 01:25:09] StatModifiers: removed ID 250
+[2025-09-10 01:25:09] StatModifiers: removed ID 251
+[2025-09-10 01:25:09] StatModifiers: removed ID 252
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 253 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 253
+[2025-09-10 01:25:09] StatModifiers: created ID 254 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 254
+[2025-09-10 01:25:09] StatModifiers: created ID 255 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 255
+[2025-09-10 01:25:09] StatModifiers: created ID 256 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 256
+[2025-09-10 01:25:09] StatModifiers: removed ID 253
+[2025-09-10 01:25:09] StatModifiers: removed ID 254
+[2025-09-10 01:25:09] StatModifiers: removed ID 255
+[2025-09-10 01:25:09] StatModifiers: removed ID 256
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 257 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 257
+[2025-09-10 01:25:09] StatModifiers: created ID 258 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 258
+[2025-09-10 01:25:09] StatModifiers: created ID 259 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 259
+[2025-09-10 01:25:09] StatModifiers: created ID 260 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 260
+[2025-09-10 01:25:09] StatModifiers: removed ID 257
+[2025-09-10 01:25:09] StatModifiers: removed ID 258
+[2025-09-10 01:25:09] StatModifiers: removed ID 259
+[2025-09-10 01:25:09] StatModifiers: removed ID 260
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 261 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 261
+[2025-09-10 01:25:09] StatModifiers: created ID 262 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 262
+[2025-09-10 01:25:09] StatModifiers: created ID 263 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 263
+[2025-09-10 01:25:09] StatModifiers: created ID 264 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 264
+[2025-09-10 01:25:09] StatModifiers: removed ID 261
+[2025-09-10 01:25:09] StatModifiers: removed ID 262
+[2025-09-10 01:25:09] StatModifiers: removed ID 263
+[2025-09-10 01:25:09] StatModifiers: removed ID 264
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 265 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 265
+[2025-09-10 01:25:09] StatModifiers: created ID 266 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 266
+[2025-09-10 01:25:09] StatModifiers: created ID 267 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 267
+[2025-09-10 01:25:09] StatModifiers: created ID 268 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 268
+[2025-09-10 01:25:09] StatModifiers: removed ID 265
+[2025-09-10 01:25:09] StatModifiers: removed ID 266
+[2025-09-10 01:25:09] StatModifiers: removed ID 267
+[2025-09-10 01:25:09] StatModifiers: removed ID 268
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 269 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 269
+[2025-09-10 01:25:09] StatModifiers: created ID 270 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 270
+[2025-09-10 01:25:09] StatModifiers: created ID 271 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 271
+[2025-09-10 01:25:09] StatModifiers: created ID 272 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 272
+[2025-09-10 01:25:09] StatModifiers: removed ID 269
+[2025-09-10 01:25:09] StatModifiers: removed ID 270
+[2025-09-10 01:25:09] StatModifiers: removed ID 271
+[2025-09-10 01:25:09] StatModifiers: removed ID 272
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 273 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 273
+[2025-09-10 01:25:09] StatModifiers: created ID 274 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 274
+[2025-09-10 01:25:09] StatModifiers: created ID 275 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 275
+[2025-09-10 01:25:09] StatModifiers: created ID 276 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 276
+[2025-09-10 01:25:09] StatModifiers: removed ID 273
+[2025-09-10 01:25:09] StatModifiers: removed ID 274
+[2025-09-10 01:25:09] StatModifiers: removed ID 275
+[2025-09-10 01:25:09] StatModifiers: removed ID 276
+[2025-09-10 01:25:09] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x477E6908, length = 28 --[[ Items.Preset_Overture_Dodger --]] }, rng_seed = 2967579454, unknown = 63088, maybe_type = 0 }
+[2025-09-10 01:25:09] StatModifiers: created ID 277 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 277
+[2025-09-10 01:25:09] StatModifiers: created ID 278 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 278
+[2025-09-10 01:25:09] StatModifiers: created ID 279 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 279
+[2025-09-10 01:25:09] StatModifiers: created ID 280 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:09] StatModifiers: applied ID 280
+[2025-09-10 01:25:25] Controls: Menu toggled true
+[2025-09-10 01:25:25] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-10 01:25:25] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-10 01:25:27] StatModifiers: removed ID 277
+[2025-09-10 01:25:27] StatModifiers: removed ID 278
+[2025-09-10 01:25:27] StatModifiers: removed ID 279
+[2025-09-10 01:25:27] StatModifiers: removed ID 280
+[2025-09-10 01:25:27] Controls: Menu toggled false
+[2025-09-10 01:25:38] Controls: Menu toggled true
+[2025-09-10 01:25:38] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-10 01:25:38] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-10 01:25:39] StatModifiers: created ID 281 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:39] StatModifiers: applied ID 281
+[2025-09-10 01:25:39] StatModifiers: created ID 282 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:39] StatModifiers: applied ID 282
+[2025-09-10 01:25:39] StatModifiers: created ID 283 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:39] StatModifiers: applied ID 283
+[2025-09-10 01:25:39] StatModifiers: created ID 284 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:39] StatModifiers: applied ID 284
+[2025-09-10 01:25:39] Controls: Menu toggled false
+[2025-09-10 01:25:45] Controls: Menu toggled true
+[2025-09-10 01:25:45] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-10 01:25:45] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-10 01:25:45] StatModifiers: removed ID 281
+[2025-09-10 01:25:45] StatModifiers: removed ID 282
+[2025-09-10 01:25:45] StatModifiers: removed ID 283
+[2025-09-10 01:25:45] StatModifiers: removed ID 284
+[2025-09-10 01:25:45] Controls: Menu toggled false
+[2025-09-10 01:25:48] Controls: Menu toggled true
+[2025-09-10 01:25:48] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-10 01:25:48] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-10 01:25:48] StatModifiers: created ID 285 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:48] StatModifiers: applied ID 285
+[2025-09-10 01:25:48] StatModifiers: created ID 286 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:48] StatModifiers: applied ID 286
+[2025-09-10 01:25:48] StatModifiers: created ID 287 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:48] StatModifiers: applied ID 287
+[2025-09-10 01:25:48] StatModifiers: created ID 288 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:48] StatModifiers: applied ID 288
+[2025-09-10 01:25:49] Controls: Menu toggled false
+[2025-09-10 01:25:53] StatModifiers: removed ID 285
+[2025-09-10 01:25:53] StatModifiers: removed ID 286
+[2025-09-10 01:25:53] StatModifiers: removed ID 287
+[2025-09-10 01:25:53] StatModifiers: removed ID 288
+[2025-09-10 01:25:53] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:53] StatModifiers: created ID 289 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 289
+[2025-09-10 01:25:53] StatModifiers: created ID 290 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 290
+[2025-09-10 01:25:53] StatModifiers: created ID 291 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 291
+[2025-09-10 01:25:53] StatModifiers: created ID 292 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 292
+[2025-09-10 01:25:53] StatModifiers: removed ID 289
+[2025-09-10 01:25:53] StatModifiers: removed ID 290
+[2025-09-10 01:25:53] StatModifiers: removed ID 291
+[2025-09-10 01:25:53] StatModifiers: removed ID 292
+[2025-09-10 01:25:53] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:53] StatModifiers: created ID 293 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 293
+[2025-09-10 01:25:53] StatModifiers: created ID 294 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 294
+[2025-09-10 01:25:53] StatModifiers: created ID 295 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 295
+[2025-09-10 01:25:53] StatModifiers: created ID 296 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 296
+[2025-09-10 01:25:53] StatModifiers: removed ID 293
+[2025-09-10 01:25:53] StatModifiers: removed ID 294
+[2025-09-10 01:25:53] StatModifiers: removed ID 295
+[2025-09-10 01:25:53] StatModifiers: removed ID 296
+[2025-09-10 01:25:53] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:53] StatModifiers: created ID 297 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 297
+[2025-09-10 01:25:53] StatModifiers: created ID 298 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 298
+[2025-09-10 01:25:53] StatModifiers: created ID 299 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 299
+[2025-09-10 01:25:53] StatModifiers: created ID 300 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 300
+[2025-09-10 01:25:53] StatModifiers: removed ID 297
+[2025-09-10 01:25:53] StatModifiers: removed ID 298
+[2025-09-10 01:25:53] StatModifiers: removed ID 299
+[2025-09-10 01:25:53] StatModifiers: removed ID 300
+[2025-09-10 01:25:53] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:53] StatModifiers: created ID 301 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 301
+[2025-09-10 01:25:53] StatModifiers: created ID 302 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 302
+[2025-09-10 01:25:53] StatModifiers: created ID 303 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 303
+[2025-09-10 01:25:53] StatModifiers: created ID 304 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 304
+[2025-09-10 01:25:53] StatModifiers: removed ID 301
+[2025-09-10 01:25:53] StatModifiers: removed ID 302
+[2025-09-10 01:25:53] StatModifiers: removed ID 303
+[2025-09-10 01:25:53] StatModifiers: removed ID 304
+[2025-09-10 01:25:53] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:53] StatModifiers: created ID 305 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 305
+[2025-09-10 01:25:53] StatModifiers: created ID 306 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 306
+[2025-09-10 01:25:53] StatModifiers: created ID 307 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 307
+[2025-09-10 01:25:53] StatModifiers: created ID 308 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 308
+[2025-09-10 01:25:53] StatModifiers: removed ID 305
+[2025-09-10 01:25:53] StatModifiers: removed ID 306
+[2025-09-10 01:25:53] StatModifiers: removed ID 307
+[2025-09-10 01:25:53] StatModifiers: removed ID 308
+[2025-09-10 01:25:53] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:53] StatModifiers: created ID 309 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 309
+[2025-09-10 01:25:53] StatModifiers: created ID 310 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 310
+[2025-09-10 01:25:53] StatModifiers: created ID 311 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 311
+[2025-09-10 01:25:53] StatModifiers: created ID 312 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 312
+[2025-09-10 01:25:53] StatModifiers: removed ID 309
+[2025-09-10 01:25:53] StatModifiers: removed ID 310
+[2025-09-10 01:25:53] StatModifiers: removed ID 311
+[2025-09-10 01:25:53] StatModifiers: removed ID 312
+[2025-09-10 01:25:53] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:53] StatModifiers: created ID 313 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 313
+[2025-09-10 01:25:53] StatModifiers: created ID 314 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 314
+[2025-09-10 01:25:53] StatModifiers: created ID 315 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 315
+[2025-09-10 01:25:53] StatModifiers: created ID 316 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 316
+[2025-09-10 01:25:53] StatModifiers: removed ID 313
+[2025-09-10 01:25:53] StatModifiers: removed ID 314
+[2025-09-10 01:25:53] StatModifiers: removed ID 315
+[2025-09-10 01:25:53] StatModifiers: removed ID 316
+[2025-09-10 01:25:53] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:53] StatModifiers: created ID 317 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 317
+[2025-09-10 01:25:53] StatModifiers: created ID 318 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 318
+[2025-09-10 01:25:53] StatModifiers: created ID 319 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 319
+[2025-09-10 01:25:53] StatModifiers: created ID 320 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 320
+[2025-09-10 01:25:53] StatModifiers: removed ID 317
+[2025-09-10 01:25:53] StatModifiers: removed ID 318
+[2025-09-10 01:25:53] StatModifiers: removed ID 319
+[2025-09-10 01:25:53] StatModifiers: removed ID 320
+[2025-09-10 01:25:53] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:53] StatModifiers: created ID 321 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 321
+[2025-09-10 01:25:53] StatModifiers: created ID 322 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 322
+[2025-09-10 01:25:53] StatModifiers: created ID 323 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 323
+[2025-09-10 01:25:53] StatModifiers: created ID 324 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:53] StatModifiers: applied ID 324
+[2025-09-10 01:25:53] StatModifiers: removed ID 321
+[2025-09-10 01:25:54] StatModifiers: removed ID 322
+[2025-09-10 01:25:54] StatModifiers: removed ID 323
+[2025-09-10 01:25:54] StatModifiers: removed ID 324
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 325 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 325
+[2025-09-10 01:25:54] StatModifiers: created ID 326 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 326
+[2025-09-10 01:25:54] StatModifiers: created ID 327 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 327
+[2025-09-10 01:25:54] StatModifiers: created ID 328 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 328
+[2025-09-10 01:25:54] StatModifiers: removed ID 325
+[2025-09-10 01:25:54] StatModifiers: removed ID 326
+[2025-09-10 01:25:54] StatModifiers: removed ID 327
+[2025-09-10 01:25:54] StatModifiers: removed ID 328
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 329 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 329
+[2025-09-10 01:25:54] StatModifiers: created ID 330 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 330
+[2025-09-10 01:25:54] StatModifiers: created ID 331 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 331
+[2025-09-10 01:25:54] StatModifiers: created ID 332 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 332
+[2025-09-10 01:25:54] Controls: Menu toggled true
+[2025-09-10 01:25:54] StatModifiers: removed ID 329
+[2025-09-10 01:25:54] StatModifiers: removed ID 330
+[2025-09-10 01:25:54] StatModifiers: removed ID 331
+[2025-09-10 01:25:54] StatModifiers: removed ID 332
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 333 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 333
+[2025-09-10 01:25:54] StatModifiers: created ID 334 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 334
+[2025-09-10 01:25:54] StatModifiers: created ID 335 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 335
+[2025-09-10 01:25:54] StatModifiers: created ID 336 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 336
+[2025-09-10 01:25:54] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-10 01:25:54] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-10 01:25:54] StatModifiers: removed ID 333
+[2025-09-10 01:25:54] StatModifiers: removed ID 334
+[2025-09-10 01:25:54] StatModifiers: removed ID 335
+[2025-09-10 01:25:54] StatModifiers: removed ID 336
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 337 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 337
+[2025-09-10 01:25:54] StatModifiers: created ID 338 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 338
+[2025-09-10 01:25:54] StatModifiers: created ID 339 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 339
+[2025-09-10 01:25:54] StatModifiers: created ID 340 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 340
+[2025-09-10 01:25:54] StatModifiers: removed ID 337
+[2025-09-10 01:25:54] StatModifiers: removed ID 338
+[2025-09-10 01:25:54] StatModifiers: removed ID 339
+[2025-09-10 01:25:54] StatModifiers: removed ID 340
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 341 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 341
+[2025-09-10 01:25:54] StatModifiers: created ID 342 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 342
+[2025-09-10 01:25:54] StatModifiers: created ID 343 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 343
+[2025-09-10 01:25:54] StatModifiers: created ID 344 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 344
+[2025-09-10 01:25:54] StatModifiers: removed ID 341
+[2025-09-10 01:25:54] StatModifiers: removed ID 342
+[2025-09-10 01:25:54] StatModifiers: removed ID 343
+[2025-09-10 01:25:54] StatModifiers: removed ID 344
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 345 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 345
+[2025-09-10 01:25:54] StatModifiers: created ID 346 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 346
+[2025-09-10 01:25:54] StatModifiers: created ID 347 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 347
+[2025-09-10 01:25:54] StatModifiers: created ID 348 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 348
+[2025-09-10 01:25:54] StatModifiers: removed ID 345
+[2025-09-10 01:25:54] StatModifiers: removed ID 346
+[2025-09-10 01:25:54] StatModifiers: removed ID 347
+[2025-09-10 01:25:54] StatModifiers: removed ID 348
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 349 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 349
+[2025-09-10 01:25:54] StatModifiers: created ID 350 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 350
+[2025-09-10 01:25:54] StatModifiers: created ID 351 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 351
+[2025-09-10 01:25:54] StatModifiers: created ID 352 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 352
+[2025-09-10 01:25:54] StatModifiers: removed ID 349
+[2025-09-10 01:25:54] StatModifiers: removed ID 350
+[2025-09-10 01:25:54] StatModifiers: removed ID 351
+[2025-09-10 01:25:54] StatModifiers: removed ID 352
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 353 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 353
+[2025-09-10 01:25:54] StatModifiers: created ID 354 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 354
+[2025-09-10 01:25:54] StatModifiers: created ID 355 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 355
+[2025-09-10 01:25:54] StatModifiers: created ID 356 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 356
+[2025-09-10 01:25:54] StatModifiers: removed ID 353
+[2025-09-10 01:25:54] StatModifiers: removed ID 354
+[2025-09-10 01:25:54] StatModifiers: removed ID 355
+[2025-09-10 01:25:54] StatModifiers: removed ID 356
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 357 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 357
+[2025-09-10 01:25:54] StatModifiers: created ID 358 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 358
+[2025-09-10 01:25:54] StatModifiers: created ID 359 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 359
+[2025-09-10 01:25:54] StatModifiers: created ID 360 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 360
+[2025-09-10 01:25:54] StatModifiers: removed ID 357
+[2025-09-10 01:25:54] StatModifiers: removed ID 358
+[2025-09-10 01:25:54] StatModifiers: removed ID 359
+[2025-09-10 01:25:54] StatModifiers: removed ID 360
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 361 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 361
+[2025-09-10 01:25:54] StatModifiers: created ID 362 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 362
+[2025-09-10 01:25:54] StatModifiers: created ID 363 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 363
+[2025-09-10 01:25:54] StatModifiers: created ID 364 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 364
+[2025-09-10 01:25:54] StatModifiers: removed ID 361
+[2025-09-10 01:25:54] StatModifiers: removed ID 362
+[2025-09-10 01:25:54] StatModifiers: removed ID 363
+[2025-09-10 01:25:54] StatModifiers: removed ID 364
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 365 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 365
+[2025-09-10 01:25:54] StatModifiers: created ID 366 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 366
+[2025-09-10 01:25:54] StatModifiers: created ID 367 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 367
+[2025-09-10 01:25:54] StatModifiers: created ID 368 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 368
+[2025-09-10 01:25:54] StatModifiers: removed ID 365
+[2025-09-10 01:25:54] StatModifiers: removed ID 366
+[2025-09-10 01:25:54] StatModifiers: removed ID 367
+[2025-09-10 01:25:54] StatModifiers: removed ID 368
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 369 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 369
+[2025-09-10 01:25:54] StatModifiers: created ID 370 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 370
+[2025-09-10 01:25:54] StatModifiers: created ID 371 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 371
+[2025-09-10 01:25:54] StatModifiers: created ID 372 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 372
+[2025-09-10 01:25:54] StatModifiers: removed ID 369
+[2025-09-10 01:25:54] StatModifiers: removed ID 370
+[2025-09-10 01:25:54] StatModifiers: removed ID 371
+[2025-09-10 01:25:54] StatModifiers: removed ID 372
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 373 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 373
+[2025-09-10 01:25:54] StatModifiers: created ID 374 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 374
+[2025-09-10 01:25:54] StatModifiers: created ID 375 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 375
+[2025-09-10 01:25:54] StatModifiers: created ID 376 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 376
+[2025-09-10 01:25:54] StatModifiers: removed ID 373
+[2025-09-10 01:25:54] StatModifiers: removed ID 374
+[2025-09-10 01:25:54] StatModifiers: removed ID 375
+[2025-09-10 01:25:54] StatModifiers: removed ID 376
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 377 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 377
+[2025-09-10 01:25:54] StatModifiers: created ID 378 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 378
+[2025-09-10 01:25:54] StatModifiers: created ID 379 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 379
+[2025-09-10 01:25:54] StatModifiers: created ID 380 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 380
+[2025-09-10 01:25:54] StatModifiers: removed ID 377
+[2025-09-10 01:25:54] StatModifiers: removed ID 378
+[2025-09-10 01:25:54] StatModifiers: removed ID 379
+[2025-09-10 01:25:54] StatModifiers: removed ID 380
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 381 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 381
+[2025-09-10 01:25:54] StatModifiers: created ID 382 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 382
+[2025-09-10 01:25:54] StatModifiers: created ID 383 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 383
+[2025-09-10 01:25:54] StatModifiers: created ID 384 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 384
+[2025-09-10 01:25:54] StatModifiers: removed ID 381
+[2025-09-10 01:25:54] StatModifiers: removed ID 382
+[2025-09-10 01:25:54] StatModifiers: removed ID 383
+[2025-09-10 01:25:54] StatModifiers: removed ID 384
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 385 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 385
+[2025-09-10 01:25:54] StatModifiers: created ID 386 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 386
+[2025-09-10 01:25:54] StatModifiers: created ID 387 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 387
+[2025-09-10 01:25:54] StatModifiers: created ID 388 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 388
+[2025-09-10 01:25:54] StatModifiers: removed ID 385
+[2025-09-10 01:25:54] StatModifiers: removed ID 386
+[2025-09-10 01:25:54] StatModifiers: removed ID 387
+[2025-09-10 01:25:54] StatModifiers: removed ID 388
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 389 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 389
+[2025-09-10 01:25:54] StatModifiers: created ID 390 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 390
+[2025-09-10 01:25:54] StatModifiers: created ID 391 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 391
+[2025-09-10 01:25:54] StatModifiers: created ID 392 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 392
+[2025-09-10 01:25:54] StatModifiers: removed ID 389
+[2025-09-10 01:25:54] StatModifiers: removed ID 390
+[2025-09-10 01:25:54] StatModifiers: removed ID 391
+[2025-09-10 01:25:54] StatModifiers: removed ID 392
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 393 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 393
+[2025-09-10 01:25:54] StatModifiers: created ID 394 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 394
+[2025-09-10 01:25:54] StatModifiers: created ID 395 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 395
+[2025-09-10 01:25:54] StatModifiers: created ID 396 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 396
+[2025-09-10 01:25:54] StatModifiers: removed ID 393
+[2025-09-10 01:25:54] StatModifiers: removed ID 394
+[2025-09-10 01:25:54] StatModifiers: removed ID 395
+[2025-09-10 01:25:54] StatModifiers: removed ID 396
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 397 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 397
+[2025-09-10 01:25:54] StatModifiers: created ID 398 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 398
+[2025-09-10 01:25:54] StatModifiers: created ID 399 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 399
+[2025-09-10 01:25:54] StatModifiers: created ID 400 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 400
+[2025-09-10 01:25:54] StatModifiers: removed ID 397
+[2025-09-10 01:25:54] StatModifiers: removed ID 398
+[2025-09-10 01:25:54] StatModifiers: removed ID 399
+[2025-09-10 01:25:54] StatModifiers: removed ID 400
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 401 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 401
+[2025-09-10 01:25:54] StatModifiers: created ID 402 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 402
+[2025-09-10 01:25:54] StatModifiers: created ID 403 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 403
+[2025-09-10 01:25:54] StatModifiers: created ID 404 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 404
+[2025-09-10 01:25:54] StatModifiers: removed ID 401
+[2025-09-10 01:25:54] StatModifiers: removed ID 402
+[2025-09-10 01:25:54] StatModifiers: removed ID 403
+[2025-09-10 01:25:54] StatModifiers: removed ID 404
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 405 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 405
+[2025-09-10 01:25:54] StatModifiers: created ID 406 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 406
+[2025-09-10 01:25:54] StatModifiers: created ID 407 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 407
+[2025-09-10 01:25:54] StatModifiers: created ID 408 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 408
+[2025-09-10 01:25:54] StatModifiers: removed ID 405
+[2025-09-10 01:25:54] StatModifiers: removed ID 406
+[2025-09-10 01:25:54] StatModifiers: removed ID 407
+[2025-09-10 01:25:54] StatModifiers: removed ID 408
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 409 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 409
+[2025-09-10 01:25:54] StatModifiers: created ID 410 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 410
+[2025-09-10 01:25:54] StatModifiers: created ID 411 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 411
+[2025-09-10 01:25:54] StatModifiers: created ID 412 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 412
+[2025-09-10 01:25:54] StatModifiers: removed ID 409
+[2025-09-10 01:25:54] StatModifiers: removed ID 410
+[2025-09-10 01:25:54] StatModifiers: removed ID 411
+[2025-09-10 01:25:54] StatModifiers: removed ID 412
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 413 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 413
+[2025-09-10 01:25:54] StatModifiers: created ID 414 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 414
+[2025-09-10 01:25:54] StatModifiers: created ID 415 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 415
+[2025-09-10 01:25:54] StatModifiers: created ID 416 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 416
+[2025-09-10 01:25:54] StatModifiers: removed ID 413
+[2025-09-10 01:25:54] StatModifiers: removed ID 414
+[2025-09-10 01:25:54] StatModifiers: removed ID 415
+[2025-09-10 01:25:54] StatModifiers: removed ID 416
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 417 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 417
+[2025-09-10 01:25:54] StatModifiers: created ID 418 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 418
+[2025-09-10 01:25:54] StatModifiers: created ID 419 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 419
+[2025-09-10 01:25:54] StatModifiers: created ID 420 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 420
+[2025-09-10 01:25:54] StatModifiers: removed ID 417
+[2025-09-10 01:25:54] StatModifiers: removed ID 418
+[2025-09-10 01:25:54] StatModifiers: removed ID 419
+[2025-09-10 01:25:54] StatModifiers: removed ID 420
+[2025-09-10 01:25:54] FastReload: Weapon changed > reapplying modifiers to ToItemID{ id = ToTweakDBID{ hash = 0x7080EF70, length = 28 --[[ Items.Preset_Saratoga_Raffen --]] }, rng_seed = 3937932100, unknown = 0, maybe_type = 0 }
+[2025-09-10 01:25:54] StatModifiers: created ID 421 (gamedataStatType : ReloadTimeBase (1292) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 421
+[2025-09-10 01:25:54] StatModifiers: created ID 422 (gamedataStatType : ReloadEndTime (1287) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 422
+[2025-09-10 01:25:54] StatModifiers: created ID 423 (gamedataStatType : EmptyReloadTime (601) gameStatModifierType : Multiplier (2) 0.20 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 423
+[2025-09-10 01:25:54] StatModifiers: created ID 424 (gamedataStatType : EmptyReloadEndTime (600) gameStatModifierType : Multiplier (2) 0.10 -> weapon)
+[2025-09-10 01:25:54] StatModifiers: applied ID 424
+[2025-09-10 01:25:54] Controls: Menu toggled false
+[2025-09-10 01:34:02] BindingsConfig: Bindings saved successfully.
+[2025-09-10 01:34:02] Clean up

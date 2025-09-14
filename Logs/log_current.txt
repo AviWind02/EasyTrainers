@@ -1,20 +1,1940 @@
-[2025-08-26 21:10:37] [EasyTrainer] Logger initialized. Writing to log_6.txt and log_current.txt
-[2025-08-26 21:10:37] Initialization started
-[2025-08-26 21:10:37] Game session States
-[2025-08-26 21:10:37] Loading data...
-[2025-08-26 21:10:37] [EasyTrainerWeaponLoader] Loaded 1778 weapons.
-[2025-08-26 21:10:37] [EasyTrainerVehicleLoader] Loaded 554 vehicles (Added 0 new).
-[2025-08-26 21:10:37] [EasyTrainerGeneralLoader] Loaded 4731 items.
-[2025-08-26 21:10:37] [EasyTrainerPerkLoader] Loaded 193 perks across 6 attributes.
-[2025-08-26 21:10:37] [EasyTrainerTeleportLocations] Loaded 834 teleports.
-[2025-08-26 21:10:37] Registering overrides...
-[2025-08-26 21:10:37] Registering observers...
-[2025-08-26 21:10:37] Init complete.
-[2025-08-26 21:10:39] Game modules initialized.
-[2025-08-26 21:10:39] Loaded 46 keys from file
-[2025-08-26 21:10:39] Loaded style.json
-[2025-08-26 21:10:39] [EasyTrainerSelf] GodMode - Enabled
-[2025-08-26 21:11:25] [EasyTrainerInputHandler] Switched to Controller restrictions
-[2025-08-26 21:11:54] Saved style.json
-[2025-08-26 21:11:56] [EasyTrainerInputHandler] Switched to Keyboard restrictions
-[2025-08-26 21:12:00] [EasyTrainerStatModifiers] ClearAll failed: context missing
+[2025-09-13 22:35:54] [EasyTrainer] Logger initialized. Writing to log_6.txt and log_current.txt
+[2025-09-13 22:35:54] Initialization
+[2025-09-13 22:35:54] Cron Started
+[2025-09-13 22:35:54] Failed to open for read: config.json (config.json: No such file or directory)
+[2025-09-13 22:35:54] Language loaded: en
+[2025-09-13 22:35:54] teleportlocations: loaded 2323 teleports across 96 categories and 45 districts. Added 9 categories to Priority list.
+[2025-09-13 22:35:54] PerkLoader: Loaded 193 perks across 6 attributes.
+[2025-09-13 22:35:54] WeaponLoader: Loaded 1778 weapons.
+[2025-09-13 22:35:55] VehicleLoader: Loaded 578 vehicles (Added 0 new).
+[2025-09-13 22:35:55] DataLoaded
+[2025-09-13 22:35:55] BindingsConfig: Bindings loaded successfully.
+[2025-09-13 22:35:55] Bindings loaded
+[2025-09-13 22:35:55] Failed to open for read: config/JSON/ui.json (Config\JSON\ui.json: No such file or directory)
+[2025-09-13 22:35:55] UIConfig: Failed to load UI settings (Could not open file: config/JSON/ui.json)
+[2025-09-13 22:35:55] UI config loaded
+[2025-09-13 22:35:55] Failed to open for read: config/JSON/navigation.json (Config\JSON\navigation.json: No such file or directory)
+[2025-09-13 22:35:55] NavigationConfig: Failed to load navigation (Could not open file: config/JSON/navigation.json)
+[2025-09-13 22:35:55] Navigation config loaded
+[2025-09-13 22:35:55] Option config loaded
+[2025-09-13 22:35:55] Event: Observing PlayerPuppet.OnAction
+[2025-09-13 22:35:55] Event: Observing BaseProjectile.ProjectileHit
+[2025-09-13 22:35:55] Event: Overriding scannerDetailsGameController.ShouldDisplayTwintoneTab
+[2025-09-13 22:35:59] Game modules initialized.
+[2025-09-13 22:35:59] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-13 22:35:59] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-13 22:35:59] Controls: Menu toggled false
+[2025-09-13 22:36:00] Controls: Menu toggled true
+[2025-09-13 22:36:00] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-13 22:36:00] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-13 22:36:34] Controls: Menu toggled false
+[2025-09-13 22:36:39] Controls: Menu toggled true
+[2025-09-13 22:36:39] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-13 22:36:39] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-13 22:36:43] StatModifiers: created ID 1 (gamedataStatType : JumpHeight (927) gameStatModifierType : Multiplier (2) 3.00 > player)
+[2025-09-13 22:36:43] StatModifiers: applied ID 1
+[2025-09-13 22:36:43] StatModifiers: created ID 2 (gamedataStatType : MaxSpeed (969) gameStatModifierType : Multiplier (2) 5.00 > player)
+[2025-09-13 22:36:43] StatModifiers: applied ID 2
+[2025-09-13 22:36:49] StatusEffect: applied BaseStatusEffect.Invulnerable
+[2025-09-13 22:38:58] StatModifiers: removed ID 2
+[2025-09-13 22:38:59] StatModifiers: removed ID 1
+[2025-09-13 22:39:00] StatusEffect: removed BaseStatusEffect.Invulnerable
+[2025-09-13 22:41:30] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (936.73, -834.27, 34.64)
+[2025-09-13 22:41:30] VehiclePreview: spawned preview userdata: 0x0281a7382bf8
+[2025-09-13 22:41:30] VehiclePreview: cleared preview userdata: 0x0281a7382bf8
+[2025-09-13 22:41:30] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (936.97, -834.19, 34.64)
+[2025-09-13 22:41:30] VehiclePreview: spawned preview userdata: 0x02818b26d498
+[2025-09-13 22:41:30] VehiclePreview: cleared preview userdata: 0x02818b26d498
+[2025-09-13 22:41:30] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (937.22, -834.09, 34.64)
+[2025-09-13 22:41:30] VehiclePreview: spawned preview userdata: 0x02819ca3e3f8
+[2025-09-13 22:41:30] VehiclePreview: cleared preview userdata: 0x02819ca3e3f8
+[2025-09-13 22:41:30] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (937.48, -833.99, 34.65)
+[2025-09-13 22:41:30] VehiclePreview: spawned preview userdata: 0x0281828c3410
+[2025-09-13 22:41:30] VehiclePreview: cleared preview userdata: 0x0281828c3410
+[2025-09-13 22:41:30] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (937.74, -833.90, 34.65)
+[2025-09-13 22:41:30] VehiclePreview: spawned preview userdata: 0x02815d7e8a40
+[2025-09-13 22:41:30] VehiclePreview: cleared preview userdata: 0x02815d7e8a40
+[2025-09-13 22:41:30] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (938.01, -833.80, 34.65)
+[2025-09-13 22:41:30] VehiclePreview: spawned preview userdata: 0x02815d9d0ee8
+[2025-09-13 22:41:30] VehiclePreview: cleared preview userdata: 0x02815d9d0ee8
+[2025-09-13 22:41:30] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (938.27, -833.70, 34.65)
+[2025-09-13 22:41:30] VehiclePreview: spawned preview userdata: 0x02818908cb78
+[2025-09-13 22:41:30] VehiclePreview: cleared preview userdata: 0x02818908cb78
+[2025-09-13 22:41:30] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (938.53, -833.60, 34.64)
+[2025-09-13 22:41:30] VehiclePreview: spawned preview userdata: 0x0281871d1e28
+[2025-09-13 22:41:30] VehiclePreview: cleared preview userdata: 0x0281871d1e28
+[2025-09-13 22:41:30] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (938.79, -833.50, 34.64)
+[2025-09-13 22:41:30] VehiclePreview: spawned preview userdata: 0x02815d5e7a30
+[2025-09-13 22:41:30] VehiclePreview: cleared preview userdata: 0x02815d5e7a30
+[2025-09-13 22:41:30] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (939.04, -833.41, 34.64)
+[2025-09-13 22:41:30] VehiclePreview: spawned preview userdata: 0x02818915ca18
+[2025-09-13 22:41:30] VehiclePreview: cleared preview userdata: 0x02818915ca18
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (939.30, -833.31, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02819cc95c28
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02819cc95c28
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (939.56, -833.22, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02818f395310
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02818f395310
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (939.81, -833.12, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x0281889ebbf0
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x0281889ebbf0
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (940.06, -833.03, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x0281d6ea1f38
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x0281d6ea1f38
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (940.31, -832.94, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02819e4e7da0
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02819e4e7da0
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (940.56, -832.84, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02818def40b8
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02818def40b8
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (940.81, -832.75, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x028183950028
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x028183950028
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (941.05, -832.66, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x0281ace1ea90
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x0281ace1ea90
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (941.31, -832.56, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02818c3868b8
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02818c3868b8
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (941.56, -832.47, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x0281c3f3e908
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x0281c3f3e908
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (941.81, -832.37, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02819c5b3278
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02819c5b3278
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (942.06, -832.28, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02818c3a8af0
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02818c3a8af0
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (942.31, -832.19, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02818b766e70
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02818b766e70
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (942.56, -832.10, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02819c9cb9c8
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02819c9cb9c8
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (942.81, -832.00, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02819c863ca8
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02819c863ca8
+[2025-09-13 22:41:31] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (943.08, -831.90, 34.64)
+[2025-09-13 22:41:31] VehiclePreview: spawned preview userdata: 0x02819c2ff1b0
+[2025-09-13 22:41:31] VehiclePreview: cleared preview userdata: 0x02819c2ff1b0
+[2025-09-13 22:41:32] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (954.05, -829.85, 34.64)
+[2025-09-13 22:41:32] VehiclePreview: spawned preview userdata: 0x0281a6a408f8
+[2025-09-13 22:41:32] VehiclePreview: cleared preview userdata: 0x0281a6a408f8
+[2025-09-13 22:41:32] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (954.33, -829.74, 34.64)
+[2025-09-13 22:41:32] VehiclePreview: spawned preview userdata: 0x0281c3eccb30
+[2025-09-13 22:41:32] VehiclePreview: cleared preview userdata: 0x0281c3eccb30
+[2025-09-13 22:41:32] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (954.60, -829.64, 34.64)
+[2025-09-13 22:41:32] VehiclePreview: spawned preview userdata: 0x0281e8e5c450
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281e8e5c450
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (954.87, -829.54, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x02821215cbb8
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x02821215cbb8
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (955.14, -829.44, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x028212e477f0
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x028212e477f0
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (955.40, -829.34, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0282124df120
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0282124df120
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (955.67, -829.24, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281b47a9c48
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281b47a9c48
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (955.93, -829.14, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x02815ddebc08
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x02815ddebc08
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (956.19, -829.05, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281ec9bb9c0
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281ec9bb9c0
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (956.45, -828.95, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0282123a41c8
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0282123a41c8
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (956.71, -828.85, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x02819c72d3d8
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x02819c72d3d8
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (956.97, -828.76, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281acda6400
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281acda6400
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (957.23, -828.66, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0282123604f0
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0282123604f0
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (957.50, -828.56, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281eb37baf8
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281eb37baf8
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (957.76, -828.46, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281c3f13f90
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281c3f13f90
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (958.01, -828.37, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x02818bb7c2b0
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x02818bb7c2b0
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (958.26, -828.27, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x02815d2a0290
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x02815d2a0290
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (958.53, -828.17, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x02819bf7ff80
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x02819bf7ff80
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (958.79, -828.07, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x028212a73aa8
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x028212a73aa8
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (959.05, -827.98, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281836d8da0
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281836d8da0
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (959.31, -827.88, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x02818b632498
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x02818b632498
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (959.58, -827.78, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281ebe97420
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281ebe97420
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (959.85, -827.68, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281d1d812f0
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281d1d812f0
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (960.11, -827.58, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281ed8e40e8
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281ed8e40e8
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (960.38, -827.48, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x028212c7c848
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x028212c7c848
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (960.63, -827.38, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281e9044a30
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281e9044a30
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (960.90, -827.28, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x02818c30ed20
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x02818c30ed20
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (961.16, -827.19, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x02818c94f660
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x02818c94f660
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (961.42, -827.09, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281d7009140
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281d7009140
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (961.68, -826.99, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x02818c2ca718
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x02818c2ca718
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (961.94, -826.89, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x0281ad6b52b8
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x0281ad6b52b8
+[2025-09-13 22:41:33] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (962.21, -826.80, 34.64)
+[2025-09-13 22:41:33] VehiclePreview: spawned preview userdata: 0x028208703f28
+[2025-09-13 22:41:33] VehiclePreview: cleared preview userdata: 0x028208703f28
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (962.46, -826.70, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281edf031b8
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281edf031b8
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (962.73, -826.60, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x028212bdafc8
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x028212bdafc8
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (963.00, -826.50, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x028211ece938
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x028211ece938
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (963.25, -826.40, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281e9a2bf50
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281e9a2bf50
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (963.51, -826.31, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281ac9afd18
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281ac9afd18
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (963.76, -826.21, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0282126a6280
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0282126a6280
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (964.01, -826.12, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281e968c8b0
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281e968c8b0
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (964.26, -826.03, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281a656e330
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281a656e330
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (964.53, -825.93, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281e8350130
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281e8350130
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (964.81, -825.82, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281b4757148
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281b4757148
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (965.07, -825.72, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281a654cea8
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281a654cea8
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (965.33, -825.63, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281e856f130
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281e856f130
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (965.59, -825.53, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281850ea930
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281850ea930
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (965.85, -825.43, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x02818ce084f8
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x02818ce084f8
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (966.36, -825.24, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x028212301ff8
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x028212301ff8
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (966.65, -825.13, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281ad43e910
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281ad43e910
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (966.89, -825.04, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x02819d356408
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x02819d356408
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (967.10, -824.96, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x0281a768aa28
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x0281a768aa28
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (967.27, -824.90, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x02818b445580
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x02818b445580
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (967.41, -824.85, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x028190bb92c0
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x028190bb92c0
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (967.51, -824.81, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x02815d384548
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x02815d384548
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (967.57, -824.79, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x02819cd0fd78
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x02819cd0fd78
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x02819e7f4cd8
+[2025-09-13 22:41:34] VehiclePreview: cleared preview userdata: 0x02819e7f4cd8
+[2025-09-13 22:41:34] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:34] VehiclePreview: spawned preview userdata: 0x028210fd12b8
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x028210fd12b8
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0282137e3678
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0282137e3678
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0282111c5090
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0282111c5090
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281ed8c8f58
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281ed8c8f58
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281a71fed00
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281a71fed00
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281ead3a730
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281ead3a730
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281841b4ce8
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281841b4ce8
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281a6b0ef78
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281a6b0ef78
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x028188116538
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x028188116538
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281abebc548
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281abebc548
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.58, -824.79, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281e84402f8
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281e84402f8
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.62, -824.77, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x028185913a68
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x028185913a68
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.69, -824.74, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x02815ce06ca0
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x02815ce06ca0
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.80, -824.70, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281e303fda0
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281e303fda0
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (967.95, -824.64, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x028188e8d570
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x028188e8d570
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (968.10, -824.59, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281a671e238
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281a671e238
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (968.25, -824.54, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281a67331d8
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281a67331d8
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (968.39, -824.48, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x028208a95390
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x028208a95390
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (968.53, -824.43, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281acb04b98
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281acb04b98
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (968.65, -824.38, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x02818956f080
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x02818956f080
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (968.77, -824.34, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281871f80c0
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281871f80c0
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (968.88, -824.30, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281e7e49fe0
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281e7e49fe0
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (969.00, -824.25, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281838b78b0
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281838b78b0
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (969.12, -824.21, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281832f9428
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281832f9428
+[2025-09-13 22:41:35] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (969.23, -824.17, 34.64)
+[2025-09-13 22:41:35] VehiclePreview: spawned preview userdata: 0x0281859724a0
+[2025-09-13 22:41:35] VehiclePreview: cleared preview userdata: 0x0281859724a0
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (969.35, -824.12, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0282122fe1a0
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0282122fe1a0
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (969.47, -824.08, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281e2fb0ec0
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281e2fb0ec0
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (969.60, -824.03, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281e970b068
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281e970b068
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (969.72, -823.98, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281a7715a50
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281a7715a50
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (969.84, -823.94, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281ac529338
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281ac529338
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (969.98, -823.89, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x02819c08d988
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x02819c08d988
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (970.16, -823.82, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281a78acbe0
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281a78acbe0
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (970.36, -823.75, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x02819e5a63c0
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x02819e5a63c0
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (970.57, -823.66, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x02821276bcb0
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x02821276bcb0
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (970.83, -823.57, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x02819d318460
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x02819d318460
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (971.07, -823.48, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x02819992ba08
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x02819992ba08
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (971.33, -823.38, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x02818c7f5f18
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x02818c7f5f18
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (971.58, -823.29, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x028212255310
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x028212255310
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (971.84, -823.19, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x028211dca530
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x028211dca530
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (972.09, -823.10, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281ad006688
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281ad006688
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (972.35, -823.00, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281e80f3ce0
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281e80f3ce0
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (972.60, -822.90, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x02818afb82b8
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x02818afb82b8
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (972.85, -822.81, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281839e4c80
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281839e4c80
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (973.10, -822.72, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281876a9f40
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281876a9f40
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (973.36, -822.62, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x028182002a68
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x028182002a68
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (973.61, -822.53, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x02819cac00d0
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x02819cac00d0
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (973.87, -822.43, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x028017048238
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x028017048238
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (974.13, -822.33, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x02819001c148
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x02819001c148
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (974.38, -822.24, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x02818be79cb0
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x02818be79cb0
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (974.64, -822.14, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x028189839048
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x028189839048
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (974.90, -822.05, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281ad05c7e8
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281ad05c7e8
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (975.15, -821.95, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x028187a87030
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x028187a87030
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (975.41, -821.86, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281c40b4520
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281c40b4520
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (975.67, -821.76, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x028190c682a0
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x028190c682a0
+[2025-09-13 22:41:36] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (975.92, -821.66, 34.64)
+[2025-09-13 22:41:36] VehiclePreview: spawned preview userdata: 0x0281a77d9f18
+[2025-09-13 22:41:36] VehiclePreview: cleared preview userdata: 0x0281a77d9f18
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (976.18, -821.57, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x0281a79af418
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x0281a79af418
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (976.42, -821.48, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02818b5ea640
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02818b5ea640
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (976.68, -821.38, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02819c9183a8
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02819c9183a8
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (976.93, -821.29, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x0281e82858b0
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x0281e82858b0
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (977.18, -821.19, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02818472c8f8
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02818472c8f8
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (977.44, -821.09, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02818414b998
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02818414b998
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (977.69, -821.00, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x028182241190
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x028182241190
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (978.10, -821.36, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x0282095dc598
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x0282095dc598
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (978.65, -822.22, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x0281e91f24f0
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x0281e91f24f0
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (979.18, -823.47, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x0281e8709480
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x0281e8709480
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (979.58, -824.83, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02819d4d4458
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02819d4d4458
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (979.83, -826.12, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02815d57ebd0
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02815d57ebd0
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (979.97, -827.30, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x0281acf39940
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x0281acf39940
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (980.10, -828.18, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x028209fbf978
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x028209fbf978
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (980.37, -828.42, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x0281846dd6d8
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x0281846dd6d8
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (980.64, -828.47, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02818b7713f0
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02818b7713f0
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (980.89, -828.63, 34.66)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02818cbbb260
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02818cbbb260
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (981.16, -828.66, 34.67)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02815dd9bb60
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02815dd9bb60
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (981.45, -828.70, 34.69)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02818c018710
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02818c018710
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (981.70, -828.77, 34.71)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x028187e2a4d8
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x028187e2a4d8
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (981.97, -828.84, 34.72)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x0281ac81c3b8
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x0281ac81c3b8
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (982.20, -828.71, 34.71)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x028190c8dc08
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x028190c8dc08
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (982.43, -828.58, 34.70)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02818dea73f8
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02818dea73f8
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (982.66, -828.44, 34.69)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02818e5ea838
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02818e5ea838
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (982.89, -828.31, 34.68)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x028208907938
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x028208907938
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (983.12, -828.17, 34.66)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x0281826761d0
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x0281826761d0
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (983.34, -828.04, 34.65)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02818d02aeb8
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02818d02aeb8
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (983.58, -827.91, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x028190b74ec0
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x028190b74ec0
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (983.81, -827.77, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x02818f1f1330
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x02818f1f1330
+[2025-09-13 22:41:37] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (984.04, -827.64, 34.64)
+[2025-09-13 22:41:37] VehiclePreview: spawned preview userdata: 0x0281d6f37f08
+[2025-09-13 22:41:37] VehiclePreview: cleared preview userdata: 0x0281d6f37f08
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (984.27, -827.50, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281907d7370
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281907d7370
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (984.50, -827.37, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02818c75cca0
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02818c75cca0
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (984.74, -827.23, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x028199dafc08
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x028199dafc08
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (984.96, -827.10, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02818ca41888
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02818ca41888
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (985.20, -826.96, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281d1a48748
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281d1a48748
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (985.43, -826.83, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02818f324408
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02818f324408
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (985.66, -826.69, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02819e52b7f0
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02819e52b7f0
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (985.91, -826.55, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281ea84b3a8
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281ea84b3a8
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (986.14, -826.41, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281eacb1e08
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281eacb1e08
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (986.37, -826.28, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02818cac3ca8
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02818cac3ca8
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (986.61, -826.14, 34.64)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281a72e54d8
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281a72e54d8
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (986.85, -826.00, 34.65)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281eade1380
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281eade1380
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (987.07, -825.87, 34.66)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x028184e851d8
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x028184e851d8
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (987.32, -825.73, 34.67)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x028186fec638
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x028186fec638
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (987.55, -825.59, 34.67)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02820be5f3b8
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02820be5f3b8
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (987.78, -825.46, 34.68)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x028190d1ab48
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x028190d1ab48
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (988.01, -825.32, 34.66)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02815d4469c0
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02815d4469c0
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (988.24, -825.19, 34.65)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02819bee2688
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02819bee2688
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (988.48, -825.05, 34.65)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281b0f838e0
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281b0f838e0
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (988.72, -824.91, 34.65)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281d1d4f078
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281d1d4f078
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (988.95, -824.78, 34.66)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281eb0316f8
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281eb0316f8
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (989.18, -824.65, 34.66)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02819c111048
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02819c111048
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (989.41, -824.51, 34.66)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x028186e29f00
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x028186e29f00
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (989.64, -824.38, 34.66)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281b0cb1d68
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281b0cb1d68
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (989.87, -824.24, 34.66)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281ead8aad0
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281ead8aad0
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (990.10, -824.11, 34.67)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02818c52c798
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02818c52c798
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (990.34, -823.97, 34.67)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02815da25128
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02815da25128
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (990.57, -823.83, 34.67)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x028208088a18
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x028208088a18
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (990.80, -823.72, 34.67)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x0281ed4925b0
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x0281ed4925b0
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (991.05, -823.61, 34.68)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02818d8214e0
+[2025-09-13 22:41:38] VehiclePreview: cleared preview userdata: 0x02818d8214e0
+[2025-09-13 22:41:38] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (991.31, -823.68, 34.68)
+[2025-09-13 22:41:38] VehiclePreview: spawned preview userdata: 0x02820b9f3190
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x02820b9f3190
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (991.58, -823.75, 34.68)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281a7c3aec8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281a7c3aec8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (991.84, -823.82, 34.68)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281ed54f7c8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281ed54f7c8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (992.09, -823.89, 34.68)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281ed019d00
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281ed019d00
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (992.35, -823.95, 34.69)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281e83a6b90
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281e83a6b90
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (992.60, -824.02, 34.69)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281eca16258
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281eca16258
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (992.88, -824.09, 34.69)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281ead1c448
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281ead1c448
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (993.13, -824.16, 34.69)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281eb93d9d8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281eb93d9d8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (993.39, -824.23, 34.70)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281d1b7f5e8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281d1b7f5e8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (993.65, -824.30, 34.70)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x02818ce1f0a8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x02818ce1f0a8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (993.90, -824.36, 34.70)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x02821385a3e0
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x02821385a3e0
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (994.16, -824.43, 34.70)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281ec8457d8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281ec8457d8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (994.41, -824.50, 34.70)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0282082ecf80
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0282082ecf80
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (994.66, -824.57, 34.71)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281e9cd7350
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281e9cd7350
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (994.91, -824.63, 34.71)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281eb5ea8c8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281eb5ea8c8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (995.17, -824.70, 34.71)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281e910d928
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281e910d928
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo' at (995.42, -824.77, 34.71)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281eb1c82e8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281eb1c82e8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (995.69, -824.84, 34.72)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281e8e69868
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281e8e69868
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (995.96, -824.91, 34.72)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281ec0c7930
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281ec0c7930
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (996.23, -824.98, 34.72)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281e8f47ee0
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281e8f47ee0
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (996.49, -825.05, 34.72)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0282135fd4a8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0282135fd4a8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (996.74, -825.11, 34.73)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x02818b9b40f8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x02818b9b40f8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (996.99, -825.18, 34.73)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281890963d0
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281890963d0
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (997.25, -825.25, 34.73)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x028211af1bd0
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x028211af1bd0
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (997.51, -825.32, 34.73)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x02818c418078
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x02818c418078
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (997.77, -825.39, 34.73)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x02818cef5418
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x02818cef5418
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (998.02, -825.45, 34.74)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281a6851a70
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281a6851a70
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (998.27, -825.52, 34.74)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x02820a69ecc0
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x02820a69ecc0
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (998.53, -825.59, 34.75)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281abe4d4f8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281abe4d4f8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (998.79, -825.65, 34.75)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x028199a54d28
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x028199a54d28
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (999.03, -825.72, 34.76)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281ec733cb8
+[2025-09-13 22:41:39] VehiclePreview: cleared preview userdata: 0x0281ec733cb8
+[2025-09-13 22:41:39] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (999.29, -825.79, 34.76)
+[2025-09-13 22:41:39] VehiclePreview: spawned preview userdata: 0x0281ac447858
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281ac447858
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (999.54, -825.85, 34.77)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281a75bce40
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281a75bce40
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (999.79, -825.92, 34.77)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281ebf2e340
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281ebf2e340
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1000.05, -825.99, 34.78)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281acd25308
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281acd25308
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1000.31, -826.06, 34.78)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281e9727618
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281e9727618
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1000.56, -826.12, 34.79)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281d6ead4a0
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281d6ead4a0
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1000.81, -826.19, 34.79)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0282119943c8
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0282119943c8
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1001.07, -826.26, 34.80)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281e8307ac0
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281e8307ac0
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1001.32, -826.32, 34.80)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x02818ae6fa48
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x02818ae6fa48
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1001.57, -826.39, 34.81)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x02820be7c678
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x02820be7c678
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1001.82, -826.46, 34.81)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281ed348e30
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281ed348e30
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1002.11, -826.53, 34.82)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281abd76038
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281abd76038
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1002.37, -826.60, 34.82)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281ece7cbd0
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281ece7cbd0
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1002.63, -826.67, 34.83)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x028212484788
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x028212484788
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1002.90, -826.74, 34.85)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281e909dfe8
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281e909dfe8
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1003.16, -826.81, 34.86)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281e90a73b0
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281e90a73b0
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1003.43, -826.88, 34.88)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281ac7e01e8
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281ac7e01e8
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1003.68, -826.73, 34.86)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281edce8a68
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281edce8a68
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1003.92, -826.59, 34.85)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281e9d7d2d0
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281e9d7d2d0
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1004.16, -826.45, 34.85)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x028211cd2a28
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x028211cd2a28
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1004.41, -826.30, 34.86)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0282088b5258
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0282088b5258
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1004.66, -826.16, 34.86)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x02815eb28240
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x02815eb28240
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1004.92, -826.01, 34.87)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x028213a34d20
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x028213a34d20
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1005.16, -825.87, 34.87)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281906ec898
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281906ec898
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1005.40, -825.73, 34.88)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x02815ead1be8
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x02815ead1be8
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1005.65, -825.59, 34.88)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281ed3791f0
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281ed3791f0
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1005.88, -825.45, 34.89)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x028213b0b348
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x028213b0b348
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1006.11, -825.31, 34.89)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281ed54a3e0
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281ed54a3e0
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1006.35, -825.17, 34.90)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281eadb3130
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281eadb3130
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1006.61, -825.03, 34.90)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281ed0d2340
+[2025-09-13 22:41:40] VehiclePreview: cleared preview userdata: 0x0281ed0d2340
+[2025-09-13 22:41:40] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1006.85, -824.88, 34.91)
+[2025-09-13 22:41:40] VehiclePreview: spawned preview userdata: 0x0281ed4a45a0
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281ed4a45a0
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_player' at (1007.10, -824.74, 34.91)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x02819c1d35c8
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x02819c1d35c8
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1007.35, -824.60, 34.92)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0282081f4728
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0282081f4728
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1007.59, -824.47, 34.92)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281d703d300
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281d703d300
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1007.85, -824.36, 34.93)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x028212c77100
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x028212c77100
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1008.13, -824.43, 34.93)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281d1ae3ef8
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281d1ae3ef8
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1008.41, -824.51, 34.94)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281b47ea1d8
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281b47ea1d8
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1008.69, -824.58, 34.95)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281ed199478
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281ed199478
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1008.95, -824.65, 34.95)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x028211fe34c8
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x028211fe34c8
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1009.23, -824.73, 34.96)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281acbfe6a0
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281acbfe6a0
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1009.50, -824.80, 34.96)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281ebf09428
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281ebf09428
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1009.78, -824.87, 34.97)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281ea318760
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281ea318760
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1010.06, -824.94, 34.98)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281ea2a1ac0
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281ea2a1ac0
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1010.33, -825.01, 34.98)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281ea2e2080
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281ea2e2080
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1010.60, -825.09, 34.99)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x028213501660
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x028213501660
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1010.87, -825.16, 35.00)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x028213afdc30
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x028213afdc30
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1011.13, -825.23, 35.00)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281ecc916c8
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281ecc916c8
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1011.39, -825.30, 35.01)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281ed4b0e28
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281ed4b0e28
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1011.66, -825.37, 35.02)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x02821306b328
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x02821306b328
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1011.93, -825.44, 35.02)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281ecbd9b18
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281ecbd9b18
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1012.19, -825.51, 35.03)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0282095da340
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0282095da340
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1012.48, -825.58, 35.04)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0282126d46f8
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0282126d46f8
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1012.75, -825.65, 35.04)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281edd72858
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281edd72858
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1013.02, -825.72, 35.05)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x028213b2ea88
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x028213b2ea88
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1013.28, -825.80, 35.05)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281eb6688a0
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281eb6688a0
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1013.55, -825.86, 35.06)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281edcb73c8
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281edcb73c8
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1013.82, -825.94, 35.07)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x02820851d6d0
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x02820851d6d0
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1014.08, -826.00, 35.07)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x028212e6ec18
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x028212e6ec18
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1014.34, -826.07, 35.09)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281d1d17408
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281d1d17408
+[2025-09-13 22:41:41] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1014.58, -825.93, 35.09)
+[2025-09-13 22:41:41] VehiclePreview: spawned preview userdata: 0x0281ec04cda8
+[2025-09-13 22:41:41] VehiclePreview: cleared preview userdata: 0x0281ec04cda8
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1014.82, -825.79, 35.09)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0281d6bcdfd0
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0281d6bcdfd0
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1015.07, -825.65, 35.10)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0281d6c8fac8
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0281d6c8fac8
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1015.31, -825.50, 35.10)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028212321ce8
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028212321ce8
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1015.58, -825.35, 35.11)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0281eb705ef0
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0281eb705ef0
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1015.83, -825.20, 35.12)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0281eba32330
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0281eba32330
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1016.06, -825.07, 35.12)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x02820830c298
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x02820830c298
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1016.32, -824.92, 35.13)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028208539bb8
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028208539bb8
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1016.57, -824.77, 35.14)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0281ecdafe40
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0281ecdafe40
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1016.81, -824.63, 35.14)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x02820852efe0
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x02820852efe0
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1017.05, -824.49, 35.15)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0281e955c7b8
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0281e955c7b8
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1017.28, -824.36, 35.15)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028212efe9d8
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028212efe9d8
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1017.50, -824.23, 35.16)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028213442410
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028213442410
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1017.75, -824.08, 35.17)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0282132ab910
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0282132ab910
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1018.00, -823.94, 35.17)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0282092b7650
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0282092b7650
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1018.25, -823.79, 35.18)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028212fb01e8
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028212fb01e8
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1018.49, -823.65, 35.18)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028213327f78
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028213327f78
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1018.73, -823.51, 35.19)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028208985910
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028208985910
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1018.98, -823.37, 35.20)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x02821143cc90
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x02821143cc90
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1019.22, -823.23, 35.20)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0282128c4b28
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0282128c4b28
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1019.46, -823.09, 35.21)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0282138b2bb8
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0282138b2bb8
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1019.69, -822.95, 35.22)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028211a38b70
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028211a38b70
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1019.92, -822.82, 35.22)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028213df2dc0
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028213df2dc0
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1020.16, -822.68, 35.23)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028213222030
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028213222030
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1020.40, -822.54, 35.24)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x02820886c880
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x02820886c880
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1020.64, -822.42, 35.24)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0282115d4668
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x0282115d4668
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1020.90, -822.49, 35.25)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x02820bde8420
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x02820bde8420
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1021.17, -822.56, 35.26)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x028213a846e8
+[2025-09-13 22:41:42] VehiclePreview: cleared preview userdata: 0x028213a846e8
+[2025-09-13 22:41:42] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1021.43, -822.63, 35.27)
+[2025-09-13 22:41:42] VehiclePreview: spawned preview userdata: 0x0281b0b721d8
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0281b0b721d8
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1021.96, -822.77, 35.28)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x0281d1c9f668
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0281d1c9f668
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1022.29, -822.86, 35.29)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x0281ec966178
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0281ec966178
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1022.61, -822.94, 35.30)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x028209884908
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x028209884908
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1022.93, -823.03, 35.58)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x0281ecfe5b50
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0281ecfe5b50
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1023.26, -823.11, 35.83)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x0282136bd210
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0282136bd210
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1023.57, -823.20, 36.06)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x0281b0f1a190
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0281b0f1a190
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1023.90, -823.28, 36.26)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x0281873ca2d0
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0281873ca2d0
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1024.23, -823.37, 36.44)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x0281c4021460
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0281c4021460
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1024.57, -823.46, 36.60)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x028190c348c0
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x028190c348c0
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1024.92, -823.55, 36.73)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x028210fd7468
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x028210fd7468
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1025.31, -823.65, 36.83)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x0281a73be2a8
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0281a73be2a8
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1025.69, -823.75, 36.90)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x02816c78e9b0
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x02816c78e9b0
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1026.55, -823.98, 36.93)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x02819e623328
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x02819e623328
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1028.21, -824.42, 36.90)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x028212299510
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x028212299510
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1029.66, -824.81, 36.80)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x02818fea6ee8
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x02818fea6ee8
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1030.85, -825.13, 36.67)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x0281acbd7618
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0281acbd7618
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1031.89, -825.41, 36.49)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x02815d249b78
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x02815d249b78
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1032.88, -825.67, 36.25)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x02815e058aa8
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x02815e058aa8
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1033.67, -825.88, 35.99)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x0281ac8d7458
+[2025-09-13 22:41:43] VehiclePreview: cleared preview userdata: 0x0281ac8d7458
+[2025-09-13 22:41:43] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1034.39, -826.07, 35.79)
+[2025-09-13 22:41:43] VehiclePreview: spawned preview userdata: 0x02818b56a1b0
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x02818b56a1b0
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1035.04, -826.24, 35.84)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281b0ff0c68
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281b0ff0c68
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1035.69, -826.42, 35.88)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281acb04d28
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281acb04d28
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1036.21, -826.47, 35.91)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281e92b4f28
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281e92b4f28
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1036.67, -826.45, 35.91)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281e845dff8
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281e845dff8
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1037.09, -826.42, 35.94)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x02818211d140
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x02818211d140
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1037.45, -826.38, 35.94)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281eb0ffc28
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281eb0ffc28
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1037.80, -826.33, 35.95)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281e85cf470
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281e85cf470
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1038.13, -826.27, 35.96)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x02818d692ad0
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x02818d692ad0
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1038.45, -826.20, 35.96)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x02818806fe78
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x02818806fe78
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1038.76, -826.11, 35.96)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0282088f2dd8
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0282088f2dd8
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1039.04, -825.95, 35.95)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x02818d132a38
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x02818d132a38
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1039.35, -825.78, 35.94)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x028183861c78
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x028183861c78
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1039.64, -825.61, 35.93)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281e82c7038
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281e82c7038
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1039.93, -825.44, 35.92)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x02819cd7fd00
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x02819cd7fd00
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1040.17, -825.30, 35.91)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x028184ad2d08
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x028184ad2d08
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1040.40, -825.16, 35.90)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281abe238d0
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281abe238d0
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1040.64, -825.02, 35.89)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x02819c264bd8
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x02819c264bd8
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1040.87, -824.89, 35.88)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281a7576748
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281a7576748
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1041.10, -824.75, 35.87)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281d6e39bc0
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281d6e39bc0
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1041.34, -824.62, 35.86)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x02818b24ed08
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x02818b24ed08
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1041.57, -824.48, 35.86)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281831f69d8
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281831f69d8
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1041.81, -824.34, 35.85)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x028183383a00
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x028183383a00
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1042.03, -824.21, 35.86)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0282132a0b70
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0282132a0b70
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1042.26, -824.08, 35.86)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x0281e9f7f938
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x0281e9f7f938
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1042.52, -824.15, 35.87)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x028212267668
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x028212267668
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1042.83, -824.23, 35.88)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x028208779f58
+[2025-09-13 22:41:44] VehiclePreview: cleared preview userdata: 0x028208779f58
+[2025-09-13 22:41:44] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1043.10, -824.30, 35.89)
+[2025-09-13 22:41:44] VehiclePreview: spawned preview userdata: 0x028213b1b330
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x028213b1b330
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1043.37, -824.37, 35.91)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281eccea420
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281eccea420
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1043.64, -824.44, 35.93)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281e9a99aa0
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281e9a99aa0
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1043.89, -824.51, 35.95)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0282085b72a0
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0282085b72a0
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1044.15, -824.58, 35.97)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x02818caaa080
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x02818caaa080
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1044.41, -824.65, 35.99)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x02815eb61018
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x02815eb61018
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1044.66, -824.71, 36.01)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281edb59210
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281edb59210
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1044.98, -824.80, 36.56)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281c3edb098
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281c3edb098
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1045.32, -824.88, 37.16)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281ebcd7748
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281ebcd7748
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1045.65, -824.97, 37.71)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281ac917658
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281ac917658
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1045.98, -825.06, 38.21)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281acde92e8
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281acde92e8
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1046.31, -825.15, 38.69)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281a7903dc0
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281a7903dc0
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1046.63, -825.23, 39.09)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281ece00478
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281ece00478
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1046.96, -825.32, 39.48)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x028209838908
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x028209838908
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1047.29, -825.41, 39.81)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x028211403f90
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x028211403f90
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1047.63, -825.50, 40.12)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281ad595f90
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281ad595f90
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1047.96, -825.58, 40.37)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x02815dc468d0
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x02815dc468d0
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1048.29, -825.67, 40.58)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x028211a84388
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x028211a84388
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1048.63, -825.73, 40.75)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281e93277a0
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281e93277a0
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1048.97, -825.76, 40.87)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x02818c969d08
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x02818c969d08
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1049.31, -825.76, 40.95)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281ead97560
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281ead97560
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1049.67, -825.76, 41.00)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281ec045288
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281ec045288
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1050.02, -825.76, 40.99)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281eb20a050
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281eb20a050
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1050.42, -825.76, 40.96)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x02816c1162b8
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x02816c1162b8
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1050.81, -825.76, 40.92)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281a73ab388
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281a73ab388
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1051.24, -825.76, 40.85)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281ad38ba28
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281ad38ba28
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1051.63, -825.76, 40.76)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281ecbb5b20
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281ecbb5b20
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1052.00, -825.76, 40.66)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281d70a6c10
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281d70a6c10
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1052.36, -825.76, 40.55)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0281ebbaddc0
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0281ebbaddc0
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1052.72, -825.76, 40.42)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x0282095c5c70
+[2025-09-13 22:41:45] VehiclePreview: cleared preview userdata: 0x0282095c5c70
+[2025-09-13 22:41:45] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1053.11, -825.76, 40.26)
+[2025-09-13 22:41:45] VehiclePreview: spawned preview userdata: 0x028187b13f98
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x028187b13f98
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1053.46, -825.76, 40.10)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02815e009d30
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02815e009d30
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1053.81, -825.76, 39.93)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x028183527a38
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x028183527a38
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1054.21, -825.76, 39.71)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02818fc3abb8
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02818fc3abb8
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1054.56, -825.76, 39.50)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02819cbec740
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02819cbec740
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1054.92, -825.77, 39.27)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x0281ed5e7ea8
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x0281ed5e7ea8
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1055.28, -825.77, 39.03)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x028182562480
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x028182562480
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1055.62, -825.77, 38.78)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02818e2e2cb0
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02818e2e2cb0
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1055.96, -825.77, 38.52)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x0281e9840c40
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x0281e9840c40
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1056.31, -825.77, 38.24)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x0281b0cd1ba0
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x0281b0cd1ba0
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1056.65, -825.77, 37.94)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02818df74480
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02818df74480
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1056.99, -825.77, 37.67)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02803339e1e0
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02803339e1e0
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1057.38, -825.78, 37.69)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02815d08c3d8
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02815d08c3d8
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1057.79, -825.78, 37.70)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x028183365840
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x028183365840
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1058.16, -825.76, 37.71)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02818f5a7b08
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02818f5a7b08
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1058.48, -825.74, 37.72)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x0281a6d54c80
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x0281a6d54c80
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1058.78, -825.70, 37.73)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x0281ecd5b170
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x0281ecd5b170
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1059.06, -825.66, 37.74)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02818b752b00
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02818b752b00
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1059.30, -825.52, 37.75)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x028212cc0328
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x028212cc0328
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1059.54, -825.38, 37.75)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02815de21838
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02815de21838
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1059.79, -825.23, 37.72)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x028187832d38
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x028187832d38
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1060.04, -825.09, 37.67)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x028190039fb8
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x028190039fb8
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1060.27, -824.96, 37.61)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02818dcead90
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02818dcead90
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1060.53, -825.02, 37.58)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02818838a6d0
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02818838a6d0
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1060.85, -825.04, 37.65)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02815db000d0
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02815db000d0
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1061.19, -825.04, 37.68)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02805a103318
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02805a103318
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1061.48, -825.04, 37.71)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02818b93d5a0
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02818b93d5a0
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1061.79, -825.05, 37.75)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x028199886f98
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x028199886f98
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1062.11, -825.06, 37.78)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x02815dbc8f58
+[2025-09-13 22:41:46] VehiclePreview: cleared preview userdata: 0x02815dbc8f58
+[2025-09-13 22:41:46] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1062.40, -825.08, 37.81)
+[2025-09-13 22:41:46] VehiclePreview: spawned preview userdata: 0x0282084b6078
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0282084b6078
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1062.68, -825.10, 37.83)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281a6bec280
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281a6bec280
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1062.99, -825.13, 37.85)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x028183bbe330
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x028183bbe330
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1063.29, -825.16, 37.87)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281843f5c30
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281843f5c30
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1063.75, -824.31, 37.88)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0282095a5048
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0282095a5048
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1064.24, -822.60, 37.89)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281d6d18c58
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281d6d18c58
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1064.48, -820.98, 37.90)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02818ff8d908
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x02818ff8d908
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1064.66, -820.10, 37.91)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x028187a5d338
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x028187a5d338
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1064.89, -819.73, 37.92)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x028190208520
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x028190208520
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1065.18, -819.59, 37.93)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281a6766a50
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281a6766a50
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1065.38, -819.09, 37.94)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281e9212478
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281e9212478
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1065.60, -818.86, 37.94)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0282125ec610
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0282125ec610
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1065.86, -818.81, 37.95)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281850c1958
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281850c1958
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1066.13, -818.75, 37.96)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02819c483bb0
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x02819c483bb0
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1066.40, -818.68, 37.96)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02818d277c58
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x02818d277c58
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1066.66, -818.62, 37.96)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x028199ab64c0
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x028199ab64c0
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1066.92, -818.56, 37.95)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02818aec3960
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x02818aec3960
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1067.18, -818.50, 37.94)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281a6380fd8
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281a6380fd8
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1067.47, -818.54, 37.91)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281a73af9e8
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281a73af9e8
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1067.82, -818.89, 37.89)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02815db41690
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x02815db41690
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1068.16, -819.17, 37.86)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02818c5592b8
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x02818c5592b8
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1068.54, -819.75, 37.80)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02818e10dfd8
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x02818e10dfd8
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1068.86, -820.08, 37.72)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281b4788738
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281b4788738
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1069.13, -820.08, 37.63)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02819c1f5878
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x02819c1f5878
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1069.40, -820.06, 37.52)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281edea01e8
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281edea01e8
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1069.69, -820.12, 37.39)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281edf55908
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281edf55908
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1069.98, -820.11, 37.16)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x0281e96b7b10
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x0281e96b7b10
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1070.27, -820.08, 36.96)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02819031c080
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x02819031c080
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1070.57, -820.05, 36.97)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x028190c19890
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x028190c19890
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1070.84, -820.02, 36.98)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02818c9a57a0
+[2025-09-13 22:41:47] VehiclePreview: cleared preview userdata: 0x02818c9a57a0
+[2025-09-13 22:41:47] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1071.11, -820.00, 36.99)
+[2025-09-13 22:41:47] VehiclePreview: spawned preview userdata: 0x02818d5a12c8
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02818d5a12c8
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1071.39, -819.98, 36.99)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x02818b3c8448
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02818b3c8448
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1071.66, -819.96, 37.00)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281e9967910
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281e9967910
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1071.93, -819.94, 37.01)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x02820a2a2ef0
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02820a2a2ef0
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1072.20, -819.92, 37.02)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x028187944c18
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x028187944c18
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1072.46, -819.90, 37.03)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x02815d1158e0
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02815d1158e0
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1072.75, -819.88, 37.04)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x02818c5fe968
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02818c5fe968
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1073.05, -820.12, 37.05)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281ea16e690
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281ea16e690
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1073.35, -820.68, 37.05)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x028208845ef8
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x028208845ef8
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1073.63, -821.05, 37.06)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x02818c3f0108
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02818c3f0108
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1073.91, -821.05, 37.07)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281e958b018
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281e958b018
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1074.17, -821.06, 37.08)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281acc8e040
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281acc8e040
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1074.45, -821.05, 37.08)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0282089bc0f0
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0282089bc0f0
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1074.75, -821.03, 37.08)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281a795c2a0
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281a795c2a0
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1075.03, -821.01, 37.08)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x028208bc03f8
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x028208bc03f8
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1075.35, -820.99, 37.08)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x02819051b910
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02819051b910
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1075.67, -820.97, 37.08)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281d1c4ae68
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281d1c4ae68
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1075.95, -820.95, 37.08)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x02818799eff0
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02818799eff0
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1076.24, -820.93, 37.08)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281d6b30628
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281d6b30628
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1076.53, -820.92, 37.16)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281ea54f838
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281ea54f838
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1076.81, -820.90, 37.16)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281a687f178
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281a687f178
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1077.09, -820.88, 37.16)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x02821149fe58
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02821149fe58
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1077.38, -820.86, 37.16)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x02820a5a45c0
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02820a5a45c0
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1077.66, -820.84, 37.16)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281999f6048
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281999f6048
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1077.96, -820.82, 37.16)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0282115a1170
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0282115a1170
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1078.23, -820.80, 37.16)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x028189d2a4e8
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x028189d2a4e8
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1078.53, -820.78, 37.16)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281abdda500
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281abdda500
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1078.81, -820.76, 37.16)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x02818ae46090
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x02818ae46090
+[2025-09-13 22:41:48] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1079.08, -820.75, 37.24)
+[2025-09-13 22:41:48] VehiclePreview: spawned preview userdata: 0x0281ad50a4a0
+[2025-09-13 22:41:48] VehiclePreview: cleared preview userdata: 0x0281ad50a4a0
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1079.38, -820.73, 37.24)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x0281ed366090
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x0281ed366090
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1079.70, -820.70, 37.24)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x0281ec07bdd0
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x0281ec07bdd0
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1079.98, -820.69, 37.24)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x0281e8e00528
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x0281e8e00528
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1080.27, -820.67, 37.24)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x02819ceefee0
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x02819ceefee0
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1080.55, -820.65, 37.24)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x028211e7ec78
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x028211e7ec78
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1080.83, -820.63, 37.24)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x0281edc138b8
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x0281edc138b8
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1081.11, -820.61, 37.24)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x0281accdd4a0
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x0281accdd4a0
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1081.38, -820.59, 37.24)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x028212632b80
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x028212632b80
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1081.65, -820.58, 37.33)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x0281edbb2928
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x0281edbb2928
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1081.93, -820.56, 37.33)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x02819e937560
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x02819e937560
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1082.22, -820.54, 37.33)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x0281ec731dc8
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x0281ec731dc8
+[2025-09-13 22:41:49] VehicleSpawning: spawned 'Vehicle.v_sport2_porsche_911turbo_quest' at (1082.51, -820.52, 37.33)
+[2025-09-13 22:41:49] VehiclePreview: spawned preview userdata: 0x028207fe5580
+[2025-09-13 22:41:49] VehiclePreview: cleared preview userdata: 0x028207fe5580
+[2025-09-13 22:42:02] VehicleSpawning: spawned 'Vehicle.v_sportbike3_brennan_apollo_police' at (1185.37, -807.01, 39.90)
+[2025-09-13 22:42:02] VehiclePreview: spawned preview userdata: 0x0281e91d31b0
+[2025-09-13 22:42:02] VehiclePreview: cleared preview userdata: 0x0281e91d31b0
+[2025-09-13 22:42:02] VehicleSpawning: spawned 'Vehicle.v_utility4_militech_behemoth_border_patrol' at (1187.56, -805.05, 39.98)
+[2025-09-13 22:42:02] VehiclePreview: spawned preview userdata: 0x0281eb895d10
+[2025-09-13 22:42:03] VehiclePreview: cleared preview userdata: 0x0281eb895d10
+[2025-09-13 22:42:03] VehicleSpawning: spawned 'Vehicle.v_utility4_militech_behemoth_maxtac' at (1188.80, -803.87, 40.03)
+[2025-09-13 22:42:03] VehiclePreview: spawned preview userdata: 0x0281d1bc0900
+[2025-09-13 22:42:03] VehiclePreview: cleared preview userdata: 0x0281d1bc0900
+[2025-09-13 22:42:03] VehicleSpawning: spawned 'Vehicle.v_utility4_militech_behemoth_police' at (1190.05, -802.68, 40.08)
+[2025-09-13 22:42:03] VehiclePreview: spawned preview userdata: 0x0282086dc3e8
+[2025-09-13 22:42:03] VehiclePreview: cleared preview userdata: 0x0282086dc3e8
+[2025-09-13 22:42:03] VehicleSpawning: spawned 'Vehicle.v_007_interceptor_police' at (1191.32, -801.48, 40.14)
+[2025-09-13 22:42:03] VehiclePreview: spawned preview userdata: 0x0281d6d62680
+[2025-09-13 22:42:03] VehiclePreview: cleared preview userdata: 0x0281d6d62680
+[2025-09-13 22:42:03] VehicleSpawning: spawned 'Vehicle.v_standard2_villefort_cortes_police_sheriff' at (1193.03, -801.52, 40.21)
+[2025-09-13 22:42:03] VehiclePreview: spawned preview userdata: 0x02820876a7f8
+[2025-09-13 22:42:03] VehiclePreview: cleared preview userdata: 0x02820876a7f8
+[2025-09-13 22:42:03] VehicleSpawning: spawned 'Vehicle.v_standard2_villefort_cortes_police' at (1194.62, -801.35, 40.29)
+[2025-09-13 22:42:03] VehiclePreview: spawned preview userdata: 0x0281ed8b7bc8
+[2025-09-13 22:42:04] VehiclePreview: cleared preview userdata: 0x0281ed8b7bc8
+[2025-09-13 22:42:04] VehicleSpawning: spawned 'Vehicle.v_standard2_villefort_cortes_police_border_patrol' at (1195.86, -800.17, 40.35)
+[2025-09-13 22:42:04] VehiclePreview: spawned preview userdata: 0x0281eb60ead8
+[2025-09-13 22:42:04] VehiclePreview: cleared preview userdata: 0x0281eb60ead8
+[2025-09-13 22:42:04] VehicleSpawning: spawned 'Vehicle.v_standard2_villefort_cortes_police_border_patrol_prevention_2' at (1197.01, -799.08, 40.41)
+[2025-09-13 22:42:04] VehiclePreview: spawned preview userdata: 0x0281e9c66000
+[2025-09-13 22:42:04] VehiclePreview: cleared preview userdata: 0x0281e9c66000
+[2025-09-13 22:42:04] VehicleSpawning: spawned 'Vehicle.v_standard2_villefort_cortes_police_prevention' at (1197.98, -798.15, 40.46)
+[2025-09-13 22:42:04] VehiclePreview: spawned preview userdata: 0x0281e98d7140
+[2025-09-13 22:42:04] VehiclePreview: cleared preview userdata: 0x0281e98d7140
+[2025-09-13 22:42:04] VehicleSpawning: spawned 'Vehicle.v_standard2_villefort_cortes_police_prevention_2' at (1199.02, -797.66, 40.52)
+[2025-09-13 22:42:04] VehiclePreview: spawned preview userdata: 0x028209f595f0
+[2025-09-13 22:42:04] VehiclePreview: cleared preview userdata: 0x028209f595f0
+[2025-09-13 22:42:04] VehicleSpawning: spawned 'Vehicle.v_standard2_villefort_cortes_police_border_patrol_prevention' at (1200.10, -797.69, 40.57)
+[2025-09-13 22:42:04] VehiclePreview: spawned preview userdata: 0x0281e97a2038
+[2025-09-13 22:42:04] VehiclePreview: cleared preview userdata: 0x0281e97a2038
+[2025-09-13 22:42:04] VehicleSpawning: spawned 'Vehicle.v_standard2_villefort_cortes_police_mws' at (1200.98, -797.71, 40.62)
+[2025-09-13 22:42:04] VehiclePreview: spawned preview userdata: 0x02821351b1e0
+[2025-09-13 22:42:05] VehiclePreview: cleared preview userdata: 0x02821351b1e0
+[2025-09-13 22:42:05] VehicleSpawning: spawned 'Vehicle.v_standard2_villefort_cortes_police_siren' at (1201.65, -797.73, 40.66)
+[2025-09-13 22:42:05] VehiclePreview: spawned preview userdata: 0x02818d3aeb58
+[2025-09-13 22:42:05] VehiclePreview: cleared preview userdata: 0x02818d3aeb58
+[2025-09-13 22:42:05] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_militech_border_prevention' at (1202.19, -797.74, 40.68)
+[2025-09-13 22:42:05] VehiclePreview: spawned preview userdata: 0x0281eb450318
+[2025-09-13 22:42:05] VehiclePreview: cleared preview userdata: 0x0281eb450318
+[2025-09-13 22:42:05] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_mws' at (1202.56, -797.75, 40.70)
+[2025-09-13 22:42:05] VehiclePreview: spawned preview userdata: 0x02820becab10
+[2025-09-13 22:42:05] VehiclePreview: cleared preview userdata: 0x02820becab10
+[2025-09-13 22:42:05] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_prevention' at (1202.80, -797.76, 40.72)
+[2025-09-13 22:42:05] VehiclePreview: spawned preview userdata: 0x028212da1aa0
+[2025-09-13 22:42:05] VehiclePreview: cleared preview userdata: 0x028212da1aa0
+[2025-09-13 22:42:05] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_siren' at (1203.04, -797.76, 40.73)
+[2025-09-13 22:42:05] VehiclePreview: spawned preview userdata: 0x0282119acb00
+[2025-09-13 22:42:05] VehiclePreview: cleared preview userdata: 0x0282119acb00
+[2025-09-13 22:42:05] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police' at (1203.41, -797.77, 40.75)
+[2025-09-13 22:42:05] VehiclePreview: spawned preview userdata: 0x028212839980
+[2025-09-13 22:42:05] VehiclePreview: cleared preview userdata: 0x028212839980
+[2025-09-13 22:42:05] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_hella_police_prevention' at (1203.76, -797.78, 40.77)
+[2025-09-13 22:42:05] VehiclePreview: spawned preview userdata: 0x0281eace0990
+[2025-09-13 22:42:05] VehiclePreview: cleared preview userdata: 0x0281eace0990
+[2025-09-13 22:42:05] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_hella_police_prevention_2' at (1204.01, -797.79, 40.78)
+[2025-09-13 22:42:05] VehiclePreview: spawned preview userdata: 0x0281ea19e628
+[2025-09-13 22:42:05] VehiclePreview: cleared preview userdata: 0x0281ea19e628
+[2025-09-13 22:42:05] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_hella_police_prevention' at (1206.76, -797.85, 40.94)
+[2025-09-13 22:42:05] VehiclePreview: spawned preview userdata: 0x02815e4ea930
+[2025-09-13 22:42:05] VehiclePreview: cleared preview userdata: 0x02815e4ea930
+[2025-09-13 22:42:05] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police' at (1209.36, -797.91, 41.08)
+[2025-09-13 22:42:05] VehiclePreview: spawned preview userdata: 0x02818fb20b70
+[2025-09-13 22:42:06] VehiclePreview: cleared preview userdata: 0x02818fb20b70
+[2025-09-13 22:42:06] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_siren' at (1211.09, -797.96, 41.19)
+[2025-09-13 22:42:06] VehiclePreview: spawned preview userdata: 0x02815e81b020
+[2025-09-13 22:42:06] VehiclePreview: cleared preview userdata: 0x02815e81b020
+[2025-09-13 22:42:06] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_prevention' at (1213.66, -798.02, 41.34)
+[2025-09-13 22:42:06] VehiclePreview: spawned preview userdata: 0x028182ec4a38
+[2025-09-13 22:42:07] VehiclePreview: cleared preview userdata: 0x028182ec4a38
+[2025-09-13 22:42:07] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_mws' at (1218.11, -797.85, 41.61)
+[2025-09-13 22:42:07] VehiclePreview: spawned preview userdata: 0x0281ec6eab90
+[2025-09-13 22:42:08] VehiclePreview: cleared preview userdata: 0x0281ec6eab90
+[2025-09-13 22:42:08] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_prevention' at (1225.07, -794.32, 42.09)
+[2025-09-13 22:42:08] VehiclePreview: spawned preview userdata: 0x02818aff8868
+[2025-09-13 22:42:10] VehiclePreview: cleared preview userdata: 0x02818aff8868
+[2025-09-13 22:42:10] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_mws' at (1246.21, -794.83, 43.38)
+[2025-09-13 22:42:10] VehiclePreview: spawned preview userdata: 0x02818da35548
+[2025-09-13 22:42:12] VehiclePreview: cleared preview userdata: 0x02818da35548
+[2025-09-13 22:42:12] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_prevention' at (1262.32, -788.71, 44.36)
+[2025-09-13 22:42:12] VehiclePreview: spawned preview userdata: 0x02819c1390d0
+[2025-09-13 22:42:15] VehiclePreview: cleared preview userdata: 0x02819c1390d0
+[2025-09-13 22:42:15] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_mws' at (1282.18, -788.95, 45.29)
+[2025-09-13 22:42:15] VehiclePreview: spawned preview userdata: 0x0281ea1fc320
+[2025-09-13 22:42:18] VehiclePreview: cleared preview userdata: 0x0281ea1fc320
+[2025-09-13 22:42:18] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_mws' at (1293.82, -788.00, 45.83)
+[2025-09-13 22:42:18] VehicleSpawning: queued auto-mount for userdata: 0x0282092b0a50
+[2025-09-13 22:42:18] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_mws' at (1299.81, -788.14, 45.83)
+[2025-09-13 22:42:18] VehiclePreview: spawned preview userdata: 0x028212b4b320
+[2025-09-13 22:42:18] VehicleSpawning: mounted player into seat_front_left
+[2025-09-13 22:42:19] VehiclePreview: cleared preview userdata: 0x028212b4b320
+[2025-09-13 22:42:19] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_prevention' at (1293.32, -775.08, 46.97)
+[2025-09-13 22:42:19] VehiclePreview: spawned preview userdata: 0x028183b48a90
+[2025-09-13 22:42:24] VehiclePreview: cleared preview userdata: 0x028183b48a90
+[2025-09-13 22:42:24] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_mws' at (1326.36, -776.26, 47.05)
+[2025-09-13 22:42:24] VehiclePreview: spawned preview userdata: 0x02819c787d10
+[2025-09-13 22:42:26] VehiclePreview: cleared preview userdata: 0x02819c787d10
+[2025-09-13 22:42:26] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_prevention' at (1348.29, -774.76, 47.05)
+[2025-09-13 22:42:26] VehiclePreview: spawned preview userdata: 0x028213c805c0
+[2025-09-13 22:42:30] VehiclePreview: cleared preview userdata: 0x028213c805c0
+[2025-09-13 22:42:30] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_mws' at (1430.61, -763.25, 50.01)
+[2025-09-13 22:42:30] VehiclePreview: spawned preview userdata: 0x0281a6cb43a8
+[2025-09-13 22:42:36] VehiclePreview: cleared preview userdata: 0x0281a6cb43a8
+[2025-09-13 22:42:36] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_prevention' at (1465.44, -757.26, 51.19)
+[2025-09-13 22:42:36] VehiclePreview: spawned preview userdata: 0x0281eb531660
+[2025-09-13 22:42:39] VehiclePreview: cleared preview userdata: 0x0281eb531660
+[2025-09-13 22:42:39] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_siren' at (1496.14, -752.42, 51.37)
+[2025-09-13 22:42:39] VehiclePreview: spawned preview userdata: 0x0281823fde30
+[2025-09-13 22:42:42] VehiclePreview: cleared preview userdata: 0x0281823fde30
+[2025-09-13 22:42:42] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police' at (1544.96, -736.70, 52.02)
+[2025-09-13 22:42:42] VehiclePreview: spawned preview userdata: 0x0281ad5e5ec8
+[2025-09-13 22:42:43] VehiclePreview: cleared preview userdata: 0x0281ad5e5ec8
+[2025-09-13 22:42:43] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_siren' at (1560.00, -733.16, 52.07)
+[2025-09-13 22:42:43] VehiclePreview: spawned preview userdata: 0x02818b604cd0
+[2025-09-13 22:42:45] VehiclePreview: cleared preview userdata: 0x02818b604cd0
+[2025-09-13 22:42:45] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_prevention' at (1595.99, -724.67, 52.11)
+[2025-09-13 22:42:45] VehiclePreview: spawned preview userdata: 0x02818ce0b5b8
+[2025-09-13 22:42:48] VehiclePreview: cleared preview userdata: 0x02818ce0b5b8
+[2025-09-13 22:42:48] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police_siren' at (1678.70, -705.23, 52.04)
+[2025-09-13 22:42:48] VehiclePreview: spawned preview userdata: 0x0281d1be2278
+[2025-09-13 22:42:50] VehiclePreview: cleared preview userdata: 0x0281d1be2278
+[2025-09-13 22:42:50] VehicleSpawning: spawned 'Vehicle.v_standard3_chevalier_emperor_police' at (1741.20, -695.58, 52.02)
+[2025-09-13 22:42:50] VehiclePreview: spawned preview userdata: 0x028211a4a970
+[2025-09-13 22:42:52] VehiclePreview: cleared preview userdata: 0x028211a4a970
+[2025-09-13 22:42:52] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_hella_police_prevention' at (1771.70, -691.70, 51.79)
+[2025-09-13 22:42:52] VehiclePreview: spawned preview userdata: 0x02819cec64c8
+[2025-09-13 22:42:53] VehiclePreview: cleared preview userdata: 0x02819cec64c8
+[2025-09-13 22:42:53] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_hella_police_prevention_2' at (1809.08, -684.42, 51.75)
+[2025-09-13 22:42:53] VehiclePreview: spawned preview userdata: 0x02818cf0d000
+[2025-09-13 22:42:54] VehiclePreview: cleared preview userdata: 0x02818cf0d000
+[2025-09-13 22:42:54] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_hella_police_siren' at (1841.57, -677.47, 51.64)
+[2025-09-13 22:42:54] VehiclePreview: spawned preview userdata: 0x02815cd0a610
+[2025-09-13 22:42:55] VehiclePreview: cleared preview userdata: 0x02815cd0a610
+[2025-09-13 22:42:55] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_hella_police_sts_ep1_10' at (1874.12, -673.53, 52.76)
+[2025-09-13 22:42:55] VehiclePreview: spawned preview userdata: 0x0281902ad950
+[2025-09-13 22:42:56] VehiclePreview: cleared preview userdata: 0x0281902ad950
+[2025-09-13 22:42:56] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_hella_police_mws' at (1898.27, -666.99, 53.82)
+[2025-09-13 22:42:56] VehiclePreview: spawned preview userdata: 0x0281c3efc268
+[2025-09-13 22:42:56] VehiclePreview: cleared preview userdata: 0x0281c3efc268
+[2025-09-13 22:42:56] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_hella_police' at (1905.12, -664.63, 54.21)
+[2025-09-13 22:42:56] VehiclePreview: spawned preview userdata: 0x02819c6abb58
+[2025-09-13 22:42:57] VehiclePreview: cleared preview userdata: 0x02819c6abb58
+[2025-09-13 22:42:57] VehicleSpawning: spawned 'Vehicle.v_standard3_militech_hellhound_police' at (1910.20, -662.41, 54.49)
+[2025-09-13 22:42:57] VehiclePreview: spawned preview userdata: 0x02819019cde8
+[2025-09-13 22:42:58] VehiclePreview: cleared preview userdata: 0x02819019cde8
+[2025-09-13 22:42:58] VehicleSpawning: spawned 'Vehicle.v_standard25_thorton_merrimac_police' at (1931.09, -657.66, 55.57)
+[2025-09-13 22:42:58] VehiclePreview: spawned preview userdata: 0x02818d52e358
+[2025-09-13 22:42:58] VehiclePreview: cleared preview userdata: 0x02818d52e358
+[2025-09-13 22:42:58] VehicleSpawning: spawned 'Vehicle.v_standard25_thorton_merrimac_maxtac_prevention' at (1942.84, -653.31, 56.25)
+[2025-09-13 22:42:58] VehiclePreview: spawned preview userdata: 0x02818ba0f468
+[2025-09-13 22:42:58] VehiclePreview: cleared preview userdata: 0x02818ba0f468
+[2025-09-13 22:42:58] VehicleSpawning: spawned 'Vehicle.v_standard25_thorton_merrimac_maxtac' at (1947.77, -643.15, 56.78)
+[2025-09-13 22:42:58] VehiclePreview: spawned preview userdata: 0x02815e812c20
+[2025-09-13 22:42:59] VehiclePreview: cleared preview userdata: 0x02815e812c20
+[2025-09-13 22:42:59] VehicleSpawning: spawned 'Vehicle.v_sportbike3_brennan_apollo_police' at (1946.54, -635.14, 57.12)
+[2025-09-13 22:42:59] VehiclePreview: spawned preview userdata: 0x0281e86fd428
+[2025-09-13 22:43:00] VehiclePreview: cleared preview userdata: 0x0281e86fd428
+[2025-09-13 22:43:00] VehicleSpawning: spawned 'Vehicle.v_utility4_militech_behemoth_border_patrol' at (1946.26, -622.86, 57.13)
+[2025-09-13 22:43:00] VehiclePreview: spawned preview userdata: 0x0281859e51a8
+[2025-09-13 22:43:00] VehiclePreview: cleared preview userdata: 0x0281859e51a8
+[2025-09-13 22:43:00] VehicleSpawning: spawned 'Vehicle.v_utility4_militech_behemoth_maxtac' at (1942.79, -616.54, 57.07)
+[2025-09-13 22:43:00] VehiclePreview: spawned preview userdata: 0x0281d6d12438
+[2025-09-13 22:43:01] VehiclePreview: cleared preview userdata: 0x0281d6d12438
+[2025-09-13 22:43:01] VehicleSpawning: spawned 'Vehicle.v_utility4_militech_behemoth_police' at (1939.64, -614.70, 56.77)
+[2025-09-13 22:43:01] VehiclePreview: spawned preview userdata: 0x02818c17cf28
+[2025-09-13 22:43:01] VehiclePreview: cleared preview userdata: 0x02818c17cf28
+[2025-09-13 22:43:02] VehicleSpawning: spawned 'Vehicle.v_standard2_thorton_colby_valentinos_mws' at (1920.26, -632.36, 54.58)
+[2025-09-13 22:43:02] VehiclePreview: spawned preview userdata: 0x028211e39f30
+[2025-09-13 22:43:03] VehiclePreview: cleared preview userdata: 0x028211e39f30
+[2025-09-13 22:43:03] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_maelstrom_mws' at (1915.51, -638.70, 54.76)
+[2025-09-13 22:43:03] VehiclePreview: spawned preview userdata: 0x0281eb042fb0
+[2025-09-13 22:43:03] VehiclePreview: cleared preview userdata: 0x0281eb042fb0
+[2025-09-13 22:43:03] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_maelstrom_courier' at (1910.72, -640.10, 54.81)
+[2025-09-13 22:43:03] VehiclePreview: spawned preview userdata: 0x028212398198
+[2025-09-13 22:43:03] VehiclePreview: cleared preview userdata: 0x028212398198
+[2025-09-13 22:43:03] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_maelstrom_courier_expanded' at (1905.32, -639.99, 54.75)
+[2025-09-13 22:43:03] VehiclePreview: spawned preview userdata: 0x02819cc11830
+[2025-09-13 22:43:03] VehiclePreview: cleared preview userdata: 0x02819cc11830
+[2025-09-13 22:43:03] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_maelstrom' at (1900.84, -639.34, 54.74)
+[2025-09-13 22:43:03] VehiclePreview: spawned preview userdata: 0x0281e9fe36d8
+[2025-09-13 22:43:03] VehiclePreview: cleared preview userdata: 0x0281e9fe36d8
+[2025-09-13 22:43:03] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_ncu' at (1896.81, -638.59, 54.72)
+[2025-09-13 22:43:03] VehiclePreview: spawned preview userdata: 0x028212bbab50
+[2025-09-13 22:43:04] VehiclePreview: cleared preview userdata: 0x028212bbab50
+[2025-09-13 22:43:04] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_mq304' at (1893.03, -638.18, 54.74)
+[2025-09-13 22:43:04] VehiclePreview: spawned preview userdata: 0x028211886d40
+[2025-09-13 22:43:04] VehiclePreview: cleared preview userdata: 0x028211886d40
+[2025-09-13 22:43:04] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_courier_expanded' at (1889.28, -638.56, 54.65)
+[2025-09-13 22:43:04] VehiclePreview: spawned preview userdata: 0x028213b382e0
+[2025-09-13 22:43:04] VehiclePreview: cleared preview userdata: 0x028213b382e0
+[2025-09-13 22:43:04] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_premium_quest' at (1885.79, -639.24, 54.54)
+[2025-09-13 22:43:04] VehiclePreview: spawned preview userdata: 0x0281eb681af8
+[2025-09-13 22:43:04] VehiclePreview: cleared preview userdata: 0x0281eb681af8
+[2025-09-13 22:43:04] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax' at (1882.72, -640.87, 54.55)
+[2025-09-13 22:43:04] VehiclePreview: spawned preview userdata: 0x0282119a71a8
+[2025-09-13 22:43:04] VehiclePreview: cleared preview userdata: 0x0282119a71a8
+[2025-09-13 22:43:04] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_dex' at (1880.32, -642.89, 54.55)
+[2025-09-13 22:43:04] VehiclePreview: spawned preview userdata: 0x02818ce69aa0
+[2025-09-13 22:43:04] VehiclePreview: cleared preview userdata: 0x02818ce69aa0
+[2025-09-13 22:43:04] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_mafia_courier' at (1878.45, -644.80, 54.48)
+[2025-09-13 22:43:04] VehiclePreview: spawned preview userdata: 0x0281d1ae86d8
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x0281d1ae86d8
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_valentino' at (1877.00, -646.56, 54.36)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x028212beeca0
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x028212beeca0
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_quest' at (1875.84, -648.06, 54.24)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x0281ec8f8d00
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x0281ec8f8d00
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_poor' at (1874.93, -649.23, 54.16)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x0281ec8e3d68
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x0281ec8e3d68
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_player' at (1874.17, -650.15, 54.10)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x0281e8f21b80
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x0281e8f21b80
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_premium' at (1873.70, -650.71, 54.07)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x0281ed955100
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x0281ed955100
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_scavengers' at (1873.22, -651.26, 54.03)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x028211ce89b8
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x028211ce89b8
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_valentino_courier' at (1872.73, -651.79, 54.00)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x028211e03b50
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x028211e03b50
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_scavengers_quest' at (1872.21, -652.31, 53.97)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x02819cdad5a8
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x02819cdad5a8
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_sixth_street' at (1871.69, -652.79, 53.93)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x028211e73408
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x028211e73408
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_combat_cab' at (1871.16, -653.26, 53.90)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x02820a90a518
+[2025-09-13 22:43:05] VehiclePreview: cleared preview userdata: 0x02820a90a518
+[2025-09-13 22:43:05] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_sixth_street_courier' at (1870.65, -653.69, 53.86)
+[2025-09-13 22:43:05] VehiclePreview: spawned preview userdata: 0x02821117ed98
+[2025-09-13 22:43:06] VehiclePreview: cleared preview userdata: 0x02821117ed98
+[2025-09-13 22:43:06] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_combat_cab' at (1862.92, -659.87, 53.31)
+[2025-09-13 22:43:06] VehiclePreview: spawned preview userdata: 0x02821363cc20
+[2025-09-13 22:43:06] VehiclePreview: cleared preview userdata: 0x02821363cc20
+[2025-09-13 22:43:06] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_sixth_street' at (1859.59, -662.63, 53.15)
+[2025-09-13 22:43:06] VehiclePreview: spawned preview userdata: 0x0281acd26de0
+[2025-09-13 22:43:06] VehiclePreview: cleared preview userdata: 0x0281acd26de0
+[2025-09-13 22:43:06] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_scavengers_quest' at (1856.08, -665.56, 53.00)
+[2025-09-13 22:43:06] VehiclePreview: spawned preview userdata: 0x02821389edc0
+[2025-09-13 22:43:06] VehiclePreview: cleared preview userdata: 0x02821389edc0
+[2025-09-13 22:43:06] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_valentino_courier' at (1852.50, -668.42, 52.88)
+[2025-09-13 22:43:06] VehiclePreview: spawned preview userdata: 0x0281ed35bee0
+[2025-09-13 22:43:06] VehiclePreview: cleared preview userdata: 0x0281ed35bee0
+[2025-09-13 22:43:06] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_scavengers' at (1848.17, -670.78, 52.72)
+[2025-09-13 22:43:06] VehiclePreview: spawned preview userdata: 0x02818d13bd00
+[2025-09-13 22:43:07] VehiclePreview: cleared preview userdata: 0x02818d13bd00
+[2025-09-13 22:43:07] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_valentino_courier' at (1842.05, -673.72, 52.51)
+[2025-09-13 22:43:07] VehiclePreview: spawned preview userdata: 0x0281ea5c8640
+[2025-09-13 22:43:07] VehiclePreview: cleared preview userdata: 0x0281ea5c8640
+[2025-09-13 22:43:07] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_scavengers_quest' at (1834.78, -677.92, 52.22)
+[2025-09-13 22:43:07] VehiclePreview: spawned preview userdata: 0x02818ce04c28
+[2025-09-13 22:43:07] VehiclePreview: cleared preview userdata: 0x02818ce04c28
+[2025-09-13 22:43:07] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_sixth_street' at (1830.74, -680.24, 52.11)
+[2025-09-13 22:43:07] VehiclePreview: spawned preview userdata: 0x0281eba3ede8
+[2025-09-13 22:43:08] VehiclePreview: cleared preview userdata: 0x0281eba3ede8
+[2025-09-13 22:43:08] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_combat_cab' at (1824.15, -682.15, 51.86)
+[2025-09-13 22:43:08] VehiclePreview: spawned preview userdata: 0x0281b0bf83a0
+[2025-09-13 22:43:08] VehiclePreview: cleared preview userdata: 0x0281b0bf83a0
+[2025-09-13 22:43:08] VehicleSpawning: spawned 'Vehicle.v_standard2_chevalier_thrax_sixth_street_courier' at (1819.31, -683.19, 51.71)
+[2025-09-13 22:43:08] VehiclePreview: spawned preview userdata: 0x0281ebea2400
+[2025-09-13 22:43:08] VehiclePreview: cleared preview userdata: 0x0281ebea2400
+[2025-09-13 22:43:08] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_quartz_player' at (1814.45, -684.63, 51.59)
+[2025-09-13 22:43:08] VehiclePreview: spawned preview userdata: 0x02821288cbc8
+[2025-09-13 22:43:08] VehiclePreview: cleared preview userdata: 0x02821288cbc8
+[2025-09-13 22:43:08] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_quartz_mox' at (1809.74, -686.25, 51.50)
+[2025-09-13 22:43:08] VehiclePreview: spawned preview userdata: 0x0281eb52c330
+[2025-09-13 22:43:09] VehiclePreview: cleared preview userdata: 0x0281eb52c330
+[2025-09-13 22:43:09] VehicleSpawning: spawned 'Vehicle.v_standard2_archer_quartz_tyger' at (1804.94, -687.89, 51.46)
+[2025-09-13 22:43:09] VehiclePreview: spawned preview userdata: 0x028212fbcbf0
+[2025-09-13 22:43:09] VehiclePreview: cleared preview userdata: 0x028212fbcbf0
+[2025-09-13 22:43:10] VehicleSpawning: spawned 'Vehicle.v_militech_basilisk_militech' at (1779.71, -695.20, 51.77)
+[2025-09-13 22:43:10] VehiclePreview: spawned preview userdata: 0x028213732490
+[2025-09-13 22:43:10] VehiclePreview: cleared preview userdata: 0x028213732490
+[2025-09-13 22:43:10] VehicleSpawning: spawned 'Vehicle.v_mahir_mt28_coach' at (1772.96, -696.25, 51.77)
+[2025-09-13 22:43:10] VehiclePreview: spawned preview userdata: 0x0281eb6e7b50
+[2025-09-13 22:43:10] VehiclePreview: cleared preview userdata: 0x0281eb6e7b50
+[2025-09-13 22:43:10] VehicleSpawning: spawned 'Vehicle.v_utility4_thorton_mackinaw_bmf_player' at (1767.74, -697.33, 51.77)
+[2025-09-13 22:43:10] VehiclePreview: spawned preview userdata: 0x0281ad40a528
+[2025-09-13 22:43:10] VehiclePreview: cleared preview userdata: 0x0281ad40a528
+[2025-09-13 22:43:10] VehicleSpawning: spawned 'Vehicle.v_utility4_thorton_mackinaw_bmf' at (1762.58, -698.48, 51.77)
+[2025-09-13 22:43:10] VehiclePreview: spawned preview userdata: 0x0281e9713898
+[2025-09-13 22:43:11] VehiclePreview: cleared preview userdata: 0x0281e9713898
+[2025-09-13 22:43:11] VehicleSpawning: spawned 'Vehicle.v_utility4_militech_behemoth_netwatch' at (1739.12, -701.14, 51.76)
+[2025-09-13 22:43:11] VehiclePreview: spawned preview userdata: 0x02818b7e4320
+[2025-09-13 22:43:11] VehiclePreview: cleared preview userdata: 0x02818b7e4320
+[2025-09-13 22:43:11] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_barrels_locked_doors' at (1734.34, -701.06, 51.76)
+[2025-09-13 22:43:11] VehiclePreview: spawned preview userdata: 0x0281c40d2c70
+[2025-09-13 22:43:12] VehiclePreview: cleared preview userdata: 0x0281c40d2c70
+[2025-09-13 22:43:12] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_full_courier' at (1728.70, -701.29, 51.79)
+[2025-09-13 22:43:12] VehiclePreview: spawned preview userdata: 0x02819080ffc0
+[2025-09-13 22:43:12] VehiclePreview: cleared preview userdata: 0x02819080ffc0
+[2025-09-13 22:43:12] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_full_dogtown' at (1722.99, -701.61, 52.01)
+[2025-09-13 22:43:12] VehiclePreview: spawned preview userdata: 0x02815d78a768
+[2025-09-13 22:43:12] VehiclePreview: cleared preview userdata: 0x02815d78a768
+[2025-09-13 22:43:12] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_kurtz' at (1717.27, -701.84, 52.10)
+[2025-09-13 22:43:12] VehiclePreview: spawned preview userdata: 0x0280b05034c8
+[2025-09-13 22:43:12] VehiclePreview: cleared preview userdata: 0x0280b05034c8
+[2025-09-13 22:43:12] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_freight_locked_doors' at (1711.31, -702.02, 51.96)
+[2025-09-13 22:43:12] VehiclePreview: spawned preview userdata: 0x0281aca33da8
+[2025-09-13 22:43:13] VehiclePreview: cleared preview userdata: 0x0281aca33da8
+[2025-09-13 22:43:13] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_full_courier_expanded' at (1705.72, -702.15, 52.03)
+[2025-09-13 22:43:13] VehiclePreview: spawned preview userdata: 0x0281eda31d60
+[2025-09-13 22:43:13] VehiclePreview: cleared preview userdata: 0x0281eda31d60
+[2025-09-13 22:43:13] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_container_dogtown' at (1699.99, -702.37, 52.05)
+[2025-09-13 22:43:13] VehiclePreview: spawned preview userdata: 0x02818d2f0308
+[2025-09-13 22:43:13] VehiclePreview: cleared preview userdata: 0x02818d2f0308
+[2025-09-13 22:43:13] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_container_locked_doors' at (1697.12, -703.68, 52.39)
+[2025-09-13 22:43:13] VehiclePreview: spawned preview userdata: 0x02819c4c49d8
+[2025-09-13 22:43:13] VehiclePreview: cleared preview userdata: 0x02819c4c49d8
+[2025-09-13 22:43:13] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya' at (1695.97, -706.86, 52.43)
+[2025-09-13 22:43:13] VehiclePreview: spawned preview userdata: 0x0281824063b8
+[2025-09-13 22:43:13] VehiclePreview: cleared preview userdata: 0x0281824063b8
+[2025-09-13 22:43:13] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_full' at (1695.88, -709.57, 52.13)
+[2025-09-13 22:43:13] VehiclePreview: spawned preview userdata: 0x02819cf2c670
+[2025-09-13 22:43:13] VehiclePreview: cleared preview userdata: 0x02819cf2c670
+[2025-09-13 22:43:13] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_quest' at (1695.78, -711.10, 51.87)
+[2025-09-13 22:43:13] VehiclePreview: spawned preview userdata: 0x0281ec1d9a20
+[2025-09-13 22:43:13] VehiclePreview: cleared preview userdata: 0x0281ec1d9a20
+[2025-09-13 22:43:13] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_barrels' at (1695.86, -712.24, 51.89)
+[2025-09-13 22:43:13] VehiclePreview: spawned preview userdata: 0x02818f12e620
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x02818f12e620
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_full_locked_doors' at (1695.98, -713.07, 52.01)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x02819991d750
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x02819991d750
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_barrels_dogtown' at (1696.06, -713.70, 52.15)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x02815d8bc460
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x02815d8bc460
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_container' at (1696.09, -714.05, 52.22)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x0281c3f08a28
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x0281c3f08a28
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_zeya_freight' at (1696.03, -714.37, 52.29)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x02818da59f68
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x02818da59f68
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_legatus_aquila_basic' at (1695.94, -714.68, 52.34)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x028190863798
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x028190863798
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_legatus_player' at (1695.81, -714.97, 52.38)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x028184acb8e0
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x028184acb8e0
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_centurion_cargo' at (1695.65, -715.26, 52.41)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x0281edeea938
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x0281edeea938
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_legatus_basic' at (1695.46, -715.53, 52.42)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x02819d0b8870
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x02819d0b8870
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_centurion' at (1695.24, -715.79, 52.41)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x02818cfb3818
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x02818cfb3818
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_centurion_cargo_dogtown' at (1694.96, -716.06, 52.39)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x028183cea9b0
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x028183cea9b0
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_centurion_cargo_courier' at (1694.67, -716.32, 52.35)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x0281882242e8
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x0281882242e8
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_centurion_poor' at (1694.36, -716.58, 52.30)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x02818c33a770
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x02818c33a770
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_centurion_poor_dogtown' at (1693.99, -716.85, 52.21)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x028212a01c58
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x028212a01c58
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_centurion_flatbed' at (1693.59, -717.14, 52.10)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x0281835773c8
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x0281835773c8
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_centurion_flatbed_poor_dogtown' at (1693.16, -717.43, 51.99)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x0281a6896680
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x0281a6896680
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_chevalier_centurion_flatbed_poor' at (1692.67, -717.72, 51.92)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x028211eeb900
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x028211eeb900
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_machine' at (1692.09, -718.02, 51.89)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x028208388e18
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x028208388e18
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_extended' at (1691.73, -718.30, 51.90)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x0281ed0abb58
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x0281ed0abb58
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_concrete' at (1691.43, -718.55, 51.92)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x02818840ce90
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x02818840ce90
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_concrete_non_interation' at (1690.98, -718.78, 51.96)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x02815cd2eaa0
+[2025-09-13 22:43:14] VehiclePreview: cleared preview userdata: 0x02815cd2eaa0
+[2025-09-13 22:43:14] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk' at (1690.36, -719.00, 52.00)
+[2025-09-13 22:43:14] VehiclePreview: spawned preview userdata: 0x028182a767d8
+[2025-09-13 22:43:15] VehiclePreview: cleared preview userdata: 0x028182a767d8
+[2025-09-13 22:43:15] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_container' at (1678.39, -718.94, 52.08)
+[2025-09-13 22:43:15] VehiclePreview: spawned preview userdata: 0x028199d02448
+[2025-09-13 22:43:15] VehiclePreview: cleared preview userdata: 0x028199d02448
+[2025-09-13 22:43:15] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_dumpster_locked_doors' at (1675.59, -716.28, 52.01)
+[2025-09-13 22:43:15] VehiclePreview: spawned preview userdata: 0x0281ec3d6480
+[2025-09-13 22:43:16] VehiclePreview: cleared preview userdata: 0x0281ec3d6480
+[2025-09-13 22:43:16] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_machine_dogtown' at (1671.51, -711.90, 52.04)
+[2025-09-13 22:43:16] VehiclePreview: spawned preview userdata: 0x02815d8c59e8
+[2025-09-13 22:43:16] VehiclePreview: cleared preview userdata: 0x02815d8c59e8
+[2025-09-13 22:43:16] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_quest' at (1669.49, -710.91, 52.04)
+[2025-09-13 22:43:16] VehiclePreview: spawned preview userdata: 0x02818e00b240
+[2025-09-13 22:43:16] VehiclePreview: cleared preview userdata: 0x02818e00b240
+[2025-09-13 22:43:16] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_corp_bud_03' at (1666.62, -711.32, 52.03)
+[2025-09-13 22:43:16] VehiclePreview: spawned preview userdata: 0x0281eb6fd768
+[2025-09-13 22:43:17] VehiclePreview: cleared preview userdata: 0x0281eb6fd768
+[2025-09-13 22:43:17] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_quest' at (1662.59, -711.74, 52.04)
+[2025-09-13 22:43:17] VehiclePreview: spawned preview userdata: 0x028211d7b3e0
+[2025-09-13 22:43:17] VehiclePreview: cleared preview userdata: 0x028211d7b3e0
+[2025-09-13 22:43:17] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_machine_dogtown' at (1659.95, -711.66, 52.04)
+[2025-09-13 22:43:17] VehiclePreview: spawned preview userdata: 0x02818c512388
+[2025-09-13 22:43:19] VehiclePreview: cleared preview userdata: 0x02818c512388
+[2025-09-13 22:43:19] VehicleSpawning: queued current vehicle for deletion userdata: 0x02820bec49d8
+[2025-09-13 22:43:19] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_machine_dogtown' at (1640.33, -710.91, 52.06)
+[2025-09-13 22:43:19] VehicleSpawning: queued auto-mount for userdata: 0x02818ae92ef8
+[2025-09-13 22:43:19] VehicleSpawning: spawned 'Vehicle.v_utility4_kaukaz_bratsk_machine_dogtown' at (1634.33, -710.69, 52.06)
+[2025-09-13 22:43:19] VehiclePreview: spawned preview userdata: 0x0281e9049070
+[2025-09-13 22:43:19] VehicleSpawning: mounted player into seat_front_left
+[2025-09-13 22:43:19] VehicleSpawning: despawned previous vehicle userdata: 0x02820bec4928
+[2025-09-13 22:43:20] VehiclePreview: cleared preview userdata: 0x0281e9049070
+[2025-09-13 22:43:50] Controls: Menu toggled false
+[2025-09-13 22:43:52] BindingsConfig: Bindings saved successfully.
+[2025-09-13 22:43:52] StatModifiers: cleanup removed 0 modifiers
+[2025-09-13 22:43:52] Clean up

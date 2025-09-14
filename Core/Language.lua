@@ -1,44 +1,26 @@
 local Logger = require("Core/Logger")
-local json = {
-    decode = json.decode,
-    encode = json.encode
-}
+local JsonHelper = require("Core/JsonHelper")
 
 local Language = {}
 
 Language.currentLang = "en"
 Language.translations = {}
 
-local function splitKey(key)
-    local parts = {}
-    for part in string.gmatch(key, "[^%.]+") do
-        table.insert(parts, part)
-    end
-    return parts
-end
-
 function Language.Load(langCode)
     Language.currentLang = langCode or "en"
     local path = string.format("lang/%s.json", Language.currentLang)
 
-    local file = io.open(path, "r")
-    if not file then
-        Logger.Log("Failed to open: " .. path)
+    local data, err = JsonHelper.Read(path)
+    if not data then
+        Logger.Log("Localization: Failed to load language file: " .. tostring(err))
         return false
     end
 
-    local content = file:read("*a")
-    file:close()
-
-    local ok, data = pcall(function()
-        return json.decode(content)
-    end)
-
-    if ok and type(data) == "table" then
+    if type(data) == "table" then
         Language.translations = data
         return true
     else
-         Logger.Log("Failed to parse: " .. path)
+        Logger.Log("Localization: Unexpected format in: " .. path)
         return false
     end
 end
@@ -49,7 +31,7 @@ function Language.Get(key)
     local lastPart = nil
 
     for part in string.gmatch(key, "[^%.]+") do
-        lastPart = part 
+        lastPart = part
 
         if type(val) == "table" then
             val = val[part]
@@ -64,8 +46,6 @@ function Language.Get(key)
     return lastStr or lastPart or key
 end
 
-
-
 function Language.tip(key, placeholders)
     local tipText = Language.Get(key)
 
@@ -79,9 +59,16 @@ function Language.tip(key, placeholders)
     return tipText
 end
 
+-- Only really used in the binding button so don't really need it to be a global
+function Language.GetInputKey(code)
+    return Language.translations.inputkeys and Language.translations.inputkeys[tostring(code)] or tostring(code)
+end
+
+function Language.GetInputButton(code)
+    return Language.translations.inputbuttons and Language.translations.inputbuttons[tostring(code)] or "Btn"..tostring(code)
+end
+
 L = function(key) return Language.Get(key) end
 tip = function(key, placeholders) return Language.tip(key, placeholders) end
-
-
 
 return Language

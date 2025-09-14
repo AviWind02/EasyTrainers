@@ -1,5 +1,5 @@
-local Gameplay = require("Gameplay")
-local StatModifiers = Gameplay.StatModifiers
+local StatModifiers = require("Utils").StatModifiers
+
 
 local Cooldown = {}
 
@@ -21,7 +21,7 @@ function Cooldown.SetHealCooldown(remove)
         if Cooldown.healHandle then StatModifiers.Remove(Cooldown.healHandle) end
     else
         Cooldown.healHandle = StatModifiers.Create(gamedataStatType.HealingItemsChargesRegenMult, gameStatModifierType.Additive, 10000.0)
-        StatModifiers.Add(Cooldown.healHandle)
+        StatModifiers.Apply(Cooldown.healHandle)
     end
 end
 
@@ -31,7 +31,7 @@ function Cooldown.SetGrenadeCooldown(remove)
         if Cooldown.grenadeHandle then StatModifiers.Remove(Cooldown.grenadeHandle) end
     else
         Cooldown.grenadeHandle = StatModifiers.Create(gamedataStatType.GrenadesChargesRegenMult, gameStatModifierType.Additive, 10000.0)
-        StatModifiers.Add(Cooldown.grenadeHandle)
+        StatModifiers.Apply(Cooldown.grenadeHandle)
     end
 end
 
@@ -41,7 +41,7 @@ function Cooldown.SetProjectileCooldown(remove)
         if Cooldown.projectileHandle then StatModifiers.Remove(Cooldown.projectileHandle) end
     else
         Cooldown.projectileHandle = StatModifiers.Create(gamedataStatType.ProjectileLauncherChargesRegenMult, gameStatModifierType.Additive, 10000.0)
-        StatModifiers.Add(Cooldown.projectileHandle)
+        StatModifiers.Apply(Cooldown.projectileHandle)
     end
 end
 
@@ -54,8 +54,8 @@ function Cooldown.SetCloakCooldown(remove)
     else
         Cooldown.cloakHandle1 = StatModifiers.Create(gamedataStatType.OpticalCamoRechargeDuration, gameStatModifierType.Multiplier, 0.01)
         Cooldown.cloakHandle2 = StatModifiers.Create(gamedataStatType.OpticalCamoChargesRegenRate, gameStatModifierType.Additive, 100.0)
-        StatModifiers.Add(Cooldown.cloakHandle1)
-        StatModifiers.Add(Cooldown.cloakHandle2)
+        StatModifiers.Apply(Cooldown.cloakHandle1)
+        StatModifiers.Apply(Cooldown.cloakHandle2)
     end
 end
 
@@ -65,7 +65,7 @@ function Cooldown.SetSandevistanCooldown(remove)
         if Cooldown.sandeHandle then StatModifiers.Remove(Cooldown.sandeHandle) end
     else
         Cooldown.sandeHandle = StatModifiers.Create(gamedataStatType.TimeDilationSandevistanRechargeDuration, gameStatModifierType.Multiplier, 0.01)
-        StatModifiers.Add(Cooldown.sandeHandle)
+        StatModifiers.Apply(Cooldown.sandeHandle)
     end
 end
 
@@ -75,7 +75,7 @@ function Cooldown.SetBerserkCooldown(remove)
         if Cooldown.berserkHandle then StatModifiers.Remove(Cooldown.berserkHandle) end
     else
         Cooldown.berserkHandle = StatModifiers.Create(gamedataStatType.BerserkChargesRegenRate, gameStatModifierType.Additive, 100.0)
-        StatModifiers.Add(Cooldown.berserkHandle)
+        StatModifiers.Apply(Cooldown.berserkHandle)
     end
 end
 
@@ -85,7 +85,7 @@ function Cooldown.SetKerenzikovCooldown(remove)
         if Cooldown.kerenHandle then StatModifiers.Remove(Cooldown.kerenHandle) end
     else
         Cooldown.kerenHandle = StatModifiers.Create(gamedataStatType.KerenzikovCooldownDuration, gameStatModifierType.Multiplier, 0.01)
-        StatModifiers.Add(Cooldown.kerenHandle)
+        StatModifiers.Apply(Cooldown.kerenHandle)
     end
 end
 
@@ -98,8 +98,8 @@ function Cooldown.SetOverclockCooldown(remove)
     else
         Cooldown.overHandle1 = StatModifiers.Create(gamedataStatType.CyberdeckOverclockRegenRate, gameStatModifierType.Additive, 100.0)
         Cooldown.overHandle2 = StatModifiers.Create(gamedataStatType.CyberdeckOverclockCooldown, gameStatModifierType.Multiplier, 0.01)
-        StatModifiers.Add(Cooldown.overHandle1)
-        StatModifiers.Add(Cooldown.overHandle2)
+        StatModifiers.Apply(Cooldown.overHandle1)
+        StatModifiers.Apply(Cooldown.overHandle2)
     end
 end
 
@@ -109,7 +109,7 @@ function Cooldown.SetQuickhackCooldown(remove)
         if Cooldown.quickhackHandle then StatModifiers.Remove(Cooldown.quickhackHandle) end
     else
         Cooldown.quickhackHandle = StatModifiers.Create(gamedataStatType.QuickhacksCooldownReduction, gameStatModifierType.Additive, 1.0)
-        StatModifiers.Add(Cooldown.quickhackHandle)
+        StatModifiers.Apply(Cooldown.quickhackHandle)
     end
 end
 
@@ -119,7 +119,7 @@ function Cooldown.SetQuickhackCost(remove)
         if Cooldown.hackCostHandle then StatModifiers.Remove(Cooldown.hackCostHandle) end
     else
         Cooldown.hackCostHandle = StatModifiers.Create(gamedataStatType.MemoryCostReduction, gameStatModifierType.Additive, 10000.0)
-        StatModifiers.Add(Cooldown.hackCostHandle)
+        StatModifiers.Apply(Cooldown.hackCostHandle)
     end
 end
 
@@ -129,7 +129,7 @@ function Cooldown.SetMemoryRegeneration(remove)
         if Cooldown.memoryRegenHandle then StatModifiers.Remove(Cooldown.memoryRegenHandle) end
     else
         Cooldown.memoryRegenHandle = StatModifiers.Create(gamedataStatType.MemoryRegenRateMult, gameStatModifierType.Additive, 100.0)
-        StatModifiers.Add(Cooldown.memoryRegenHandle)
+        StatModifiers.Apply(Cooldown.memoryRegenHandle)
     end
 end
 

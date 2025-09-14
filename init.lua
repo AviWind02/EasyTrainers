@@ -1,144 +1,183 @@
-local Draw = require("UI")
-local Welcome = require("View/Welcome")
-
-local Logger = require("Core/Logger")
 local Language = require("Core/Language")
+local Logger = require("Core/Logger")
+local Event = require("Core/Event")
 local JsonHelper = require("Core/JsonHelper")
 local Session = require("Core/cp2077-cet-kit/GameSession")
 local Cron = require("Core/cp2077-cet-kit/Cron")
-local StyleConfig = require("Core/StyleConfig")
+local OptionConfig = require("Config/OptionConfig")
 
-local Gameplay = require("Gameplay")
+-- Config
+local BindingsConfig = require("Config/BindingsConfig")
+local UIConfig = require("Config/UIConfig")
+local NavigationConfig = require("Config/NavigationConfig")
 
-local SelfTick = require("Features/Self/Tick")
-local WeaponsTick = require("Features/Weapons/Tick")
-local TeleportTick = require("Features/Teleports/Teleport")
-local VehicleTick = require("Features/Vehicle/VehicleNoClip")
+local State = require("Controls/State")
+local Handler = require("Controls/Handler")
+local Restrictions = require("Controls/Restrictions")
 
-local WeaponLoader = require("Features/DataExtractors/WeaponLoader")
-local VehicleLoader = require("Features/DataExtractors/VehicleLoader")
-local GeneralLoader = require("Features/DataExtractors/GeneralLoader")
-local PerkLoader = require("Features/DataExtractors/PerkLoader")
-local Teleport = require("Features/Teleports/TeleportLocations")
+local Notification = require("UI/Elements/Notification")
+local InfoBox = require("UI/Elements/InfoBox")
 
-local SelfNoClip = require("Features/Self/NoClip")
+local VehicleLoader = require("Utils/DataExtractors/VehicleLoader")
+local WeaponLoader = require("Utils/DataExtractors/WeaponLoader")
+local PerkLoader = require("Utils/DataExtractors/PerkLoader")
 
-GameState = {}
+local TeleportLocations = require("Features/Teleports/TeleportLocations")
+local AutoTeleport = require("Features/Teleports/AutoTeleport")
+local VehiclePreview = require("Features/Vehicles/VehiclePreview")
 
-local config = JsonHelper.Read("config.json")
+local Utils
+local Weapon
+local SelfFeature
+local SelfTick
+local MainMenu
 
-local MainMenu, World, Vehicle
+registerForEvent("onOverlayOpen", function() State.overlayOpen = true end)
+registerForEvent("onOverlayClose", function() State.overlayOpen = false end)
 
 local modulesLoaded = false
-local function TryLoadModules()
-    if GameState.isLoaded and not modulesLoaded then
-        modulesLoaded = true
+GameState = {}
 
-        MainMenu = require("View/MainMenu")
-        World = require("Features/World")
-        Vehicle = require("Features/Vehicle")
-
-        Logger.Log("Game modules initialized.")
-    end
-end
-
-;
-local function GetGameState()
+local function GetStartingState()
     GameState = Session.GetState()
 end
 
-local function UpdateSessionState()
+local function UpdateSessionStateTick()
     GameState.isLoaded = Session.IsLoaded()
-    GameState.IsPaused = Session.IsPaused() 
-    GameState.IsDead = Session.IsDead()
-    TryLoadModules()
+    GameState.isPaused = Session.IsPaused()
+    GameState.isDead = Session.IsDead()
 end
 
-registerForEvent("onInit", function()
-    
+local function TryLoadModules()
+    if Session.IsLoaded() and not modulesLoaded then
+        local ok = true
+
+        Utils = require("Utils")
+        SelfFeature = require("Features/Self")
+        SelfTick = require("Features/Self/Tick")
+        Weapon = require("Features/Weapons/Tick")
+        MainMenu = require("View/MainMenu")
+
+        if not (Utils and SelfFeature and SelfTick and Weapon and MainMenu) then
+            ok = false
+        end
+
+        if ok then
+            modulesLoaded = true
+            Logger.Log("Game modules initialized.")
+        end
+    end
+end
+
+
+local function OnSessionUpdate(state)
+    GameState = state
+    if GameState.event == "Start" and not GameState.wasLoaded then
+        TryLoadModules()
+    end
+end
+
+
+Event.RegisterInit(function()
     Logger.Initialize()
-    Logger.Log("Initialization started")
-    Language.Load(config and config.Lang or "en")
+    Logger.Log("Initialization")
 
-    Cron.After(0.3, GetGameState)
-    Session.Listen(UpdateSessionState)
+    Cron.After(0.1, GetStartingState)
 
-    Logger.Log("Game session States")
+    Session.Listen(OnSessionUpdate)
 
-    Cron.Every(0.3, UpdateSessionState)
+    Cron.Every(1.0, UpdateSessionStateTick)
+    Cron.Every(0.5, TryLoadModules)
+    Logger.Log("Cron Started")
 
 
-    Logger.Log("Loading data...")
+    local config = JsonHelper.Read("config.json")
+    local lang = (config and config.Lang) or "en"
+    if not Language.Load(lang) then
+        Logger.Log("Language failed to load, fallback to English")
+        Language.Load("en")
+    else
+        Logger.Log("Language loaded: " .. lang)
+    end
+
+    
+    TeleportLocations.LoadAll()
+
+
+    PerkLoader:LoadAll()
     WeaponLoader:LoadAll()
     VehicleLoader:LoadAll()
-    GeneralLoader:LoadAll()
-    PerkLoader:LoadAll()
-    Teleport.LoadAll()
+    Logger.Log("DataLoaded")
 
-    Logger.Log("Registering overrides...")
-    Override("scannerDetailsGameController", "ShouldDisplayTwintoneTab", function(this, wrappedMethod)
+
+    BindingsConfig.Load()
+    Logger.Log("Bindings loaded")
+
+    UIConfig.Load()
+    Logger.Log("UI config loaded")
+
+    NavigationConfig.Load()
+    Logger.Log("Navigation config loaded")
+
+    OptionConfig.Load()
+    Logger.Log("Option config loaded")
+
+
+    Event.Observe("PlayerPuppet", "OnAction", function(_, action)
+        SelfFeature.NoClip.HandleMouseLook(action)
+        Utils.Weapon.HandleInputAction(action)
+    end)
+
+    Event.Observe("BaseProjectile", "ProjectileHit", function(self, eventData)
+        Weapon.HandleProjectileHit(self, eventData)
+    end)
+
+    Event.Override("scannerDetailsGameController", "ShouldDisplayTwintoneTab", function(this, wrappedMethod)
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)
     end)
 
-    Logger.Log("Registering observers...")
-    Observe("BaseProjectile", "ProjectileHit", function(self, eventData)
-        WeaponsTick.HandleProjectileHit(self, eventData)
-    end)
-    
-    Observe("PlayerPuppet", "OnAction", function(_, action)
-        Gameplay.WeaponInput.HandleInputAction(action)
-        SelfNoClip.HandleMouseLook(action)
-    end)
-
-    Logger.Log("Init complete.")
 end)
 
-Draw.InputHandler.RegisterInput()
-
-registerForEvent("onUpdate", function(deltaTime)  
-
-     if not GameState.isLoaded or GameState.IsPaused or GameState.IsDead then
+Event.RegisterUpdate(function(dt)
+    Cron.Update(dt)
+    
+    if not modulesLoaded then return end
+    
+    if not GameState.isLoaded or GameState.isPaused or GameState.isDead then
         return
     end
-
-
+    VehiclePreview.Update(dt)
     SelfTick.TickHandler()
-    VehicleTick.Tick()
-    WeaponsTick.TickHandler(deltaTime)
-    World.WorldTime.Update(deltaTime)
-    World.WorldWeather.Update()
-    Vehicle.Headlights.UpdateRGB(deltaTime)
-    TeleportTick.Tick(deltaTime)
-    Cron.Update(deltaTime)
-
+    Weapon.TickHandler(dt)
+    AutoTeleport.Tick(dt)
+    Utils.Vehicle.VehicleSpawning.HandlePending()
 end)
 
+Event.RegisterDraw(function()
+    if not modulesLoaded then return end
 
+    Notification.Render()
+    Handler.Update()
 
-registerForEvent("onDraw", function()
-    Draw.InputHandler.HandleInputTick()
-    Draw.Notifier.Render()
-    Welcome.Render()
+    if not State.menuOpen then return end
 
-    if not Draw.InputHandler.IsMenuOpen() or not modulesLoaded then return end
-    
     local menuX, menuY, menuW, menuH
     ImGui.SetNextWindowSize(300, 500, ImGuiCond.FirstUseEver)
 
     if ImGui.Begin("EasyTrainer", ImGuiWindowFlags.NoScrollbar + ImGuiWindowFlags.NoScrollWithMouse + ImGuiWindowFlags.NoTitleBar) then
         menuX, menuY = ImGui.GetWindowPos()
         menuW, menuH = ImGui.GetWindowSize()
-
         MainMenu.Render(menuX, menuY, menuW, menuH)
         ImGui.End()
     end
 
-    Draw.InfoBox.Render(menuX, menuY, menuW, menuH)
+    InfoBox.Render(menuX, menuY, menuW, menuH)
 end)
 
-registerForEvent("onShutdown", function()
-    Gameplay.StatModifiers.ClearAll()
-    Draw.InputHandler.ClearMenuRestrictions() -- I don't know how status effects work but I believe they apply to the save?
-    StyleConfig.Save()
+Event.RegisterShutdown(function()
+    Restrictions.Clear()
+    BindingsConfig.Save()
+    OptionConfig.Save()
+    Utils.StatModifiers.Cleanup()
+    Logger.Log("Clean up")
 end)
-

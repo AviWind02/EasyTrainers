@@ -1,133 +1,113 @@
-
-local Draw = require("UI")
+local UI = require("UI")
 local Logger = require("Core/Logger")
-local ConfigManager = require("Core/ConfigManager")
-local StyleConfig = require("Core/StyleConfig")
+
+local OptionBOUND = require("UI/Options/Option")
+local DrawHelpers = require("UI/Core/DrawHelpers")
+local OptionRow = require("UI/Elements/OptionRow")
+
+local Header  = require("UI/Frame/Header")
+local Footer  = require("UI/Frame/Footer")
+
+local SelfFeature = require("Features/Self")
+local WeaponsFeature = require("Features/Weapons")
+local TeleportTester = require("Features/Teleports/TeleportTester")
+
+local TelportConfig = require("Features/Teleports/TeleportConfig")
+local VehicleConfig = require("Features/Vehicles/VehicleConfig")
 
 local SelfView = require("View/Self/SelfMenuView")
-local PlayerStatsView = require("View/Self/PlayerStatsView")
-local PlayerDevelopmentView = require("View/Self/PlayerDevelopmentView")
-
-local RegisterSelfOptions = require("Features/OptionRegistration/SelfConfig")
-local RegisterTeleportOptions = require("Features/OptionRegistration/TeleportConfig")
-local RegisterVehicleOptions = require("Features/OptionRegistration/VehicleConfig")
-local RegisterWeaponOptions = require("Features/OptionRegistration/WeaponConfig")
-local RegisterWorldOptions = require("Features/OptionRegistration/WorldConfig")
-
-local TeleportView = require("View/World/TeleportView")
-local WeatherView = require("View/World/WeatherView")
-local TimeView = require("View/World/TimeView")
-local GameFactsView = require("View/World/FactView")
-local TranslationsView = require("View/Settings/TranslationsView")
-local StyleSettingsView = require("View/Settings/SettingsView")
-
-
-local Vehicle = require("Features/Vehicle")
-
-local WeaponView = require("View/Weapon/WeaponMenuView")
+local SelfDevelopmentView = require("View/Self/SelfDevelopment")
+local SelfModifiersView = require("View/Self/SelfModifierView")
+local TeleportView = require("View/Teleports/TeleportView")
+local WeaponView = require("View/Weapons/WeaponMenuView")
 local VehicleMenuView = require("View/Vehicle/VehicleMenuView")
+local SettingsView = require("View/Settings/SettingsView")
+local TestForceView = require("View/TestForceView")
 
-local Gameplay = require("Gameplay")
-local MainMenu = {}
 
 local testToggle = { value = false }
-local testInt    = { value = 5, min = 0, max = 10 }
-local testFloat  = { value = 0.5, min = 0.0, max = 1.0, step = 0.1, enabled = true }
-local languageRef = { index = 2, expanded = false }
-local languages = { "English", "French", "Spanish", "German", "Japanese" }
+local testInt = { value = 5, min = 0, max = 10 }
+local testFloat = { value = 0.5, min = 0.0, max = 1.0, step = 0.1, enabled = true }
 local dropdownRef = { index = 2, expanded = false }
+local dropdownRef2 = { index = 2, expanded = false }
+local languages = { "English", "French", "Spanish", "German", "Japanese" }
 local weaponTypes = { "Pistol", "SMG", "Rifle", "Shotgun", "Sniper" }
-
-local function run()
-    local items = Gameplay.Inventory.GetAllCategorizedItems()
-
-    for cat, groups in pairs(items) do
-        print("[[" .. cat .. "]]")
-        for subcat, list in pairs(groups) do
-            print(" - " .. subcat)
-            for _, item in ipairs(list) do
-                print("\t" .. item.name .. " (" .. item.id .. ")")
-            end
-        end
-    end
-end
-    local targetOptions = { "Player", "Weapon", "Vehicle" }
 local selectedTarget = { index = 1 }
+local targetOptions = { "Player", "Weapon", "Vehicle" }
+local stringRef = { index = 1 }
+local colorRef = { Red = 128, Green = 200, Blue = 255, Alpha = 255 }
+local textRef = { value = "" }
 
-
--- Test menu for all the buttons created and sometimes just funcs in here
 local function SecondaryView()
-    if Draw.Options.Option("Basic Option", nil, nil, "Tip: Basic Option") then
-        print("Basic Option selected")
-        run()
+    if UI.Buttons.Option("Basic Option", "This is a basic option") then
+        Logger.Log("Basic option clicked")
     end
-    Draw.Options.Option(nil, "Centered Option", nil, "Tip: Centered Option")
-    Draw.Options.Break("Section Break", nil, nil)
-    if Draw.Options.Option("Option 1", nil, "Right") then
-        -- Gameplay.Inventory.SpawnItemDropInFront("Items.TopQualityAlcohol10", 5)
-        ConfigManager.Load()
 
+    UI.Buttons.Option("Centered Option")
+    UI.Buttons.Break("Section Break")
+
+    if UI.Buttons.Option("Option 1") then
+        Logger.Log("Option 1 clicked")
     end
-    Draw.Options.Dropdown("Weapon Type", dropdownRef, weaponTypes)
-    Draw.Options.Dropdown("Language", languageRef, languages)
-    Draw.Options.Toggle("Test Toggle", testToggle, "Tip: Test Toggle")
-    Draw.Options.IntToggle("Test IntToggle", testInt, "Tip: Test IntToggle")
-    Draw.Options.FloatToggle("Test FloatToggle", testFloat, "Tip: Test FloatToggle")
-    Draw.Options.Radio("Modifier Target", selectedTarget, targetOptions, "Choose what the modifier applies to.")
+
+    if UI.Buttons.Text("Enter Name", textRef, "Type your custom text") then
+        Logger.Log("You typed: " .. (textRef.value or ""))
+    end
+
+    UI.Buttons.Bind("Open Menu", "TOGGLE", "Rebind the open/close key")
+    UI.Buttons.Bind("Up Navigation", "UP", "Rebind menu navigation up")
+    UI.Buttons.Bind("Down Navigation", "DOWN", "Rebind menu navigation down")
+    UI.Buttons.Bind("Back", "BACK", "Rebind back key")
+
+    UI.Buttons.Color("Pick Color", colorRef, "Adjust RGBA color")
+    UI.Buttons.Dropdown("Weapon Type", dropdownRef, weaponTypes, "Pick a weapon type")
+    UI.Buttons.Dropdown("Language", dropdownRef2, languages, "Pick a language")
+    UI.Buttons.Toggle("Test Toggle", testToggle, "Toggle something")
+    UI.Buttons.Int("Test Int", testInt, "Adjust integer")
+    UI.Buttons.Float("Test Float", testFloat, "Adjust float value")
+    UI.Buttons.Radio("Target", selectedTarget, targetOptions, "Choose target")
+    UI.Buttons.StringCycler("Cycle String", stringRef, { "One", "Two", "Three" }, "Cycle through strings")
 end
 
 local testMenu = { title = "Test Menu", view = SecondaryView }
+local World = require("Utils/World")
+
 
 local function MainMenuView()
-    Draw.Options.Submenu(L("mainmenu.self.label"), SelfView, tip("mainmenu.self.tip"))
-    Draw.Options.Submenu(L("mainmenu.development.label"), PlayerDevelopmentView, tip("mainmenu.development.tip"))
-    Draw.Options.Submenu(L("mainmenu.modifiers.label"), PlayerStatsView, tip("mainmenu.modifiers.tip"))
-    Draw.Options.Submenu(L("mainmenu.teleport.label"), TeleportView, tip("mainmenu.teleport.tip"))
-    Draw.Options.Submenu(L("mainmenu.weapon.label"), WeaponView, tip("mainmenu.weapon.tip"))
-    Draw.Options.Submenu(L("mainmenu.vehicle.label"), VehicleMenuView, tip("mainmenu.vehicle.tip"))
-    Draw.Options.Submenu(L("mainmenu.facts.label"), GameFactsView, tip("mainmenu.facts.tip"))
-    Draw.Options.Submenu(L("mainmenu.time.label"), TimeView, tip("mainmenu.time.tip"))
-    Draw.Options.Submenu(L("mainmenu.weather.label"), WeatherView, tip("mainmenu.weather.tip"))
-    Draw.Options.Submenu(L("mainmenu.translations.label"), TranslationsView, tip("mainmenu.translations.tip"))
-    Draw.Options.Submenu("Settings Menu", StyleSettingsView, "Adjust menu layout, slider, toggle, colorpicker styles, etc.")
+    UI.Buttons.Submenu(L("mainmenu.self.label"), SelfView, tip("mainmenu.self.tip"))
+    UI.Buttons.Submenu(L("mainmenu.development.label"), SelfDevelopmentView, tip("mainmenu.development.tip"))
+    UI.Buttons.Submenu(L("mainmenu.modifiers.label"), SelfModifiersView, tip("mainmenu.modifiers.tip"))
+    UI.Buttons.Submenu(L("mainmenu.teleport.label"), TeleportView, tip("mainmenu.teleport.tip"))
+    UI.Buttons.Submenu(L("mainmenu.weapon.label"), WeaponView, tip("mainmenu.weapon.tip"))
+    UI.Buttons.Submenu(L("mainmenu.vehicle.label"), VehicleMenuView, tip("mainmenu.vehicle.tip"))
+    UI.Buttons.Submenu("Settings", SettingsView, "Try all options here")
 
-    Draw.Options.Submenu(L("mainmenu.test"), testMenu, tip("mainmenu.test.tip"))
 end
 
-
-local mainMenu = { title = "mainmenu.title", view = MainMenuView }
-
+local MainMenu = { title = "EasyTrainer", view = MainMenuView }
 local initialized = false
 
 function MainMenu.Render(x, y, w, h)
-    Draw.Options.SetMenuBounds(x, y, w, h)
+    OptionBOUND.SetMenuBounds(x, y, w, h)
+    OptionRow.Begin()
 
     if not initialized then
         initialized = true
-        Draw.Submenus.OpenSubmenu(mainMenu)
         
-        RegisterSelfOptions()
-        RegisterTeleportOptions()
-        RegisterVehicleOptions()
-        RegisterWeaponOptions()
-        RegisterWorldOptions()
+        UI.SubmenuManager.OpenSubmenu(MainMenu)
         
-        ConfigManager.Load()
-
-        StyleConfig.Load()
-        Draw.Notifier.Push("EasyTrainer initialized!")
+        SelfFeature.ToggleRegistration()
+        WeaponsFeature.ToggleRegistration()
+        VehicleConfig()
+        TelportConfig()
+        UI.Notification.Info("EasyTrainer initialized!")
     end
 
-    -- Background and title
-    Draw.Helpers.RectFilled(x, y, w, h, Draw.Style.Colors.Background, 6.0)
-    Draw.Decorators.DrawTitleBar(x, y, w)
-
-    -- Render current view
-    local view = Draw.Submenus.GetCurrentView()
+    DrawHelpers.RectFilled(x, y, w, h, UI.Style.Colors.Background, UI.Style.Layout.FrameRounding)
+    Header.Draw(x, y, w)
+    local view = UI.SubmenuManager.GetCurrentView()
     if view then view() end
-
-    -- Footer
-    Draw.Decorators.DrawFooter(x, y, w, h, Draw.Options.maxVisible)
+    Footer.Draw(x, y, w, h)
 end
 
 return MainMenu

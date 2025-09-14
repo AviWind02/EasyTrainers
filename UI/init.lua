@@ -1,16 +1,11 @@
-local Draw = {}
+-- Just the core interface files used throughout the Trainer
+-- Most of the other ones are just used for Internal dependencies within these or they're only used once
+local UI = {}
 
-Draw.Style = require("UI/Core/Style")
-Draw.Helpers = require("UI/Core/DrawHelpers")
-Draw.Submenus = require("UI/Core/SubmenuManager")
-
-Draw.InputHandler = require("UI/Gamepad/InputHandler")
-
-Draw.Decorators = require("UI/Elements/Decorators")
-Draw.Notifier = require("UI/Elements/NotificationManager")
-Draw.Options = require("UI/Elements/OptionManager")
-Draw.InfoBox = require("UI/Elements/InfoBox")
-Draw.Buttons = require("UI/Elements/Buttons")
+UI.Style = require("UI/Core/Style")
+UI.SubmenuManager = require("UI/Core/SubmenuManager")
+UI.Notification = require("UI/Elements/Notification")
+UI.Buttons = require("UI/Options/Buttons")
 
 
-return Draw
+return UI
