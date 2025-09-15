@@ -61,6 +61,10 @@
       "label": "Infinite Jumps",
       "tip": "Allows unlimited mid-air jumps.\n\nRequires Reinforced Tendons cyberware to be equipped.\nSave and reload after toggling to apply or remove the effect."
     },
+    "infiniteairdash": {
+      "label": "Infinite Air Dash",
+      "tip": "Allows unlimited mid-air air dash.\n\nRequires Air Dash Perk Level 3 to be equipped."
+    },
     "playerspeedmultiplier": {
       "label": "Player Speed Multiplier",
       "tip": "Scales the player's top movement speed."
@@ -640,22 +644,22 @@
       "tip": "Add any weapon item to your inventory, including iconic and stash wall variants."
     },
     "weaponmanagement": {
-      "label": "Weapon Management",
+      "label": "Weapon Management"
     },
     "critandspray": {
-      "label": "Crit & Spray",
+      "label": "Crit & Spray"
     },
     "accuracyrange": {
-      "label": "Accuracy & Range",
+      "label": "Accuracy & Range"
     },
     "specialweapons": {
-      "label": "Special Weapons",
+      "label": "Special Weapons"
     },
     "melee": {
-      "label": "Melee Enhancements",
+      "label": "Melee Enhancements"
     },
     "smartweapons": {
-      "label": "Smart Weapons",
+      "label": "Smart Weapons"
     },
     "ammomanager": {
       "label": "Ammo Manager",

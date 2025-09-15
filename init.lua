@@ -147,6 +147,18 @@ Event.RegisterInit(function()
         end
     end)
 
+    Event.ObserveAfter("LocomotionAirEvents", "OnEnter", function(_, context, _)
+        if modulesLoaded then
+            SelfFeature.GodMode.DisableFallFX(_, context, _)
+        end
+    end)
+
+    Event.Override("LocomotionTransition", "WantsToDodge", function(tr, sc, si, wf)
+        if modulesLoaded then
+            return SelfFeature.InfiniteAirDash.Tick(tr, sc, si, wf)
+        end
+    end)
+
     Event.Override("scannerDetailsGameController", "ShouldDisplayTwintoneTab", function(this, wrappedMethod)
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)
     end)
