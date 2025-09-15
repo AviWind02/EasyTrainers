@@ -23,14 +23,18 @@ local WeaponLoader = require("Utils/DataExtractors/WeaponLoader")
 local PerkLoader = require("Utils/DataExtractors/PerkLoader")
 
 local TeleportLocations = require("Features/Teleports/TeleportLocations")
-local AutoTeleport = require("Features/Teleports/AutoTeleport")
-local VehiclePreview = require("Features/Vehicles/VehiclePreview")
+
+local WelcomeWindow = require("View/Welcome")
 
 local Utils
 local Weapon
 local SelfFeature
 local SelfTick
 local MainMenu
+local Vehicle
+local AutoTeleport
+local WorldWeather
+local WorldTime
 
 registerForEvent("onOverlayOpen", function() State.overlayOpen = true end)
 registerForEvent("onOverlayClose", function() State.overlayOpen = false end)
@@ -53,12 +57,19 @@ local function TryLoadModules()
         local ok = true
 
         Utils = require("Utils")
+
         SelfFeature = require("Features/Self")
         SelfTick = require("Features/Self/Tick")
         Weapon = require("Features/Weapons/Tick")
+        Vehicle = require("Features/Vehicles")
+        AutoTeleport = require("Features/Teleports/AutoTeleport")
+        WorldWeather = require("Features/World/WorldWeather")
+        WorldTime = require("Features/World/WorldTime")
+
         MainMenu = require("View/MainMenu")
 
-        if not (Utils and SelfFeature and SelfTick and Weapon and MainMenu) then
+        -- this is a very cancer statement but I guess it works?
+        if not (Utils and SelfFeature and AutoTeleport and WorldWeather and WorldTime and SelfTick and Weapon and Vehicle and MainMenu) then
             ok = false
         end
 
@@ -68,7 +79,6 @@ local function TryLoadModules()
         end
     end
 end
-
 
 local function OnSessionUpdate(state)
     GameState = state
@@ -88,6 +98,7 @@ Event.RegisterInit(function()
 
     Cron.Every(1.0, UpdateSessionStateTick)
     Cron.Every(0.5, TryLoadModules)
+
     Logger.Log("Cron Started")
 
 
@@ -100,7 +111,7 @@ Event.RegisterInit(function()
         Logger.Log("Language loaded: " .. lang)
     end
 
-    
+
     TeleportLocations.LoadAll()
 
 
@@ -124,41 +135,53 @@ Event.RegisterInit(function()
 
 
     Event.Observe("PlayerPuppet", "OnAction", function(_, action)
-        SelfFeature.NoClip.HandleMouseLook(action)
-        Utils.Weapon.HandleInputAction(action)
+        if modulesLoaded then
+            SelfFeature.NoClip.HandleMouseLook(action)
+            Utils.Weapon.HandleInputAction(action)
+        end
     end)
 
     Event.Observe("BaseProjectile", "ProjectileHit", function(self, eventData)
-        Weapon.HandleProjectileHit(self, eventData)
+        if modulesLoaded then
+            Weapon.HandleProjectileHit(self, eventData)
+        end
     end)
 
     Event.Override("scannerDetailsGameController", "ShouldDisplayTwintoneTab", function(this, wrappedMethod)
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)
     end)
-
 end)
 
 Event.RegisterUpdate(function(dt)
     Cron.Update(dt)
-    
+
     if not modulesLoaded then return end
-    
+
     if not GameState.isLoaded or GameState.isPaused or GameState.isDead then
         return
     end
-    VehiclePreview.Update(dt)
+
     SelfTick.TickHandler()
     Weapon.TickHandler(dt)
     AutoTeleport.Tick(dt)
-    Utils.Vehicle.VehicleSpawning.HandlePending()
+
+    Vehicle.VehicleLightFade.TickFade(dt)
+    Vehicle.VehiclePreview.Update(dt)
+    Vehicle.VehicleSpawning.HandlePending()
+
+    WorldWeather.Update()
+    WorldTime.Update(dt)
+
 end)
 
 Event.RegisterDraw(function()
-    if not modulesLoaded then return end
 
     Notification.Render()
-    Handler.Update()
+    WelcomeWindow.Render()
 
+    if not modulesLoaded then return end
+    MainMenu.Initialize()
+    Handler.Update()
     if not State.menuOpen then return end
 
     local menuX, menuY, menuW, menuH

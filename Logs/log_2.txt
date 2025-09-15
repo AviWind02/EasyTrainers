@@ -1,40 +1,33 @@
-[2025-09-10 01:10:49] [EasyTrainer] Logger initialized. Writing to log_2.txt and log_current.txt
-[2025-09-10 01:10:49] Initialization
-[2025-09-10 01:10:49] Cron Started
-[2025-09-10 01:10:49] Failed to open for read: config.json (config.json: No such file or directory)
-[2025-09-10 01:10:49] Language loaded: en
-[2025-09-10 01:10:49] teleportlocations: loaded 2323 teleports across 96 categories and 45 districts. Added 9 categories to Priority list.
-[2025-09-10 01:10:49] PerkLoader: Loaded 193 perks across 6 attributes.
-[2025-09-10 01:10:50] WeaponLoader: Loaded 1778 weapons.
-[2025-09-10 01:10:50] VehicleLoader: Loaded 554 vehicles (Added 0 new).
-[2025-09-10 01:10:50] DataLoaded
-[2025-09-10 01:10:50] BindingsConfig: Bindings loaded successfully.
-[2025-09-10 01:10:50] Bindings loaded
-[2025-09-10 01:10:50] Failed to open for read: config/JSON/ui.json (Config\JSON\ui.json: No such file or directory)
-[2025-09-10 01:10:50] UIConfig: Failed to load UI settings (Could not open file: config/JSON/ui.json)
-[2025-09-10 01:10:50] UI config loaded
-[2025-09-10 01:10:50] Failed to open for read: config/JSON/navigation.json (Config\JSON\navigation.json: No such file or directory)
-[2025-09-10 01:10:50] NavigationConfig: Failed to load navigation (Could not open file: config/JSON/navigation.json)
-[2025-09-10 01:10:50] Navigation config loaded
-[2025-09-10 01:10:50] Event: Observing PlayerPuppet.OnAction
-[2025-09-10 01:10:50] Event: Observing BaseProjectile.ProjectileHit
-[2025-09-10 01:10:50] Event: Overriding scannerDetailsGameController.ShouldDisplayTwintoneTab
-[2025-09-10 01:10:51] Game modules initialized.
-[2025-09-10 01:10:51] StatusEffect: applied GameplayRestriction.NoDriving
-[2025-09-10 01:10:51] StatusEffect: removed GameplayRestriction.NoDriving
-[2025-09-10 01:10:59] Controls: Menu toggled false
-[2025-09-10 01:11:03] Controls: Menu toggled true
-[2025-09-10 01:11:03] StatusEffect: applied GameplayRestriction.NoDriving
-[2025-09-10 01:11:03] StatusEffect: removed GameplayRestriction.NoDriving
-[2025-09-10 01:11:07] Controls: Menu toggled false
-[2025-09-10 01:11:08] Controls: Menu toggled true
-[2025-09-10 01:11:08] StatusEffect: applied GameplayRestriction.NoDriving
-[2025-09-10 01:11:08] StatusEffect: removed GameplayRestriction.NoDriving
-[2025-09-10 01:11:17] Controls: Menu toggled false
-[2025-09-10 01:11:29] Controls: Menu toggled true
-[2025-09-10 01:11:29] StatusEffect: applied GameplayRestriction.NoDriving
-[2025-09-10 01:11:29] StatusEffect: removed GameplayRestriction.NoDriving
-[2025-09-10 01:12:26] StatusEffect: applied GameplayRestriction.InfiniteAmmo
-[2025-09-10 01:12:31] StatusEffect: removed GameplayRestriction.InfiniteAmmo
-[2025-09-10 01:12:53] BindingsConfig: Bindings saved successfully.
-[2025-09-10 01:12:53] Clean up
+[2025-09-14 23:41:22] [EasyTrainer] Logger initialized. Writing to log_2.txt and log_current.txt
+[2025-09-14 23:41:22] Initialization
+[2025-09-14 23:41:22] Cron Started
+[2025-09-14 23:41:22] Failed to open for read: config.json (config.json: No such file or directory)
+[2025-09-14 23:41:22] Language loaded: en
+[2025-09-14 23:41:22] teleportlocations: loaded 2323 teleports across 96 categories and 45 districts. Added 9 categories to Priority list.
+[2025-09-14 23:41:22] PerkLoader: Loaded 193 perks across 6 attributes.
+[2025-09-14 23:41:22] WeaponLoader: Loaded 1778 weapons.
+[2025-09-14 23:41:23] VehicleLoader: Loaded 578 vehicles (Added 448 new).
+[2025-09-14 23:41:23] DataLoaded
+[2025-09-14 23:41:23] BindingsConfig: Bindings loaded successfully.
+[2025-09-14 23:41:23] Bindings loaded
+[2025-09-14 23:41:23] Failed to open for read: config/JSON/ui.json (Config\JSON\ui.json: No such file or directory)
+[2025-09-14 23:41:23] UIConfig: Failed to load UI settings (Could not open file: config/JSON/ui.json)
+[2025-09-14 23:41:23] UI config loaded
+[2025-09-14 23:41:23] Failed to open for read: config/JSON/navigation.json (Config\JSON\navigation.json: No such file or directory)
+[2025-09-14 23:41:23] NavigationConfig: Failed to load navigation (Could not open file: config/JSON/navigation.json)
+[2025-09-14 23:41:23] Navigation config loaded
+[2025-09-14 23:41:23] Option config loaded
+[2025-09-14 23:41:23] Event: Observing PlayerPuppet.OnAction
+[2025-09-14 23:41:23] Event: Observing BaseProjectile.ProjectileHit
+[2025-09-14 23:41:23] Event: Overriding scannerDetailsGameController.ShouldDisplayTwintoneTab
+[2025-09-14 23:41:23] StatusEffect: applied GameplayRestriction.NoDriving
+[2025-09-14 23:41:23] StatusEffect: removed GameplayRestriction.NoDriving
+[2025-09-14 23:41:25] Mouse restrictions applied
+[2025-09-14 23:41:25] StatusEffect: applied GameplayRestriction.NoZooming
+[2025-09-14 23:41:25] StatusEffect: applied GameplayRestriction.NoWeapons
+[2025-09-14 23:41:25] StatusEffect: applied GameplayRestriction.NoCameraControl
+[2025-09-14 23:41:25] StatusEffect: applied GameplayRestriction.NoCombat
+[2025-09-14 23:41:25] StatusEffect: applied GameplayRestriction.NoHealing
+[2025-09-14 23:41:25] StatusEffect: applied GameplayRestriction.BinocularView
+[2025-09-14 23:41:25] StatusEffect: removed GameplayRestriction.NoHealing
+[2025-09-14 23:41:29] BindingsConfig: Bindings saved successfully.

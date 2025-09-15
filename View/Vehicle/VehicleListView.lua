@@ -2,13 +2,12 @@ local Draw = require("UI")
 local Buttons = Draw.Buttons
 local OptionRow = require("UI/Elements/OptionRow")
 
-local VehicleSystem = require("Utils").Vehicle
-local VehicleSpawning = VehicleSystem.VehicleSpawning   
-
 local VehicleFeatures = require("Features/Vehicles")
+local VehicleSpawning = VehicleFeatures.VehicleSpawning   
+local VehicleSystem = VehicleFeatures.VehicleUnlocking
+
 local VehiclePreview = require("Features/Vehicles/VehiclePreview")
 local VehicleLoader = require("Utils/DataExtractors/VehicleLoader")
-
 
 local filterModes = {
     L("vehiclelist.mode_all"),
@@ -226,5 +225,4 @@ end
 return {
     title = "vehiclelist.title",
     view = VehicleMainView,
-    VehicleSpawenValues = VehicleSpawenValues
 }

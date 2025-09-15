@@ -53,43 +53,46 @@ local lastTypingEnabled = false
 function Restrictions.Update()
     local menuOpen = State.IsMenuOpen()
     Input.UpdateDevice()
+
     local usingController = Input.IsController()
     local mouseEnabled = State.mouseEnabled
     local typingEnabled = State.typingEnabled
 
-    -- short-circuit if nothing changed
-    if menuOpen == lastMenuOpen and usingController == lastWasController and mouseEnabled == lastMouseEnabled then
+    if not menuOpen and lastMenuOpen then
+        Restrictions.Clear()
+        lastMenuOpen, lastWasController, lastMouseEnabled, lastTypingEnabled = false, false, false, false
         return
     end
 
-    if menuOpen then
-        if usingController ~= lastWasController then
-            local msg = usingController and "Controller restrictions applied" or "Keyboard restrictions applied"
-            Logger.Log(msg)
+    if not menuOpen then return end
+
+    -- if input mode changed, reapply restrictions once
+    if usingController ~= lastWasController
+       or mouseEnabled ~= lastMouseEnabled
+       or typingEnabled ~= lastTypingEnabled
+       or not lastMenuOpen then
+
+        Restrictions.Clear()
+
+        if usingController then
+            Logger.Log("Controller restrictions applied")
+            for _, effect in ipairs(controllerRestrictions) do
+                StatusEffect.Set(effect, true)
+            end
+        elseif mouseEnabled then
+            Logger.Log("Mouse restrictions applied")
+            for _, effect in ipairs(mouseRestrictions) do
+                StatusEffect.Set(effect, true)
+            end
+        elseif typingEnabled then
+            Logger.Log("Typing restrictions applied")
+            for _, effect in ipairs(typingRestrictions) do
+                StatusEffect.Set(effect, true)
+            end
+        else
+            Logger.Log("Keyboard restrictions applied")
+            StatusEffect.Set(keyboardOnlyRestriction, true)
         end
-        if mouseEnabled ~= lastMouseEnabled then
-            local msg = mouseEnabled and "Mouse restrictions applied" or "Mouse restrictions cleared"
-            Logger.Log(msg)
-        end
-        if typingEnabled ~= lastTypingEnabled then
-            local msg = typingEnabled and "Typing restrictions applied" or "Typing restrictions cleared"
-            Logger.Log(msg)
-        end
-    end
-
-    -- keyboard restrictions disabled if mouse mode is active allowing players to drive while in this mode
-    StatusEffect.Set(keyboardOnlyRestriction, menuOpen and not usingController and not mouseEnabled)
-
-    for _, effect in ipairs(controllerRestrictions) do
-        StatusEffect.Set(effect, menuOpen and usingController)
-    end
-
-    for _, effect in ipairs(mouseRestrictions) do
-        StatusEffect.Set(effect, menuOpen and mouseEnabled)
-    end
-
-    for _, effect in ipairs(typingRestrictions) do
-        StatusEffect.Set(effect, menuOpen and typingEnabled)
     end
 
     lastMenuOpen = menuOpen
@@ -104,6 +107,9 @@ function Restrictions.Clear()
         StatusEffect.Set(effect, false)
     end
     for _, effect in ipairs(mouseRestrictions) do
+        StatusEffect.Set(effect, false)
+    end
+    for _, effect in ipairs(typingRestrictions) do
         StatusEffect.Set(effect, false)
     end
 end

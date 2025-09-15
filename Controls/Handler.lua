@@ -30,6 +30,7 @@ local function getScrollDelay(key, now)
 end
 
 
+local initialized = false
 
 function Handler.Update()
     local now = os.clock() * 1000
@@ -40,6 +41,11 @@ function Handler.Update()
 
     Restrictions.Update()
     Cursor.Update()
+
+    if(not initialized ) then
+        State.InitializeTracking()
+        initialized = true
+    end
 
     -- We don't need the menu closing or opening in case you're binding the main open key
     if State.bindingKey then

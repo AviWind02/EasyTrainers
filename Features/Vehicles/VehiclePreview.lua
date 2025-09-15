@@ -1,16 +1,13 @@
 local Logger = require("Core/Logger")
 local Teleport = require("Utils").Teleport
-local VehicleSpawning = require("Utils").Vehicle.VehicleSpawning
+local VehicleSpawning = require("Features/Vehicles/VehicleSpawning")
 local State = require("Controls/State")
 
 local VehiclePreview = {}
 
-local previewID = nil
-local previewDBID = nil
-local rotation = 0.0
-local distance = 13.0
-local spinSpeed = 30.0 
-local active = false 
+local previewID, previewDBID = nil, nil
+local rotation, distance, spinSpeed = 0.0, 13.0, 30.0
+local active = false
 
 function VehiclePreview.SetActive(flag)
     active = flag
@@ -19,7 +16,6 @@ function VehiclePreview.SetActive(flag)
     end
 end
 
----@param tweakDBIDStr string
 function VehiclePreview.Spawn(tweakDBIDStr)
     if not active or not State.IsMenuOpen() then
         VehiclePreview.Clear()
@@ -41,7 +37,7 @@ function VehiclePreview.Spawn(tweakDBIDStr)
     previewID = entityID
     previewDBID = tweakDBIDStr
     rotation = 0
-    Logger.Log("VehiclePreview: spawned preview " .. tostring(entityID))
+    -- Logger.Log("VehiclePreview: spawned preview " .. tostring(entityID))
 end
 
 function VehiclePreview.Update(deltaTime)
@@ -61,7 +57,8 @@ function VehiclePreview.Update(deltaTime)
 
     local pos = Teleport.GetForwardOffset(distance)
     if not pos then return end
-    pos.z = pos.z + 0.7 
+
+    pos.z = pos.z + 0.7
     rotation = (rotation + spinSpeed * deltaTime) % 360
     local facing = EulerAngles.new(0, 0, rotation)
 
@@ -72,10 +69,8 @@ function VehiclePreview.Clear()
     if not previewID then return end
     local des = Game.GetDynamicEntitySystem()
     if des then des:DeleteEntity(previewID) end
-    Logger.Log("VehiclePreview: cleared preview " .. tostring(previewID))
-    previewID = nil
-    previewDBID = nil
-    rotation = 0
+    -- Logger.Log("VehiclePreview: cleared preview " .. tostring(previewID))
+    previewID, previewDBID, rotation = nil, nil, 0
 end
 
 return VehiclePreview

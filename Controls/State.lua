@@ -1,4 +1,8 @@
 local State = {}
+local ConfigManager = require("Config/OptionConfig")
+
+State.trackMenuOpen = { value = true }
+State.trackMouseOn = { value = false }
 
 State.menuOpen = true
 State.mouseEnabled = false
@@ -25,16 +29,36 @@ end
 
 function State.ToggleMenu()
     State.menuOpen = not State.menuOpen
+    State.SyncTracking()
     return State.menuOpen
 end
+
 
 function State.IsMouseEnabled()
     return State.mouseEnabled
 end
 
+
 function State.ToggleMouse()
     State.mouseEnabled = not State.mouseEnabled
+    State.SyncTracking()
     return State.mouseEnabled
 end
+
+function State.SyncTracking()
+    State.trackMenuOpen.value = State.menuOpen
+    State.trackMouseOn.value = State.mouseEnabled
+    ConfigManager.Save()
+end
+
+function State.InitializeTracking()
+    if State.trackMenuOpen and State.trackMenuOpen.value ~= nil then
+        State.menuOpen = State.trackMenuOpen.value
+    end
+    if State.trackMouseOn and State.trackMouseOn.value ~= nil then
+        State.mouseEnabled = State.trackMouseOn.value
+    end
+end
+
 
 return State

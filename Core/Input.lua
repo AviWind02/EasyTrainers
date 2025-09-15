@@ -6,7 +6,7 @@ local function GetETInput()
     return ETInput
 end
 
-local lastDevice = "Unknown"
+local lastDevice = "Keyboard"
 
 ---Update and return the last active input device  
 ---Checks keyboard and gamepad activity, defaults to Unknown  
@@ -17,10 +17,8 @@ function Input.UpdateDevice()
         lastDevice = "Keyboard"
     elseif et:IsGamepadActive() then
         lastDevice = "Controller"
-    else
-        lastDevice = "Unknown"
     end
-    return lastDevice
+    return lastDevice -- This should be OK right?
 end
 
 

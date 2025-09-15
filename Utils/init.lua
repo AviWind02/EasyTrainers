@@ -9,4 +9,5 @@ Utils.StatPoolModifiers = require("Utils/StatPoolModifiers")
 Utils.Teleport = require("Utils/Teleport")
 Utils.Vehicle = require("Utils/Vehicle")
 Utils.Weapon = require("Utils/Weapon")
+Utils.Facts = require("Utils/Facts")
 return Utils

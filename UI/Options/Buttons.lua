@@ -9,6 +9,9 @@ local StringCycler = require("UI/Options/StringCycler")
 local ColorPicker = require("UI/Options/ColorPicker")
 local BindButton = require("UI/Options/BindButton")
 local TextInput = require("UI/Options/TextInput")
+
+local OptionConfig = require("Config/OptionConfig")
+
 local Buttons = {}
 
 function Buttons.Option(label, tip, action)
@@ -42,6 +45,7 @@ end
 
 function Buttons.Toggle(label, ref, tip, action)
     if Toggle.Option(label, ref, tip) then
+        OptionConfig.Save() -- Save all toggle state immediately - Probably should do this in a much better way
         if action then action() end
         return true
     end

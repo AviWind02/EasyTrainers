@@ -10,10 +10,11 @@ local Footer  = require("UI/Frame/Footer")
 
 local SelfFeature = require("Features/Self")
 local WeaponsFeature = require("Features/Weapons")
-local TeleportTester = require("Features/Teleports/TeleportTester")
 
 local TelportConfig = require("Features/Teleports/TeleportConfig")
 local VehicleConfig = require("Features/Vehicles/VehicleConfig")
+local WorldConfig = require("Features/World/WorldConfig")
+local ControlsConfig = require("Controls/ControlsConfig")
 
 local SelfView = require("View/Self/SelfMenuView")
 local SelfDevelopmentView = require("View/Self/SelfDevelopment")
@@ -23,7 +24,9 @@ local WeaponView = require("View/Weapons/WeaponMenuView")
 local VehicleMenuView = require("View/Vehicle/VehicleMenuView")
 local SettingsView = require("View/Settings/SettingsView")
 local TestForceView = require("View/TestForceView")
-
+local WeatherView = require("View/World/WeatherView")
+local TimeView = require("View/World/TimeView")
+local GameFactsView = require("View/World/FactView")
 
 local testToggle = { value = false }
 local testInt = { value = 5, min = 0, max = 10 }
@@ -80,29 +83,35 @@ local function MainMenuView()
     UI.Buttons.Submenu(L("mainmenu.teleport.label"), TeleportView, tip("mainmenu.teleport.tip"))
     UI.Buttons.Submenu(L("mainmenu.weapon.label"), WeaponView, tip("mainmenu.weapon.tip"))
     UI.Buttons.Submenu(L("mainmenu.vehicle.label"), VehicleMenuView, tip("mainmenu.vehicle.tip"))
-    UI.Buttons.Submenu("Settings", SettingsView, "Try all options here")
+    UI.Buttons.Submenu(L("mainmenu.facts.label"), GameFactsView, tip("mainmenu.facts.tip"))
+    UI.Buttons.Submenu(L("mainmenu.time.label"), TimeView, tip("mainmenu.time.tip"))
+    UI.Buttons.Submenu(L("mainmenu.weather.label"), WeatherView, tip("mainmenu.weather.tip"))
+    UI.Buttons.Submenu("Settings", SettingsView)
 
 end
 
 local MainMenu = { title = "EasyTrainer", view = MainMenuView }
 local initialized = false
 
+function MainMenu.Initialize()
+ if not initialized then
+        UI.SubmenuManager.OpenSubmenu(MainMenu)
+        ControlsConfig()
+        SelfFeature.ToggleRegistration()
+        WeaponsFeature.ToggleRegistration()
+        
+        VehicleConfig()
+        TelportConfig()
+        WorldConfig()
+
+        UI.Notification.Info("EasyTrainer initialized!")
+        initialized = true
+    end
+end
+
 function MainMenu.Render(x, y, w, h)
     OptionBOUND.SetMenuBounds(x, y, w, h)
     OptionRow.Begin()
-
-    if not initialized then
-        initialized = true
-        
-        UI.SubmenuManager.OpenSubmenu(MainMenu)
-        
-        SelfFeature.ToggleRegistration()
-        WeaponsFeature.ToggleRegistration()
-        VehicleConfig()
-        TelportConfig()
-        UI.Notification.Info("EasyTrainer initialized!")
-    end
-
     DrawHelpers.RectFilled(x, y, w, h, UI.Style.Colors.Background, UI.Style.Layout.FrameRounding)
     Header.Draw(x, y, w)
     local view = UI.SubmenuManager.GetCurrentView()
