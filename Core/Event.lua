@@ -64,6 +64,15 @@ function Event.Observe(class, method, fn)
     Logger.Log(string.format("Event: Observing %s.%s", tostring(class), tostring(method)))
 end
 
+---Observe a game class method after execution (non-destructive hook)
+---@param class string Game class name
+---@param method string Method name to observe
+---@param fn fun(...) Callback invoked after the method has finished
+function Event.ObserveAfter(class, method, fn)
+    ObserveAfter(class, method, fn)
+    Logger.Log(string.format("Event: ObservingAfter %s.%s", tostring(class), tostring(method)))
+end
+
 ---Override a game class method (replaces implementation)  
 ---@param class string Game class name  
 ---@param method string Method name to override  

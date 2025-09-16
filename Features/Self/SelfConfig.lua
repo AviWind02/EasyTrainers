@@ -8,6 +8,7 @@ local function RegisterAllSelfOptions()
     ConfigManager.Register("toggle.self.superspeed", Self.SuperSpeed.enabled, false)
     ConfigManager.Register("toggle.self.noclip", Self.NoClip.toggleNoClip, false)
     ConfigManager.Register("toggle.self.infinitejump", Self.InfiniteJumps.enabled, false)
+    ConfigManager.Register("toggle.self.infiniteairdash", Self.InfiniteAirDash.enabled, false)
     ConfigManager.Register("toggle.self.airthrusters", Self.AirThrusterBoots.enabled, false)
 
     ConfigManager.Register("toggle.self.quicksilver", Self.StatModifiers.Movement.toggleQuicksilver, false)
