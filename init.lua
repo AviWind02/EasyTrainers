@@ -153,11 +153,11 @@ Event.RegisterInit(function()
         end
     end)
 
-    Event.Override("LocomotionTransition", "WantsToDodge", function(tr, sc, si, wf)
-        if modulesLoaded then
-            return SelfFeature.InfiniteAirDash.Tick(tr, sc, si, wf)
-        end
-    end)
+    -- Event.Override("LocomotionTransition", "WantsToDodge", function(tr, sc, si, wf)
+       -- if modulesLoaded then
+         --   return SelfFeature.InfiniteAirDash.Tick(tr, sc, si, wf)
+        -- end
+    -- end) disabled for now for some reason is preventing me from actually dodging
 
     Event.Override("scannerDetailsGameController", "ShouldDisplayTwintoneTab", function(this, wrappedMethod)
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)

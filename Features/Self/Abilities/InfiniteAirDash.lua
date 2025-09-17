@@ -3,6 +3,7 @@ InfiniteAirDash.enabled = { value = false }
 local Notification = require("UI").Notification
 
 local function dodgeDirection(sc, si, dir)
+        Notification.Info("DodgeDirection param: " .. tostring(dir) .. " (" .. type(dir) .. ")")
     sc:SetConditionFloatParameter("DodgeDirection", dir, true);
     si.localBlackboard:SetFloat(
         GetAllBlackboardDefs().PlayerStateMachine.DodgeTimeStamp, EngineTime.ToFloat(GameInstance.GetSimTime())
@@ -72,17 +73,19 @@ local function hasValidRequirements(si)
 end
 
 function InfiniteAirDash.Tick(tr, sc, si, wf)
-    local dp = dodgeTapped(tr, sc, si)
-    local ddp = dodgedDirectionally(sc, si)
-    local tf = tr:IsCurrentFallSpeedTooFastToEnter(sc, si)
-    local r = wf(sc, si)
+    if InfiniteAirDash.enabled.value then -- Adjusted the statement to only run and only check when toggled
+        local dp = dodgeTapped(tr, sc, si)
+        local ddp = dodgedDirectionally(sc, si)
+        local tf = tr:IsCurrentFallSpeedTooFastToEnter(sc, si)
+        local r = wf(sc, si)
 
-    if InfiniteAirDash.enabled.value and (dp or ddp) then
-        if hasValidRequirements(si) then
-            local param = sc:GetPermanentBoolParameter("disableAirDash")
-            local airDashDisable = param.valid and param.value
-            local dodgeEnabled = GameplaySettingsSystem.GetMovementDodgeEnabled(si.executionOwner)
-            r = (airDashDisable or not dodgeEnabled or tf)
+        if (dp or ddp) then
+            if hasValidRequirements(si) then
+                local param = sc:GetPermanentBoolParameter("disableAirDash")
+                local airDashDisable = param.valid and param.value
+                local dodgeEnabled = GameplaySettingsSystem.GetMovementDodgeEnabled(si.executionOwner)
+                r = (airDashDisable or not dodgeEnabled or tf)
+            end
         end
     end
 
