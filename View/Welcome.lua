@@ -5,10 +5,14 @@ local JsonHelper = require("Core/JsonHelper")
 local configPath = "Config/JSON/Settings.json"
 
 local showWelcome = false
+local countdown = 60
+local startTime = nil
+
 do
     local data = JsonHelper.Read(configPath)
     if not data or not data.shown then
         showWelcome = true
+        startTime = os.clock()
     end
 end
 
@@ -54,10 +58,16 @@ local info = {
     "I honestly didn't think people would actually use it. Your support means a lot!"
 }
 
-
-
 function Welcome.Render()
     if not showWelcome then return end
+
+    local elapsed = os.clock() - (startTime or os.clock())
+    local remaining = math.max(0, countdown - math.floor(elapsed))
+
+    if remaining == 0 then
+        Welcome.Dismiss()
+        return
+    end
 
     local resX, resY = GetDisplayResolution()
     local winX, winY = (resX - windowW) / 2, (resY - windowH) / 2
@@ -93,7 +103,9 @@ function Welcome.Render()
         ImGui.Spacing()
 
         ImGui.SetCursorPosX(centerX - 100)
-        ImGui.TextColored(0.6, 1, 0.6, 1, "Press Enter or A to continue")
+        ImGui.TextColored(0.6, 1, 0.6, 1,
+            string.format("Press Enter or A to continue (%d)", remaining)
+        )
 
         if Input.IsButtonDown(Input.GP.A) or Input.IsKeyDown(Input.VK.ENTER) then
             Welcome.Dismiss()
@@ -107,8 +119,7 @@ end
 
 function Welcome.Dismiss()
     showWelcome = false
-    JsonHelper.Update(configPath, { shown = true }) 
+    JsonHelper.Update(configPath, { shown = true })
 end
-
 
 return Welcome
