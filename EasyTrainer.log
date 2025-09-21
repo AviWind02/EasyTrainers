@@ -1,9 +1,0 @@
-[2025-09-18 16:24:58 UTC-04:00] [23780] init.lua:216: attempt to index upvalue 'Utils' (a nil value)
-stack traceback:
-	init.lua:216: in function <init.lua:212>
-[2025-09-18 16:26:34 UTC-04:00] [22148] init.lua:216: attempt to index upvalue 'Utils' (a nil value)
-stack traceback:
-	init.lua:216: in function <init.lua:212>
-[2025-09-18 16:28:06 UTC-04:00] [32736] init.lua:216: attempt to index upvalue 'Utils' (a nil value)
-stack traceback:
-	init.lua:216: in function <init.lua:212>
