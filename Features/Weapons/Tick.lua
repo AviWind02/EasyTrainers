@@ -7,7 +7,6 @@ function WeaponTick.TickHandler(deltaTime)
     Weapons.InfiniteAmmo.Tick()
     Weapons.ForceGun.Tick(deltaTime)
     Weapons.ExplosiveBullets.Tick()
-
     Weapons.StatModifiers.NoReloading.Tick(deltaTime)
     Weapons.StatModifiers.FastReload.Tick(deltaTime)
     Weapons.StatModifiers.NoRecoil.Tick(deltaTime)
@@ -31,6 +30,7 @@ end
 
 function WeaponTick.HandleProjectileHit(self, eventData)
     Weapons.FlyingThunderGod.Tick(eventData)
+    Weapons.ExplosiveKnives.Tick(eventData)
     Weapons.SmartBlade.Tick(self)
 end
 

@@ -88,6 +88,7 @@ local function WeaponsViewFunction()
     Buttons.Toggle(L("weaponsmenu.melee_lowstamina.label"), Weapons.StatModifiers.LowStaminaCost.toggleLowStaminaCost, tip("weaponsmenu.melee_lowstamina.tip"))
     Buttons.Toggle(L("weaponsmenu.melee_bladecarnage.label"), Weapons.StatModifiers.BladeCarnage.toggleBladeCarnage, tip("weaponsmenu.melee_bladecarnage.tip"))
     Buttons.Toggle(L("weaponsmenu.melee_infinitecombo.label"), Weapons.StatModifiers.InfiniteCombo.toggleInfiniteCombo, tip("weaponsmenu.melee_infinitecombo.tip"))
+    Buttons.Toggle(L("weaponsmenu.explosiveknives.label"), Weapons.ExplosiveKnives.enabled, tip("weaponsmenu.explosiveknives.tip"))
 
     Buttons.Break(L("weaponsmenu.smartweapons.label"))
     Buttons.Toggle(L("weaponsmenu.smart_fastlock.label"), Weapons.StatModifiers.SmartFastLock.toggleFastLock, tip("weaponsmenu.smart_fastlock.tip"))

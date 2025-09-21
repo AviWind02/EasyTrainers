@@ -8,6 +8,7 @@ WeaponsFeatures.InfiniteAmmo = require("Features/Weapons/Abilities/InfiniteAmmo"
 WeaponsFeatures.ForceGun = require("Features/Weapons/Abilities/ForceGun")
 WeaponsFeatures.ExplosiveBullets = require("Features/Weapons/Abilities/ExplosiveBullets")
 WeaponsFeatures.WeaponActions = require("Features/Weapons/Abilities/WeaponActions")
+WeaponsFeatures.ExplosiveKnives = require("Features/Weapons/Abilities/ExplosiveKnives")
 
 WeaponsFeatures.StatModifiers = {
     NoReloading = require("Features/Weapons/StatModifiers/NoReloading"),

@@ -669,6 +669,10 @@
       "label": "Explosive Bullets",
       "tip": "Shooting causes explosions at your crosshair location, regardless of bullet type or impact."
     },
+    "explosiveknives": {
+      "label": "Explosive Knives",
+      "tip": "Thrown knives explode on impact, creating an explosion at the hit location."
+    },
     "forcegun": {
       "label": "Force Gun",
       "tip": "Fires a powerful kinetic blast while aiming down sights. Works best on vehicles, launching them away on impact."
