@@ -1,8 +1,22 @@
 local Input = {}
 local ETInput = nil
 
+local Logger = require("Core/Logger")
+
+function Input.Initialize()
+    ETInput = EasyInputHandler.new()
+    if ETInput then
+        Logger.Log("Input: EasyInputHandler initialized")
+    else
+        Logger.Log("Input: Failed to initialize EasyInputHandler")
+    end
+end
+
+-- Always use this to fetch
 local function GetETInput()
-    if not ETInput then ETInput = EasyInputHandler.new() end
+    if not ETInput then
+        Input.Initialize()
+    end
     return ETInput
 end
 

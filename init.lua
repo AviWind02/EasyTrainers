@@ -5,7 +5,7 @@ local JsonHelper = require("Core/JsonHelper")
 local Session = require("Core/cp2077-cet-kit/GameSession")
 local Cron = require("Core/cp2077-cet-kit/Cron")
 local OptionConfig = require("Config/OptionConfig")
-
+local Input = require("Core/Input")
 -- Config
 local BindingsConfig = require("Config/BindingsConfig")
 local UIConfig = require("Config/UIConfig")
@@ -92,6 +92,8 @@ Event.RegisterInit(function()
     Logger.Initialize()
     Logger.Log("Initialization")
 
+    Input.Initialize()
+
     Cron.After(0.1, GetStartingState)
 
     Session.Listen(OnSessionUpdate)
@@ -102,7 +104,7 @@ Event.RegisterInit(function()
     Logger.Log("Cron Started")
 
 
-    local config = JsonHelper.Read("config.json")
+    local config = JsonHelper.Read("Config/JSON/Settings.json")
     local lang = (config and config.Lang) or "en"
     if not Language.Load(lang) then
         Logger.Log("Language failed to load, fallback to English")
