@@ -15,7 +15,6 @@ function Explosion.SpawnVFX(pos, orientation, effectPath)
         fxSystem:SpawnEffect(fxRes, t, false)
         return true
     end
-
     Logger.Log("Explosion: FxSystem not available")
     return false
 end

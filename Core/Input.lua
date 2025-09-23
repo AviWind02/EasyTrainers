@@ -8,7 +8,7 @@ function Input.Initialize()
     if ETInput then
         Logger.Log("Input: EasyInputHandler initialized")
     else
-        Logger.Log("Input: Failed to initialize EasyInputHandler")
+        Logger.Log("Input: Failed to initialize EasyInputHandler. Check Redscript install.")
     end
 end
 

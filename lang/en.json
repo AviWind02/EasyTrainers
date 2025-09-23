@@ -259,18 +259,33 @@
       "technical": "Technical Ability",
       "relic": "Relic"
     },
-    "perks": {
-      "header": "Perks",
-      "tipsingle": "Category: {category}\n\nThis perk only has 1 level. Toggle on/off to apply or remove it.",
-      "tipmulti": "Category: {category}\n\nThis perk has {levels} levels. Use Arrow keys to adjust the level.",
-      "filter": {
-        "label": "Perk Filter",
-        "tip": "Choose which perks to display: All, Active only, or Inactive only.",
-        "all": "All Perks",
-        "active": "Active Perks",
-        "inactive": "Inactive Perks"
-      }
+ "perks": {
+    "header": "Perks",
+    "tipsingle": "{category}\n\nThis perk has 1 level. Toggle on/off to acquire or remove it.",
+    "tipmulti": "{category}\n\nThis perk has {levels} levels. Activate repeatedly to acquire levels, or reset to remove them.",
+    "filter": {
+      "label": "Perk Filter",
+      "tip": "Choose which perks to display: All, Active only, or Inactive only.",
+      "all": "All Perks",
+      "active": "Active Perks",
+      "inactive": "Inactive Perks"
     },
+    "equipped": "Acquired",
+    "unequipped": "Not Acquired",
+    "locked": "Locked",
+    "notifications": {
+    "equipped": "{perk} acquired",
+    "unequipped": "{perk} removed",
+      "equip_failed": "Failed to equip {perk}",
+      "unequip_failed": "Failed to unequip {perk}",
+      "level_increased": "{perk} Level {level}",
+      "level_failed": "Failed to add level to {perk}",
+      "reset": "{perk} reset ({count} levels removed)",
+      "reset_failed": "Failed to reset {perk}",
+      "requirement_failed": "Cannot acquire {perk}: requires {requirements}"
+
+    }
+  },
     "eddies": {
       "label": "Eurodollar",
       "add1k": {

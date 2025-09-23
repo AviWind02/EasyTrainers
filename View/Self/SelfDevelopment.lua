@@ -3,7 +3,7 @@ local PlayerDevelopment = require("Utils").PlayerDevelopment
 local Inventory = require("Utils").Inventory
 local Buttons = require("UI").Buttons
 local Logger = require("Core/Logger")
-local utils = require("Utils/DataExtractors/DataUtils")
+local Notification = require("UI").Notification
 
 
 local selectedAttribute = { index = 1, expanded = false }
@@ -13,7 +13,7 @@ local attributeOptions = {
     "playerdev.attributes.intelligence",
     "playerdev.attributes.reflexes",
     "playerdev.attributes.technical",
-    -- "playerdev.attributes.relic"
+    "playerdev.attributes.relic"
 }
 
 local perkFilter = { index = 1 }
@@ -160,67 +160,152 @@ local ResourceMenu = {
     view = ResourceView
 }
 
-local perkLevels = {}
-local perkLevelCache = {}
+
+local requirementLogCache = {}
+
+local function DebugRequirementLog(perk, hasReqs, missing, current, maxLevel)
+    if requirementLogCache[perk.id] then return end -- already logged once
+
+    local status = hasReqs and "OK" or "MISSING"
+    Logger.Log(string.format(
+        "[PerkCheck] %s | Current: %d / %d | Status: %s",
+        perk.name, current, maxLevel, status
+    ))
+
+    if not hasReqs and #missing > 0 then
+        Logger.Log("   Missing -> " .. table.concat(missing, ", "))
+    end
+
+    requirementLogCache[perk.id] = true
+end
+
+local function HasRequirements(perk)
+    if not perk.requirements or not perk.requirements.perks then return true, {} end
+
+    local missing = {}
+    for _, req in ipairs(perk.requirements.perks) do
+        local hasIt = PlayerDevelopment.HasPerk(req.type)
+        if not hasIt then
+            table.insert(missing, req.name)
+        end
+    end
+
+    return (#missing == 0), missing
+end
+
+local function FormatPerkDisplay(perk, current, maxLevel)
+    local hasReqs, missing = HasRequirements(perk)
+    if not hasReqs and current == 0 then
+        return L("playerdev.perks.locked")
+    elseif current == 0 then
+        return L("playerdev.perks.unequipped")
+    elseif maxLevel > 1 then
+        return L("playerdev.perks.equipped") .. string.format(" %d / %d", current, maxLevel)
+    else
+        return L("playerdev.perks.equipped") .. " 1 / 1"
+    end
+end
+
+local function BuildPerkTip(perk, maxLevel)
+    local tipKey = (maxLevel > 1) and "playerdev.perks.tipmulti" or "playerdev.perks.tipsingle"
+    local baseTip = tip(tipKey, { category = perk.category, levels = maxLevel })
+
+    local hasReqs, missing = HasRequirements(perk)
+    if not hasReqs and #missing > 0 then
+        return baseTip .. "\n\nRequires: " .. table.concat(missing, ", ")
+    end
+
+    return baseTip
+end
+
+local function HandleSingleRank(perk, current)
+    if current == 0 then
+        local hasReqs, missing = HasRequirements(perk)
+        if not hasReqs then
+            Notification.Error(tip("playerdev.perks.notifications.requirement_failed", {
+                perk = perk.name,
+                requirements = table.concat(missing, ", ")
+            }))
+            return
+        end
+
+        if PlayerDevelopment.AddPerk(perk.type, true) then
+            Notification.Success(tip("playerdev.perks.notifications.equipped", { perk = perk.name }))
+        else
+            Notification.Error(tip("playerdev.perks.notifications.equip_failed", { perk = perk.name }))
+        end
+    else
+        if PlayerDevelopment.RemovePerk(perk.type) then
+            Notification.Info(tip("playerdev.perks.notifications.unequipped", { perk = perk.name }))
+        else
+            Notification.Error(tip("playerdev.perks.notifications.unequip_failed", { perk = perk.name }))
+        end
+    end
+end
+
+local function HandleMultiRank(perk, current, maxLevel)
+    if current < maxLevel then
+        local hasReqs, missing = HasRequirements(perk)
+        if not hasReqs then
+            Notification.Error(tip("playerdev.perks.notifications.requirement_failed", {
+                perk = perk.name,
+                requirements = table.concat(missing, ", ")
+            }))
+            return
+        end
+
+        if PlayerDevelopment.AddPerk(perk.type, true) then
+            Notification.Success(tip("playerdev.perks.notifications.level_increased",
+                { perk = perk.name, level = tostring(current + 1) }))
+        else
+            Notification.Error(tip("playerdev.perks.notifications.level_failed", { perk = perk.name }))
+        end
+    else
+        local removed = 0
+        for i = 1, current do
+            if PlayerDevelopment.RemovePerk(perk.type) then
+                removed = removed + 1
+            end
+        end
+        if removed > 0 then
+            Notification.Info(tip("playerdev.perks.notifications.reset",
+                { perk = perk.name, count = tostring(removed) }))
+        else
+            Notification.Error(tip("playerdev.perks.notifications.reset_failed", { perk = perk.name }))
+        end
+    end
+end
+
 
 local function DrawPerkEntry(id, perk)
     local maxLevel = PlayerDevelopment.GetPerkMaxLevel(perk.type) or 1
-    local current  = PlayerDevelopment.GetCurrPerkLevel(perk.type)
+    local current  = PlayerDevelopment.GetPerkLevel(perk.type)
 
-    local display
-    if maxLevel > 1 then
-        display = string.format("%d / %d", current, maxLevel)
-    else
-        display = (current > 0) and L("playerdev.perks.equipped") or L("playerdev.perks.unequipped")
-    end
+    local hasReqs, missing = HasRequirements(perk)
+    -- DebugRequirementLog(perk, hasReqs, missing, current, maxLevel)
+
+    local display = FormatPerkDisplay(perk, current, maxLevel)
+    local tipText = BuildPerkTip(perk, maxLevel)
 
     Buttons.OptionExtended(
-        perk.name,
-        "",
-        display,
-        tip("playerdev.perks.tipmulti", { category = perk.category, levels = maxLevel }),
+        perk.name, "", display, tipText,
         function()
-            local base = tostring(perk.type):gsub("(_%d+)$", "")
+            if not hasReqs and current == 0 then
+                Notification.Error(tip("playerdev.perks.notifications.requirement_failed", {
+                    perk = perk.name,
+                    requirements = table.concat(missing, ", ")
+                }))
+                return
+            end
 
             if maxLevel == 1 then
-                -- Toggle single-rank perk
-                if current == 0 then
-                    if PlayerDevelopment.BuyPerk(perk.type, true) then
-                        Logger.Log(" -> Equipped")
-                        current = 1
-                    end
-                else
-                    if PlayerDevelopment.RemovePerk(perk.type) then
-                        Logger.Log(" -> Unequipped")
-                        current = 0
-                    end
-                end
+                HandleSingleRank(perk, current)
             else
-                -- Multi-rank: cycle 0 → max
-                if current < maxLevel then
-                    local nextRank = TweakDBID.new(string.format("%s_%d", base, current + 1))
-                    if PlayerDevelopment.BuyPerk(nextRank, true) then
-                        current = current + 1
-                        Logger.Log(" -> Level increased to " .. current)
-                    end
-                else
-                    -- Reset: remove all ranks
-                    for i = current, 1, -1 do
-                        local rankId = TweakDBID.new(string.format("%s_%d", base, i))
-                        if PlayerDevelopment.RemovePerk(rankId) then
-                            Logger.Log(string.format(" -> Removed level %d", i))
-                        else
-                            Logger.Log(string.format(" -> Failed to remove level %d", i))
-                            break
-                        end
-                    end
-                    current = 0
-                end
+                HandleMultiRank(perk, current, maxLevel)
             end
         end
     )
 end
-
 
 
 local function DrawPerksForAttribute(attrKey)
@@ -228,12 +313,11 @@ local function DrawPerksForAttribute(attrKey)
     local perks = PerkLoader.attribute[attr] or {}
 
     for id, perk in pairs(perks) do
-        local current  = PlayerDevelopment.GetCurrPerkLevel(perk.type)
+        local current = PlayerDevelopment.GetPerkLevel(perk.type)
         local isActive = current > 0
 
-        -- Apply filter (all / active / inactive)
-        if (perkFilter.index == 2 and not isActive) or
-            (perkFilter.index == 3 and isActive) then
+        if (perkFilter.index == 2 and not isActive)
+        or (perkFilter.index == 3 and isActive) then
             goto continue
         end
 

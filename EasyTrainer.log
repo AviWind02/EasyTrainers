@@ -9875,3 +9875,564 @@ stack traceback:
 	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:280: in function 'view'
 	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
 	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:01 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:30:02 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: attempt to call field 'GetCurrPerkLevel' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:208: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:257: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:39:26 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:201: attempt to index upvalue 'Notification' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:201: in function 'action'
+	...er_engine_tweaks\mods\EasyTrainer\UI\Options\Buttons.lua:27: in function 'OptionExtended'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:175: in function 'DrawPerkEntry'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:243: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:283: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:43:42 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:222: attempt to index upvalue 'Notification' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:222: in function 'action'
+	...er_engine_tweaks\mods\EasyTrainer\UI\Options\Buttons.lua:27: in function 'OptionExtended'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:185: in function 'DrawPerkEntry'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:247: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:287: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:43:42 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:222: attempt to index upvalue 'Notification' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:222: in function 'action'
+	...er_engine_tweaks\mods\EasyTrainer\UI\Options\Buttons.lua:27: in function 'OptionExtended'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:185: in function 'DrawPerkEntry'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:247: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:287: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:43:43 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:222: attempt to index upvalue 'Notification' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:222: in function 'action'
+	...er_engine_tweaks\mods\EasyTrainer\UI\Options\Buttons.lua:27: in function 'OptionExtended'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:185: in function 'DrawPerkEntry'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:247: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:287: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>
+[2025-09-23 12:43:44 UTC-04:00] [23768] ...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:222: attempt to index upvalue 'Notification' (a nil value)
+stack traceback:
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:222: in function 'action'
+	...er_engine_tweaks\mods\EasyTrainer\UI\Options\Buttons.lua:27: in function 'OptionExtended'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:185: in function 'DrawPerkEntry'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:247: in function 'DrawPerksForAttribute'
+	...ne_tweaks\mods\EasyTrainer\View\Self\SelfDevelopment.lua:287: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:118: in function 'Render'
+	init.lua:207: in function <init.lua:191>

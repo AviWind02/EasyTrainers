@@ -69,6 +69,7 @@ function PlayerDevelopment.GetDevPoints(pointType)
     return data and data:GetDevPoints(pointType) or 0
 end
 
+
 function PlayerDevelopment.HasPerk(perkType)
     local data = GetPlayerData()
     return data and (data:IsNewPerkBought(perkType) > 0) or false
@@ -90,53 +91,25 @@ function PlayerDevelopment.GetPerkMaxLevel(perkType)
     return data and data:GetNewPerkMaxLevel(perkType) or 1
 end
 
-function PlayerDevelopment.GetCurrPerkLevel(perkType)
+function PlayerDevelopment.AddPerk(perkType, force)
     local data = GetPlayerData()
-    if not data then return 0 end
-
-    local unlocked = data:GetUnlockedPerkList(perkType)
-    if type(unlocked) ~= "table" then return 0 end
-
-    -- Normalize perk string
-    local perkStr = tostring(perkType)
-    local base = perkStr:gsub("(_%d+)$", "") -- strip rank suffix
-
-    local count = 0
-    for key, _ in pairs(unlocked) do
-        local entryStr = tostring(key)
-        if entryStr:match("^" .. base .. "_%d+$") then
-            count = count + 1
-        end
-    end
-
-    return count
-end
-
-
-function PlayerDevelopment.ModifyPerkLevel(perkType, delta, force)
-    local data = GetPlayerData()
-    if not data or delta == 0 then return false end
-
-    local max = PlayerDevelopment.GetPerkMaxLevel(perkType)
-    local current = PlayerDevelopment.GetCurrPerkLevel(perkType)
-
-    -- Buying
-    if delta > 0 and current < max then
-        return PlayerDevelopment.BuyPerk(perkType, force)
-
-    -- Removing
-    elseif delta < 0 and current > 0 then
-        return PlayerDevelopment.RemovePerk(perkType)
-    end
-
-    return false
+    if not data then return false end
+    return data:BuyNewPerk(perkType, force or true)
 end
 
 function PlayerDevelopment.RemovePerk(perkType)
     local data = GetPlayerData()
     if not data then return false end
-    return data:ForceSellNewPerk(perkType)
+    local sold, level = data:ForceSellNewPerk(perkType)
+    return sold, level
 end
+
+function PlayerDevelopment.GetPerkLevel(perkType)
+    local data = GetPlayerData()
+    if not data then return 0 end
+    return data:IsNewPerkBought(perkType) or 0
+end
+
 
 function PlayerDevelopment.UnlockPerksForAttribute(attributeType)
     local data = GetPlayerData()

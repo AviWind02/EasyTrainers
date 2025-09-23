@@ -26,6 +26,36 @@ local function GuessAttributeFromId(id)
     return "Unknown"
 end
 
+local function GetRequirements(rec)
+    local requirements = { perks = {}, prereqId = nil }
+
+    if not rec then return requirements end
+
+    local count = rec:GetRequiresPerksCount()
+    for i = 0, count - 1 do
+        local reqRec = rec:GetRequiresPerksItem(i)
+        if reqRec then
+            local reqId   = reqRec:GetID().value
+            local reqName = utils.GetLocalizedText(reqRec:Loc_name_key())
+            local reqType = reqRec:Type()
+
+            table.insert(requirements.perks, {
+                id = reqId,  
+                name = reqName,
+                type = reqType 
+            })
+        end
+    end
+
+    local prereqRec = rec:Requirement()
+    if prereqRec then
+        requirements.prereqId = prereqRec:GetID().value
+    end
+
+    return requirements
+end
+
+
 function PerkLoader:LoadAll()
     local perkRecords = TweakDB:GetRecords("gamedataNewPerk_Record")
     if not perkRecords or #perkRecords == 0 then
@@ -52,8 +82,11 @@ function PerkLoader:LoadAll()
                 description = utils.StripRichText(utils.GetLocalizedText(rec:Loc_desc_key())),
                 category = catName or "Uncategorized",
                 attribute = attribute,
-                type = rec:Type()
+                type = rec:Type(),
+                requirements = GetRequirements(rec)
             }
+
+            
 
             self.attribute[attribute] = self.attribute[attribute] or {}
             self.attribute[attribute][id] = data
