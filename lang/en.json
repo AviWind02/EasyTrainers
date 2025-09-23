@@ -259,33 +259,33 @@
       "technical": "Technical Ability",
       "relic": "Relic"
     },
- "perks": {
-    "header": "Perks",
-    "tipsingle": "{category}\n\nThis perk has 1 level. Toggle on/off to acquire or remove it.",
-    "tipmulti": "{category}\n\nThis perk has {levels} levels. Activate repeatedly to acquire levels, or reset to remove them.",
-    "filter": {
-      "label": "Perk Filter",
-      "tip": "Choose which perks to display: All, Active only, or Inactive only.",
-      "all": "All Perks",
-      "active": "Active Perks",
-      "inactive": "Inactive Perks"
-    },
-    "equipped": "Acquired",
-    "unequipped": "Not Acquired",
-    "locked": "Locked",
-    "notifications": {
-    "equipped": "{perk} acquired",
-    "unequipped": "{perk} removed",
-      "equip_failed": "Failed to equip {perk}",
-      "unequip_failed": "Failed to unequip {perk}",
-      "level_increased": "{perk} Level {level}",
-      "level_failed": "Failed to add level to {perk}",
-      "reset": "{perk} reset ({count} levels removed)",
-      "reset_failed": "Failed to reset {perk}",
-      "requirement_failed": "Cannot acquire {perk}: requires {requirements}"
+    "perks": {
+      "header": "Perks",
+      "tipsingle": "{category}\n\nThis perk has 1 level. Toggle on/off to acquire or remove it.",
+      "tipmulti": "{category}\n\nThis perk has {levels} levels. Activate repeatedly to acquire levels, or reset to remove them.",
+      "filter": {
+        "label": "Perk Filter",
+        "tip": "Choose which perks to display: All, Active only, or Inactive only.",
+        "all": "All Perks",
+        "active": "Active Perks",
+        "inactive": "Inactive Perks"
+      },
+      "equipped": "Acquired",
+      "unequipped": "Not Acquired",
+      "locked": "Locked",
+      "notifications": {
+      "equipped": "{perk} acquired",
+      "unequipped": "{perk} removed",
+        "equip_failed": "Failed to equip {perk}",
+        "unequip_failed": "Failed to unequip {perk}",
+        "level_increased": "{perk} Level {level}",
+        "level_failed": "Failed to add level to {perk}",
+        "reset": "{perk} reset ({count} levels removed)",
+        "reset_failed": "Failed to reset {perk}",
+        "requirement_failed": "Cannot acquire {perk}: requires {requirements}"
 
-    }
-  },
+      }
+    },
     "eddies": {
       "label": "Eurodollar",
       "add1k": {
@@ -367,7 +367,8 @@
       "reflexes": "Reflexes",
       "stealth": "Stealth",
       "strength": "Strength",
-      "technical": "Technical Ability"
+      "technical": "Technical Ability",
+      "tip": "Set level for {name}"
     }
   },
   "custommodifiers": {
@@ -549,6 +550,22 @@
       "label": "Mode",
       "tip": "Filter Modes:\n- All Vehicles: Shows all vehicles (Can be laggy)\n- Player Vehicles: Classified as player-ownable\n- By Category: Filter by vehicle category\n- By Manufacturer: Filter by vehicle brand\n- By Affiliation: Filter by faction or group"
     },
+    "unknown": "Unknown",
+    "none": "None",
+
+    "categories": {
+      "addon": "Add-On Vehicles (Modded)",
+      "hypercars": "Hypercars",
+      "sports": "Sports Cars",
+      "motorcycles": "Motorcycles",
+      "police": "Police/Emergency",
+      "corpo": "Corpo",
+      "pickups": "Pickups & SUVs",
+      "vans": "Vans & Couriers",
+      "compacts": "Compacts",
+      "utility": "Utility",
+      "special": "Special"
+    },
     "mode_all": "All Vehicles",
     "mode_player": "Player Vehicles",
     "mode_category": "By Category",
@@ -606,6 +623,10 @@
     "mountonroof": {
       "label": "Mount on Roof",
       "tip": "Unmounts you from the driver seat and places your character sitting on top of the current vehicle."
+    },
+    "freezequesttimer": {
+      "label": "Freeze Quest Timer",
+      "tip": "Disables vehicle quest countdown timers so they no longer track time."
     },
     "vehiclespawner": {
       "label": "Vehicle Spawner",
@@ -966,6 +987,182 @@
     "notavailable": {
       "label": "N/A",
       "tip": "No value set for this fact."
+    },
+        "romanceflags": {
+      "judy_romanceable": {
+        "name": "Judy Romanceable",
+        "desc": "Enables Judy as a romance option."
+      },
+      "sq030_judy_lover": {
+        "name": "Judy Lover",
+        "desc": "Marks Judy as your current lover."
+      },
+      "panam_romanceable": {
+        "name": "Panam Romanceable",
+        "desc": "Enables Panam as a romance option."
+      },
+      "sq027_panam_lover": {
+        "name": "Panam Lover",
+        "desc": "Marks Panam as your current lover."
+      },
+      "river_romanceable": {
+        "name": "River Romanceable",
+        "desc": "Enables River as a romance option."
+      },
+      "sq029_river_lover": {
+        "name": "River Lover",
+        "desc": "Marks River as your current lover."
+      },
+      "kerry_romanceable": {
+        "name": "Kerry Romanceable",
+        "desc": "Enables Kerry as a romance option."
+      },
+      "sq028_kerry_lover": {
+        "name": "Kerry Lover",
+        "desc": "Marks Kerry as your current lover."
+      }
+    },
+    "storyoutcomeflags": {
+      "q105_fingers_beaten": {
+        "name": "Fingers Beaten",
+        "desc": "Fingers was disabled but remains alive and accessible."
+      },
+      "q105_fingers_dead": {
+        "name": "Fingers Dead",
+        "desc": "Marks Fingers as killed."
+      },
+      "q005_jackie_stay_notell": {
+        "name": "Jackie Left in Car",
+        "desc": "Jackie's body was left in the car after the heist."
+      },
+      "q005_jackie_to_hospital": {
+        "name": "Jackie Sent to Vik",
+        "desc": "Jackie's body was sent to the ripperdoc."
+      },
+      "q005_jackie_to_mama": {
+        "name": "Jackie Sent to Mama Welles",
+        "desc": "Jackie's body was sent to Mama Welles."
+      },
+      "q112_takemura_dead": {
+        "name": "Takemura Dead",
+        "desc": "Takemura was killed during his mission."
+      },
+      "sq032_johnny_friend": {
+        "name": "Johnny Friendly Ending",
+        "desc": "Sets Johnny to the friend epilogue state (oil fields)."
+      }
+    },
+    "skippystates": {
+      "mq007_skippy_aim_at_head": {
+        "name": "Skippy: Stone Cold Killer",
+        "desc": "Skippy is in headshot (lethal) mode."
+      },
+      "mq007_skippy_goes_emo": {
+        "name": "Skippy: Emo Mode",
+        "desc": "Skippy has switched to non-lethal emo mode."
+      }
+    },
+    "gameplaytoggles": {
+      "holo_delamain_deep_vehicle_talk": {
+        "name": "Delamain Phone Portrait Fix",
+        "desc": "Disables buggy NPC phone portraits. Toggle if visuals are broken."
+      },
+      "q101_enable_side_content": {
+        "name": "Unlock Act 1 Side Jobs",
+        "desc": "Enables access to all Act 1 side content. Save and reload to take effect."
+      }
+    },
+    "lifepathflags": {
+      "q000_street_kid_background": {
+        "name": "Street Kid Life Path",
+        "desc": "Marks V's background as Street Kid."
+      },
+      "q000_corpo_background": {
+        "name": "Corporate Life Path",
+        "desc": "Marks V's background as Corporate."
+      },
+      "q000_nomad_background": {
+        "name": "Nomad Life Path",
+        "desc": "Marks V's background as Nomad."
+      }
+    },
+    "worldeventflags": {
+      "warden_amazon_airdropped": {
+        "name": "Amazon Airdrop: Warden",
+        "desc": "Marks the Warden weapon as already airdropped."
+      },
+      "ajax_amazon_airdropped": {
+        "name": "Amazon Airdrop: Ajax",
+        "desc": "Marks the Ajax weapon as already airdropped."
+      },
+      "crusher_amazon_airdropped": {
+        "name": "Amazon Airdrop: Crusher",
+        "desc": "Marks the Crusher weapon as already airdropped."
+      },
+      "kyubi_amazon_airdropped": {
+        "name": "Amazon Airdrop: Kyubi",
+        "desc": "Marks the Kyubi weapon as already airdropped."
+      },
+      "grit_amazon_airdropped": {
+        "name": "Amazon Airdrop: Grit",
+        "desc": "Marks the Grit weapon as already airdropped."
+      },
+      "nekomata_amazon_airdropped": {
+        "name": "Amazon Airdrop: Nekomata",
+        "desc": "Marks the Nekomata weapon as already airdropped."
+      },
+      "mws_wat_02_egg_placed": {
+        "name": "Iguana Egg Placed",
+        "desc": "Indicates the iguana egg has been placed in V's apartment."
+      },
+      "mws_wat_02_iguana_hatched": {
+        "name": "Iguana Hatched",
+        "desc": "Triggers the hatching of the iguana in V's home."
+      }
+    },
+    "censorshipflags": {
+      "chensorship_drugs": {
+        "name": "Remove: Drugs",
+        "desc": "Disables censorship for drug references."
+      },
+      "chensorship_gore": {
+        "name": "Remove: Gore",
+        "desc": "Disables censorship for gore and violence."
+      },
+      "chensorship_homosexuality": {
+        "name": "Remove: Homosexuality",
+        "desc": "Disables censorship for LGBTQ content."
+      },
+      "chensorship_nudity": {
+        "name": "Remove: Nudity",
+        "desc": "Disables censorship for nudity."
+      },
+      "chensorship_oversexualized": {
+        "name": "Remove: Oversexualization",
+        "desc": "Disables oversexualized content filters."
+      },
+      "chensorship_religion": {
+        "name": "Remove: Religion",
+        "desc": "Disables censorship for religious references."
+      },
+      "chensorship_suggestive": {
+        "name": "Remove: Suggestive Content",
+        "desc": "Disables censorship for sexually suggestive content."
+      }
+    },
+    "relationshipfacts": {
+      "judy_relationship": {
+        "name": "Judy Relationship Progress"
+      },
+      "panam_relationship": {
+        "name": "Panam Relationship Progress"
+      },
+      "river_relationship": {
+        "name": "River Relationship Progress"
+      },
+      "sq028_kerry_relationship": {
+        "name": "Kerry Relationship Progress"
+      }
     }
   },
   "worldtime": {
@@ -1235,6 +1432,61 @@
     "showcreatorfilter": {
       "label": "Show Creator Filter",
       "tip": "Toggle the creator filter dropdown (filter teleports by creator)."
+    },
+        "customteleportview": {
+      "title": "Custom Teleport",
+      "name": {
+        "label": "Name",
+        "tip": "Enter a name for this teleport location."
+      },
+      "creator": {
+        "label": "Creator",
+        "tip": "Enter the creator name (default User)."
+      },
+      "category": {
+        "label": "Category",
+        "tip": "Select category (default Custom)."
+      },
+      "offset": {
+        "label": "Fine Tune Position",
+        "x": {
+          "label": "Offset X",
+          "tip": "Adjust X coordinate offset."
+        },
+        "y": {
+          "label": "Offset Y",
+          "tip": "Adjust Y coordinate offset."
+        },
+        "z": {
+          "label": "Offset Z",
+          "tip": "Adjust Z coordinate offset."
+        }
+      },
+      "district": {
+        "parent": {
+          "label": "Parent District",
+          "tip": "Current parent district."
+        },
+        "child": {
+          "label": "Child Area",
+          "tip": "Current child district/area."
+        }
+      },
+      "save": {
+        "label": "Save Current Location",
+        "tip": "Save this teleport to Teleports.json"
+      },
+      "notifications": {
+        "noname": "Please enter name for teleport",
+        "saved": "Saved custom teleport: {name}\nDistrict: {parent} / {child}\nCoords: ({x}, {y}, {z})"
+      },
+      "defaults": {
+        "name": "Custom Location",
+        "creator": "User",
+        "category": "Custom",
+        "parentDistrict": "Unknown District",
+        "childDistrict": "Unknown Area"
+      }
     }
   },
   "languagemenu": {

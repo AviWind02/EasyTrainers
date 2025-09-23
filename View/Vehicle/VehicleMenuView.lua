@@ -8,6 +8,7 @@ local VehicleLights = VehicleFeaures.VehicleLightFade
 local VehiclePreview = VehicleFeaures.VehiclePreview
 local VehicleRepair = VehicleFeaures.VehicleRepair
 local VehicleMount = VehicleFeaures.VehicleMountOnRoof
+local VehicleMapTimer = VehicleFeaures.FreezeQuestTimer
 
 
 local function VehicleViewFunction()
@@ -18,7 +19,7 @@ local function VehicleViewFunction()
     Buttons.Option(L("vehiclemenu.repairvehicle.label"), L("vehiclemenu.repairvehicle.tip"), VehicleRepair.RepairMounted)
     Buttons.Option(L("vehiclemenu.mountonroof.label"), L("vehiclemenu.mountonroof.tip"), VehicleMount.MountOnRoof)
     Buttons.Toggle(L("vehiclelights.rgbfade.label"), VehicleLights.toggleRGBFade, L("vehiclelights.rgbfade.tip"))
-
+    Buttons.Toggle(L("vehicle.freezequesttimer.label"), VehicleMapTimer.toggleFreezeQuestTimer, L("vehicle.freezequesttimer.tip"))
 end
 
 local VehicleView = { title = L("vehiclemenu.title"), view = VehicleViewFunction }

@@ -38,6 +38,20 @@ local categoryOrder = {
     ["Special"] = 11
 }
 
+local categoryLabelMap = {
+    ["Add-On Vehicles(Modded)"] = "vehiclelist.categories.addon",
+    ["Hypercars"] = "vehiclelist.categories.hypercars",
+    ["Sports Cars"] = "vehiclelist.categories.sports",
+    ["Motorcycles"] = "vehiclelist.categories.motorcycles",
+    ["Police/Emergency"] = "vehiclelist.categories.police",
+    ["Corpo"] = "vehiclelist.categories.corpo",
+    ["Pickups & SUVs"] = "vehiclelist.categories.pickups",
+    ["Vans & Couriers"] = "vehiclelist.categories.vans",
+    ["Compacts"] = "vehiclelist.categories.compacts",
+    ["Utility"] = "vehiclelist.categories.utility",
+    ["Special"] = "vehiclelist.categories.special"
+}
+
 local selectedVisibility = { index = 1, expanded = false }
 local selectedProductionYear = { index = 1, expanded = false }
 local selectedMode = { index = 3, expanded = false }
@@ -101,13 +115,12 @@ end
 local function DrawVehicleRow(vehicle)
     local detailsTip = tip("vehiclelist.vehicledetails", {
         id = vehicle.id,
-        manufacturer = vehicle.manufacturer or "Unknown",
-        category = vehicle.category or "Unknown",
-        faction = vehicle.faction or "Unknown",
-        year = vehicle.productionYear or "Unknown",
-        description = vehicle.description or "None"
+        manufacturer = vehicle.manufacturer or L("vehiclelist.unknown"),
+        category = vehicle.category or L("vehiclelist.unknown"),
+        faction = vehicle.faction or L("vehiclelist.unknown"),
+        year = vehicle.productionYear or L("vehiclelist.unknown"),
+        description = vehicle.description or L("vehiclelist.none")
     })
-
     if VehicleFeatures.VehicleListStates.enableVehicleSpawnerMode then
         Buttons.Option(vehicle.displayName, tip("vehiclelist.spawntip", { details = detailsTip }), function()
             VehiclePreview.SetActive(false)
@@ -213,7 +226,8 @@ local function VehicleMainView()
 
     if list then
         for _, value in ipairs(list) do
-            Buttons.Submenu(value, filteredSubmenu, labelPrefix:gsub("{value}", value), function()
+            local label = L(categoryLabelMap[value] or value)
+            Buttons.Submenu(label, filteredSubmenu, labelPrefix:gsub("{value}", label), function()
                 selectedValue = value
             end)
         end

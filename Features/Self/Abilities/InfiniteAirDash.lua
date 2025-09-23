@@ -1,94 +1,116 @@
+-- Contributed by barhxr, refactored for EasyTrainer.
+-- Allows unlimited mid-air dashes if perk & stamina conditions are met.
+
 local InfiniteAirDash = {}
 InfiniteAirDash.enabled = { value = false }
+
 local Notification = require("UI").Notification
 
-local function dodgeDirection(sc, si, dir)
-        Notification.Info("DodgeDirection param: " .. tostring(dir) .. " (" .. type(dir) .. ")")
-    sc:SetConditionFloatParameter("DodgeDirection", dir, true);
-    si.localBlackboard:SetFloat(
-        GetAllBlackboardDefs().PlayerStateMachine.DodgeTimeStamp, EngineTime.ToFloat(GameInstance.GetSimTime())
+---@enum Direction
+local Direction = {
+    Back = -180.0,
+    Right = -90.0,
+    Forward =  0.0,
+    Left =  90.0
+}
+
+
+local function setDodgeDirection(stateContext, scriptInterface, direction)
+    stateContext:SetConditionFloatParameter("DodgeDirection", direction, true)
+    scriptInterface.localBlackboard:SetFloat(
+        GetAllBlackboardDefs().PlayerStateMachine.DodgeTimeStamp,
+        EngineTime.ToFloat(GameInstance.GetSimTime())
     )
 end
 
-local function dodgedDirectionally(sc, si)
-    if si:IsActionJustPressed("DodgeForward") then
-        dodgeDirection(sc, si, Direction.Forward)
+local function checkDirectionalDodge(stateContext, scriptInterface)
+    if scriptInterface:IsActionJustPressed("DodgeForward") then
+        setDodgeDirection(stateContext, scriptInterface, Direction.Forward)
         return true, Direction.Forward
-    elseif si:IsActionJustPressed("DodgeRight") then
-        dodgeDirection(sc, si, Direction.Right)
+    elseif scriptInterface:IsActionJustPressed("DodgeRight") then
+        setDodgeDirection(stateContext, scriptInterface, Direction.Right)
         return true, Direction.Right
-    elseif si:IsActionJustPressed("DodgeLeft") then
-        dodgeDirection(sc, si, Direction.Left)
+    elseif scriptInterface:IsActionJustPressed("DodgeLeft") then
+        setDodgeDirection(stateContext, scriptInterface, Direction.Left)
         return true, Direction.Left
-    elseif si:IsActionJustPressed("DodgeBack") then
-        dodgeDirection(sc, si, Direction.Back)
+    elseif scriptInterface:IsActionJustPressed("DodgeBack") then
+        setDodgeDirection(stateContext, scriptInterface, Direction.Back)
         return true, Direction.Back
     end
     return false, nil
 end
 
-local function dodgeTapped(tr, sc, si)
-    local dp = si:IsActionJustTapped("Dodge") or si:IsActionJustReleased("Dodge")
-    local dir = 0
-    if dp then
-        if tr:GetStaticBoolParameterDefault("dodgeWithNoMovementInput", false) then
-            dir = Direction.Back
-            dodgeDirection(sc, si, dir)
-            return true, dir
+local function checkTappedDodge(transition, stateContext, scriptInterface)
+    local pressed = scriptInterface:IsActionJustTapped("Dodge") or scriptInterface:IsActionJustReleased("Dodge")
+    if pressed then
+        if transition:GetStaticBoolParameterDefault("dodgeWithNoMovementInput", false) then
+            setDodgeDirection(stateContext, scriptInterface, Direction.Back)
+            return true, Direction.Back
         else
-            dir = si:GetInputHeading()
-            dodgeDirection(sc, si, dir)
-            return true, nil
+            local dir = scriptInterface:GetInputHeading()
+            setDodgeDirection(stateContext, scriptInterface, dir)
+            return true, dir
         end
     end
     return false, nil
 end
 
-local function hasValidRequirements(si)
-    local hasAirDashPerk = PlayerDevelopmentSystem.GetInstance(
-            si.executionOwner
-        ):IsNewPerkBought(
-            si.executionOwner,
-            gamedataNewPerkType.Reflexes_Central_Milestone_3
-        ) == 3 -- Level 3 to unlock ability to dash in midair
+local function hasValidRequirements(scriptInterface)
+    local hasAirDashPerk = PlayerDevelopmentSystem.GetInstance(scriptInterface.executionOwner)
+        :IsNewPerkBought(scriptInterface.executionOwner, gamedataNewPerkType.Reflexes_Central_Milestone_3) == 3
 
-    local enoughStamina = GameInstance.GetStatPoolsSystem():GetStatPoolValue(
-        si.executionOwner:GetEntityID(),
+    local stamina = GameInstance.GetStatPoolsSystem():GetStatPoolValue(
+        scriptInterface.executionOwner:GetEntityID(),
         gamedataStatPoolType.Stamina,
         true
-    ) > 0.0
+    )
 
     if not hasAirDashPerk then
-        Notification.Error("You must have Air Dash Perk Level 3 first to use this feature.")
-        InfiniteAirDash.enabled.value = false -- turn it off
+        Notification.Error("Air Dash Perk (Level 3) is required for Infinite Air Dash.")
         return false
     end
 
-    if not enoughStamina then
-        Notification.Error("Your stamina is running low.\nHave you activated infinite stamina?")
+    if stamina <= 0.0 then
+        Notification.Error("Not enough stamina to air dash. (Tip: enable Infinite Stamina)")
         return false
     end
 
-    return hasAirDashPerk and enoughStamina
+    return true
 end
 
-function InfiniteAirDash.Tick(tr, sc, si, wf)
-    if InfiniteAirDash.enabled.value then -- Adjusted the statement to only run and only check when toggled
-        local dp = dodgeTapped(tr, sc, si)
-        local ddp = dodgedDirectionally(sc, si)
-        local tf = tr:IsCurrentFallSpeedTooFastToEnter(sc, si)
-        local r = wf(sc, si)
+function InfiniteAirDash.HandleAirDash(transition, stateContext, scriptInterface, wrappedFunc)
+    local tapped, tappedDir = checkTappedDodge(transition, stateContext, scriptInterface)
+    local directional, dirDir = checkDirectionalDodge(stateContext, scriptInterface)
 
-        if (dp or ddp) then
-            if hasValidRequirements(si) then
-                local param = sc:GetPermanentBoolParameter("disableAirDash")
-                local airDashDisable = param.valid and param.value
-                local dodgeEnabled = GameplaySettingsSystem.GetMovementDodgeEnabled(si.executionOwner)
-                r = (airDashDisable or not dodgeEnabled or tf)
-            end
+    local result = wrappedFunc(stateContext, scriptInterface)
+
+    if not InfiniteAirDash.enabled.value then
+        return result
+    end
+
+    local tooFast = transition:IsCurrentFallSpeedTooFastToEnter(stateContext, scriptInterface)
+
+    local preconditionMet = (not result) and (tapped or directional)
+
+    if preconditionMet then
+        if not hasValidRequirements(scriptInterface) then
+            return result
+        end
+
+        local disableParam = stateContext:GetPermanentBoolParameter("disableAirDash")
+        local airDashDisabled = disableParam.valid and disableParam.value
+        local dodgeEnabled = GameplaySettingsSystem.GetMovementDodgeEnabled(scriptInterface.executionOwner)
+        local touchingGround = transition:IsTouchingGround(scriptInterface)
+
+        local conditionsMet = (not touchingGround and not tooFast and not airDashDisabled and dodgeEnabled)
+
+        if conditionsMet then
+            result = true
         end
     end
 
-    return r
+    return result
 end
+
+
 return InfiniteAirDash

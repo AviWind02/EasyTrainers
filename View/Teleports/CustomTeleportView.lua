@@ -6,16 +6,17 @@ local JsonHelper = require("Core/JsonHelper")
 local World = require("Utils/World")
 local TeleportLocations = require("Features/Teleports/TeleportLocations")
 
-local nameRef = { value = "Custom Location", capturing = false }
-local creatorRef = { value = "User", capturing = false }
+local nameRef = { value = L("teleport.customteleportview.defaults.name"), capturing = false }
+local creatorRef = { value = L("teleport.customteleportview.defaults.creator"), capturing = false }
 local categoryRef = { index = 1 }
-local categories = { "Custom" }
+local categories = { L("teleport.customteleportview.defaults.category") }
 
 local offsetX = { value = 0, min = -3000, max = 3000 }
 local offsetY = { value = 0, min = -3000, max = 3000 }
 local offsetZ = { value = 0, min = -3000, max = 3000 }
 
-local parentDistrict, childDistrict = "Unknown District", "Unknown Area"
+local parentDistrict, childDistrict =
+    L("teleport.customteleportview.defaults.parentDistrict"), L("teleport.customteleportview.defaults.childDistrict")
 
 local function ValidateTeleport(entry)
     if not entry.name or entry.name == "" then
@@ -48,33 +49,40 @@ local function SaveCustomTeleport()
         z = pos.z + offsetZ.value
     }
 
-    -- get district info once, here
     local parent, child = World.GetCurrentDistrictName()
 
     local entry = {
         name = nameRef.value ~= "" and nameRef.value,
         position = finalPos,
-        parentDistrict = parent or "Unknown District",
-        childDistrict = child or "Unknown Area",
-        category = categories[categoryRef.index] or "Custom",
-        creator = creatorRef.value or "User"
+        parentDistrict = parent or L("teleport.customteleportview.defaults.parentDistrict"),
+        childDistrict = child or L("teleport.customteleportview.defaults.childDistrict"),
+        category = categories[categoryRef.index] or L("teleport.customteleportview.defaults.category"),
+        creator = creatorRef.value or L("teleport.customteleportview.defaults.creator")
     }
 
     if not ValidateTeleport(entry) then return end
 
     local path = "Config/JSON/Teleports.json"
     local data, _ = JsonHelper.Read(path)
-    if type(data) ~= "table" then data = {} end
+    if type(data) ~= "table" then
+        data = { teleports = {} }
+    elseif type(data.teleports) ~= "table" then
+        data.teleports = {}
+    end
 
-    table.insert(data, entry)
+    table.insert(data.teleports, entry)
     JsonHelper.Write(path, data)
 
-    Notification.Success(string.format(
-        "Saved custom teleport: %s\nDistrict: %s / %s\nCoords: (%.2f, %.2f, %.2f)",
-        entry.name, entry.parentDistrict, entry.childDistrict,
-        finalPos.x, finalPos.y, finalPos.z
-    ))
+    Notification.Success(tip("teleport.customteleportview.notifications.saved", {
+        name = entry.name,
+        parent = entry.parentDistrict,
+        child = entry.childDistrict,
+        x = string.format("%.2f", finalPos.x),
+        y = string.format("%.2f", finalPos.y),
+        z = string.format("%.2f", finalPos.z)
+    }))
 end
+
 
 local basePos = nil
 local function CaptureBasePosition()
@@ -85,18 +93,23 @@ local function CaptureBasePosition()
 end
 
 local initialized = false
-local function CustomTeleportViewFunction() 
+local function CustomTeleportViewFunction()
     if not initialized then
         BuildCategories()
         initialized = true
-    end 
+    end
     -- parentDistrict, childDistrict = World.GetCurrentDistrictName()
 
     -- CaptureBasePosition()
-    TextInput.Option("Name:", nameRef, "Enter a name for this teleport location")
-    TextInput.Option("Creator:", creatorRef, "Enter the creator name (default User)")
+    TextInput.Option(L("teleport.customteleportview.name.label"), nameRef, L("teleport.customteleportview.name.tip"))
+    TextInput.Option(L("teleport.customteleportview.creator.label"), creatorRef,
+        L("teleport.customteleportview.creator.tip"))
 
-    Buttons.StringCycler("Category", categoryRef, categories, "Select category (default Custom)")
+
+    Buttons.StringCycler(L("teleport.customteleportview.category.label"), categoryRef, categories,
+        L("teleport.customteleportview.category.tip"))
+
+
 
     -- Buttons.Break("Fine Tune Position")
     -- Buttons.Int("Offset X", offsetX, "Adjust X coordinate offset")
@@ -110,18 +123,18 @@ local function CustomTeleportViewFunction()
     -- Buttons.Break("Debug Info") -- I feel like this would break stuff
     -- local player = Game.GetPlayer()
     -- if player then
-        -- local pos = player:GetWorldPosition()
-       --  if pos then
-           --  Buttons.OptionExtended("X", "", string.format("%.2f", pos.x), "Raw X coordinate")
-           --  Buttons.OptionExtended("Y", "", string.format("%.2f", pos.y), "Raw Y coordinate")
-           --  Buttons.OptionExtended("Z", "", string.format("%.2f", pos.z), "Raw Z coordinate")
-      --   end
-   --  end
+    -- local pos = player:GetWorldPosition()
+    --  if pos then
+    --  Buttons.OptionExtended("X", "", string.format("%.2f", pos.x), "Raw X coordinate")
+    --  Buttons.OptionExtended("Y", "", string.format("%.2f", pos.y), "Raw Y coordinate")
+    --  Buttons.OptionExtended("Z", "", string.format("%.2f", pos.z), "Raw Z coordinate")
+    --   end
+    --  end
 
-    if Buttons.Option("Save Current Location", "Save this teleport to teleport.json") then
+    if Buttons.Option(L("teleport.customteleportview.save.label"), L("teleport.customteleportview.save.tip")) then
         SaveCustomTeleport()
     end
 end
 
-local CustomTeleportView = { title = "Custom Teleport", view = CustomTeleportViewFunction }
+local CustomTeleportView = { title = L("teleport.customteleportview.title"), view = CustomTeleportViewFunction }
 return CustomTeleportView

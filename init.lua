@@ -155,11 +155,18 @@ Event.RegisterInit(function()
         end
     end)
 
-    -- Event.Override("LocomotionTransition", "WantsToDodge", function(tr, sc, si, wf)
-       -- if modulesLoaded then
-         --   return SelfFeature.InfiniteAirDash.Tick(tr, sc, si, wf)
-        -- end
-    -- end) disabled for now for some reason is preventing me from actually dodging
+    Event.ObserveAfter("MinimapContainerController", "OnCountdownTimerActiveUpdated", function(_, _)
+        if modulesLoaded then
+            Vehicle.FreezeQuestTimer.HandleCountdownTimer(_, _)
+        end
+    end)
+
+    Event.Override("LocomotionTransition", "WantsToDodge", function(transition, stateContext, scriptInterface, wrappedFunc)
+        if modulesLoaded then
+            return SelfFeature.InfiniteAirDash.HandleAirDash(transition, stateContext, scriptInterface, wrappedFunc)
+        end
+    end)
+
 
     Event.Override("scannerDetailsGameController", "ShouldDisplayTwintoneTab", function(this, wrappedMethod)
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)

@@ -50,26 +50,26 @@ local initializedLevels = false
 local profLevels = {}
 
 local Proficiencies = {
-    { name = "playerdev.proficiencies.playerlevel",   type = gamedataProficiencyType.Level },
-    { name = "playerdev.proficiencies.streetcred",    type = gamedataProficiencyType.StreetCred },
-    { name = "playerdev.proficiencies.assault",       type = gamedataProficiencyType.Assault },
-    { name = "playerdev.proficiencies.athletics",     type = gamedataProficiencyType.Athletics },
-    { name = "playerdev.proficiencies.brawling",      type = gamedataProficiencyType.Brawling },
-    { name = "playerdev.proficiencies.coldblood",     type = gamedataProficiencyType.ColdBlood },
+    { name = "playerdev.proficiencies.playerlevel", type = gamedataProficiencyType.Level },
+    { name = "playerdev.proficiencies.streetcred", type = gamedataProficiencyType.StreetCred },
+    { name = "playerdev.proficiencies.assault", type = gamedataProficiencyType.Assault },
+    { name = "playerdev.proficiencies.athletics", type = gamedataProficiencyType.Athletics },
+    { name = "playerdev.proficiencies.brawling", type = gamedataProficiencyType.Brawling },
+    { name = "playerdev.proficiencies.coldblood", type = gamedataProficiencyType.ColdBlood },
     { name = "playerdev.proficiencies.combathacking", type = gamedataProficiencyType.CombatHacking },
-    { name = "playerdev.proficiencies.cool",          type = gamedataProficiencyType.CoolSkill },
-    { name = "playerdev.proficiencies.crafting",      type = gamedataProficiencyType.Crafting },
-    { name = "playerdev.proficiencies.demolition",    type = gamedataProficiencyType.Demolition },
-    { name = "playerdev.proficiencies.engineering",   type = gamedataProficiencyType.Engineering },
-    { name = "playerdev.proficiencies.espionage",     type = gamedataProficiencyType.Espionage },
-    { name = "playerdev.proficiencies.gunslinger",    type = gamedataProficiencyType.Gunslinger },
-    { name = "playerdev.proficiencies.hacking",       type = gamedataProficiencyType.Hacking },
-    { name = "playerdev.proficiencies.intelligence",  type = gamedataProficiencyType.IntelligenceSkill },
-    { name = "playerdev.proficiencies.kenjutsu",      type = gamedataProficiencyType.Kenjutsu },
-    { name = "playerdev.proficiencies.reflexes",      type = gamedataProficiencyType.ReflexesSkill },
-    { name = "playerdev.proficiencies.stealth",       type = gamedataProficiencyType.Stealth },
-    { name = "playerdev.proficiencies.strength",      type = gamedataProficiencyType.StrengthSkill },
-    { name = "playerdev.proficiencies.technical",     type = gamedataProficiencyType.TechnicalAbilitySkill }
+    { name = "playerdev.proficiencies.cool", type = gamedataProficiencyType.CoolSkill },
+    { name = "playerdev.proficiencies.crafting", type = gamedataProficiencyType.Crafting },
+    { name = "playerdev.proficiencies.demolition", type = gamedataProficiencyType.Demolition },
+    { name = "playerdev.proficiencies.engineering", type = gamedataProficiencyType.Engineering },
+    { name = "playerdev.proficiencies.espionage", type = gamedataProficiencyType.Espionage },
+    { name = "playerdev.proficiencies.gunslinger", type = gamedataProficiencyType.Gunslinger },
+    { name = "playerdev.proficiencies.hacking", type = gamedataProficiencyType.Hacking },
+    { name = "playerdev.proficiencies.intelligence", type = gamedataProficiencyType.IntelligenceSkill },
+    { name = "playerdev.proficiencies.kenjutsu", type = gamedataProficiencyType.Kenjutsu },
+    { name = "playerdev.proficiencies.reflexes", type = gamedataProficiencyType.ReflexesSkill },
+    { name = "playerdev.proficiencies.stealth", type = gamedataProficiencyType.Stealth },
+    { name = "playerdev.proficiencies.strength", type = gamedataProficiencyType.StrengthSkill },
+    { name = "playerdev.proficiencies.technical", type = gamedataProficiencyType.TechnicalAbilitySkill }
 }
 
 local function InitProficiencies()
@@ -86,7 +86,7 @@ local function ProficiencyView()
     InitProficiencies()
     for _, prof in ipairs(Proficiencies) do
         local entry = profLevels[prof.name]
-        Buttons.Int(L(prof.name), entry.ref, tip("Set level for {name}", { name = L(prof.name) }), function()
+        Buttons.Int(L(prof.name), entry.ref, tip("playerdev.proficiencies.tip", { name = L(prof.name) }), function()
             PlayerDevelopment.SetLevel(entry.type, entry.ref.value)
         end)
     end

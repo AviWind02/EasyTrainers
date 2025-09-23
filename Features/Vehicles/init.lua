@@ -8,5 +8,5 @@ VehicleFeatures.VehicleSpawning = require("Features/Vehicles/VehicleSpawning")
 VehicleFeatures.VehiclePreview = require("Features/Vehicles/VehiclePreview")
 VehicleFeatures.VehicleMountOnRoof = require("Features/Vehicles/VehicleMountOnRoof")
 VehicleFeatures.VehicleLightFade = require("Features/Vehicles/VehicleLightFade")
-
+VehicleFeatures.FreezeQuestTimer = require("Features/Vehicles/FreezeQuestTimer")
 return VehicleFeatures
