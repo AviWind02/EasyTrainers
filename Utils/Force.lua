@@ -17,13 +17,68 @@ function Force.ApplyImpulse(entity, impulse)
     -- Logger.Log(string.format("ApplyImpulse: (%.2f, %.2f, %.2f)", impulse.x, impulse.y, impulse.z))
 end
 
+-- Nitrous impulse logic adapted from Redscript implementation by MisterChedda
+function Force.ApplyNitroImpulse(vehicle, baseForce, multiplier, dt)
+    if not vehicle then return end
+
+    local reportedMass = vehicle.GetTotalMass and vehicle:GetTotalMass() or 1500
+    local minimumMassThreshold = 1500.0
+    local massToUse = math.max(reportedMass, minimumMassThreshold)
+
+    local effectiveImpulse = (baseForce / massToUse) * multiplier * dt
+
+    local baselineFriction = 1.0
+    local currentFriction = math.max(vehicle.longitudinalFrictionMultiplier or 1.0, 0.1)
+    local frictionScale = math.min(math.max(currentFriction / baselineFriction, 0.6), 1.4)
+    effectiveImpulse = effectiveImpulse * frictionScale
+
+    local bb = vehicle:GetBlackboard()
+    local speedMph = 0
+    if bb then
+        local defs = GetAllBlackboardDefs()
+        speedMph = bb:GetFloat(defs.Vehicle.SpeedValue) or 0
+    end
+    local speedKph = speedMph * 1.60934
+    local dampingStart, dampingMax, maxDamp = 85, 140, 0.6
+    if speedKph > dampingStart then
+        local range = math.max(dampingMax - dampingStart, 1)
+        local progress = math.min(math.max((speedKph - dampingStart) / range, 0), 1)
+        local scale = 1.0 + (maxDamp - 1.0) * progress -- lerp 1→0.6
+        effectiveImpulse = effectiveImpulse * scale
+    end
+
+    if effectiveImpulse <= 0.01 then return end
+
+    local forward = vehicle:GetWorldForward()
+    local pos = vehicle:GetWorldPosition()
+    local up = vehicle:GetWorldUp()
+    local verticalOffset = 0.0
+
+    verticalOffset = 0.1
+
+    local impulsePos = Vector3.new(pos.x + up.x * verticalOffset,
+                                   pos.y + up.y * verticalOffset,
+                                   pos.z + up.z * verticalOffset)
+
+    local evt = PhysicalImpulseEvent.new()
+    evt.worldPosition = impulsePos
+    evt.worldImpulse = Vector3.new(
+        forward.x * effectiveImpulse,
+        forward.y * effectiveImpulse,
+        forward.z * effectiveImpulse
+    )
+    evt.radius = 1.0
+    vehicle:QueueEvent(evt)
+
+    -- Logger.Log(string.format("Nitro impulse: %.2f", effectiveImpulse))
+end
 
 function Force.ApplyForceToEntity(entity, forwardVal, rightVal, upVal, scaleByMass)
     if not entity then return end
 
     local forward = entity:GetWorldForward()
-    local right   = entity:GetWorldRight()
-    local up      = entity:GetWorldUp()
+    local right = entity:GetWorldRight()
+    local up = entity:GetWorldUp()
 
     local impulse = Vector3.new(
         forward.x * forwardVal + right.x * rightVal + up.x * upVal,

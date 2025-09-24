@@ -189,7 +189,7 @@ Event.RegisterUpdate(function(dt)
     Vehicle.VehicleLightFade.TickFade(dt)
     Vehicle.VehiclePreview.Update(dt)
     Vehicle.VehicleSpawning.HandlePending()
-
+    Vehicle.VehicleNitro.Tick(dt)
     WorldWeather.Update()
     WorldTime.Update(dt)
 

@@ -624,6 +624,10 @@
       "label": "Mount on Roof",
       "tip": "Unmounts you from the driver seat and places your character sitting on top of the current vehicle."
     },
+    "nitrous": {
+      "label": "Nitrous Boost",
+      "tip": "Hold Left Shift (keyboard) or X (controller) while driving to activate a forward force boost. Adjust the force multiplier to control how strong the boost feels."
+    },
     "freezequesttimer": {
       "label": "Freeze Quest Timer",
       "tip": "Disables vehicle quest countdown timers so they no longer track time."
