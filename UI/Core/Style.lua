@@ -77,7 +77,7 @@ UI.Footer = {
     BackgroundColor = UI.Colors.Background,
     TextColor = UI.ColPalette.MediumGray,
     FontSize = 12.0,
-    Text = "Beta 1.0 | By Avi"
+    Text = "Beta 1.2.0 | By Avi"
 }
 
 

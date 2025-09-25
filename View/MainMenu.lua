@@ -87,8 +87,9 @@ local function MainMenuView()
     UI.Buttons.Submenu(L("mainmenu.facts.label"), GameFactsView, tip("mainmenu.facts.tip"))
     UI.Buttons.Submenu(L("mainmenu.time.label"), TimeView, tip("mainmenu.time.tip"))
     UI.Buttons.Submenu(L("mainmenu.weather.label"), WeatherView, tip("mainmenu.weather.tip"))
-    UI.Buttons.Submenu("Item Menu", ItemBrowserView)
-    UI.Buttons.Submenu("Settings Menu", SettingsView)
+    UI.Buttons.Submenu("Item Menu", ItemBrowserView, "Browse items by category, consumables, crafting, and buffs. (Item Browser is very alpha)")
+    UI.Buttons.Submenu("Settings Menu", SettingsView, "Configure EasyTrainer options, navigation, and userinterface.")
+
 
 end
 
