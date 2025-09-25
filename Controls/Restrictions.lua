@@ -68,10 +68,9 @@ function Restrictions.Update()
 
     -- if input mode changed, reapply restrictions once
     if usingController ~= lastWasController
-       or mouseEnabled ~= lastMouseEnabled
-       or typingEnabled ~= lastTypingEnabled
-       or not lastMenuOpen then
-
+        or mouseEnabled ~= lastMouseEnabled
+        or typingEnabled ~= lastTypingEnabled
+        or not lastMenuOpen then
         Restrictions.Clear()
 
         if usingController then
@@ -79,14 +78,14 @@ function Restrictions.Update()
             for _, effect in ipairs(controllerRestrictions) do
                 StatusEffect.Set(effect, true)
             end
-        elseif mouseEnabled then
-            Logger.Log("Mouse restrictions applied")
-            for _, effect in ipairs(mouseRestrictions) do
-                StatusEffect.Set(effect, true)
-            end
         elseif typingEnabled then
             Logger.Log("Typing restrictions applied")
             for _, effect in ipairs(typingRestrictions) do
+                StatusEffect.Set(effect, true)
+            end
+        elseif mouseEnabled then
+            Logger.Log("Mouse restrictions applied")
+            for _, effect in ipairs(mouseRestrictions) do
                 StatusEffect.Set(effect, true)
             end
         else

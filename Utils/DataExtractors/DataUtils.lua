@@ -111,4 +111,18 @@ function Utils.GetDescription(record)
     return "Unknown"
 end
 
+function Utils.TableMerge(...)
+    local result = {}
+    for i = 1, select("#", ...) do
+        local t = select(i, ...)
+        if type(t) == "table" then
+            for _, v in ipairs(t) do
+                table.insert(result, v)
+            end
+        end
+    end
+    return result
+end
+
+
 return Utils

@@ -61,7 +61,7 @@ function Buttons.GhostToggle(label, ref, tip, action)
 end
 
 function Buttons.Int(label, ref, tip, action)
-    if Numeric.Option(label, ref, tip, false) then
+    if Numeric.Option(label, ref, tip, false, false) then
         if action then action() end
         return true
     end
@@ -69,7 +69,23 @@ function Buttons.Int(label, ref, tip, action)
 end
 
 function Buttons.Float(label, ref, tip, action)
-    if Numeric.Option(label, ref, tip, true) then
+    if Numeric.Option(label, ref, tip, true, false) then
+        if action then action() end
+        return true
+    end
+    return false
+end
+
+function Buttons.IntClick(label, ref, tip, action)
+    if Numeric.Option(label, ref, tip, false, true) then
+        if action then action() end
+        return true
+    end
+    return false
+end
+
+function Buttons.FloatClick(label, ref, tip, action)
+    if Numeric.Option(label, ref, tip, true, true) then
         if action then action() end
         return true
     end

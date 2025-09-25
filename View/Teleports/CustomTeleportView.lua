@@ -101,8 +101,8 @@ local function CustomTeleportViewFunction()
     -- parentDistrict, childDistrict = World.GetCurrentDistrictName()
 
     -- CaptureBasePosition()
-    TextInput.Option(L("teleport.customteleportview.name.label"), nameRef, L("teleport.customteleportview.name.tip"))
-    TextInput.Option(L("teleport.customteleportview.creator.label"), creatorRef,
+    Buttons.Text(L("teleport.customteleportview.name.label"), nameRef, L("teleport.customteleportview.name.tip"))
+    Buttons.Text(L("teleport.customteleportview.creator.label"), creatorRef,
         L("teleport.customteleportview.creator.tip"))
 
 

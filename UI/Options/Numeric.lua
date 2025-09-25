@@ -9,8 +9,9 @@ local Numeric = {}
 ---@param ref table { value:number, enabled:boolean|nil, min:number|nil, max:number|nil, step:number|nil }
 ---@param tip string|nil
 ---@param isFloat boolean true = float, false = int
+---@param onClick boolean|nil true = only return true on click
 ---@return boolean changed
-function Numeric.Option(label, ref, tip, isFloat)
+function Numeric.Option(label, ref, tip, isFloat, onClick)
     local keyTip = isFloat and L("optionmanager.float_toggle_tip") or L("optionmanager.inttoggle_tip")
     local fullTip = keyTip..(tip and ("\n\n"..tip) or "")
     local clicked,pos = Option.Option(label,"","",fullTip)
@@ -69,7 +70,11 @@ function Numeric.Option(label, ref, tip, isFloat)
         end
     end
 
-    return clicked or (ref.value ~= oldVal) or (ref.enabled ~= oldEnabled)
+    if onClick then
+        return clicked
+    else
+        return clicked or (ref.value ~= oldVal) or (ref.enabled ~= oldEnabled)
+    end
 end
 
 return Numeric

@@ -27,6 +27,7 @@ local TestForceView = require("View/TestForceView")
 local WeatherView = require("View/World/WeatherView")
 local TimeView = require("View/World/TimeView")
 local GameFactsView = require("View/World/FactView")
+local ItemBrowserView = require("View/Items/ItemBrowserView")
 
 local testToggle = { value = false }
 local testInt = { value = 5, min = 0, max = 10 }
@@ -86,7 +87,8 @@ local function MainMenuView()
     UI.Buttons.Submenu(L("mainmenu.facts.label"), GameFactsView, tip("mainmenu.facts.tip"))
     UI.Buttons.Submenu(L("mainmenu.time.label"), TimeView, tip("mainmenu.time.tip"))
     UI.Buttons.Submenu(L("mainmenu.weather.label"), WeatherView, tip("mainmenu.weather.tip"))
-    UI.Buttons.Submenu("Settings", SettingsView)
+    UI.Buttons.Submenu("Item Menu", ItemBrowserView)
+    UI.Buttons.Submenu("Settings Menu", SettingsView)
 
 end
 

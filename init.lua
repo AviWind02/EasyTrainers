@@ -21,6 +21,7 @@ local InfoBox = require("UI/Elements/InfoBox")
 local VehicleLoader = require("Utils/DataExtractors/VehicleLoader")
 local WeaponLoader = require("Utils/DataExtractors/WeaponLoader")
 local PerkLoader = require("Utils/DataExtractors/PerkLoader")
+local GeneralLoader = require("Utils/DataExtractors/GeneralLoader")
 
 local TeleportLocations = require("Features/Teleports/TeleportLocations")
 
@@ -120,6 +121,7 @@ Event.RegisterInit(function()
     PerkLoader:LoadAll()
     WeaponLoader:LoadAll()
     VehicleLoader:LoadAll()
+    GeneralLoader:LoadAll()
     Logger.Log("DataLoaded")
 
 
