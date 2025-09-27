@@ -79,12 +79,12 @@ local World = require("Utils/World")
 
 local function MainMenuView()
     UI.Buttons.Submenu(L("mainmenu.self.label"), SelfView, tip("mainmenu.self.tip"))
-    UI.Buttons.Submenu(L("mainmenu.development.label"), SelfDevelopmentView, tip("mainmenu.development.tip"))
-    UI.Buttons.Submenu(L("mainmenu.modifiers.label"), SelfModifiersView, tip("mainmenu.modifiers.tip"))
+     if UI.Buttons.Submenu(L("mainmenu.development.label"), SelfDevelopmentView, tip("mainmenu.development.tip")) then UI.Notification.Warning(L("mainmenu.development.warning")) end
+    UI.Buttons.Submenu(L("mainmenu.modifiers.label"), SelfModifiersView, tip("mainmenu.modifiers.tip")) 
     UI.Buttons.Submenu(L("mainmenu.teleport.label"), TeleportView, tip("mainmenu.teleport.tip"))
     UI.Buttons.Submenu(L("mainmenu.weapon.label"), WeaponView, tip("mainmenu.weapon.tip"))
     UI.Buttons.Submenu(L("mainmenu.vehicle.label"), VehicleMenuView, tip("mainmenu.vehicle.tip"))
-    UI.Buttons.Submenu(L("mainmenu.facts.label"), GameFactsView, tip("mainmenu.facts.tip"))
+    if UI.Buttons.Submenu(L("mainmenu.facts.label"), GameFactsView, tip("mainmenu.facts.tip")) then UI.Notification.Warning(L("mainmenu.facts.warning")) end
     UI.Buttons.Submenu(L("mainmenu.time.label"), TimeView, tip("mainmenu.time.tip"))
     UI.Buttons.Submenu(L("mainmenu.weather.label"), WeatherView, tip("mainmenu.weather.tip"))
     UI.Buttons.Submenu("Item Menu", ItemBrowserView, "Browse items by category, consumables, crafting, and buffs. (Item Browser is very alpha)")

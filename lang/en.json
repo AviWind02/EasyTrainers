@@ -8,7 +8,9 @@
     },
     "development": {
       "label": "Development Menu",
-      "tip": "Adjust attributes and toggle individual perks."
+      "tip": "Adjust attributes and toggle individual perks.",
+      "warning": "Adjusting attributes, perks, or proficiencies may alter progression.(It's recommended to save first)"
+
     },
     "modifiers": {
       "label": "Modifiers Menu",
@@ -28,7 +30,8 @@
     },
     "facts": {
       "label": "Facts Menu",
-      "tip": "Set story flags, censorship states, and progression facts."
+      "tip": "Set story flags, censorship states, and progression facts.",
+      "warning": "Adjusting game facts can impact story & endings.(It's recommended to save first)"
     },
     "time": {
       "label": "Time Menu",
