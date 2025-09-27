@@ -123,7 +123,6 @@ local function ItemsMainView()
             end)
     end
 
-    Buttons.Break("", "Consumables")
     lastGroup = nil
     for i, data in ipairs(Consumables) do
         if data.group ~= lastGroup then
@@ -137,7 +136,6 @@ local function ItemsMainView()
             end)
     end
 
-    Buttons.Break("", "Buffs")
     lastGroup = nil
     for i, data in ipairs(ItemBuffs) do
         if data.group ~= lastGroup then

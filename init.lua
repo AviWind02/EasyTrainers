@@ -173,6 +173,9 @@ Event.RegisterInit(function()
     Event.Override("scannerDetailsGameController", "ShouldDisplayTwintoneTab", function(this, wrappedMethod)
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)
     end)
+
+        Logger.Log("Initialized")
+
 end)
 
 Event.RegisterUpdate(function(dt)

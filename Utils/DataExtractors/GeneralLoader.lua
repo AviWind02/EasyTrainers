@@ -64,7 +64,7 @@ local PARENT_CATEGORIES = { -- All of this so it's much easier to navigate; Load
     },
     CyberdeckShards = {
         "Tier6Shard",
-        -- "Tier5Shard", not real lol?
+        -- "Tier5Shard", not real
         "Tier4Shard",
         "Tier3Shard",
         "Tier2Shard",
@@ -94,7 +94,7 @@ local PARENT_CATEGORIES = { -- All of this so it's much easier to navigate; Load
     Quest = {
         "Quest"
     },
-    Cyberware = { -- This was a lot more complicated than I thought I honestly didn't think there was so much cyberware
+    Cyberware = { -- This was a lot more complicated than I thought I honestly didn't think there was so much cyberware half of them can't even be looted
         "OperatingSystem",
         "Skeleton",
         "Circulatory",
