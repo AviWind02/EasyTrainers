@@ -16,51 +16,53 @@ local exampleRadioRef = { index = 1 }
 local exampleRadioOptions = { "Plugged In", "Disconnected" }
 
 local function SelectionControlsViewFunction()
-    Buttons.Option("Reset Selection Controls", "Restore Selection defaults", ResetUI.ResetSelectionControls)
-    Buttons.Break("Toggle")
-    if Buttons.Int("Size", toggleSizeRef, "Overall size of the toggle box") then
+    Buttons.Option(L("settings.selectioncontrols.reset.label"), tip("settings.selectioncontrols.reset.tip"), ResetUI.ResetSelectionControls)
+
+    Buttons.Break(L("settings.selectioncontrols.toggle.label"))
+    if Buttons.Int(L("settings.selectioncontrols.toggle.size.label"), toggleSizeRef, tip("settings.selectioncontrols.toggle.size.tip")) then
         UI.Toggle.Size = toggleSizeRef.value
     end
-    if Buttons.Float("Rounding", toggleRoundingRef, "Corner roundness of the toggle box") then
+    if Buttons.Float(L("settings.selectioncontrols.toggle.rounding.label"), toggleRoundingRef, tip("settings.selectioncontrols.toggle.rounding.tip")) then
         UI.Toggle.Rounding = toggleRoundingRef.value
     end
-    if Buttons.Int("Inset", toggleInsetRef, "Inset for the toggle fill when ON") then
+    if Buttons.Int(L("settings.selectioncontrols.toggle.inset.label"), toggleInsetRef, tip("settings.selectioncontrols.toggle.inset.tip")) then
         UI.Toggle.Inset = toggleInsetRef.value
     end
-    if Buttons.Int("State Padding", toggleStatePaddingRef, "Padding inside the toggle state indicator") then
+    if Buttons.Int(L("settings.selectioncontrols.toggle.statepadding.label"), toggleStatePaddingRef, tip("settings.selectioncontrols.toggle.statepadding.tip")) then
         UI.Toggle.StatePadding = toggleStatePaddingRef.value
     end
-    if Buttons.Int("State Spacing", toggleStateSpacingRef, "Spacing between toggle and label") then
+    if Buttons.Int(L("settings.selectioncontrols.toggle.statespacing.label"), toggleStateSpacingRef, tip("settings.selectioncontrols.toggle.statespacing.tip")) then
         UI.Toggle.StateSpacing = toggleStateSpacingRef.value
     end
 
-    Buttons.ColorHex("On Color", UI.Toggle, "OnColor", "Fill color when toggle is ON")
-    Buttons.ColorHex("Off Color", UI.Toggle, "OffColor", "Fill color when toggle is OFF")
-    Buttons.ColorHex("Border Color", UI.Toggle, "BorderColor", "Outline color of the toggle")
-    Buttons.ColorHex("Frame Background", UI.Toggle, "FrameBg", "Background behind toggle box")
-    Buttons.ColorHex("Text Color", UI.Toggle, "TextColor", "Text color for toggle labels")
+    Buttons.ColorHex(L("settings.selectioncontrols.toggle.oncolor.label"), UI.Toggle, "OnColor", tip("settings.selectioncontrols.toggle.oncolor.tip"))
+    Buttons.ColorHex(L("settings.selectioncontrols.toggle.offcolor.label"), UI.Toggle, "OffColor", tip("settings.selectioncontrols.toggle.offcolor.tip"))
+    Buttons.ColorHex(L("settings.selectioncontrols.toggle.bordercolor.label"), UI.Toggle, "BorderColor", tip("settings.selectioncontrols.toggle.bordercolor.tip"))
+    Buttons.ColorHex(L("settings.selectioncontrols.toggle.framebg.label"), UI.Toggle, "FrameBg", tip("settings.selectioncontrols.toggle.framebg.tip"))
+    Buttons.ColorHex(L("settings.selectioncontrols.toggle.textcolor.label"), UI.Toggle, "TextColor", tip("settings.selectioncontrols.toggle.textcolor.tip"))
 
-    Buttons.Break("Toggle Example")
-    Buttons.Toggle("Example Toggle", exampleToggleRef, "Preview of toggle style")
+    Buttons.Break(L("settings.selectioncontrols.toggleexample.label"))
+    Buttons.Toggle(L("settings.selectioncontrols.toggleexample.example.label"), exampleToggleRef, tip("settings.selectioncontrols.toggleexample.example.tip"))
 
-    Buttons.Break("Radio")
-    if Buttons.Int("Radius", radioRadiusRef, "Radius of the radio circle") then
+    Buttons.Break(L("settings.selectioncontrols.radio.label"))
+    if Buttons.Int(L("settings.selectioncontrols.radio.radius.label"), radioRadiusRef, tip("settings.selectioncontrols.radio.radius.tip")) then
         UI.Radio.Radius = radioRadiusRef.value
     end
-    if Buttons.Float("Line Thickness", radioThicknessRef, "Thickness of the unselected circle line") then
+    if Buttons.Float(L("settings.selectioncontrols.radio.linethickness.label"), radioThicknessRef, tip("settings.selectioncontrols.radio.linethickness.tip")) then
         UI.Radio.LineThickness = radioThicknessRef.value
     end
-    if Buttons.Int("Segments", radioSegmentsRef, "Circle smoothness (more segments = smoother)") then
+    if Buttons.Int(L("settings.selectioncontrols.radio.segments.label"), radioSegmentsRef, tip("settings.selectioncontrols.radio.segments.tip")) then
         UI.Radio.Segments = radioSegmentsRef.value
     end
 
-    Buttons.ColorHex("Selected Color", UI.Radio, "SelectedColor", "Fill color for selected radio buttons")
-    Buttons.ColorHex("Unselected Color", UI.Radio, "UnselectedColor", "Outline color for unselected radios")
+    Buttons.ColorHex(L("settings.selectioncontrols.radio.selectedcolor.label"), UI.Radio, "SelectedColor", tip("settings.selectioncontrols.radio.selectedcolor.tip"))
+    Buttons.ColorHex(L("settings.selectioncontrols.radio.unselectedcolor.label"), UI.Radio, "UnselectedColor", tip("settings.selectioncontrols.radio.unselectedcolor.tip"))
 
-    Buttons.Break("Radio Example")
-    Buttons.Radio("Example Radio", exampleRadioRef, exampleRadioOptions, "Preview of radio button style")
+    Buttons.Break(L("settings.selectioncontrols.radioexample.label"))
+    Buttons.Radio(L("settings.selectioncontrols.radioexample.example.label"), exampleRadioRef, exampleRadioOptions, tip("settings.selectioncontrols.radioexample.example.tip"))
 end
 
-local SelectionControlsView = { title = "Selection Controls", view = SelectionControlsViewFunction }
+local SelectionControlsView = { title = "settings.selectioncontrols.title", view = SelectionControlsViewFunction }
 
 return SelectionControlsView
+

@@ -19,29 +19,32 @@ local NavigationConfig = require("Config/NavigationConfig")
 local Bindings = require("Controls/Bindings")
 
 local function SettingsViewFunction()
-    Buttons.Submenu("Navigation Controls", NavigationView, "Adjust navigation bindings and speed")
-    Buttons.Submenu(L("mainmenu.translations.label"), TranslationsView, tip("mainmenu.translations.tip"))
-    Buttons.Break("UI Settings")
-    Buttons.Submenu("Layout & Option Row", LayoutView, "Adjust layout and option row settings")
-    Buttons.Submenu("Header & Footer", FrameView, "Adjust header and footer settings")
-    Buttons.Submenu("Notifications", NotificationView, "Customize notification settings")
-    Buttons.Submenu("Info Box", InfoBoxView, "Adjust info box settings")
-    Buttons.Submenu("Simple Buttons", SimpleControlsView, "Configure break row, dropdown, and string cycler")
-    Buttons.Submenu("Selection Buttons", SelectionControlsView, "Configure toggle and radio buttons")
-    Buttons.Submenu("Input Buttons", InputControlsView, "Configure numeric and color picker controls")
-    Buttons.Submenu("Text Input", TextInputView, "Adjust text input dialog settings")
-    if Buttons.Option("Reset All Settings", "Reset all UI and navigation(bindings) settings to defaults") then
+    Buttons.Submenu(L("settingsmenu.navigation.label"), NavigationView, tip("settingsmenu.navigation.tip"))
+    Buttons.Submenu(L("settingsmenu.translations.label"), TranslationsView, tip("settingsmenu.translations.tip"))
+
+    Buttons.Break(L("settingsmenu.ui.label"))
+    Buttons.Submenu(L("settingsmenu.layout.label"), LayoutView, tip("settingsmenu.layout.tip"))
+    Buttons.Submenu(L("settingsmenu.frame.label"), FrameView, tip("settingsmenu.frame.tip"))
+    Buttons.Submenu(L("settingsmenu.notifications.label"), NotificationView, tip("settingsmenu.notifications.tip"))
+    Buttons.Submenu(L("settingsmenu.infobox.label"), InfoBoxView, tip("settingsmenu.infobox.tip"))
+    Buttons.Submenu(L("settingsmenu.simplecontrols.label"), SimpleControlsView, tip("settingsmenu.simplecontrols.tip"))
+    Buttons.Submenu(L("settingsmenu.selectioncontrols.label"), SelectionControlsView, tip("settingsmenu.selectioncontrols.tip"))
+    Buttons.Submenu(L("settingsmenu.inputcontrols.label"), InputControlsView, tip("settingsmenu.inputcontrols.tip"))
+    Buttons.Submenu(L("settingsmenu.textinput.label"), TextInputView, tip("settingsmenu.textinput.tip"))
+
+    if Buttons.Option(L("settingsmenu.resetall.label"), tip("settingsmenu.resetall.tip")) then
         ResetUI.ResetAll()
         NavigationConfig.Reset()
         Bindings.ResetAll()
     end
 
-    if Buttons.Option("Save All Settings", "Save all UI and navigation settings to config files") then
+    if Buttons.Option(L("settingsmenu.saveall.label"), tip("settingsmenu.saveall.tip")) then
         UIConfig.Save()
         NavigationConfig.Save()
     end
 end
 
-local SettingsView = { title = "Settings", view = SettingsViewFunction }
+local SettingsView = { title = "settingsmenu.title", view = SettingsViewFunction }
 
 return SettingsView
+

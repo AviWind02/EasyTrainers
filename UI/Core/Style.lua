@@ -129,7 +129,7 @@ UI.BreakRow = {
 }
 
 UI.Dropdown = {
-    ArrowRight = IconGlyphs.ArrowRight,
+    ArrowRight = IconGlyphs.ArrowExpand,
     ArrowDown = IconGlyphs.ArrowExpandAll,
 
     FramesPerOption = 3, 

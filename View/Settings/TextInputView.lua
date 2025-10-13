@@ -13,35 +13,36 @@ local spacingRef = { value = UI.TextInput.ButtonSpacing, min = 0, max = 50 }
 local testInputRef = { value = "Give yourself time. Ideas'll come. Life'll shake you, roll you, maybe embrace you.", capturing = false }
 
 local function TextInputViewFunction()
-    Buttons.Option("Reset Text Input", "Restore Text Input defaults", ResetUI.ResetTextInput)
-    Buttons.Break("Text Input")
+    Buttons.Option(L("settings.textinput.reset.label"), tip("settings.textinput.reset.tip"), ResetUI.ResetTextInput)
 
-    if Buttons.Int("Width", widthRef, "Window width of the text input dialog") then
+    Buttons.Break(L("settings.textinput.label"))
+    if Buttons.Int(L("settings.textinput.width.label"), widthRef, tip("settings.textinput.width.tip")) then
         UI.TextInput.Width = widthRef.value
     end
-    if Buttons.Int("Height", heightRef, "Window height of the text input dialog") then
+    if Buttons.Int(L("settings.textinput.height.label"), heightRef, tip("settings.textinput.height.tip")) then
         UI.TextInput.Height = heightRef.value
     end
-    if Buttons.Float("Rounding", roundingRef, "Corner rounding of the text input window") then
+    if Buttons.Float(L("settings.textinput.rounding.label"), roundingRef, tip("settings.textinput.rounding.tip")) then
         UI.TextInput.Rounding = roundingRef.value
     end
-    if Buttons.Int("Padding", paddingRef, "Inner padding of the text input window") then
+    if Buttons.Int(L("settings.textinput.padding.label"), paddingRef, tip("settings.textinput.padding.tip")) then
         UI.TextInput.Padding = paddingRef.value
     end
-    if Buttons.Int("Button Spacing", spacingRef, "Spacing between OK/Cancel buttons") then
+    if Buttons.Int(L("settings.textinput.spacing.label"), spacingRef, tip("settings.textinput.spacing.tip")) then
         UI.TextInput.ButtonSpacing = spacingRef.value
     end
 
-    Buttons.ColorHex("Text Color", UI.TextInput, "TextColor", "Text color inside text input")
-    Buttons.ColorHex("Background", UI.TextInput, "BackgroundColor", "Background fill of text input")
-    Buttons.ColorHex("Border", UI.TextInput, "BorderColor", "Border color of text input window")
+    Buttons.ColorHex(L("settings.textinput.textcolor.label"), UI.TextInput, "TextColor", tip("settings.textinput.textcolor.tip"))
+    Buttons.ColorHex(L("settings.textinput.background.label"), UI.TextInput, "BackgroundColor", tip("settings.textinput.background.tip"))
+    Buttons.ColorHex(L("settings.textinput.border.label"), UI.TextInput, "BorderColor", tip("settings.textinput.border.tip"))
 
-    Buttons.Break("Example")
-    if TextInput.Option("Sample Input", testInputRef, "Click to edit example text") then
+    Buttons.Break(L("settings.textinput.example.label"))
+    if TextInput.Option(L("settings.textinput.example.input.label"), testInputRef, tip("settings.textinput.example.input.tip")) then
         Notification.Info("TextInput result: " .. tostring(testInputRef.value))
     end
 end
 
-local TextInputView = { title = "Text Input", view = TextInputViewFunction }
+local TextInputView = { title = "settings.textinput.title", view = TextInputViewFunction }
 
 return TextInputView
+

@@ -16,46 +16,46 @@ local cyclerOptions = { "Netrunner", "Nomad", "Fixer", "Rockerboy" }
 local dropdownRef = { index = 1, expanded = false }
 
 local function SimpleControlsViewFunction()
-    Buttons.Option("Reset Simple Controls", "Restore Simple defaults", ResetUI.ResetSimpleControls)
+    Buttons.Option(L("settings.simplecontrols.reset.label"), tip("settings.simplecontrols.reset.tip"), ResetUI.ResetSimpleControls)
 
-    Buttons.Break("Break Row")
-    Buttons.ColorHex("Text Color", UI.BreakRow, "Text", "Color of break row labels")
-    Buttons.ColorHex("Highlight Background", UI.BreakRow, "HighlightBg", "Background highlight color of break rows")
+    Buttons.Break(L("settings.simplecontrols.breakrow.label"))
+    Buttons.ColorHex(L("settings.simplecontrols.breakrow.text.label"), UI.BreakRow, "Text", tip("settings.simplecontrols.breakrow.text.tip"))
+    Buttons.ColorHex(L("settings.simplecontrols.breakrow.highlightbg.label"), UI.BreakRow, "HighlightBg", tip("settings.simplecontrols.breakrow.highlightbg.tip"))
 
-    Buttons.Break("Dropdown")
-    if Buttons.Int("Frames Per Option", framesPerOptionRef, "How many frames to wait before revealing the next option") then
+    Buttons.Break(L("settings.simplecontrols.dropdown.label"))
+    if Buttons.Int(L("settings.simplecontrols.dropdown.framesperoption.label"), framesPerOptionRef, tip("settings.simplecontrols.dropdown.framesperoption.tip")) then
         UI.Dropdown.FramesPerOption = framesPerOptionRef.value
     end
-    if Buttons.Int("Reveal Frame Delay", revealDelayRef, "Extra delay between option reveals in frames") then
+    if Buttons.Int(L("settings.simplecontrols.dropdown.revealdelay.label"), revealDelayRef, tip("settings.simplecontrols.dropdown.revealdelay.tip")) then
         UI.Dropdown.RevealFrameDelay = revealDelayRef.value
     end
-    Buttons.ColorHex("Text Color", UI.Dropdown, "TextColor", "Normal text color for dropdown entries")
-    Buttons.ColorHex("Selected Color", UI.Dropdown, "SelectedColor", "Text color for the selected dropdown entry")
+    Buttons.ColorHex(L("settings.simplecontrols.dropdown.textcolor.label"), UI.Dropdown, "TextColor", tip("settings.simplecontrols.dropdown.textcolor.tip"))
+    Buttons.ColorHex(L("settings.simplecontrols.dropdown.selectedcolor.label"), UI.Dropdown, "SelectedColor", tip("settings.simplecontrols.dropdown.selectedcolor.tip"))
 
-    Buttons.Dropdown("Row Prefix", prefixRef, prefixOptions, "Prefix shown before each dropdown option")
+    Buttons.Dropdown(L("settings.simplecontrols.dropdown.rowprefix.label"), prefixRef, prefixOptions, tip("settings.simplecontrols.dropdown.rowprefix.tip"))
     UI.Dropdown.RowPrefix = prefixOptions[prefixRef.index]
 
-    Buttons.Break("Dropdown Example")
-    Buttons.Dropdown("Example Dropdown", dropdownRef, { "Option One", "Option Two", "Option Three" },
-    "Preview of dropdown style")
+    Buttons.Break(L("settings.simplecontrols.dropdownexample.label"))
+    Buttons.Dropdown(L("settings.simplecontrols.dropdownexample.example.label"), dropdownRef, { "Option One", "Option Two", "Option Three" }, tip("settings.simplecontrols.dropdownexample.example.tip"))
 
-    Buttons.Break("String Cycler")
-    if Buttons.Int("Frame Padding", framePaddingRef, "Horizontal/vertical padding around the cycler box") then
+    Buttons.Break(L("settings.simplecontrols.stringcycler.label"))
+    if Buttons.Int(L("settings.simplecontrols.stringcycler.framepadding.label"), framePaddingRef, tip("settings.simplecontrols.stringcycler.framepadding.tip")) then
         UI.StringCycler.FramePadding = framePaddingRef.value
     end
-    if Buttons.Int("Text Padding", textPaddingRef, "Padding between the cycler box edge and the text") then
+    if Buttons.Int(L("settings.simplecontrols.stringcycler.textpadding.label"), textPaddingRef, tip("settings.simplecontrols.stringcycler.textpadding.tip")) then
         UI.StringCycler.TextPadding = textPaddingRef.value
     end
-    if Buttons.Float("Box Rounding", boxRoundingRef, "Corner rounding of the cycler box") then
+    if Buttons.Float(L("settings.simplecontrols.stringcycler.boxrounding.label"), boxRoundingRef, tip("settings.simplecontrols.stringcycler.boxrounding.tip")) then
         UI.StringCycler.BoxRounding = boxRoundingRef.value
     end
-    Buttons.ColorHex("Frame Background", UI.StringCycler, "FrameBg", "Background fill of the cycler box")
-    Buttons.ColorHex("Value Color", UI.StringCycler, "ValueColor", "Color of the selected cycler value")
+    Buttons.ColorHex(L("settings.simplecontrols.stringcycler.framebg.label"), UI.StringCycler, "FrameBg", tip("settings.simplecontrols.stringcycler.framebg.tip"))
+    Buttons.ColorHex(L("settings.simplecontrols.stringcycler.valuecolor.label"), UI.StringCycler, "ValueColor", tip("settings.simplecontrols.stringcycler.valuecolor.tip"))
 
-    Buttons.Break("String Cycler Example")
-    Buttons.StringCycler("Example Cycler", cyclerRef, cyclerOptions, "Preview of string cycler style")
+    Buttons.Break(L("settings.simplecontrols.stringcyclerexample.label"))
+    Buttons.StringCycler(L("settings.simplecontrols.stringcyclerexample.example.label"), cyclerRef, cyclerOptions, tip("settings.simplecontrols.stringcyclerexample.example.tip"))
 end
 
-local SimpleControlsView = { title = "Simple Controls", view = SimpleControlsViewFunction }
+local SimpleControlsView = { title = "settings.simplecontrols.title", view = SimpleControlsViewFunction }
 
 return SimpleControlsView
+

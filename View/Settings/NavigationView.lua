@@ -10,38 +10,38 @@ local accelThresholdRef = { value = Handler.accelThreshold, min = 100, max = 500
 local accelStepRef = { value = Handler.accelStep, min = 1, max = 100 }
 
 local function NavigationSettingsViewFunction()
-    Buttons.Option("Save Navigation", "Save navigation speed settings", NavigationConfig.Save)
-    Buttons.Option("Load Navigation", "Load saved navigation speed settings", NavigationConfig.Load)
-    Buttons.Option("Reset Navigation", "Reset navigation speed settings to defaults", NavigationConfig.Reset)
-    Buttons.Option("Reset All Bindings", "Restore all key/controller bindings to defaults", Bindings.ResetAll)
+    Buttons.Option(L("settings.navigation.save.label"), tip("settings.navigation.save.tip"), NavigationConfig.Save)
+    Buttons.Option(L("settings.navigation.load.label"), tip("settings.navigation.load.tip"), NavigationConfig.Load)
+    Buttons.Option(L("settings.navigation.reset.label"), tip("settings.navigation.reset.tip"), NavigationConfig.Reset)
+    Buttons.Option(L("settings.navigation.resetbindings.label"), tip("settings.navigation.resetbindings.tip"), Bindings.ResetAll)
 
-    Buttons.Break("Bindings")
+    Buttons.Break(L("settings.navigation.bindings.label"))
 
-    Buttons.Bind("Open Menu", "TOGGLE", "Rebind the open/close key")
-    Buttons.Bind("Toggle Mouse", "TOGGLE_MOUSE", "Rebind toggle mouse key")
-    Buttons.Bind("Up Navigation", "UP", "Rebind menu navigation up")
-    Buttons.Bind("Down Navigation", "DOWN", "Rebind menu navigation down")
-    Buttons.Bind("Left Navigation", "LEFT", "Rebind menu navigation left")
-    Buttons.Bind("Right Navigation", "RIGHT", "Rebind menu navigation right")
-    Buttons.Bind("Select", "SELECT", "Rebind select/confirm key")
-    Buttons.Bind("Back", "BACK", "Rebind back key")
-    Buttons.Bind("Misc", "MISC", "Rebind misc/extra key")
+    Buttons.Bind(L("settings.navigation.bindings.openmenu.label"), "TOGGLE", tip("settings.navigation.bindings.openmenu.tip"))
+    Buttons.Bind(L("settings.navigation.bindings.togglemouse.label"), "TOGGLE_MOUSE", tip("settings.navigation.bindings.togglemouse.tip"))
+    Buttons.Bind(L("settings.navigation.bindings.up.label"), "UP", tip("settings.navigation.bindings.up.tip"))
+    Buttons.Bind(L("settings.navigation.bindings.down.label"), "DOWN", tip("settings.navigation.bindings.down.tip"))
+    Buttons.Bind(L("settings.navigation.bindings.left.label"), "LEFT", tip("settings.navigation.bindings.left.tip"))
+    Buttons.Bind(L("settings.navigation.bindings.right.label"), "RIGHT", tip("settings.navigation.bindings.right.tip"))
+    Buttons.Bind(L("settings.navigation.bindings.select.label"), "SELECT", tip("settings.navigation.bindings.select.tip"))
+    Buttons.Bind(L("settings.navigation.bindings.back.label"), "BACK", tip("settings.navigation.bindings.back.tip"))
+    Buttons.Bind(L("settings.navigation.bindings.misc.label"), "MISC", tip("settings.navigation.bindings.misc.tip"))
 
-    Buttons.Break("Navigation Speed")
-    if Buttons.Int("Scroll Delay Base", scrollDelayRef, "Base delay (ms) between repeated inputs when holding a navigation key") then
+    Buttons.Break(L("settings.navigation.speed.label"))
+    if Buttons.Int(L("settings.navigation.speed.scrolldelay.label"), scrollDelayRef, tip("settings.navigation.speed.scrolldelay.tip")) then
         Handler.scrollDelayBase = scrollDelayRef.value
     end
-    if Buttons.Int("Scroll Min Delay", minDelayRef, "Minimum delay (ms) once accelerated scrolling kicks in") then
+    if Buttons.Int(L("settings.navigation.speed.scrollmindelay.label"), minDelayRef, tip("settings.navigation.speed.scrollmindelay.tip")) then
         Handler.scrollMinDelay = minDelayRef.value
     end
-    if Buttons.Int("Acceleration Threshold", accelThresholdRef, "Time (ms) a key must be held before acceleration starts") then
+    if Buttons.Int(L("settings.navigation.speed.accelthreshold.label"), accelThresholdRef, tip("settings.navigation.speed.accelthreshold.tip")) then
         Handler.accelThreshold = accelThresholdRef.value
     end
-    if Buttons.Int("Acceleration Step", accelStepRef, "How much the delay is reduced per step while holding") then
+    if Buttons.Int(L("settings.navigation.speed.accelstep.label"), accelStepRef, tip("settings.navigation.speed.accelstep.tip")) then
         Handler.accelStep = accelStepRef.value
     end
 end
 
-local NavigationSettingsView = { title = "Navigation Controls", view = NavigationSettingsViewFunction }
+local NavigationSettingsView = { title = "settings.navigation.title", view = NavigationSettingsViewFunction }
 
 return NavigationSettingsView

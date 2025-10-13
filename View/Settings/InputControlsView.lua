@@ -16,67 +16,67 @@ local previewBoxSizeRef = { value = UI.ColorPicker.PreviewBoxSize, min = 8, max 
 local rowSpacingRef = { value = UI.ColorPicker.RowSpacing, min = 0, max = 20 }
 local roundingRef = { value = UI.ColorPicker.Rounding, min = 0, max = 30 }
 
-local numericRef = { value = 5, min = 0, max = 20, enabled = false}
+local numericRef = { value = 5, min = 0, max = 20, enabled = false }
 local colorRef = { Red = 255, Green = 128, Blue = 64, Alpha = 255 }
 
 local function InputControlsViewFunction()
-    Buttons.Option("Reset Input Controls", "Restore Input Controls row defaults", ResetUI.ResetLayout)
+    Buttons.Option(L("settings.inputcontrols.reset.label"), tip("settings.inputcontrols.reset.tip"), ResetUI.ResetLayout)
 
-    Buttons.Break("Numeric")
-    if Buttons.Int("Toggle Size", toggleSizeRef, "Size of the numeric toggle button") then
+    Buttons.Break(L("settings.inputcontrols.numeric.label"))
+    if Buttons.Int(L("settings.inputcontrols.numeric.togglesize.label"), toggleSizeRef, tip("settings.inputcontrols.numeric.togglesize.tip")) then
         UI.Numeric.ToggleSize = toggleSizeRef.value
     end
-    if Buttons.Int("Toggle Spacing", toggleSpacingRef, "Spacing between numeric toggle and box") then
+    if Buttons.Int(L("settings.inputcontrols.numeric.togglespacing.label"), toggleSpacingRef, tip("settings.inputcontrols.numeric.togglespacing.tip")) then
         UI.Numeric.ToggleSpacing = toggleSpacingRef.value
     end
-    if Buttons.Int("Box Frame Padding", boxFramePaddingRef, "Frame padding inside numeric box") then
+    if Buttons.Int(L("settings.inputcontrols.numeric.boxframepadding.label"), boxFramePaddingRef, tip("settings.inputcontrols.numeric.boxframepadding.tip")) then
         UI.Numeric.BoxFramePadding = boxFramePaddingRef.value
     end
-    if Buttons.Int("Box Text Padding", boxTextPaddingRef, "Text padding inside numeric box") then
+    if Buttons.Int(L("settings.inputcontrols.numeric.boxtextpadding.label"), boxTextPaddingRef, tip("settings.inputcontrols.numeric.boxtextpadding.tip")) then
         UI.Numeric.BoxTextPadding = boxTextPaddingRef.value
     end
-    if Buttons.Int("Decimals", decimalsRef, "Decimal places shown for floats") then
+    if Buttons.Int(L("settings.inputcontrols.numeric.decimals.label"), decimalsRef, tip("settings.inputcontrols.numeric.decimals.tip")) then
         UI.Numeric.Decimals = decimalsRef.value
     end
-    if Buttons.Int("Default Int Step", intStepRef, "Step value for integer inputs") then
+    if Buttons.Int(L("settings.inputcontrols.numeric.defaultintstep.label"), intStepRef, tip("settings.inputcontrols.numeric.defaultintstep.tip")) then
         UI.Numeric.DefaultIntStep = intStepRef.value
     end
-    if Buttons.Float("Default Float Step", floatStepRef, "Step value for float inputs") then
+    if Buttons.Float(L("settings.inputcontrols.numeric.defaultfloatstep.label"), floatStepRef, tip("settings.inputcontrols.numeric.defaultfloatstep.tip")) then
         UI.Numeric.DefaultFloatStep = floatStepRef.value
     end
 
-    Buttons.ColorHex("Frame Background", UI.Numeric, "FrameBg", "Background fill of numeric box")
-    Buttons.ColorHex("Text Color", UI.Numeric, "TextColor", "Text color inside numeric box")
-    Buttons.ColorHex("Disabled Color", UI.Numeric, "DisabledColor", "Text color when input is disabled")
+    Buttons.ColorHex(L("settings.inputcontrols.numeric.framebg.label"), UI.Numeric, "FrameBg", tip("settings.inputcontrols.numeric.framebg.tip"))
+    Buttons.ColorHex(L("settings.inputcontrols.numeric.textcolor.label"), UI.Numeric, "TextColor", tip("settings.inputcontrols.numeric.textcolor.tip"))
+    Buttons.ColorHex(L("settings.inputcontrols.numeric.disabledcolor.label"), UI.Numeric, "DisabledColor", tip("settings.inputcontrols.numeric.disabledcolor.tip"))
 
-    Buttons.Break("Numeric Example")
-    Buttons.Int("Example Numeric", numericRef, "Preview of numeric input")
+    Buttons.Break(L("settings.inputcontrols.numericexample.label"))
+    Buttons.Int(L("settings.inputcontrols.numericexample.example.label"), numericRef, tip("settings.inputcontrols.numericexample.example.tip"))
 
-    Buttons.Break("Color Picker")
-    if Buttons.Int("Channel Box Size", channelBoxSizeRef, "Size of RGBA channel boxes") then
+    Buttons.Break(L("settings.inputcontrols.colorpicker.label"))
+    if Buttons.Int(L("settings.inputcontrols.colorpicker.channelboxsize.label"), channelBoxSizeRef, tip("settings.inputcontrols.colorpicker.channelboxsize.tip")) then
         UI.ColorPicker.ChannelBoxSize = channelBoxSizeRef.value
     end
-    if Buttons.Int("Channel Padding", channelPaddingRef, "Spacing between RGBA channel boxes") then
+    if Buttons.Int(L("settings.inputcontrols.colorpicker.channelpadding.label"), channelPaddingRef, tip("settings.inputcontrols.colorpicker.channelpadding.tip")) then
         UI.ColorPicker.ChannelPadding = channelPaddingRef.value
     end
-    if Buttons.Int("Preview Box Size", previewBoxSizeRef, "Size of the preview color box") then
+    if Buttons.Int(L("settings.inputcontrols.colorpicker.previewboxsize.label"), previewBoxSizeRef, tip("settings.inputcontrols.colorpicker.previewboxsize.tip")) then
         UI.ColorPicker.PreviewBoxSize = previewBoxSizeRef.value
     end
-    if Buttons.Int("Row Spacing", rowSpacingRef, "Spacing between color picker rows") then
+    if Buttons.Int(L("settings.inputcontrols.colorpicker.rowspacing.label"), rowSpacingRef, tip("settings.inputcontrols.colorpicker.rowspacing.tip")) then
         UI.ColorPicker.RowSpacing = rowSpacingRef.value
     end
-    if Buttons.Float("Rounding", roundingRef, "Corner rounding of color picker boxes") then
+    if Buttons.Float(L("settings.inputcontrols.colorpicker.rounding.label"), roundingRef, tip("settings.inputcontrols.colorpicker.rounding.tip")) then
         UI.ColorPicker.Rounding = roundingRef.value
     end
 
-    Buttons.ColorHex("Frame Background", UI.ColorPicker, "FrameBg", "Background behind color channels")
-    Buttons.ColorHex("Text Color", UI.ColorPicker, "TextColor", "Text color for RGBA labels")
-    Buttons.ColorHex("Border Color", UI.ColorPicker, "BorderColor", "Outline color around channel boxes")
+    Buttons.ColorHex(L("settings.inputcontrols.colorpicker.framebg.label"), UI.ColorPicker, "FrameBg", tip("settings.inputcontrols.colorpicker.framebg.tip"))
+    Buttons.ColorHex(L("settings.inputcontrols.colorpicker.textcolor.label"), UI.ColorPicker, "TextColor", tip("settings.inputcontrols.colorpicker.textcolor.tip"))
+    Buttons.ColorHex(L("settings.inputcontrols.colorpicker.bordercolor.label"), UI.ColorPicker, "BorderColor", tip("settings.inputcontrols.colorpicker.bordercolor.tip"))
 
-    Buttons.Break("Color Picker Example")
-    Buttons.Color("Example Color", colorRef, "Preview of color picker style")
+    Buttons.Break(L("settings.inputcontrols.colorpickerexample.label"))
+    Buttons.Color(L("settings.inputcontrols.colorpickerexample.example.label"), colorRef, tip("settings.inputcontrols.colorpickerexample.example.tip"))
 end
 
-local InputControlsView = { title = "Input Controls", view = InputControlsViewFunction }
+local InputControlsView = { title = "settings.inputcontrols.title", view = InputControlsViewFunction }
 
 return InputControlsView

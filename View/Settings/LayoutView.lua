@@ -15,53 +15,53 @@ local framePaddingYRef = { value = UI.Layout.FramePadding.y, min = 0, max = 50 }
 
 local smoothSpeedRef = { value = UI.OptionRow.SmoothSpeed, min = 0.01, max = 1.0, step = 0.01 }
 
-
 local function LayoutOptionRowViewFunction()
-    Buttons.Option("Reset Layout", "Restore layout & option row defaults", ResetUI.ResetLayout)
-    Buttons.Break("Layout")
-    if Buttons.Int("Option Height", optionHeightRef, "Vertical height of each option row") then
+    Buttons.Option(L("settings.layout.reset.label"), tip("settings.layout.reset.tip"), ResetUI.ResetLayout)
+
+    Buttons.Break(L("settings.layout.layout.label"))
+    if Buttons.Int(L("settings.layout.layout.optionheight.label"), optionHeightRef, tip("settings.layout.layout.optionheight.tip")) then
         UI.Layout.OptionHeight = optionHeightRef.value
     end
-    if Buttons.Int("Frame Height", frameHeightRef, "Height of widgets like sliders and numeric boxes") then
+    if Buttons.Int(L("settings.layout.layout.frameheight.label"), frameHeightRef, tip("settings.layout.layout.frameheight.tip")) then
         UI.Layout.FrameHeight = frameHeightRef.value
     end
-    if Buttons.Int("Padding X", paddingXRef, "Horizontal padding inside the menu edges") then
+    if Buttons.Int(L("settings.layout.layout.paddingx.label"), paddingXRef, tip("settings.layout.layout.paddingx.tip")) then
         UI.Layout.OptionPaddingX = paddingXRef.value
     end
-    if Buttons.Int("Padding Y", paddingYRef, "Vertical padding between rows and from menu edges") then
+    if Buttons.Int(L("settings.layout.layout.paddingy.label"), paddingYRef, tip("settings.layout.layout.paddingy.tip")) then
         UI.Layout.OptionPaddingY = paddingYRef.value
     end
-    if Buttons.Int("Label Offset X", labelOffsetRef, "Distance between row start and left-aligned labels") then
+    if Buttons.Int(L("settings.layout.layout.labeloffsetx.label"), labelOffsetRef, tip("settings.layout.layout.labeloffsetx.tip")) then
         UI.Layout.LabelOffsetX = labelOffsetRef.value
         UI.OptionRow.LabelOffsetX = labelOffsetRef.value
     end
-    if Buttons.Float("Frame Rounding", frameRoundingRef, "Corner rounding radius for rows and widgets") then
+    if Buttons.Float(L("settings.layout.layout.framerounding.label"), frameRoundingRef, tip("settings.layout.layout.framerounding.tip")) then
         UI.Layout.FrameRounding = frameRoundingRef.value
         UI.OptionRow.Rounding = frameRoundingRef.value
     end
-    if Buttons.Int("Item Spacing X", itemSpacingXRef, "Horizontal gap between inline items") then
+    if Buttons.Int(L("settings.layout.layout.itemspacingx.label"), itemSpacingXRef, tip("settings.layout.layout.itemspacingx.tip")) then
         UI.Layout.ItemSpacing.x = itemSpacingXRef.value
     end
-    if Buttons.Int("Item Spacing Y", itemSpacingYRef, "Vertical gap between stacked items") then
+    if Buttons.Int(L("settings.layout.layout.itemspacingy.label"), itemSpacingYRef, tip("settings.layout.layout.itemspacingy.tip")) then
         UI.Layout.ItemSpacing.y = itemSpacingYRef.value
     end
-    if Buttons.Float("Frame Padding X", framePaddingXRef, "Inner horizontal padding for framed widgets") then
+    if Buttons.Float(L("settings.layout.layout.framepaddingx.label"), framePaddingXRef, tip("settings.layout.layout.framepaddingx.tip")) then
         UI.Layout.FramePadding.x = framePaddingXRef.value
     end
-    if Buttons.Float("Frame Padding Y", framePaddingYRef, "Inner vertical padding for framed widgets") then
+    if Buttons.Float(L("settings.layout.layout.framepaddingy.label"), framePaddingYRef, tip("settings.layout.layout.framepaddingy.tip")) then
         UI.Layout.FramePadding.y = framePaddingYRef.value
     end
 
-    Buttons.Break("Option Row")
-    if Buttons.Float("Smooth Speed", smoothSpeedRef, "Speed of highlight bar smoothing when changing selection") then
+    Buttons.Break(L("settings.layout.optionrow.label"))
+    if Buttons.Float(L("settings.layout.optionrow.smoothspeed.label"), smoothSpeedRef, tip("settings.layout.optionrow.smoothspeed.tip")) then
         UI.OptionRow.SmoothSpeed = smoothSpeedRef.value
     end
-    Buttons.ColorHex("Text", UI.OptionRow, "Text", "Primary text color for option labels")
-    Buttons.ColorHex("Muted Text", UI.OptionRow, "MutedText", "Secondary text color (break rows, inactive entries)")
-    Buttons.ColorHex("Hover Background", UI.OptionRow, "HoverBg", "Background color when hovering a row")
-    Buttons.ColorHex("Highlight Background", UI.OptionRow, "HighlightBg", "Background color of the selected row")
+    Buttons.ColorHex(L("settings.layout.optionrow.text.label"), UI.OptionRow, "Text", tip("settings.layout.optionrow.text.tip"))
+    Buttons.ColorHex(L("settings.layout.optionrow.mutedtext.label"), UI.OptionRow, "MutedText", tip("settings.layout.optionrow.mutedtext.tip"))
+    Buttons.ColorHex(L("settings.layout.optionrow.hoverbg.label"), UI.OptionRow, "HoverBg", tip("settings.layout.optionrow.hoverbg.tip"))
+    Buttons.ColorHex(L("settings.layout.optionrow.highlightbg.label"), UI.OptionRow, "HighlightBg", tip("settings.layout.optionrow.highlightbg.tip"))
 end
 
-local LayoutOptionRowView = { title = "Layout & Option Row", view = LayoutOptionRowViewFunction }
+local LayoutOptionRowView = { title = "settings.layout.title", view = LayoutOptionRowViewFunction }
 
 return LayoutOptionRowView
