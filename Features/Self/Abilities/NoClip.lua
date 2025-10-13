@@ -2,7 +2,7 @@ local Input = require("Core/Input")
 local Utils = require("Utils")
 local StatusEffect = Utils.StatusEffect
 local Teleport = Utils.Teleport
-
+local logger = require("Core/Logger")
 local Noclip = {}
 Noclip.toggleNoClip = { value = false }
 
@@ -89,6 +89,7 @@ function Noclip.Tick()
     local pos = player:GetWorldPosition()
     if forward then
         local fwd = Teleport.GetForwardOffset(frameSpeed, yaw)
+        logger.Log("fwd: " .. tostring(fwd))
         pos.x, pos.y = fwd.x, fwd.y
     end
     if backward then

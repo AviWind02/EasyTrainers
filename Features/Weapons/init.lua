@@ -32,8 +32,4 @@ WeaponsFeatures.StatModifiers = {
     AdsAccuracy = require("Features/Weapons/StatModifiers/AdsAccuracy")
 }
 
-
-WeaponsFeatures.ToggleRegistration = require("Features/Weapons/WeaponConfig")
-
-
 return WeaponsFeatures

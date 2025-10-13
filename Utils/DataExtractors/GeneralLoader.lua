@@ -169,11 +169,20 @@ function GeneralLoader:LoadAll()
         data.isCustomizable = utils.SafeCall(function() return rec:IsCustomizable() end) or false
         data.tags = GetTags(rec)
 
+        local lowerName = name:lower()
+        local lowerId = id:lower()
+        if lowerName:find("craftable") or lowerId:find("craftable") then
+            data.isCraftable = true
+        else
+            data.isCraftable = false
+        end
+
         table.insert(self.items, data)
         self.indexById[id] = data
 
         ::continue::
     end
+
 
     local catCount, subcatCount = 0, 0
     for parent, subcats in pairs(PARENT_CATEGORIES) do

@@ -26,7 +26,6 @@ local GeneralLoader = require("Utils/DataExtractors/GeneralLoader")
 local TeleportLocations = require("Features/Teleports/TeleportLocations")
 
 local WelcomeWindow = require("View/Welcome")
-
 local Utils
 local Weapon
 local SelfFeature
@@ -58,7 +57,6 @@ local function TryLoadModules()
         local ok = true
 
         Utils = require("Utils")
-
         SelfFeature = require("Features/Self")
         SelfTick = require("Features/Self/Tick")
         Weapon = require("Features/Weapons/Tick")
@@ -66,7 +64,6 @@ local function TryLoadModules()
         AutoTeleport = require("Features/Teleports/AutoTeleport")
         WorldWeather = require("Features/World/WorldWeather")
         WorldTime = require("Features/World/WorldTime")
-
         MainMenu = require("View/MainMenu")
 
         -- this is a very cancer statement but I guess it works?
@@ -141,7 +138,9 @@ Event.RegisterInit(function()
     Event.Observe("PlayerPuppet", "OnAction", function(_, action)
         if modulesLoaded then
             SelfFeature.NoClip.HandleMouseLook(action)
-            Utils.Weapon.HandleInputAction(action)
+            if Utils then
+                Utils.Weapon.HandleInputAction(action)
+            end
         end
     end)
 
@@ -174,7 +173,7 @@ Event.RegisterInit(function()
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)
     end)
 
-        Logger.Log("Initialized")
+    Logger.Log("Initialized")
 
 end)
 
@@ -197,14 +196,12 @@ Event.RegisterUpdate(function(dt)
     Vehicle.VehicleNitro.Tick(dt)
     WorldWeather.Update()
     WorldTime.Update(dt)
-
 end)
 
 Event.RegisterDraw(function()
 
     Notification.Render()
     WelcomeWindow.Render()
-
     if not modulesLoaded then return end
     MainMenu.Initialize()
     Handler.Update()
@@ -224,9 +221,11 @@ Event.RegisterDraw(function()
 end)
 
 Event.RegisterShutdown(function()
-    Restrictions.Clear()
-    BindingsConfig.Save()
-    OptionConfig.Save()
-    Utils.StatModifiers.Cleanup()
+    if modulesLoaded then
+        Restrictions.Clear()
+        BindingsConfig.Save()
+        OptionConfig.Save()
+        Utils.StatModifiers.Cleanup()
+    end
     Logger.Log("Clean up")
 end)

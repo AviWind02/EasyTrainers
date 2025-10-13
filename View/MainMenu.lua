@@ -8,8 +8,8 @@ local OptionRow = require("UI/Elements/OptionRow")
 local Header  = require("UI/Frame/Header")
 local Footer  = require("UI/Frame/Footer")
 
-local SelfFeature = require("Features/Self")
-local WeaponsFeature = require("Features/Weapons")
+local SelfConfig = require("Features/Self/SelfConfig")
+local WeaponsConfig = require("Features/Weapons/WeaponConfig")
 
 local TelportConfig = require("Features/Teleports/TeleportConfig")
 local VehicleConfig = require("Features/Vehicles/VehicleConfig")
@@ -23,11 +23,13 @@ local TeleportView = require("View/Teleports/TeleportView")
 local WeaponView = require("View/Weapons/WeaponMenuView")
 local VehicleMenuView = require("View/Vehicle/VehicleMenuView")
 local SettingsView = require("View/Settings/SettingsView")
-local TestForceView = require("View/TestForceView")
 local WeatherView = require("View/World/WeatherView")
 local TimeView = require("View/World/TimeView")
 local GameFactsView = require("View/World/FactView")
 local ItemBrowserView = require("View/Items/ItemBrowserView")
+
+local TestForceView = require("View/TestForceView")
+local Speedometer = require("View/Speedometer")
 
 local testToggle = { value = false }
 local testInt = { value = 5, min = 0, max = 10 }
@@ -79,7 +81,7 @@ local World = require("Utils/World")
 
 local function MainMenuView()
     UI.Buttons.Submenu(L("mainmenu.self.label"), SelfView, tip("mainmenu.self.tip"))
-     if UI.Buttons.Submenu(L("mainmenu.development.label"), SelfDevelopmentView, tip("mainmenu.development.tip")) then UI.Notification.Warning(L("mainmenu.development.warning")) end
+    if UI.Buttons.Submenu(L("mainmenu.development.label"), SelfDevelopmentView, tip("mainmenu.development.tip")) then UI.Notification.Warning(L("mainmenu.development.warning")) end
     UI.Buttons.Submenu(L("mainmenu.modifiers.label"), SelfModifiersView, tip("mainmenu.modifiers.tip")) 
     UI.Buttons.Submenu(L("mainmenu.teleport.label"), TeleportView, tip("mainmenu.teleport.tip"))
     UI.Buttons.Submenu(L("mainmenu.weapon.label"), WeaponView, tip("mainmenu.weapon.tip"))
@@ -90,7 +92,6 @@ local function MainMenuView()
     UI.Buttons.Submenu("Item Menu", ItemBrowserView, "Browse items by category, consumables, crafting, and buffs. (Item Browser is very alpha)")
     UI.Buttons.Submenu("Settings Menu", SettingsView, "Configure EasyTrainer options, navigation, and userinterface.")
 
-
 end
 
 local MainMenu = { title = "EasyTrainer", view = MainMenuView }
@@ -100,17 +101,16 @@ function MainMenu.Initialize()
  if not initialized then
         UI.SubmenuManager.OpenSubmenu(MainMenu)
         ControlsConfig()
-        SelfFeature.ToggleRegistration()
-        WeaponsFeature.ToggleRegistration()
-        
+        SelfConfig()
+        WeaponsConfig()
         VehicleConfig()
         TelportConfig()
         WorldConfig()
-
         UI.Notification.Info("EasyTrainer initialized!")
         initialized = true
     end
 end
+local lastTime = os.clock()
 
 function MainMenu.Render(x, y, w, h)
     OptionBOUND.SetMenuBounds(x, y, w, h)

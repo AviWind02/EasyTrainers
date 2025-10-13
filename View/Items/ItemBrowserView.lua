@@ -8,7 +8,9 @@ local Inventory = require("Utils").Inventory
 local filters = {
     quality = { index = 2 }, -- Start at common so it doesn't lag too much
     tag = { index = 1 },
-    coreCW  = { value = false }
+    coreCW  = { value = false },
+    craftable = { value = false }
+
 }
 
 local categorizedCache = nil
@@ -70,6 +72,10 @@ local function PassesFilters(item, parent, qualities, tags)
         if not match then return false end
     end
 
+    if not filters.craftable.value and item.isCraftable then
+        return false
+    end
+
     return true
 end
 
@@ -86,6 +92,7 @@ local function ItemSubcategoryView(context)
 
     Buttons.StringCycler("Quality", filters.quality, qualities)
     Buttons.StringCycler("Tag", filters.tag, tags)
+    Buttons.Toggle("Show Craftable Items", filters.craftable, "Toggle to show items marked as craftable")
 
     Buttons.Break("", sub .. " (" .. tostring(#items) .. ")")
 

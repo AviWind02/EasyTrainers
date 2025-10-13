@@ -1,5 +1,5 @@
 local SelfFeatures = {}
--- Moved into another folder so the initial file looks nice
+
 SelfFeatures.GodMode = require("Features/Self/Abilities/GodMode")
 SelfFeatures.Invisibility = require("Features/Self/Abilities/Invisibility")
 SelfFeatures.SuperSpeed = require("Features/Self/Abilities/SuperSpeed")
@@ -17,7 +17,4 @@ SelfFeatures.StatModifiers = {
 	Stealth = require("Features/Self/StatModifiers/Stealth"),
 	Utility = require("Features/Self/StatModifiers/Utility")
 }
-
-SelfFeatures.ToggleRegistration = require("Features/Self/SelfConfig")
-
 return SelfFeatures
