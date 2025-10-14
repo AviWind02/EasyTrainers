@@ -1,0 +1,6 @@
+[2025-10-13 20:47:00 UTC-04:00] [11252] ...ber_engine_tweaks\mods\EasyTrainer\Controls\Bindings.lua:107: attempt to index upvalue 'BindingsConfig' (a nil value)
+stack traceback:
+	...ber_engine_tweaks\mods\EasyTrainer\Controls\Bindings.lua:107: in function 'ResetAll'
+	...e_tweaks\mods\EasyTrainer\View\Settings\SettingsView.lua:38: in function 'view'
+	...s\cyber_engine_tweaks\mods\EasyTrainer\View\MainMenu.lua:129: in function 'Render'
+	init.lua:216: in function <init.lua:201>

@@ -44,7 +44,15 @@
     "translations": {
       "label": "Translations",
       "tip": "Change the language used for the trainer's interface."
-    }
+    },
+     "items": {
+    "label": "Item Menu(Alpha)",
+    "tip": "Browse items by category, consumables, crafting, and buffs. (Item Browser is very alpha)"
+  },
+  "settingsmenu": {
+    "label": "Settings Menu",
+    "tip": "Configure EasyTrainer options, navigation, and user interface."
+  }
   },
   "self": {
     "title": "Self Menu",
