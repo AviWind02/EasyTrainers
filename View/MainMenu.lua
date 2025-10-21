@@ -1,27 +1,27 @@
-local UI                  = require("UI")
-local Logger              = require("Core/Logger")
+local UI = require("UI")
+local Logger = require("Core/Logger")
 
-local OptionBOUND         = require("UI/Options/Option")
-local DrawHelpers         = require("UI/Core/DrawHelpers")
-local OptionRow           = require("UI/Elements/OptionRow")
+local OptionBOUND = require("UI/Options/Option")
+local DrawHelpers = require("UI/Core/DrawHelpers")
+local OptionRow = require("UI/Elements/OptionRow")
 
-local Header              = require("UI/Frame/Header")
-local Footer              = require("UI/Frame/Footer")
+local Header = require("UI/Frame/Header")
+local Footer = require("UI/Frame/Footer")
 
-local SelfConfig          = require("Features/Self/SelfConfig")
-local WeaponsConfig       = require("Features/Weapons/WeaponConfig")
+local SelfConfig = require("Features/Self/SelfConfig")
+local WeaponsConfig = require("Features/Weapons/WeaponConfig")
 
-local TelportConfig       = require("Features/Teleports/TeleportConfig")
-local VehicleConfig       = require("Features/Vehicles/VehicleConfig")
-local WorldConfig         = require("Features/World/WorldConfig")
-local ControlsConfig      = require("Controls/ControlsConfig")
+local TelportConfig = require("Features/Teleports/TeleportConfig")
+local VehicleConfig = require("Features/Vehicles/VehicleConfig")
+local WorldConfig = require("Features/World/WorldConfig")
+local ControlsConfig = require("Controls/ControlsConfig")
 
-local SelfView            = require("View/Self/SelfMenuView")
+local SelfView = require("View/Self/SelfMenuView")
 local SelfDevelopmentView = require("View/Self/SelfDevelopment")
-local SelfModifiersView   = require("View/Self/SelfModifierView")
-local TeleportView        = require("View/Teleports/TeleportView")
-local WeaponView          = require("View/Weapons/WeaponMenuView")
-local VehicleMenuView     = require("View/Vehicle/VehicleMenuView")
+local SelfModifiersView = require("View/Self/SelfModifierView")
+local TeleportView = require("View/Teleports/TeleportView")
+local WeaponView = require("View/Weapons/WeaponMenuView")
+local VehicleMenuView = require("View/Vehicle/VehicleMenuView")
 local SettingsView        = require("View/Settings/SettingsView")
 local WeatherView         = require("View/World/WeatherView")
 local TimeView            = require("View/World/TimeView")
@@ -78,7 +78,6 @@ end
 local testMenu = { title = "Test Menu", view = SecondaryView }
 local World = require("Utils/World")
 
-local speedDLCFound = nil;
 
 local function MainMenuView()
     UI.Buttons.Submenu(L("mainmenu.self.label"), SelfView, tip("mainmenu.self.tip"))
@@ -94,13 +93,9 @@ local function MainMenuView()
     UI.Buttons.Submenu(L("mainmenu.weather.label"), WeatherView, tip("mainmenu.weather.tip"))
     UI.Buttons.Submenu(L("mainmenu.items.label"), ItemBrowserView, tip("mainmenu.items.tip"))
     UI.Buttons.Submenu(L("mainmenu.settingsmenu.label"), SettingsView, tip("mainmenu.settingsmenu.tip"))
-    if speedDLCFound ~= nil then
-        UI.Buttons.Break("Add-ons")
-        UI.Buttons.Submenu("Speedometer", Speedometer.SubMenu, "Configure the Easy Speedometer HUD")
-    end
 end
 
-local MainMenu = { title = "EasyTrainer", view = MainMenuView }
+local MainMenu = { title = "EasyTrainer", view = MainMenuView, speedDLCFound = speedDLCFound }
 local initialized = false
 
 function MainMenu.Initialize()
@@ -112,7 +107,6 @@ function MainMenu.Initialize()
         VehicleConfig()
         TelportConfig()
         WorldConfig()
-        speedDLCFound = Speedometer.GetETSpeedo()
         UI.Notification.Info("EasyTrainer initialized!")
         initialized = true
     end

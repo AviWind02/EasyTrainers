@@ -9,7 +9,7 @@ function Teleport.TeleportEntity(entity, pos, facing)
     local rot = facing or entity:GetWorldOrientation():ToEulerAngles()
 
     Game.GetTeleportationFacility():Teleport(entity, targetPos, rot)
-    Logger.Log(string.format("Teleport: moved entity to (%.2f, %.2f, %.2f)", targetPos.x, targetPos.y, targetPos.z))
+    --Logger.Log(string.format("Teleport: moved entity to (%.2f, %.2f, %.2f)", targetPos.x, targetPos.y, targetPos.z))
     return true
 end
 

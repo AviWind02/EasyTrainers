@@ -1,5 +1,7 @@
 local Logger = require("Core/Logger")
 local Weapon = require("Utils/Weapon")
+local Notification = require("UI").Notification
+local Session = require("Core/cp2077-cet-kit/GameSession")
 
 local StatModifiers = {}
 
@@ -24,17 +26,29 @@ local function getTargetID(entry)
     return nil
 end
 
+local function setActiveByMod(mod, isActive)
+    for _, entry in pairs(cache) do
+        if entry.mod == mod then
+            entry.active = isActive
+            return
+        end
+    end
+end
+
 local function applyToTarget(mod, targetID, remove)
     local stats = Game.GetStatsSystem()
     if not stats or not targetID then return false end
 
     if remove then
         stats:RemoveModifier(targetID, mod)
+        setActiveByMod(mod, false)
     else
         stats:AddModifier(targetID, mod)
+        setActiveByMod(mod, true)
     end
     return true
 end
+
 
 function StatModifiers.Create(statType, modifierType, value, target)
     local mod = RPGManager.CreateStatModifier(statType, modifierType, value)
@@ -51,10 +65,11 @@ function StatModifiers.Create(statType, modifierType, value, target)
 
     cache[id] = {
         mod = mod,
-        target = target or "player", 
+        target = target or "player",
         statType = statType,
         modifierType = modifierType,
-        value = value
+        value = value,
+        active = true 
     }
 
     Logger.Log(string.format(
@@ -123,18 +138,69 @@ function StatModifiers.Remove(id)
     return false
 end
 
--- Reapply all cached modifiers (after save reload)
-function StatModifiers.ReapplyAll()
+
+function StatModifiers.RemoveAllButKeepCache()
+    local count = 0
     for id, entry in pairs(cache) do
         local targetID = getTargetID(entry)
         if targetID then
-            applyToTarget(entry.mod, targetID, false)
+            applyToTarget(entry.mod, targetID, true)
+            count = count + 1
         end
     end
-    Logger.Log("StatModifiers: reapplied all cached modifiers ("..tostring(#cache).." entries)")
+    Logger.Log(string.format("StatModifiers: removed and cached %d modifiers", count))
 end
 
 
+function StatModifiers.ReapplyAll()
+    local ss = Game.GetStatsSystem()
+    local player = Game.GetPlayer()
+    if not ss or not player then return end
+
+    local pid = player:GetEntityID()
+    local count = 0
+
+    for id, entry in pairs(cache) do
+        if entry.active then
+            local targetID = getTargetID(entry)
+            if targetID then
+                applyToTarget(entry.mod, targetID, false)
+                count = count + 1
+            end
+        end
+    end
+
+    Logger.Log(string.format("StatModifiers: Reapplied %d active modifiers", count))
+    Notification.Success(string.format("Reapplied %d modifiers", count), 3)
+end
+
+
+
+local lastLoadedState = false
+local firstLoad = true
+
+function StatModifiers.UpdateSessionWatcher()
+    local loaded = Session.IsLoaded()
+
+    -- only need to check when the game is loading or unloaded
+    if not loaded and lastLoadedState then
+        Logger.Log("Game unloading: Clearing modifiers")
+        StatModifiers.RemoveAllButKeepCache()
+        lastLoadedState = false
+        return
+    end
+
+    if loaded and not lastLoadedState then
+        if firstLoad then
+            Logger.Log("Initial game load detected: skipping modifier reapply")
+            firstLoad = false
+        else
+            Logger.Log("Game fully loaded: Reapplying modifiers")
+            StatModifiers.ReapplyAll()
+        end
+        lastLoadedState = true
+    end
+end
 
 local appliedStates = setmetatable({}, { __mode = "k" })
 

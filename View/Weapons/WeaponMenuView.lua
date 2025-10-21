@@ -33,14 +33,14 @@ local function AmmoItemsView()
     end)
     Buttons.Break("", L("weaponsmenu.ammoitems.addammo"))
     for _, ammo in ipairs(ammoTypes) do
-        Buttons.Int(ammo.label, addAmmoValues[ammo.id], tip("weaponsmenu.ammoitems.addtip", { ammo = ammo.label }), function()
+        Buttons.IntClick(ammo.label, addAmmoValues[ammo.id], tip("weaponsmenu.ammoitems.addtip", { ammo = ammo.label }), function()
             Inventory.GiveItem(ammo.id, addAmmoValues[ammo.id].value)
         end)
     end
 
     Buttons.Break("", L("weaponsmenu.ammoitems.removeammo"))
     for _, ammo in ipairs(ammoTypes) do
-        Buttons.Int(ammo.label, removeAmmoValues[ammo.id], tip("weaponsmenu.ammoitems.removetip", { ammo = ammo.label }), function()
+        Buttons.IntClick(ammo.label, removeAmmoValues[ammo.id], tip("weaponsmenu.ammoitems.removetip", { ammo = ammo.label }), function()
             Inventory.RemoveItem(ammo.id, removeAmmoValues[ammo.id].value)
         end)
     end

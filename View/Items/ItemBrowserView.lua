@@ -98,7 +98,7 @@ local function ItemSubcategoryView(context)
 
     for _, it in ipairs(items) do
         if PassesFilters(it, parent, qualities, tags) then
-            Buttons.Option(it.name, "Give item: " .. it.id, function()
+            Buttons.Option(it.id, "Give item: " .. it.name, function()
                 Inventory.GiveItem(it.id, 1)
             end)
         end
@@ -133,7 +133,7 @@ local function SearchView()
         for _, subitems in pairs(items) do
             for _, it in ipairs(subitems) do
                 if it.id and it.id:lower():find(term, 1, true) then
-                    Buttons.Option(it.name, "Give item: " .. it.id, function()
+                    Buttons.Option(it.id, "Give item: " .. it.name, function()
                         Logger.Log("Give item: " .. it.id)
                     end)
                 end

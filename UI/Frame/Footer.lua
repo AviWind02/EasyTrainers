@@ -34,7 +34,7 @@ function Footer.Draw(menuX, menuY, menuW, menuH)
     DrawHelpers.Line(x, y, x + w, y, UI.Colors.Border, 1.0)
 
     local leftX  = x + 10
-    local rightX = x + w - ImGui.CalcTextSize(rightText) - 10
+    local rightX = x + w - ImGui.CalcTextSize(rightText) + 15
     local textY  = y + (h - footer.FontSize) * 0.5
 
     DrawHelpers.Text(leftX,  textY, footer.TextColor, leftText,  footer.FontSize)

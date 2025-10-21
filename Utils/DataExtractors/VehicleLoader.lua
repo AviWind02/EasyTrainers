@@ -209,12 +209,12 @@ function VehicleLoader:LoadAll()
         local idLower = id:lower()
 
         -- Only include vanilla if Vehicle.v_ these should be all drivable vehicles - should skip out AVs and such
-        local isVanilla = id:match("^Vehicle%.v_")
+        local isVanilla = (id:match("^Vehicle%.v_") or id:match("^Vehicle%.vcd")) -- Modded too
 
         -- Detect modded by logo suffix - I'm noticing a lot of modded vehicles don't have .v_ but do have _logo
         local manufacturer = GetManufacturer(rec)
         local displayName = utils.GetDisplayName(rec)
-        local isModded = manufacturer:lower():match("logo[_%s]*$") or idLower:match("logo[_%s]*$")
+        local isModded = manufacturer:lower():match("logo[_%s]*$") or idLower:match("logo[_%s]*$") or id:match("^Vehicle%.vcd")
         if not isVanilla and not isModded then
             goto continue
         end

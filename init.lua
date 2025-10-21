@@ -35,7 +35,6 @@ local Vehicle
 local AutoTeleport
 local WorldWeather
 local WorldTime
-
 registerForEvent("onOverlayOpen", function() State.overlayOpen = true end)
 registerForEvent("onOverlayClose", function() State.overlayOpen = false end)
 
@@ -46,10 +45,19 @@ local function GetStartingState()
     GameState = Session.GetState()
 end
 
+local lastState = {
+    isLoaded = nil,
+    isPaused = nil,
+    isDead = nil,
+}
+
 local function UpdateSessionStateTick()
-    GameState.isLoaded = Session.IsLoaded()
-    GameState.isPaused = Session.IsPaused()
-    GameState.isDead = Session.IsDead()
+    local loaded = Session.IsLoaded()
+    local paused = Session.IsPaused()
+    local dead = Session.IsDead()
+    GameState.isLoaded = loaded
+    GameState.isPaused = paused
+    GameState.isDead = dead
 end
 
 local function TryLoadModules()
@@ -65,7 +73,6 @@ local function TryLoadModules()
         WorldWeather = require("Features/World/WorldWeather")
         WorldTime = require("Features/World/WorldTime")
         MainMenu = require("View/MainMenu")
-
         -- this is a very cancer statement but I guess it works?
         if not (Utils and SelfFeature and AutoTeleport and WorldWeather and WorldTime and SelfTick and Weapon and Vehicle and MainMenu) then
             ok = false
@@ -181,7 +188,8 @@ Event.RegisterUpdate(function(dt)
     Cron.Update(dt)
 
     if not modulesLoaded then return end
-
+    Utils.StatModifiers.UpdateSessionWatcher()
+    
     if not GameState.isLoaded or GameState.isPaused or GameState.isDead then
         return
     end

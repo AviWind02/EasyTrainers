@@ -43,8 +43,21 @@ function Speedometer.GetETSpeedo()
 
     return ETSpeedo
 end
+
+local function SerializeConfig()
+    return {
+        enabled = Speedometer.enabled.value,
+        size = Speedometer.size.value,
+        needleScale = Speedometer.needleScale.value,
+        useKmh = Speedometer.useKmh.value,
+        dialColor = Speedometer.dialColor,
+        needleColor = Speedometer.needleColor,
+        shadowColor = Speedometer.shadowColor
+    }
+end
+
 local function SaveConfig()
-    local ok, err = JsonHelper.Write(configPath, Speedometer)
+    local ok, err = JsonHelper.Write(configPath, SerializeConfig())
     if ok then
         Notification.Success("Speedometer settings saved", 3)
     else
@@ -58,11 +71,15 @@ local function LoadConfig()
         Notification.Warning("No saved config found", 3)
         return
     end
-    for k, v in pairs(data) do
-        if Speedometer[k] then
-            Speedometer[k] = v
-        end
-    end
+
+    if data.enabled ~= nil then Speedometer.enabled.value = data.enabled end
+    if data.size ~= nil then Speedometer.size.value = data.size end
+    if data.needleScale ~= nil then Speedometer.needleScale.value = data.needleScale end
+    if data.useKmh ~= nil then Speedometer.useKmh.value = data.useKmh end
+    if data.dialColor then Speedometer.dialColor = data.dialColor end
+    if data.needleColor then Speedometer.needleColor = data.needleColor end
+    if data.shadowColor then Speedometer.shadowColor = data.shadowColor end
+
     Notification.Success("Speedometer settings loaded", 3)
 end
 
