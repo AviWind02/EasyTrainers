@@ -28,6 +28,7 @@ local function collectData()
         StringCycler = UI.StringCycler,
         ColorPicker = UI.ColorPicker,
         TextInput = UI.TextInput,
+        SnowBackground = UI.Background,
     }
 end
 

@@ -24,6 +24,7 @@ local function FrameViewFunction()
     end
     Buttons.ColorHex(L("settings.frame.header.background.label"), UI.Header, "BackgroundColor", tip("settings.frame.header.background.tip"))
     Buttons.ColorHex(L("settings.frame.header.textcolor.label"), UI.Header, "TextColor", tip("settings.frame.header.textcolor.tip"))
+    Buttons.ColorHex(L("settings.frame.header.border.label"), UI.Header, "BorderColor", tip("settings.frame.header.border.tip"))
 
     Buttons.Break(L("settings.frame.footer.label"))
     if Buttons.Int(L("settings.frame.footer.height.label"), footerHeightRef, tip("settings.frame.footer.height.tip")) then
@@ -34,6 +35,8 @@ local function FrameViewFunction()
     end
     Buttons.ColorHex(L("settings.frame.footer.background.label"), UI.Footer, "BackgroundColor", tip("settings.frame.footer.background.tip"))
     Buttons.ColorHex(L("settings.frame.footer.textcolor.label"), UI.Footer, "TextColor", tip("settings.frame.footer.textcolor.tip"))
+    Buttons.ColorHex(L("settings.frame.footer.border.label"), UI.Footer, "BorderColor", tip("settings.frame.footer.border.tip"))
+
 end
 
 local FrameView = { title = "settings.frame.title", view = FrameViewFunction }

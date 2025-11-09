@@ -15,7 +15,6 @@ function Vehicle.GetMountedVehicleSafe()
     return nil
 end
 
-
 function Vehicle.UnmountPlayer(force)
     local player = Game.GetPlayer()
     local vehicle = Vehicle.GetMountedVehicleSafe()

@@ -67,6 +67,8 @@ UI.Header = {
     Height = 40.0,
     BackgroundColor = UI.Colors.Background,
     TextColor = UI.Colors.Text,
+    BorderColor = UI.Colors.Border,
+
     FontSize = 18.0,
     FontSizeSub = 16.0,
     Text = "EasyTrainer"
@@ -76,8 +78,9 @@ UI.Footer = {
     Height = 25.0,
     BackgroundColor = UI.Colors.Background,
     TextColor = UI.ColPalette.MediumGray,
+    BorderColor = UI.Colors.Border,
     FontSize = 12.0,
-    Text = "Beta 1.2.3 | By Avi"
+    Text = "Beta 1.2.4 | By Avi"
 }
 
 
@@ -211,5 +214,45 @@ UI.TextInput = {
     TextColor = UI.Colors.Text,
     ButtonSpacing = 10.0,
 }
+
+UI.Background = {
+
+    Enabled = true,
+    Reset = false,
+    SnowPileEnabled = true,
+    SnowEnabled = true,
+    Gravity = 30,
+    WindSway = 0.6,
+    SpawnRate = 0.025,
+    SpawnTimer = 0,
+    PileLayers = 2,
+    PileColumns = 80,
+    SnowDensity = 1,
+    SnowColor = 0xFFEFEFFF,
+    PeeColor = 0xFF88FFFF,
+    SnowBrightness = 1.0,
+    SnowTwinkle = true,
+    SnowflakeSizeMin = 1.2,
+    SnowflakeSize = 2.0,
+    SnowmanEnabled = true,
+    YellowSnowChance = 0.000001,
+    PeeSnowEnabled = false,
+
+    LightSpacing = 20,
+    LightsEnabled = true,
+    LightRadius = 5,
+    LightSpeed = 2.5,
+    LightBrightness = 1.0,
+    TwinkleEnabled = true,
+    LightColors = {
+        0xFFFF4040,
+        0xFF40FF40,
+        0xFFFFFF40,
+        0xFF40C0FF,
+        0xFFFF80FF,
+    },
+}
+
+
 
 return UI

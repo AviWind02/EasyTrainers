@@ -11,7 +11,7 @@ local InputControlsView = require("View/Settings/InputControlsView")
 local NavigationView = require("View/Settings/NavigationView")
 local TextInputView = require("View/Settings/TextInputView")
 local TranslationsView = require("View/Settings/TranslationsView")
-
+local SnowBackground = require("View/Settings/SnowBackgroundView")
 local ResetUI = require("UI/Core/ResetUI")
 
 local UIConfig = require("Config/UIConfig")
@@ -23,6 +23,7 @@ local function SettingsViewFunction()
     Buttons.Submenu(L("settingsmenu.translations.label"), TranslationsView, tip("settingsmenu.translations.tip"))
 
     Buttons.Break(L("settingsmenu.ui.label"))
+    Buttons.Submenu(L("settingsmenu.snowbackground.label"), SnowBackground, tip("settingsmenu.snowbackground.tip"))
     Buttons.Submenu(L("settingsmenu.layout.label"), LayoutView, tip("settingsmenu.layout.tip"))
     Buttons.Submenu(L("settingsmenu.frame.label"), FrameView, tip("settingsmenu.frame.tip"))
     Buttons.Submenu(L("settingsmenu.notifications.label"), NotificationView, tip("settingsmenu.notifications.tip"))
@@ -31,7 +32,6 @@ local function SettingsViewFunction()
     Buttons.Submenu(L("settingsmenu.selectioncontrols.label"), SelectionControlsView, tip("settingsmenu.selectioncontrols.tip"))
     Buttons.Submenu(L("settingsmenu.inputcontrols.label"), InputControlsView, tip("settingsmenu.inputcontrols.tip"))
     Buttons.Submenu(L("settingsmenu.textinput.label"), TextInputView, tip("settingsmenu.textinput.tip"))
-
     if Buttons.Option(L("settingsmenu.resetall.label"), tip("settingsmenu.resetall.tip")) then
         ResetUI.ResetAll()
         NavigationConfig.Reset()

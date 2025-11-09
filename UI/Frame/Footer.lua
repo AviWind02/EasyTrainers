@@ -31,7 +31,7 @@ function Footer.Draw(menuX, menuY, menuW, menuH)
 
     local rightText = string.format("Opt: %d | Pg: %d/%d", current, currentPage, totalPages)
 
-    DrawHelpers.Line(x, y, x + w, y, UI.Colors.Border, 1.0)
+    DrawHelpers.Line(x, y, x + w, y, footer.BorderColor, 1.0)
 
     local leftX  = x + 10
     local rightX = x + w - ImGui.CalcTextSize(rightText) + 15

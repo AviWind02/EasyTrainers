@@ -183,7 +183,6 @@ Event.RegisterInit(function()
     Logger.Log("Initialized")
 
 end)
-
 Event.RegisterUpdate(function(dt)
     Cron.Update(dt)
 

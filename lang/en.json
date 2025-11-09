@@ -1549,6 +1549,10 @@
     "label": "Text Input",
     "tip": "Adjust text input dialog settings."
   },
+  "snowbackground": {
+    "label": "Snow Background",
+    "tip": "Adjust snow and festive light settings."
+  },
   "resetall": {
     "label": "Reset All Settings",
     "tip": "Reset all UI and navigation (bindings) settings to defaults."
@@ -1558,7 +1562,50 @@
     "tip": "Save all UI and navigation settings to configuration files."
   }
 },
-  "settings": {
+"settings": {
+    "snow": {
+    "title": "Snow Background",
+    "reset": { "label": "Reset Snow Settings", "tip": "Reset all snow and light settings to defaults." },
+    "section": {
+      "general": "General",
+      "lights": "Festive Lights"
+    },
+
+    "enabled": { "label": "Enable Snowfall", "tip": "Toggle the falling snow effect." },
+    "snowman": { "label": "Show Snowman", "tip": "Enable or disable the snowman appearance." },
+    "pile": { "label": "Show Snow Pile", "tip": "Toggles the accumulation of snow at the bottom." },
+
+    "physics": { "label": "Physics" },
+    "gravity": { "label": "Gravity", "tip": "Controls how fast the snowflakes fall." },
+    "wind": { "label": "Wind Sway", "tip": "Controls side sway for falling flakes." },
+    "spawnrate": { "label": "Spawn Rate", "tip": "How frequently new flakes spawn." },
+    "pilelayers": { "label": "Pile Layers", "tip": "Controls snow accumulation depth." },
+    "pilecolumns": { "label": "Pile Columns", "tip": "Resolution of snow accumulation detail." },
+    "density": { "label": "Snow Density", "tip": "Number of flakes spawned per tick." },
+
+    "appearance": { "label": "Appearance" },
+    "brightness": { "label": "Snow Brightness", "tip": "Adjusts the overall snow glow." },
+    "color": { "label": "Snow Color", "tip": "Select the tint of the snowflakes." },
+    "peecolor": { "label": "Yellow Snow Color", "tip": "Defines the tint for yellow snowflakes." },
+    "peeenabled": { "label": "Enable Yellow Snow", "tip": "Toggles yellow-tinted flakes for extra realism." },
+    "peechance": { "label": "Yellow Snow Chance", "tip": "Probability for yellow flakes to spawn." },
+    "twinkle": { "label": "Flake Twinkle", "tip": "Enable subtle flickering on flakes." },
+    "flakemin": { "label": "Min Flake Size", "tip": "Smallest size for snowflakes." },
+    "flakevar": { "label": "Flake Size Variation", "tip": "Variance in snowflake size." },
+
+    "lights": {
+      "enabled": { "label": "Enable Lights", "tip": "Toggle festive header lights." },
+      "spacing": { "label": "Spacing", "tip": "Pixel distance between each light bulb." },
+      "radius": { "label": "Bulb Radius", "tip": "Size of each light bulb." },
+      "speed": { "label": "Light Speed", "tip": "Controls the animation speed of light twinkle." },
+      "brightness": { "label": "Light Brightness", "tip": "Overall light intensity." },
+      "twinkle": { "label": "Light Twinkle", "tip": "Enable flickering light bulbs." },
+      "colors": {
+        "label": "Light Colors",
+        "index": { "label": "Color", "tip": "Adjust each bulb color." }
+      }
+    }
+  },
   "frame": {
     "title": "Header & Footer",
     "reset": {
@@ -1586,7 +1633,9 @@
       "textcolor": {
         "label": "Text Color",
         "tip": "Text color used for the header title."
-      }
+      },
+            "border": { "label": "Header Border Color", "tip": "Defines the border color for the header." }
+
     },
     "footer": {
       "label": "Footer",
@@ -1605,7 +1654,9 @@
       "textcolor": {
         "label": "Text Color",
         "tip": "Text color used for footer text."
-      }
+      },
+            "border": { "label": "Footer Border Color", "tip": "Defines the border color for the footer." }
+
     }
   },
   "infobox": {

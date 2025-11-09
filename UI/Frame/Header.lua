@@ -23,7 +23,7 @@ function Header.Draw(menuX, menuY, menuW)
     local breadcrumbY = y + h - header.FontSizeSub - 5
     DrawHelpers.Text(breadcrumbX, breadcrumbY, header.TextColor, breadcrumb, header.FontSizeSub)
 
-    DrawHelpers.Line(x, y + h - 1, x + w, y + h - 1, UI.Colors.Border, 1.0)
+    DrawHelpers.Line(x, y + h - 1, x + w, y + h - 1, header.BorderColor, 1.0)
 end
 
 return Header

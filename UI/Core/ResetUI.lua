@@ -144,6 +144,43 @@ function ResetUI.ResetTextInput()
     UI.TextInput.ButtonSpacing = 10.0
 end
 
+function ResetUI.ResetSnowBackground()
+    UI.Background.Enabled = true
+    UI.Background.Reset = false
+    UI.Background.SnowPileEnabled = true
+    UI.Background.SnowEnabled = true
+    UI.Background.Gravity = 30
+    UI.Background.WindSway = 0.6
+    UI.Background.SpawnRate = 0.025
+    UI.Background.SpawnTimer = 0
+    UI.Background.PileLayers = 2
+    UI.Background.PileColumns = 80
+    UI.Background.SnowDensity = 1
+    UI.Background.SnowColor = 0xFFEFEFFF
+    UI.Background.PeeColor = 0xFF88FFFF
+    UI.Background.SnowBrightness = 1.0
+    UI.Background.SnowTwinkle = true
+    UI.Background.SnowflakeSizeMin = 1.2
+    UI.Background.SnowflakeSize = 2.0
+    UI.Background.SnowmanEnabled = true
+    UI.Background.YellowSnowChance = 0.000001
+    UI.Background.PeeSnowEnabled = false
+
+    UI.Background.LightSpacing = 20
+    UI.Background.LightsEnabled = true
+    UI.Background.LightRadius = 5
+    UI.Background.LightSpeed = 2.5
+    UI.Background.LightBrightness = 1.0
+    UI.Background.TwinkleEnabled = true
+    UI.Background.LightColors = {
+        0xFFFF4040,
+        0xFF40FF40,
+        0xFFFFFF40,
+        0xFF40C0FF,
+        0xFFFF80FF,
+    }
+end
+
 function ResetUI.ResetAll()
     ResetUI.ResetLayout()
     ResetUI.ResetFrame()
@@ -153,6 +190,7 @@ function ResetUI.ResetAll()
     ResetUI.ResetSelectionControls()
     ResetUI.ResetInputControls()
     ResetUI.ResetTextInput() 
+    ResetUI.ResetSnowBackground()
 end
 
 return ResetUI

@@ -7,6 +7,7 @@ local OptionRow = require("UI/Elements/OptionRow")
 
 local Header = require("UI/Frame/Header")
 local Footer = require("UI/Frame/Footer")
+local SnowBackground = require("UI/Frame/SnowBackground")
 
 local SelfConfig = require("Features/Self/SelfConfig")
 local WeaponsConfig = require("Features/Weapons/WeaponConfig")
@@ -27,9 +28,6 @@ local WeatherView         = require("View/World/WeatherView")
 local TimeView            = require("View/World/TimeView")
 local GameFactsView       = require("View/World/FactView")
 local ItemBrowserView     = require("View/Items/ItemBrowserView")
-
-local TestForceView       = require("View/TestForceView")
-local Speedometer         = require("View/Speedometer")
 
 local testToggle          = { value = false }
 local testInt             = { value = 5, min = 0, max = 10 }
@@ -74,10 +72,7 @@ local function SecondaryView()
     UI.Buttons.Radio("Target", selectedTarget, targetOptions, "Choose target")
     UI.Buttons.StringCycler("Cycle String", stringRef, { "One", "Two", "Three" }, "Cycle through strings")
 end
-
 local testMenu = { title = "Test Menu", view = SecondaryView }
-local World = require("Utils/World")
-
 
 local function MainMenuView()
     UI.Buttons.Submenu(L("mainmenu.self.label"), SelfView, tip("mainmenu.self.tip"))
@@ -95,7 +90,7 @@ local function MainMenuView()
     UI.Buttons.Submenu(L("mainmenu.settingsmenu.label"), SettingsView, tip("mainmenu.settingsmenu.tip"))
 end
 
-local MainMenu = { title = "EasyTrainer", view = MainMenuView, speedDLCFound = speedDLCFound }
+local MainMenu = { title = "EasyTrainer", view = MainMenuView }
 local initialized = false
 
 function MainMenu.Initialize()
@@ -107,20 +102,26 @@ function MainMenu.Initialize()
         VehicleConfig()
         TelportConfig()
         WorldConfig()
+        SnowBackground.Init()
         UI.Notification.Info("EasyTrainer initialized!")
         initialized = true
     end
 end
 
-local lastTime = os.clock()
 
 function MainMenu.Render(x, y, w, h)
     OptionBOUND.SetMenuBounds(x, y, w, h)
     OptionRow.Begin()
+    
     DrawHelpers.RectFilled(x, y, w, h, UI.Style.Colors.Background, UI.Style.Layout.FrameRounding)
+    
+    SnowBackground.Render(x, y, w, h)
+    
     Header.Draw(x, y, w)
+    
     local view = UI.SubmenuManager.GetCurrentView()
     if view then view() end
+    
     Footer.Draw(x, y, w, h)
 end
 

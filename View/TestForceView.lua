@@ -18,8 +18,8 @@ local function ApplyForceToEntity(entity, forwardVal, rightVal, upVal, scaleByMa
     if not entity then return end
 
     local forward = entity:GetWorldForward()
-    local right   = entity:GetWorldRight()
-    local up      = entity:GetWorldUp()
+    local right = entity:GetWorldRight()
+    local up = entity:GetWorldUp()
 
     local impulse = Vector3.new(
         forward.x * forwardVal + right.x * rightVal + up.x * upVal,
