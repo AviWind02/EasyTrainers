@@ -80,7 +80,7 @@ UI.Footer = {
     TextColor = UI.ColPalette.MediumGray,
     BorderColor = UI.Colors.Border,
     FontSize = 12.0,
-    Text = "Beta 1.2.4 | By Avi"
+    Text = "Beta 1.2.6 | By Avi"
 }
 
 
