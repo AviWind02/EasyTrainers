@@ -216,42 +216,44 @@ UI.TextInput = {
 }
 
 UI.Background = {
+    MasterEnabled = true,
 
-    Enabled = true,
-    Reset = false,
-    SnowPileEnabled = true,
     SnowEnabled = true,
+    SnowPileEnabled = true,
+    SnowmanEnabled = true,
+
     Gravity = 30,
     WindSway = 0.6,
     SpawnRate = 0.025,
-    SpawnTimer = 0,
+    SnowDensity = 1,
     PileLayers = 2,
     PileColumns = 80,
-    SnowDensity = 1,
+
     SnowColor = 0xFFEFEFFF,
     PeeColor = 0xFF88FFFF,
+
     SnowBrightness = 1.0,
     SnowTwinkle = true,
     SnowflakeSizeMin = 1.2,
     SnowflakeSize = 2.0,
-    SnowmanEnabled = true,
+
     YellowSnowChance = 0.000001,
     PeeSnowEnabled = false,
 
-    LightSpacing = 20,
     LightsEnabled = true,
+    LightSpacing = 20,
     LightRadius = 5,
     LightSpeed = 2.5,
     LightBrightness = 1.0,
     TwinkleEnabled = true,
-    LightColors = {
-        0xFFFF4040,
-        0xFF40FF40,
-        0xFFFFFF40,
-        0xFF40C0FF,
-        0xFFFF80FF,
-    },
+    
+    LightColor1 = 0xFFFF4040,
+    LightColor2 = 0xFF40FF40,
+    LightColor3 = 0xFFFFFF40,
+    LightColor4 = 0xFF40C0FF,
+    LightColor5 = 0xFFFF80FF,
 }
+
 
 
 

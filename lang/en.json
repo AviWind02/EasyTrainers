@@ -10,7 +10,6 @@
       "label": "Development Menu",
       "tip": "Adjust attributes and toggle individual perks.",
       "warning": "Adjusting attributes, perks, or proficiencies may alter progression.(It's recommended to save first)"
-
     },
     "modifiers": {
       "label": "Modifiers Menu",
@@ -45,14 +44,14 @@
       "label": "Translations",
       "tip": "Change the language used for the trainer's interface."
     },
-     "items": {
-    "label": "Item Menu(Alpha)",
-    "tip": "Browse items by category, consumables, crafting, and buffs. (Item Browser is very alpha)"
-  },
-  "settingsmenu": {
-    "label": "Settings Menu",
-    "tip": "Configure EasyTrainer options, navigation, and user interface."
-  }
+    "items": {
+      "label": "Item Menu(Alpha)",
+      "tip": "Browse items by category, consumables, crafting, and buffs. (Item Browser is very alpha)"
+    },
+    "settingsmenu": {
+      "label": "Settings Menu",
+      "tip": "Configure EasyTrainer options, navigation, and user interface."
+    }
   },
   "self": {
     "title": "Self Menu",
@@ -285,8 +284,8 @@
       "unequipped": "Not Acquired",
       "locked": "Locked",
       "notifications": {
-      "equipped": "{perk} acquired",
-      "unequipped": "{perk} removed",
+        "equipped": "{perk} acquired",
+        "unequipped": "{perk} removed",
         "equip_failed": "Failed to equip {perk}",
         "unequip_failed": "Failed to unequip {perk}",
         "level_increased": "{perk} Level {level}",
@@ -294,7 +293,6 @@
         "reset": "{perk} reset ({count} levels removed)",
         "reset_failed": "Failed to reset {perk}",
         "requirement_failed": "Cannot acquire {perk}: requires {requirements}"
-
       }
     },
     "eddies": {
@@ -1003,7 +1001,7 @@
       "label": "N/A",
       "tip": "No value set for this fact."
     },
-        "romanceflags": {
+    "romanceflags": {
       "judy_romanceable": {
         "name": "Judy Romanceable",
         "desc": "Enables Judy as a romance option."
@@ -1448,7 +1446,7 @@
       "label": "Show Creator Filter",
       "tip": "Toggle the creator filter dropdown (filter teleports by creator)."
     },
-        "customteleportview": {
+    "customteleportview": {
       "title": "Custom Teleport",
       "name": {
         "label": "Name",
@@ -1505,784 +1503,860 @@
     }
   },
   "settingsmenu": {
-  "title": "Settings",
-  "navigation": {
-    "label": "Navigation Controls",
-    "tip": "Adjust navigation bindings and speed."
-  },
-  "translations": {
-    "label": "Translations",
-    "tip": "Change the current language and manage translation files."
-  },
-  "ui": {
-    "label": "UI Settings"
-  },
-  "layout": {
-    "label": "Layout & Option Row",
-    "tip": "Adjust layout and option row settings."
-  },
-  "frame": {
-    "label": "Header & Footer",
-    "tip": "Adjust header and footer settings."
-  },
-  "notifications": {
-    "label": "Notifications",
-    "tip": "Customize notification settings."
-  },
-  "infobox": {
-    "label": "Info Box",
-    "tip": "Adjust info box settings."
-  },
-  "simplecontrols": {
-    "label": "Simple Buttons",
-    "tip": "Configure break row, dropdown, and string cycler controls."
-  },
-  "selectioncontrols": {
-    "label": "Selection Buttons",
-    "tip": "Configure toggle and radio buttons."
-  },
-  "inputcontrols": {
-    "label": "Input Buttons",
-    "tip": "Configure numeric and color picker controls."
-  },
-  "textinput": {
-    "label": "Text Input",
-    "tip": "Adjust text input dialog settings."
-  },
-  "snowbackground": {
-    "label": "Snow Background",
-    "tip": "Adjust snow and festive light settings."
-  },
-  "resetall": {
-    "label": "Reset All Settings",
-    "tip": "Reset all UI and navigation (bindings) settings to defaults."
-  },
-  "saveall": {
-    "label": "Save All Settings",
-    "tip": "Save all UI and navigation settings to configuration files."
-  }
-},
-"settings": {
-    "snow": {
-    "title": "Snow Background",
-    "reset": { "label": "Reset Snow Settings", "tip": "Reset all snow and light settings to defaults." },
-    "section": {
-      "general": "General",
-      "lights": "Festive Lights"
+    "title": "Settings",
+    "navigation": {
+      "label": "Navigation Controls",
+      "tip": "Adjust navigation bindings and speed."
     },
-
-    "enabled": { "label": "Enable Snowfall", "tip": "Toggle the falling snow effect." },
-    "snowman": { "label": "Show Snowman", "tip": "Enable or disable the snowman appearance." },
-    "pile": { "label": "Show Snow Pile", "tip": "Toggles the accumulation of snow at the bottom." },
-
-    "physics": { "label": "Physics" },
-    "gravity": { "label": "Gravity", "tip": "Controls how fast the snowflakes fall." },
-    "wind": { "label": "Wind Sway", "tip": "Controls side sway for falling flakes." },
-    "spawnrate": { "label": "Spawn Rate", "tip": "How frequently new flakes spawn." },
-    "pilelayers": { "label": "Pile Layers", "tip": "Controls snow accumulation depth." },
-    "pilecolumns": { "label": "Pile Columns", "tip": "Resolution of snow accumulation detail." },
-    "density": { "label": "Snow Density", "tip": "Number of flakes spawned per tick." },
-
-    "appearance": { "label": "Appearance" },
-    "brightness": { "label": "Snow Brightness", "tip": "Adjusts the overall snow glow." },
-    "color": { "label": "Snow Color", "tip": "Select the tint of the snowflakes." },
-    "peecolor": { "label": "Yellow Snow Color", "tip": "Defines the tint for yellow snowflakes." },
-    "peeenabled": { "label": "Enable Yellow Snow", "tip": "Toggles yellow-tinted flakes for extra realism." },
-    "peechance": { "label": "Yellow Snow Chance", "tip": "Probability for yellow flakes to spawn." },
-    "twinkle": { "label": "Flake Twinkle", "tip": "Enable subtle flickering on flakes." },
-    "flakemin": { "label": "Min Flake Size", "tip": "Smallest size for snowflakes." },
-    "flakevar": { "label": "Flake Size Variation", "tip": "Variance in snowflake size." },
-
-    "lights": {
-      "enabled": { "label": "Enable Lights", "tip": "Toggle festive header lights." },
-      "spacing": { "label": "Spacing", "tip": "Pixel distance between each light bulb." },
-      "radius": { "label": "Bulb Radius", "tip": "Size of each light bulb." },
-      "speed": { "label": "Light Speed", "tip": "Controls the animation speed of light twinkle." },
-      "brightness": { "label": "Light Brightness", "tip": "Overall light intensity." },
-      "twinkle": { "label": "Light Twinkle", "tip": "Enable flickering light bulbs." },
-      "colors": {
-        "label": "Light Colors",
-        "index": { "label": "Color", "tip": "Adjust each bulb color." }
-      }
-    }
-  },
-  "frame": {
-    "title": "Header & Footer",
-    "reset": {
-      "label": "Reset Frame",
-      "tip": "Restore all frame defaults to their original values."
+    "translations": {
+      "label": "Translations",
+      "tip": "Change the current language and manage translation files."
     },
-    "header": {
-      "label": "Header",
-      "height": {
-        "label": "Height",
-        "tip": "Vertical size of the header bar."
-      },
-      "fontsize": {
-        "label": "Font Size",
-        "tip": "Font size for the main header title."
-      },
-      "fontsizesub": {
-        "label": "Subtitle Font Size",
-        "tip": "Font size for secondary header text."
-      },
-      "background": {
-        "label": "Background",
-        "tip": "Background fill color of the header bar."
-      },
-      "textcolor": {
-        "label": "Text Color",
-        "tip": "Text color used for the header title."
-      },
-            "border": { "label": "Header Border Color", "tip": "Defines the border color for the header." }
-
+    "ui": {
+      "label": "UI Settings"
     },
-    "footer": {
-      "label": "Footer",
-      "height": {
-        "label": "Height",
-        "tip": "Vertical size of the footer bar."
-      },
-      "fontsize": {
-        "label": "Font Size",
-        "tip": "Font size for footer text."
-      },
-      "background": {
-        "label": "Background",
-        "tip": "Background fill color of the footer bar."
-      },
-      "textcolor": {
-        "label": "Text Color",
-        "tip": "Text color used for footer text."
-      },
-            "border": { "label": "Footer Border Color", "tip": "Defines the border color for the footer." }
-
-    }
-  },
-  "infobox": {
-    "title": "Info Box",
-    "label": "Info Box",
-    "reset": {
-      "label": "Reset Info Box",
-      "tip": "Restore Info Box defaults to their original values."
+    "layout": {
+      "label": "Layout & Option Row",
+      "tip": "Adjust layout and option row settings."
     },
-    "padding": {
-      "label": "Padding",
-      "tip": "Inner padding of the info box."
+    "frame": {
+      "label": "Header & Footer",
+      "tip": "Adjust header and footer settings."
     },
-    "spacing": {
-      "label": "Spacing",
-      "tip": "Distance from menu to info box."
+    "notifications": {
+      "label": "Notifications",
+      "tip": "Customize notification settings."
     },
-    "rounding": {
-      "label": "Rounding",
-      "tip": "Corner rounding of the info box."
+    "infobox": {
+      "label": "Info Box",
+      "tip": "Adjust info box settings."
     },
-    "cps": {
-      "label": "Characters Per Second",
-      "tip": "Speed of animated text reveal."
+    "simplecontrols": {
+      "label": "Simple Buttons",
+      "tip": "Configure break row, dropdown, and string cycler controls."
     },
-    "rotate": {
-      "label": "Rotate Seconds",
-      "tip": "Fallback rotation time for cycling text."
+    "selectioncontrols": {
+      "label": "Selection Buttons",
+      "tip": "Configure toggle and radio buttons."
     },
-    "textcolor": {
-      "label": "Text Color",
-      "tip": "Info box text color."
-    },
-    "background": {
-      "label": "Background",
-      "tip": "Info box background fill."
-    },
-    "border": {
-      "label": "Border",
-      "tip": "Info box border color."
-    }
-  },
     "inputcontrols": {
-    "title": "Input Controls",
-    "reset": {
-      "label": "Reset Input Controls",
-      "tip": "Restore all input control layout defaults."
+      "label": "Input Buttons",
+      "tip": "Configure numeric and color picker controls."
     },
-    "numeric": {
-      "label": "Numeric",
-      "togglesize": {
-        "label": "Toggle Size",
-        "tip": "Size of the numeric toggle button."
-      },
-      "togglespacing": {
-        "label": "Toggle Spacing",
-        "tip": "Spacing between numeric toggle and box."
-      },
-      "boxframepadding": {
-        "label": "Box Frame Padding",
-        "tip": "Frame padding inside numeric box."
-      },
-      "boxtextpadding": {
-        "label": "Box Text Padding",
-        "tip": "Text padding inside numeric box."
-      },
-      "decimals": {
-        "label": "Decimals",
-        "tip": "Number of decimal places shown for floats."
-      },
-      "defaultintstep": {
-        "label": "Default Int Step",
-        "tip": "Step value for integer inputs."
-      },
-      "defaultfloatstep": {
-        "label": "Default Float Step",
-        "tip": "Step value for float inputs."
-      },
-      "framebg": {
-        "label": "Frame Background",
-        "tip": "Background fill of numeric box."
-      },
-      "textcolor": {
-        "label": "Text Color",
-        "tip": "Text color inside numeric box."
-      },
-      "disabledcolor": {
-        "label": "Disabled Color",
-        "tip": "Text color when input is disabled."
-      }
+    "textinput": {
+      "label": "Text Input",
+      "tip": "Adjust text input dialog settings."
     },
-    "numericexample": {
-      "label": "Numeric Example",
-      "example": {
-        "label": "Example Numeric",
-        "tip": "Preview of numeric input."
-      }
+    "snowbackground": {
+      "label": "Snow Background",
+      "tip": "Adjust snow and festive light settings."
     },
-    "colorpicker": {
-      "label": "Color Picker",
-      "channelboxsize": {
-        "label": "Channel Box Size",
-        "tip": "Size of RGBA channel boxes."
-      },
-      "channelpadding": {
-        "label": "Channel Padding",
-        "tip": "Spacing between RGBA channel boxes."
-      },
-      "previewboxsize": {
-        "label": "Preview Box Size",
-        "tip": "Size of the preview color box."
-      },
-      "rowspacing": {
-        "label": "Row Spacing",
-        "tip": "Spacing between color picker rows."
-      },
-      "rounding": {
-        "label": "Rounding",
-        "tip": "Corner rounding of color picker boxes."
-      },
-      "framebg": {
-        "label": "Frame Background",
-        "tip": "Background behind color channels."
-      },
-      "textcolor": {
-        "label": "Text Color",
-        "tip": "Text color for RGBA labels."
-      },
-      "bordercolor": {
-        "label": "Border Color",
-        "tip": "Outline color around channel boxes."
-      }
+    "resetall": {
+      "label": "Reset All Settings",
+      "tip": "Reset all UI and navigation (bindings) settings to defaults."
     },
-    "colorpickerexample": {
-      "label": "Color Picker Example",
-      "example": {
-        "label": "Example Color",
-        "tip": "Preview of color picker style."
-      }
+    "saveall": {
+      "label": "Save All Settings",
+      "tip": "Save all UI and navigation settings to configuration files."
     }
   },
-   "layout": {
-    "title": "Layout & Option Row",
-    "reset": {
-      "label": "Reset Layout",
-      "tip": "Restore layout and option row defaults to their original values."
-    },
-    "layout": {
-      "label": "Layout",
-      "optionheight": {
-        "label": "Option Height",
-        "tip": "Vertical height of each option row."
+  "settings": {
+    "snow": {
+      "title": "Snow Background",
+      "reset": {
+        "label": "Reset Snow Settings",
+        "tip": "Reset all snow and light settings to defaults."
       },
-      "frameheight": {
-        "label": "Frame Height",
-        "tip": "Height of widgets like sliders and numeric boxes."
+      "section": {
+        "general": "General",
+        "lights": "Festive Lights"
       },
-      "paddingx": {
-        "label": "Padding X",
-        "tip": "Horizontal padding inside the menu edges."
+      "master": {
+        "label": "Enable Background",
+        "tip": "Toggle the entire background system on or off."
       },
-      "paddingy": {
-        "label": "Padding Y",
-        "tip": "Vertical padding between rows and from menu edges."
+      "enabled": {
+        "label": "Enable Snowfall",
+        "tip": "Toggle the falling snow effect."
       },
-      "labeloffsetx": {
-        "label": "Label Offset X",
-        "tip": "Distance between row start and left-aligned labels."
+      "snowman": {
+        "label": "Show Snowman",
+        "tip": "Enable or disable the snowman appearance."
       },
-      "framerounding": {
-        "label": "Frame Rounding",
-        "tip": "Corner rounding radius for rows and widgets."
+      "pile": {
+        "label": "Show Snow Pile",
+        "tip": "Toggles the accumulation of snow at the bottom."
       },
-      "itemspacingx": {
-        "label": "Item Spacing X",
-        "tip": "Horizontal gap between inline items."
+
+      "physics": { "label": "Physics" },
+      "gravity": {
+        "label": "Gravity",
+        "tip": "Controls how fast the snowflakes fall."
       },
-      "itemspacingy": {
-        "label": "Item Spacing Y",
-        "tip": "Vertical gap between stacked items."
+      "wind": {
+        "label": "Wind Sway",
+        "tip": "Controls side sway for falling flakes."
       },
-      "framepaddingx": {
-        "label": "Frame Padding X",
-        "tip": "Inner horizontal padding for framed widgets."
+      "spawnrate": {
+        "label": "Spawn Rate",
+        "tip": "How frequently new flakes spawn."
       },
-      "framepaddingy": {
-        "label": "Frame Padding Y",
-        "tip": "Inner vertical padding for framed widgets."
+      "pilelayers": {
+        "label": "Pile Layers",
+        "tip": "Controls snow accumulation depth."
+      },
+      "pilecolumns": {
+        "label": "Pile Columns",
+        "tip": "Resolution of snow accumulation detail."
+      },
+      "density": {
+        "label": "Snow Density",
+        "tip": "Number of flakes spawned per tick."
+      },
+
+      "appearance": { "label": "Appearance" },
+      "brightness": {
+        "label": "Snow Brightness",
+        "tip": "Adjusts the overall snow glow."
+      },
+      "color": {
+        "label": "Snow Color",
+        "tip": "Select the tint of the snowflakes."
+      },
+      "peecolor": {
+        "label": "Yellow Snow Color",
+        "tip": "Defines the tint for yellow snowflakes."
+      },
+      "peeenabled": {
+        "label": "Enable Yellow Snow",
+        "tip": "Toggles yellow-tinted flakes for extra realism."
+      },
+      "peechance": {
+        "label": "Yellow Snow Chance",
+        "tip": "Probability for yellow flakes to spawn."
+      },
+      "twinkle": {
+        "label": "Flake Twinkle",
+        "tip": "Enable subtle flickering on flakes."
+      },
+      "flakemin": {
+        "label": "Min Flake Size",
+        "tip": "Smallest size for snowflakes."
+      },
+      "flakevar": {
+        "label": "Flake Size Variation",
+        "tip": "Variance in snowflake size."
+      },
+
+      "lights": {
+        "enabled": {
+          "label": "Enable Lights",
+          "tip": "Toggle festive header lights."
+        },
+        "spacing": {
+          "label": "Spacing",
+          "tip": "Pixel distance between each light bulb."
+        },
+        "radius": { "label": "Bulb Radius", "tip": "Size of each light bulb." },
+        "speed": {
+          "label": "Light Speed",
+          "tip": "Controls the animation speed of light twinkle."
+        },
+        "brightness": {
+          "label": "Light Brightness",
+          "tip": "Overall light intensity."
+        },
+        "twinkle": {
+          "label": "Light Twinkle",
+          "tip": "Enable flickering light bulbs."
+        },
+        "colors": {
+          "label": "Light Colors",
+          "index": { "label": "Color", "tip": "Adjust each bulb color." }
+        }
       }
     },
-    "optionrow": {
-      "label": "Option Row",
-      "smoothspeed": {
-        "label": "Smooth Speed",
-        "tip": "Speed of highlight bar smoothing when changing selection."
+    "frame": {
+      "title": "Header & Footer",
+      "reset": {
+        "label": "Reset Frame",
+        "tip": "Restore all frame defaults to their original values."
       },
-      "text": {
-        "label": "Text",
-        "tip": "Primary text color for option labels."
+      "header": {
+        "label": "Header",
+        "height": {
+          "label": "Height",
+          "tip": "Vertical size of the header bar."
+        },
+        "fontsize": {
+          "label": "Font Size",
+          "tip": "Font size for the main header title."
+        },
+        "fontsizesub": {
+          "label": "Subtitle Font Size",
+          "tip": "Font size for secondary header text."
+        },
+        "background": {
+          "label": "Background",
+          "tip": "Background fill color of the header bar."
+        },
+        "textcolor": {
+          "label": "Text Color",
+          "tip": "Text color used for the header title."
+        },
+        "border": {
+          "label": "Header Border Color",
+          "tip": "Defines the border color for the header."
+        }
       },
-      "mutedtext": {
-        "label": "Muted Text",
-        "tip": "Secondary text color (break rows, inactive entries)."
-      },
-      "hoverbg": {
-        "label": "Hover Background",
-        "tip": "Background color when hovering a row."
-      },
-      "highlightbg": {
-        "label": "Highlight Background",
-        "tip": "Background color of the selected row."
-      }
-    }
-  },
-   "navigation": {
-    "title": "Navigation Controls",
-    "save": {
-      "label": "Save Navigation",
-      "tip": "Save current navigation speed settings."
-    },
-    "load": {
-      "label": "Load Navigation",
-      "tip": "Load previously saved navigation speed settings."
-    },
-    "reset": {
-      "label": "Reset Navigation",
-      "tip": "Reset navigation speed settings to their default values."
-    },
-    "resetbindings": {
-      "label": "Reset All Bindings",
-      "tip": "Restore all key and controller bindings to defaults."
-    },
-    "bindings": {
-      "label": "Bindings",
-      "openmenu": {
-        "label": "Open Menu",
-        "tip": "Rebind the key used to open or close the menu."
-      },
-      "togglemouse": {
-        "label": "Toggle Mouse",
-        "tip": "Rebind the key used to toggle mouse control."
-      },
-      "up": {
-        "label": "Up Navigation",
-        "tip": "Rebind the key for navigating up."
-      },
-      "down": {
-        "label": "Down Navigation",
-        "tip": "Rebind the key for navigating down."
-      },
-      "left": {
-        "label": "Left Navigation",
-        "tip": "Rebind the key for navigating left."
-      },
-      "right": {
-        "label": "Right Navigation",
-        "tip": "Rebind the key for navigating right."
-      },
-      "select": {
-        "label": "Select",
-        "tip": "Rebind the key for selecting or confirming an option."
-      },
-      "back": {
-        "label": "Back",
-        "tip": "Rebind the key for going back or closing a menu."
-      },
-      "misc": {
-        "label": "Misc",
-        "tip": "Rebind the miscellaneous/extra function key."
+      "footer": {
+        "label": "Footer",
+        "height": {
+          "label": "Height",
+          "tip": "Vertical size of the footer bar."
+        },
+        "fontsize": {
+          "label": "Font Size",
+          "tip": "Font size for footer text."
+        },
+        "background": {
+          "label": "Background",
+          "tip": "Background fill color of the footer bar."
+        },
+        "textcolor": {
+          "label": "Text Color",
+          "tip": "Text color used for footer text."
+        },
+        "border": {
+          "label": "Footer Border Color",
+          "tip": "Defines the border color for the footer."
+        }
       }
     },
-    "speed": {
-      "label": "Navigation Speed",
-      "scrolldelay": {
-        "label": "Scroll Delay Base",
-        "tip": "Base delay (ms) between repeated inputs when holding a navigation key."
-      },
-      "scrollmindelay": {
-        "label": "Scroll Min Delay",
-        "tip": "Minimum delay (ms) once accelerated scrolling kicks in."
-      },
-      "accelthreshold": {
-        "label": "Acceleration Threshold",
-        "tip": "Time (ms) a key must be held before acceleration starts."
-      },
-      "accelstep": {
-        "label": "Acceleration Step",
-        "tip": "How much the delay is reduced per step while holding a key."
-      }
-    }
-  },
-   "notifications": {
-    "title": "Notifications",
-    "reset": {
-      "label": "Reset Notification",
-      "tip": "Restore notification settings to their default values."
-    },
-    "layout": {
-      "label": "Layout",
-      "width": {
-        "label": "Width",
-        "tip": "Width of the notification window."
+    "infobox": {
+      "title": "Info Box",
+      "label": "Info Box",
+      "reset": {
+        "label": "Reset Info Box",
+        "tip": "Restore Info Box defaults to their original values."
       },
       "padding": {
         "label": "Padding",
-        "tip": "Inner padding for notification text."
+        "tip": "Inner padding of the info box."
       },
       "spacing": {
         "label": "Spacing",
-        "tip": "Spacing between stacked notifications."
+        "tip": "Distance from menu to info box."
       },
       "rounding": {
         "label": "Rounding",
-        "tip": "Corner roundness of the notification box."
+        "tip": "Corner rounding of the info box."
       },
-      "slidedistance": {
-        "label": "Slide Distance",
-        "tip": "Distance notifications slide in/out."
+      "cps": {
+        "label": "Characters Per Second",
+        "tip": "Speed of animated text reveal."
       },
-      "animationduration": {
-        "label": "Animation Duration",
-        "tip": "Duration of slide animation."
-      }
-    },
-    "progress": {
-      "label": "Progress Bar",
-      "height": {
-        "label": "Height",
-        "tip": "Height of the progress bar."
+      "rotate": {
+        "label": "Rotate Seconds",
+        "tip": "Fallback rotation time for cycling text."
       },
-      "offsety": {
-        "label": "Offset Y",
-        "tip": "Vertical offset of the progress bar inside the notification."
-      }
-    },
-    "colors": {
-      "label": "Colors",
+      "textcolor": {
+        "label": "Text Color",
+        "tip": "Info box text color."
+      },
       "background": {
         "label": "Background",
-        "tip": "Background fill of notification box."
+        "tip": "Info box background fill."
       },
       "border": {
         "label": "Border",
-        "tip": "Notification border color."
+        "tip": "Info box border color."
+      }
+    },
+    "inputcontrols": {
+      "title": "Input Controls",
+      "reset": {
+        "label": "Reset Input Controls",
+        "tip": "Restore all input control layout defaults."
+      },
+      "numeric": {
+        "label": "Numeric",
+        "togglesize": {
+          "label": "Toggle Size",
+          "tip": "Size of the numeric toggle button."
+        },
+        "togglespacing": {
+          "label": "Toggle Spacing",
+          "tip": "Spacing between numeric toggle and box."
+        },
+        "boxframepadding": {
+          "label": "Box Frame Padding",
+          "tip": "Frame padding inside numeric box."
+        },
+        "boxtextpadding": {
+          "label": "Box Text Padding",
+          "tip": "Text padding inside numeric box."
+        },
+        "decimals": {
+          "label": "Decimals",
+          "tip": "Number of decimal places shown for floats."
+        },
+        "defaultintstep": {
+          "label": "Default Int Step",
+          "tip": "Step value for integer inputs."
+        },
+        "defaultfloatstep": {
+          "label": "Default Float Step",
+          "tip": "Step value for float inputs."
+        },
+        "framebg": {
+          "label": "Frame Background",
+          "tip": "Background fill of numeric box."
+        },
+        "textcolor": {
+          "label": "Text Color",
+          "tip": "Text color inside numeric box."
+        },
+        "disabledcolor": {
+          "label": "Disabled Color",
+          "tip": "Text color when input is disabled."
+        }
+      },
+      "numericexample": {
+        "label": "Numeric Example",
+        "example": {
+          "label": "Example Numeric",
+          "tip": "Preview of numeric input."
+        }
+      },
+      "colorpicker": {
+        "label": "Color Picker",
+        "channelboxsize": {
+          "label": "Channel Box Size",
+          "tip": "Size of RGBA channel boxes."
+        },
+        "channelpadding": {
+          "label": "Channel Padding",
+          "tip": "Spacing between RGBA channel boxes."
+        },
+        "previewboxsize": {
+          "label": "Preview Box Size",
+          "tip": "Size of the preview color box."
+        },
+        "rowspacing": {
+          "label": "Row Spacing",
+          "tip": "Spacing between color picker rows."
+        },
+        "rounding": {
+          "label": "Rounding",
+          "tip": "Corner rounding of color picker boxes."
+        },
+        "framebg": {
+          "label": "Frame Background",
+          "tip": "Background behind color channels."
+        },
+        "textcolor": {
+          "label": "Text Color",
+          "tip": "Text color for RGBA labels."
+        },
+        "bordercolor": {
+          "label": "Border Color",
+          "tip": "Outline color around channel boxes."
+        }
+      },
+      "colorpickerexample": {
+        "label": "Color Picker Example",
+        "example": {
+          "label": "Example Color",
+          "tip": "Preview of color picker style."
+        }
+      }
+    },
+    "layout": {
+      "title": "Layout & Option Row",
+      "reset": {
+        "label": "Reset Layout",
+        "tip": "Restore layout and option row defaults to their original values."
+      },
+      "layout": {
+        "label": "Layout",
+        "optionheight": {
+          "label": "Option Height",
+          "tip": "Vertical height of each option row."
+        },
+        "frameheight": {
+          "label": "Frame Height",
+          "tip": "Height of widgets like sliders and numeric boxes."
+        },
+        "paddingx": {
+          "label": "Padding X",
+          "tip": "Horizontal padding inside the menu edges."
+        },
+        "paddingy": {
+          "label": "Padding Y",
+          "tip": "Vertical padding between rows and from menu edges."
+        },
+        "labeloffsetx": {
+          "label": "Label Offset X",
+          "tip": "Distance between row start and left-aligned labels."
+        },
+        "framerounding": {
+          "label": "Frame Rounding",
+          "tip": "Corner rounding radius for rows and widgets."
+        },
+        "itemspacingx": {
+          "label": "Item Spacing X",
+          "tip": "Horizontal gap between inline items."
+        },
+        "itemspacingy": {
+          "label": "Item Spacing Y",
+          "tip": "Vertical gap between stacked items."
+        },
+        "framepaddingx": {
+          "label": "Frame Padding X",
+          "tip": "Inner horizontal padding for framed widgets."
+        },
+        "framepaddingy": {
+          "label": "Frame Padding Y",
+          "tip": "Inner vertical padding for framed widgets."
+        }
+      },
+      "optionrow": {
+        "label": "Option Row",
+        "smoothspeed": {
+          "label": "Smooth Speed",
+          "tip": "Speed of highlight bar smoothing when changing selection."
+        },
+        "text": {
+          "label": "Text",
+          "tip": "Primary text color for option labels."
+        },
+        "mutedtext": {
+          "label": "Muted Text",
+          "tip": "Secondary text color (break rows, inactive entries)."
+        },
+        "hoverbg": {
+          "label": "Hover Background",
+          "tip": "Background color when hovering a row."
+        },
+        "highlightbg": {
+          "label": "Highlight Background",
+          "tip": "Background color of the selected row."
+        }
+      }
+    },
+    "navigation": {
+      "title": "Navigation Controls",
+      "save": {
+        "label": "Save Navigation",
+        "tip": "Save current navigation speed settings."
+      },
+      "load": {
+        "label": "Load Navigation",
+        "tip": "Load previously saved navigation speed settings."
+      },
+      "reset": {
+        "label": "Reset Navigation",
+        "tip": "Reset navigation speed settings to their default values."
+      },
+      "resetbindings": {
+        "label": "Reset All Bindings",
+        "tip": "Restore all key and controller bindings to defaults."
+      },
+      "bindings": {
+        "label": "Bindings",
+        "openmenu": {
+          "label": "Open Menu",
+          "tip": "Rebind the key used to open or close the menu."
+        },
+        "togglemouse": {
+          "label": "Toggle Mouse",
+          "tip": "Rebind the key used to toggle mouse control."
+        },
+        "up": {
+          "label": "Up Navigation",
+          "tip": "Rebind the key for navigating up."
+        },
+        "down": {
+          "label": "Down Navigation",
+          "tip": "Rebind the key for navigating down."
+        },
+        "left": {
+          "label": "Left Navigation",
+          "tip": "Rebind the key for navigating left."
+        },
+        "right": {
+          "label": "Right Navigation",
+          "tip": "Rebind the key for navigating right."
+        },
+        "select": {
+          "label": "Select",
+          "tip": "Rebind the key for selecting or confirming an option."
+        },
+        "back": {
+          "label": "Back",
+          "tip": "Rebind the key for going back or closing a menu."
+        },
+        "misc": {
+          "label": "Misc",
+          "tip": "Rebind the miscellaneous/extra function key."
+        }
+      },
+      "speed": {
+        "label": "Navigation Speed",
+        "scrolldelay": {
+          "label": "Scroll Delay Base",
+          "tip": "Base delay (ms) between repeated inputs when holding a navigation key."
+        },
+        "scrollmindelay": {
+          "label": "Scroll Min Delay",
+          "tip": "Minimum delay (ms) once accelerated scrolling kicks in."
+        },
+        "accelthreshold": {
+          "label": "Acceleration Threshold",
+          "tip": "Time (ms) a key must be held before acceleration starts."
+        },
+        "accelstep": {
+          "label": "Acceleration Step",
+          "tip": "How much the delay is reduced per step while holding a key."
+        }
+      }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "reset": {
+        "label": "Reset Notification",
+        "tip": "Restore notification settings to their default values."
+      },
+      "layout": {
+        "label": "Layout",
+        "width": {
+          "label": "Width",
+          "tip": "Width of the notification window."
+        },
+        "padding": {
+          "label": "Padding",
+          "tip": "Inner padding for notification text."
+        },
+        "spacing": {
+          "label": "Spacing",
+          "tip": "Spacing between stacked notifications."
+        },
+        "rounding": {
+          "label": "Rounding",
+          "tip": "Corner roundness of the notification box."
+        },
+        "slidedistance": {
+          "label": "Slide Distance",
+          "tip": "Distance notifications slide in/out."
+        },
+        "animationduration": {
+          "label": "Animation Duration",
+          "tip": "Duration of slide animation."
+        }
       },
       "progress": {
-        "default": {
-          "label": "Progress Default",
-          "tip": "Progress bar default color."
+        "label": "Progress Bar",
+        "height": {
+          "label": "Height",
+          "tip": "Height of the progress bar."
         },
-        "info": {
-          "label": "Progress Info",
-          "tip": "Progress bar color for info type."
-        },
-        "success": {
-          "label": "Progress Success",
-          "tip": "Progress bar color for success type."
-        },
-        "warning": {
-          "label": "Progress Warning",
-          "tip": "Progress bar color for warning type."
-        },
-        "error": {
-          "label": "Progress Error",
-          "tip": "Progress bar color for error type."
+        "offsety": {
+          "label": "Offset Y",
+          "tip": "Vertical offset of the progress bar inside the notification."
         }
       },
-      "text": {
+      "colors": {
+        "label": "Colors",
+        "background": {
+          "label": "Background",
+          "tip": "Background fill of notification box."
+        },
+        "border": {
+          "label": "Border",
+          "tip": "Notification border color."
+        },
+        "progress": {
+          "default": {
+            "label": "Progress Default",
+            "tip": "Progress bar default color."
+          },
+          "info": {
+            "label": "Progress Info",
+            "tip": "Progress bar color for info type."
+          },
+          "success": {
+            "label": "Progress Success",
+            "tip": "Progress bar color for success type."
+          },
+          "warning": {
+            "label": "Progress Warning",
+            "tip": "Progress bar color for warning type."
+          },
+          "error": {
+            "label": "Progress Error",
+            "tip": "Progress bar color for error type."
+          }
+        },
+        "text": {
+          "info": {
+            "label": "Text Info",
+            "tip": "Text color for info notifications."
+          },
+          "success": {
+            "label": "Text Success",
+            "tip": "Text color for success notifications."
+          },
+          "warning": {
+            "label": "Text Warning",
+            "tip": "Text color for warning notifications."
+          },
+          "error": {
+            "label": "Text Error",
+            "tip": "Text color for error notifications."
+          }
+        }
+      },
+      "position": {
+        "label": "Position",
+        "dropdown": {
+          "label": "Notification Position",
+          "tip": "Position where notifications will appear."
+        }
+      },
+      "test": {
+        "label": "Test Notifications",
         "info": {
-          "label": "Text Info",
-          "tip": "Text color for info notifications."
+          "label": "Send Info",
+          "tip": "Show an info notification."
         },
         "success": {
-          "label": "Text Success",
-          "tip": "Text color for success notifications."
+          "label": "Send Success",
+          "tip": "Show a success notification."
         },
         "warning": {
-          "label": "Text Warning",
-          "tip": "Text color for warning notifications."
+          "label": "Send Warning",
+          "tip": "Show a warning notification."
         },
         "error": {
-          "label": "Text Error",
-          "tip": "Text color for error notifications."
+          "label": "Send Error",
+          "tip": "Show an error notification."
         }
       }
     },
-    "position": {
-      "label": "Position",
+    "selectioncontrols": {
+      "title": "Selection Controls",
+      "reset": {
+        "label": "Reset Selection Controls",
+        "tip": "Restore selection control settings to their default values."
+      },
+      "toggle": {
+        "label": "Toggle",
+        "size": {
+          "label": "Size",
+          "tip": "Overall size of the toggle box."
+        },
+        "rounding": {
+          "label": "Rounding",
+          "tip": "Corner roundness of the toggle box."
+        },
+        "inset": {
+          "label": "Inset",
+          "tip": "Inset for the toggle fill when ON."
+        },
+        "statepadding": {
+          "label": "State Padding",
+          "tip": "Padding inside the toggle state indicator."
+        },
+        "statespacing": {
+          "label": "State Spacing",
+          "tip": "Spacing between toggle and label."
+        },
+        "oncolor": {
+          "label": "On Color",
+          "tip": "Fill color when toggle is ON."
+        },
+        "offcolor": {
+          "label": "Off Color",
+          "tip": "Fill color when toggle is OFF."
+        },
+        "bordercolor": {
+          "label": "Border Color",
+          "tip": "Outline color of the toggle."
+        },
+        "framebg": {
+          "label": "Frame Background",
+          "tip": "Background behind the toggle box."
+        },
+        "textcolor": {
+          "label": "Text Color",
+          "tip": "Text color for toggle labels."
+        }
+      },
+      "toggleexample": {
+        "label": "Toggle Example",
+        "example": {
+          "label": "Example Toggle",
+          "tip": "Preview of toggle style."
+        }
+      },
+      "radio": {
+        "label": "Radio",
+        "radius": {
+          "label": "Radius",
+          "tip": "Radius of the radio circle."
+        },
+        "linethickness": {
+          "label": "Line Thickness",
+          "tip": "Thickness of the unselected circle line."
+        },
+        "segments": {
+          "label": "Segments",
+          "tip": "Circle smoothness (more segments = smoother)."
+        },
+        "selectedcolor": {
+          "label": "Selected Color",
+          "tip": "Fill color for selected radio buttons."
+        },
+        "unselectedcolor": {
+          "label": "Unselected Color",
+          "tip": "Outline color for unselected radios."
+        }
+      },
+      "radioexample": {
+        "label": "Radio Example",
+        "example": {
+          "label": "Example Radio",
+          "tip": "Preview of radio button style."
+        }
+      }
+    },
+    "simplecontrols": {
+      "title": "Simple Controls",
+      "reset": {
+        "label": "Reset Simple Controls",
+        "tip": "Restore simple control settings to their default values."
+      },
+      "breakrow": {
+        "label": "Break Row",
+        "text": {
+          "label": "Text Color",
+          "tip": "Color of break row labels."
+        },
+        "highlightbg": {
+          "label": "Highlight Background",
+          "tip": "Background highlight color of break rows."
+        }
+      },
       "dropdown": {
-        "label": "Notification Position",
-        "tip": "Position where notifications will appear."
+        "label": "Dropdown",
+        "framesperoption": {
+          "label": "Frames Per Option",
+          "tip": "How many frames to wait before revealing the next option."
+        },
+        "revealdelay": {
+          "label": "Reveal Frame Delay",
+          "tip": "Extra delay between option reveals in frames."
+        },
+        "textcolor": {
+          "label": "Text Color",
+          "tip": "Normal text color for dropdown entries."
+        },
+        "selectedcolor": {
+          "label": "Selected Color",
+          "tip": "Text color for the selected dropdown entry."
+        },
+        "rowprefix": {
+          "label": "Row Prefix",
+          "tip": "Prefix shown before each dropdown option."
+        }
+      },
+      "dropdownexample": {
+        "label": "Dropdown Example",
+        "example": {
+          "label": "Example Dropdown",
+          "tip": "Preview of dropdown style."
+        }
+      },
+      "stringcycler": {
+        "label": "String Cycler",
+        "framepadding": {
+          "label": "Frame Padding",
+          "tip": "Horizontal/vertical padding around the cycler box."
+        },
+        "textpadding": {
+          "label": "Text Padding",
+          "tip": "Padding between the cycler box edge and the text."
+        },
+        "boxrounding": {
+          "label": "Box Rounding",
+          "tip": "Corner rounding of the cycler box."
+        },
+        "framebg": {
+          "label": "Frame Background",
+          "tip": "Background fill of the cycler box."
+        },
+        "valuecolor": {
+          "label": "Value Color",
+          "tip": "Color of the selected cycler value."
+        }
+      },
+      "stringcyclerexample": {
+        "label": "String Cycler Example",
+        "example": {
+          "label": "Example Cycler",
+          "tip": "Preview of string cycler style."
+        }
       }
     },
-    "test": {
-      "label": "Test Notifications",
-      "info": {
-        "label": "Send Info",
-        "tip": "Show an info notification."
+    "textinput": {
+      "title": "Text Input",
+      "label": "Text Input",
+      "reset": {
+        "label": "Reset Text Input",
+        "tip": "Restore text input dialog settings to their default values."
       },
-      "success": {
-        "label": "Send Success",
-        "tip": "Show a success notification."
+      "width": {
+        "label": "Width",
+        "tip": "Window width of the text input dialog."
       },
-      "warning": {
-        "label": "Send Warning",
-        "tip": "Show a warning notification."
-      },
-      "error": {
-        "label": "Send Error",
-        "tip": "Show an error notification."
-      }
-    }
-  },
-   "selectioncontrols": {
-    "title": "Selection Controls",
-    "reset": {
-      "label": "Reset Selection Controls",
-      "tip": "Restore selection control settings to their default values."
-    },
-    "toggle": {
-      "label": "Toggle",
-      "size": {
-        "label": "Size",
-        "tip": "Overall size of the toggle box."
+      "height": {
+        "label": "Height",
+        "tip": "Window height of the text input dialog."
       },
       "rounding": {
         "label": "Rounding",
-        "tip": "Corner roundness of the toggle box."
+        "tip": "Corner rounding of the text input window."
       },
-      "inset": {
-        "label": "Inset",
-        "tip": "Inset for the toggle fill when ON."
+      "padding": {
+        "label": "Padding",
+        "tip": "Inner padding of the text input window."
       },
-      "statepadding": {
-        "label": "State Padding",
-        "tip": "Padding inside the toggle state indicator."
-      },
-      "statespacing": {
-        "label": "State Spacing",
-        "tip": "Spacing between toggle and label."
-      },
-      "oncolor": {
-        "label": "On Color",
-        "tip": "Fill color when toggle is ON."
-      },
-      "offcolor": {
-        "label": "Off Color",
-        "tip": "Fill color when toggle is OFF."
-      },
-      "bordercolor": {
-        "label": "Border Color",
-        "tip": "Outline color of the toggle."
-      },
-      "framebg": {
-        "label": "Frame Background",
-        "tip": "Background behind the toggle box."
+      "spacing": {
+        "label": "Button Spacing",
+        "tip": "Spacing between OK/Cancel buttons."
       },
       "textcolor": {
         "label": "Text Color",
-        "tip": "Text color for toggle labels."
-      }
-    },
-    "toggleexample": {
-      "label": "Toggle Example",
+        "tip": "Text color inside the text input window."
+      },
+      "background": {
+        "label": "Background",
+        "tip": "Background fill of the text input window."
+      },
+      "border": {
+        "label": "Border",
+        "tip": "Border color of the text input window."
+      },
       "example": {
-        "label": "Example Toggle",
-        "tip": "Preview of toggle style."
-      }
-    },
-    "radio": {
-      "label": "Radio",
-      "radius": {
-        "label": "Radius",
-        "tip": "Radius of the radio circle."
-      },
-      "linethickness": {
-        "label": "Line Thickness",
-        "tip": "Thickness of the unselected circle line."
-      },
-      "segments": {
-        "label": "Segments",
-        "tip": "Circle smoothness (more segments = smoother)."
-      },
-      "selectedcolor": {
-        "label": "Selected Color",
-        "tip": "Fill color for selected radio buttons."
-      },
-      "unselectedcolor": {
-        "label": "Unselected Color",
-        "tip": "Outline color for unselected radios."
-      }
-    },
-    "radioexample": {
-      "label": "Radio Example",
-      "example": {
-        "label": "Example Radio",
-        "tip": "Preview of radio button style."
+        "label": "Example",
+        "input": {
+          "label": "Sample Input",
+          "tip": "Click to edit example text."
+        }
       }
     }
   },
-    "simplecontrols": {
-    "title": "Simple Controls",
-    "reset": {
-      "label": "Reset Simple Controls",
-      "tip": "Restore simple control settings to their default values."
-    },
-    "breakrow": {
-      "label": "Break Row",
-      "text": {
-        "label": "Text Color",
-        "tip": "Color of break row labels."
-      },
-      "highlightbg": {
-        "label": "Highlight Background",
-        "tip": "Background highlight color of break rows."
-      }
-    },
-    "dropdown": {
-      "label": "Dropdown",
-      "framesperoption": {
-        "label": "Frames Per Option",
-        "tip": "How many frames to wait before revealing the next option."
-      },
-      "revealdelay": {
-        "label": "Reveal Frame Delay",
-        "tip": "Extra delay between option reveals in frames."
-      },
-      "textcolor": {
-        "label": "Text Color",
-        "tip": "Normal text color for dropdown entries."
-      },
-      "selectedcolor": {
-        "label": "Selected Color",
-        "tip": "Text color for the selected dropdown entry."
-      },
-      "rowprefix": {
-        "label": "Row Prefix",
-        "tip": "Prefix shown before each dropdown option."
-      }
-    },
-    "dropdownexample": {
-      "label": "Dropdown Example",
-      "example": {
-        "label": "Example Dropdown",
-        "tip": "Preview of dropdown style."
-      }
-    },
-    "stringcycler": {
-      "label": "String Cycler",
-      "framepadding": {
-        "label": "Frame Padding",
-        "tip": "Horizontal/vertical padding around the cycler box."
-      },
-      "textpadding": {
-        "label": "Text Padding",
-        "tip": "Padding between the cycler box edge and the text."
-      },
-      "boxrounding": {
-        "label": "Box Rounding",
-        "tip": "Corner rounding of the cycler box."
-      },
-      "framebg": {
-        "label": "Frame Background",
-        "tip": "Background fill of the cycler box."
-      },
-      "valuecolor": {
-        "label": "Value Color",
-        "tip": "Color of the selected cycler value."
-      }
-    },
-    "stringcyclerexample": {
-      "label": "String Cycler Example",
-      "example": {
-        "label": "Example Cycler",
-        "tip": "Preview of string cycler style."
-      }
-    }
-  },
-    "textinput": {
-    "title": "Text Input",
-    "label": "Text Input",
-    "reset": {
-      "label": "Reset Text Input",
-      "tip": "Restore text input dialog settings to their default values."
-    },
-    "width": {
-      "label": "Width",
-      "tip": "Window width of the text input dialog."
-    },
-    "height": {
-      "label": "Height",
-      "tip": "Window height of the text input dialog."
-    },
-    "rounding": {
-      "label": "Rounding",
-      "tip": "Corner rounding of the text input window."
-    },
-    "padding": {
-      "label": "Padding",
-      "tip": "Inner padding of the text input window."
-    },
-    "spacing": {
-      "label": "Button Spacing",
-      "tip": "Spacing between OK/Cancel buttons."
-    },
-    "textcolor": {
-      "label": "Text Color",
-      "tip": "Text color inside the text input window."
-    },
-    "background": {
-      "label": "Background",
-      "tip": "Background fill of the text input window."
-    },
-    "border": {
-      "label": "Border",
-      "tip": "Border color of the text input window."
-    },
-    "example": {
-      "label": "Example",
-      "input": {
-        "label": "Sample Input",
-        "tip": "Click to edit example text."
-      }
-    }
-  }
-},
   "languagemenu": {
     "label": "Select Language",
     "tip": "Choose your preferred UI language.",

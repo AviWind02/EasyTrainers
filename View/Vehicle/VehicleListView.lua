@@ -112,6 +112,32 @@ local function BuildFilters()
     table.sort(affiliations)
 end
 
+local function BuildVariantOptions(vehicle)
+    local opts = { vehicle.displayName }
+    for _, varId in ipairs(vehicle.variants or {}) do
+        local v = VehicleLoader:GetById(varId)
+        table.insert(opts, v and v.displayName or varId)
+    end
+    return opts
+end
+
+local function SpawnSelectedVariant(vehicle, idx)
+    local chosenId = (idx == 1) and vehicle.id or vehicle.variants[idx - 1]
+    VehiclePreview.SetActive(false)
+    VehicleSpawning.SpawnVehicle(
+        chosenId,
+        vehicleSpawnDis.value,
+        VehicleFeatures.VehicleListStates.mountOnSpawn.value,
+        VehicleFeatures.VehicleListStates.deleteLastVehicle.value
+    )
+end
+
+local function PreviewSelectedVariant(vehicle, idx)
+    local previewId = (idx == 1) and vehicle.id or vehicle.variants[idx - 1]
+    VehiclePreview.SetActive(VehicleFeatures.VehicleListStates.previewVehicle.value)
+    VehiclePreview.Spawn(previewId)
+end
+
 local function DrawVehicleRow(vehicle)
     local detailsTip = tip("vehiclelist.vehicledetails", {
         id = vehicle.id,
@@ -121,24 +147,65 @@ local function DrawVehicleRow(vehicle)
         year = vehicle.productionYear or L("vehiclelist.unknown"),
         description = vehicle.description or L("vehiclelist.none")
     })
-    if VehicleFeatures.VehicleListStates.enableVehicleSpawnerMode then
+
+    local variantCount = (vehicle.variants and #vehicle.variants or 0)
+    local hasVariants = variantCount > 0
+    local isSpawner = VehicleFeatures.VehicleListStates.enableVehicleSpawnerMode
+
+    if isSpawner and hasVariants then -- Shows variants that can be cycled in spawner mode
+        vehicle._variantRef = vehicle._variantRef or { index = 1 }
+        local opts = BuildVariantOptions(vehicle)
+
+        if Buttons.StringCyclerClick(vehicle.displayName, vehicle._variantRef, opts, detailsTip) then
+            SpawnSelectedVariant(vehicle, vehicle._variantRef.index)
+        end
+
+        if OptionRow.IsSelected() then
+            PreviewSelectedVariant(vehicle, vehicle._variantRef.index)
+        end
+
+        return
+    end
+
+    if isSpawner then
         Buttons.Option(vehicle.displayName, tip("vehiclelist.spawntip", { details = detailsTip }), function()
             VehiclePreview.SetActive(false)
-            VehicleSpawning.SpawnVehicle(vehicle.id, vehicleSpawnDis.value, VehicleFeatures.VehicleListStates.mountOnSpawn.value, 
-            VehicleFeatures.VehicleListStates.deleteLastVehicle.value)
+            VehicleSpawning.SpawnVehicle(
+                vehicle.id,
+                vehicleSpawnDis.value,
+                VehicleFeatures.VehicleListStates.mountOnSpawn.value,
+                VehicleFeatures.VehicleListStates.deleteLastVehicle.value
+            )
         end)
+
     else
         local state = { value = VehicleSystem.IsUnlocked(vehicle.id) }
-        Buttons.GhostToggle(vehicle.displayName, state, tip("vehiclelist.unlockedtip", { details = detailsTip }), function()
-            local current = VehicleSystem.IsUnlocked(vehicle.id)
-            VehicleSystem.SetPlayerVehicleState(vehicle.id, not current)
-        end)
+        Buttons.GhostToggle(vehicle.displayName, state, tip("vehiclelist.unlockedtip", { details = detailsTip }),
+            function()
+                VehicleSystem.SetPlayerVehicleState(vehicle.id, not VehicleSystem.IsUnlocked(vehicle.id))
+            end)
+
+        if vehicle.variants and #vehicle.variants > 0 then -- I need to create a string cycler toggle button for this NEXT UPDATE
+            for _, varId in ipairs(vehicle.variants) do
+                local varVeh = VehicleLoader:GetById(varId)
+
+                local label = varVeh and varVeh.displayName or varId
+                local vState = { value = VehicleSystem.IsUnlocked(varId) }
+
+                Buttons.GhostToggle(label, vState, L("vehiclelist.unlockedtip"), function()
+                    VehicleSystem.SetPlayerVehicleState(varId, not VehicleSystem.IsUnlocked(varId))
+                end)
+            end
+        end
     end
     if OptionRow.IsSelected() then
         VehiclePreview.SetActive(VehicleFeatures.VehicleListStates.previewVehicle.value)
         VehiclePreview.Spawn(vehicle.id)
     end
 end
+
+
+
 
 local function YearMatches(vehicleYearStr, selectedYear)
     if selectedYear == L("vehiclelist.year_all") or not vehicleYearStr then return true end
@@ -162,7 +229,10 @@ local function VehicleFilteredSubmenuView()
     local visibilityFilter = visibilityModes[selectedVisibility.index or 1]
 
     local vehicles = VehicleLoader:Filter(function(v)
-        if mode == L("vehiclelist.mode_player") and v.faction ~= "Player" then return false end
+        if mode == L("vehiclelist.mode_player") then
+            if v.isModded then return false end
+            if v.faction ~= "Player" then return false end
+        end
         if mode == L("vehiclelist.mode_category") and v.category ~= selectedValue then return false end
         if mode == L("vehiclelist.mode_manufacturer") and v.manufacturer ~= selectedValue then return false end
         if mode == L("vehiclelist.mode_affiliation") and v.faction ~= selectedValue then return false end

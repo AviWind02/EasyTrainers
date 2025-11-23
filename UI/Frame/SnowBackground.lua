@@ -7,34 +7,46 @@ local SnowBackground = {
     pileColor = {},
     lastTime = os.clock(),
     lastMenuPos = { x = 0, y = 0 },
+
+    spawnTimer = 0,
+
     snowman = { enabled = true, built = false, x = 0, y = 0 },
-    twinklePhase = 0
+    twinklePhase = 0,
+
+    resetRequested = false
 }
 
-function SnowBackground.Init()
-    local cfg = UI.Background
-    SnowBackground.flakes = {}
+local function initPiles(cfg)
     SnowBackground.pileHeight = {}
     SnowBackground.pileColor = {}
-    SnowBackground.lastTime = os.clock()
-    SnowBackground.lastMenuPos = { x = 0, y = 0 }
-    SnowBackground.snowman.enabled = cfg.SnowmanEnabled
-    SnowBackground.snowman.built = false
-
     for i = 1, cfg.PileColumns do
         SnowBackground.pileHeight[i] = math.random() * 3
         SnowBackground.pileColor[i] = cfg.SnowColor
     end
 end
 
+function SnowBackground.Init()
+    local cfg = UI.Background
+
+    SnowBackground.flakes = {}
+    SnowBackground.spawnTimer = 0
+    SnowBackground.lastTime = os.clock()
+    SnowBackground.lastMenuPos = { x = 0, y = 0 }
+
+    SnowBackground.snowman.enabled = cfg.SnowmanEnabled
+    SnowBackground.snowman.built = false
+
+    initPiles(cfg)
+end
+
 function SnowBackground.Reset()
-    UI.Background.Reset = false
+    SnowBackground.resetRequested = false
     SnowBackground.Init()
 end
 
 local function randomFlakeColor(cfg)
-    if cfg.PeeSnowEnabled and math.random() < (cfg.YellowSnowChance or 0) then
-        return cfg.PeeColor or 0xFFFFFF00
+    if cfg.PeeSnowEnabled and math.random() < cfg.YellowSnowChance then
+        return cfg.PeeColor
     end
     return cfg.SnowColor
 end
@@ -53,37 +65,37 @@ end
 local function updateSnow(dt, menuX, menuY, menuW, menuH, footerH)
     local cfg = UI.Background
     local flakes = SnowBackground.flakes
-    local pileHeight, pileColor = SnowBackground.pileHeight, SnowBackground.pileColor
+    local pileHeight = SnowBackground.pileHeight
+    local pileColor = SnowBackground.pileColor
 
     local lp = SnowBackground.lastMenuPos
     local dx, dy = menuX - lp.x, menuY - lp.y
     lp.x, lp.y = menuX, menuY
 
     if #pileHeight == 0 then
-        for i = 1, cfg.PileColumns do
-            pileHeight[i] = 0
-            pileColor[i] = cfg.SnowColor
-        end
+        initPiles(cfg)
     end
 
     if cfg.SnowEnabled then
-        cfg.SpawnTimer = cfg.SpawnTimer + dt
-        if cfg.SpawnTimer >= cfg.SpawnRate then
-            cfg.SpawnTimer = 0
+        SnowBackground.spawnTimer = SnowBackground.spawnTimer + dt
+        if SnowBackground.spawnTimer >= cfg.SpawnRate then
+            SnowBackground.spawnTimer = 0
             for _ = 1, cfg.SnowDensity do
                 flakes[#flakes + 1] = spawnFlake(menuX, menuW, cfg)
             end
         end
     end
 
-    local left, right = menuX + 5, menuX + menuW - 5
-    local bottom = menuY + menuH - (footerH or 30) - 3
+    local left = menuX + 5
+    local right = menuX + menuW - 5
+    local bottom = menuY + menuH - footerH - 3
     local maxHeight = cfg.PileLayers * 6.0
     local cw = (right - left) / cfg.PileColumns
 
     for i = #flakes, 1, -1 do
         local f = flakes[i]
-        f.x, f.y = f.x - dx, f.y - dy
+        f.x = f.x - dx
+        f.y = f.y - dy
         f.vy = f.vy + cfg.Gravity * dt * 0.25
         f.x = f.x + math.sin((os.clock() + f.phase) * cfg.WindSway) * 8 * dt
         f.y = f.y + f.vy * dt
@@ -101,8 +113,8 @@ local function updateSnow(dt, menuX, menuY, menuW, menuH, footerH)
                     if ni >= 1 and ni <= cfg.PileColumns then
                         local falloff = 1.0 - math.abs(n) * 0.25
                         pileHeight[ni] = math.min(maxHeight, pileHeight[ni] + f.r * falloff)
-                        if math.random() < (cfg.YellowSnowChance or 0) then
-                            pileColor[ni] = cfg.PeeColor or 0xFFFFFF00
+                        if math.random() < cfg.YellowSnowChance then
+                            pileColor[ni] = cfg.PeeColor
                         end
                     end
                 end
@@ -119,15 +131,15 @@ local function updateSnow(dt, menuX, menuY, menuW, menuH, footerH)
 
     local s = SnowBackground.snowman
     if cfg.SnowPileEnabled and s.enabled then
-        local avgHeight = 0
-        for _, h in ipairs(pileHeight) do avgHeight = avgHeight + h end
-        avgHeight = avgHeight / #pileHeight
+        local avgH = 0
+        for _, h in ipairs(pileHeight) do avgH = avgH + h end
+        avgH = avgH / #pileHeight
 
-        if not s.built and avgHeight >= maxHeight * 0.65 then
+        if not s.built and avgH >= maxHeight * 0.65 then
             s.built = true
             s.x = menuX + menuW * 0.5
-            s.y = bottom - avgHeight - 10
-        elseif s.built and avgHeight < maxHeight * 0.4 then
+            s.y = bottom - avgH - 10
+        elseif s.built and avgH < maxHeight * 0.4 then
             s.built = false
         end
     end
@@ -135,26 +147,52 @@ end
 
 local function drawLights(drawlist, x, y, w)
     local cfg = UI.Background
-    if not (cfg.Enabled and cfg.LightsEnabled) then return end
-    local spacing, radius = cfg.LightSpacing or 20, cfg.LightRadius
+    if not cfg.LightsEnabled then return end
+
+    local spacing = cfg.LightSpacing
+    local radius = cfg.LightRadius
     local count = math.floor(w / spacing)
-    local t = os.clock() * cfg.LightSpeed
+
     SnowBackground.twinklePhase = SnowBackground.twinklePhase + 0.02
+    local t = os.clock() * cfg.LightSpeed
+
+    local colors = {
+        cfg.LightColor1,
+        cfg.LightColor2,
+        cfg.LightColor3,
+        cfg.LightColor4,
+        cfg.LightColor5
+    }
 
     for i = 1, count do
         local cx = x + i * spacing
         local cy = y + 18 + math.sin(t * 1.5 + i * 0.8) * 4
-        local base = cfg.LightColors[(i % #cfg.LightColors) + 1]
-        local twinkle = cfg.TwinkleEnabled and (0.75 + 0.25 * math.sin(SnowBackground.twinklePhase * 2 + i * 0.6)) or 1
-        local a = math.floor((180 + 75 * twinkle) * cfg.LightBrightness)
-        ImGui.ImDrawListAddCircleFilled(drawlist, cx, cy, radius * (0.9 + twinkle * 0.2), a * 0x1000000 + (base % 0x1000000))
+
+        local base = colors[((i - 1) % #colors) + 1]
+
+        local tw = cfg.TwinkleEnabled
+            and (0.75 + 0.25 * math.sin(SnowBackground.twinklePhase * 2 + i * 0.6))
+            or 1
+
+        local a = math.floor((180 + 75 * tw) * cfg.LightBrightness)
+        ImGui.ImDrawListAddCircleFilled(
+            drawlist,
+            cx,
+            cy,
+            radius * (0.9 + tw * 0.2),
+            a * 0x1000000 + (base % 0x1000000)
+        )
     end
 end
 
+
 function SnowBackground.Render(menuX, menuY, menuW, menuH)
     local cfg = UI.Background
-    if not cfg.Enabled then return end
-    if cfg.Reset then SnowBackground.Reset() end
+    if not cfg.MasterEnabled then return end
+
+    if SnowBackground.resetRequested then
+        SnowBackground.Reset()
+    end
 
     local now = os.clock()
     local dt = now - SnowBackground.lastTime
@@ -163,24 +201,26 @@ function SnowBackground.Render(menuX, menuY, menuW, menuH)
     updateSnow(dt, menuX, menuY, menuW, menuH, UI.Footer.Height)
 
     local drawlist = ImGui.GetWindowDrawList()
-    local left, right = menuX + 5, menuX + menuW - 5
+    local left = menuX + 5
+    local right = menuX + menuW - 5
     local bottom = menuY + menuH - 30
     local cw = (right - left) / cfg.PileColumns
-    local nowClock = os.clock()
+    local clock = os.clock()
 
     if cfg.SnowPileEnabled then
         for i = 1, cfg.PileColumns - 1 do
-            local x1, x2 = left + (i - 0.5) * cw, left + (i + 0.5) * cw
+            local x1 = left + (i - 0.5) * cw
+            local x2 = left + (i + 0.5) * cw
             local h = SnowBackground.pileHeight[i]
-            local bump = math.sin(i * 0.35 + nowClock * 0.5) * 0.6
-            local color = (255 * 0x1000000) + (SnowBackground.pileColor[i] % 0x1000000)
+            local bump = math.sin(i * 0.35 + clock * 0.5) * 0.6
+            local color = 0xFF000000 + (SnowBackground.pileColor[i] % 0x1000000)
             ImGui.ImDrawListAddRectFilled(drawlist, x1, bottom - h - bump, x2, bottom, color)
         end
     end
 
     for _, f in ipairs(SnowBackground.flakes) do
-        local flicker = cfg.SnowTwinkle and (0.8 + 0.2 * math.sin(nowClock * 4 + f.x)) or 1
-        local a = math.floor(190 * flicker * (cfg.SnowBrightness or 1))
+        local flicker = cfg.SnowTwinkle and (0.8 + 0.2 * math.sin(clock * 4 + f.x)) or 1
+        local a = math.floor(190 * flicker * cfg.SnowBrightness)
         ImGui.ImDrawListAddCircleFilled(drawlist, f.x, f.y, f.r, a * 0x1000000 + (f.color % 0x1000000))
     end
 

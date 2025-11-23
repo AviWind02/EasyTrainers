@@ -12,29 +12,10 @@ local function InferCategory(tags, id, displayName)
 
     if idLower:find("police") or idLower:find("border") or idLower:find("maxtac") then
         return "Emergency/Police"
-    end
-
-    -- Special vehicles (military, unique, or one-offs)
-    if idLower:find("basilisk")
-        or idLower:find("coach")
-        or idLower:find("misile")
-        or idLower:find("bmf") then
+    elseif idLower:find("basilisk") or idLower:find("coach") or idLower:find("missile") or idLower:find("bmf") then
         return "Special"
     end
 
-    -- Corporation-owned fleets - I feel like this is useless because this already shows up in affiliation
-    --[[
-        if idLower:find("arasaka")
-            or idLower:find("militech")
-            or idLower:find("kangtao")
-            or idLower:find("zetatech")
-            or idLower:find("netwatch")
-            or idLower:find("delamain") then
-            return "Corpo"
-        end
-    --]]
-
-    -- based on what I understand of the vehicle grouping this is what I've kind of come up with
     if idLower:find("sport1") then
         return "Hypercars"
     elseif idLower:find("sport2") then
@@ -47,35 +28,23 @@ local function InferCategory(tags, id, displayName)
         return "Compact"
     end
 
-    -- these two cars end up in sports for some reason But they are hyper cars
     if idLower:find("v_010_v_tek") or idLower:find("v_013_rayfield_aerodnight") then
         return "Hypercars"
     end
 
-    for _, t in ipairs(tags or {}) do
-        local tl = t:lower()
-        if tl:find("modded") or tl:find("add%-on") then
-            return "Add-On Vehicles(Modded)"
-        elseif tl:match("%f[%a]sport%f[%A]") then -- just in case any vehicles are not caught or new vehicles come out they're still categorized
-            return "Sport Vehicle"
-        elseif tl:match("%f[%a]utility%f[%A]") then
-            return "Utility"
-        elseif tl:match("%f[%a]bike%f[%A]") then
-            return "Motorcycle"
-        end
-    end
+    local all = table.concat(tags or {}, " "):lower() .. " " .. idLower .. " " .. nameLower
 
-    -- final fall back as sometimes the code above doesn't always catch it for some reason hit or miss mainly for utility
-    if idLower:match("%f[%a]utility%d*%f[%A]") or nameLower:match("%f[%a]utility%d*%f[%A]") then
+    if all:match("%f[%a]utility%d*%f[%A]") then
         return "Utility"
-    elseif idLower:match("%f[%a]bike%f[%A]") or nameLower:match("%f[%a]bike%f[%A]") then
+    elseif all:match("%f[%a]bike%f[%A]") then
         return "Motorcycle"
-    elseif idLower:match("%f[%a]sport%f[%A]") or nameLower:match("%f[%a]sport%f[%A]") then
-        return "Sport Vehicle" -- catch-all
+    elseif all:match("%f[%a]sport%f[%A]") then
+        return "Sport Vehicle"
     end
 
     return "Uncategorized"
 end
+
 
 
 
@@ -196,6 +165,72 @@ function VehicleLoader:HandleTwinToneScan(this, wrappedMethod) -- Function taken
     return wrappedMethod()
 end
 
+
+function VehicleLoader:GetVirtualDealerVariants(id)
+    local data = TweakDB:GetFlat(id .. ".dealerVariants")
+    if not data then return {} end
+
+    local variants = {}
+
+    if type(data) == "table" then
+        for _, v in ipairs(data) do
+            if type(v) == "string" then
+                table.insert(variants, v)
+            elseif type(v) == "userdata" and v.value then
+                table.insert(variants, v.value)
+            elseif type(v) == "table" then
+                if v.value then
+                    table.insert(variants, v.value)
+                else
+                    local asStr = tostring(v)
+                    if asStr:find("Vehicle%.") then
+                        table.insert(variants, asStr)
+                    end
+                end
+            end
+        end
+    end
+
+    if #variants > 0 then
+        -- Logger.Log(string.format("[VehicleLoader] %s > %d variant(s) found", id, #variants))
+    end
+
+    return variants
+end
+
+
+function VehicleLoader:IsVirtualDealerVehicle(id)
+    if not id then return false end
+
+    local price = TweakDB:GetFlat(id .. ".dealerPrice")
+    if type(price) ~= "number" or price <= 0 then
+        return false
+    end
+
+    return true
+end
+
+function VehicleLoader:LoadVariantRecords(variants)
+    for _, varId in ipairs(variants) do
+        if not self.indexById[varId] then
+            local rec = TweakDB:GetRecord(varId)
+            if rec then
+                local displayName = utils.GetDisplayName(rec)
+                local vdata = {
+                    id = varId,
+                    displayName = displayName,
+                    variants = {},
+                    isModded = true
+                }
+
+                table.insert(self.vehicles, vdata)
+                self.indexById[varId] = vdata
+            end
+        end
+    end
+end
+
+
 function VehicleLoader:LoadAll()
     local records = TweakDB:GetRecords("gamedataVehicle_Record")
     if not records or #records == 0 then
@@ -204,37 +239,38 @@ function VehicleLoader:LoadAll()
     end
 
     local injectedCount = 0
+
     for _, rec in ipairs(records) do
         local id = utils.SafeCall(function() return rec:GetID().value end)
+        if not id then goto continue end
+
         local idLower = id:lower()
 
-        -- Only include vanilla if Vehicle.v_ these should be all drivable vehicles - should skip out AVs and such
-        local isVanilla = (id:match("^Vehicle%.v_") or id:match("^Vehicle%.vcd")) -- Modded too
+        local isVanilla = id:match("^Vehicle%.v_") or id:match("^Vehicle%.vcd")
+        local isModded = self:IsVirtualDealerVehicle(id)
 
-        -- Detect modded by logo suffix - I'm noticing a lot of modded vehicles don't have .v_ but do have _logo
+        if not isVanilla and not isModded then goto continue end
+
         local manufacturer = GetManufacturer(rec)
         local displayName = utils.GetDisplayName(rec)
-        local isModded = manufacturer:lower():match("logo[_%s]*$") or idLower:match("logo[_%s]*$") or id:match("^Vehicle%.vcd")
-        if not isVanilla and not isModded then
-            goto continue
-        end
-
         local tags = utils.GetTags(rec)
         local lore = GetVehicleInfoLore(rec)
 
+        if manufacturer == "Unlisted" or displayName == "Unknown" then goto continue end
+        if idLower:find("_av_") or idLower:match("^av_") or idLower:match("_av$") then goto continue end
+        if lore.productionYear and tostring(lore.productionYear):lower():find("lockey") then goto continue end
+
         local category = InferCategory(tags, id, displayName)
 
-        if isModded then -- I don’t know what tags to call the modded vehicles. I like Add-On Vehicles as well, so I’m keeping both, because I fukin can :)
+        local variants = {}
+        if isModded then
             table.insert(tags, "Modded Vehicle")
             table.insert(tags, "Add-On Vehicle")
-            category = "Add-On Vehicles(Modded)" -- forcing it here because for some reason it only works on some via InferCategory
+            category = "Add-On Vehicles(Modded)"
+            variants = self:GetVirtualDealerVariants(id)
         end
 
-        -- skip oddballs just in case
-        if manufacturer == "Unlisted" or displayName == "Unknown" then goto continue end -- If it doesn't have a display name it might not be drivable
-        if idLower:find("_av_") or idLower:match("^av_") or idLower:match("_av$") then goto continue end
-        if lore.productionYear and tostring(lore.productionYear):lower():find("lockey") then goto continue end 
-
+        -- Main data entry
         local data = {
             id = id,
             displayName = displayName,
@@ -243,8 +279,14 @@ function VehicleLoader:LoadAll()
             faction = InferFaction(rec, id),
             tags = tags,
             description = lore.description,
-            productionYear = lore.productionYear
+            productionYear = lore.productionYear,
+            variants = variants,
+            isModded = isModded
         }
+
+        if isModded and #variants > 0 then
+            self:LoadVariantRecords(variants)
+        end
 
         table.insert(self.vehicles, data)
         self.indexById[id] = data
@@ -256,10 +298,10 @@ function VehicleLoader:LoadAll()
         ::continue::
     end
 
-
-
-    Logger.Log(string.format("VehicleLoader: Loaded %d vehicles (Added %d new).", #self.vehicles,
-        injectedCount))
+    Logger.Log(string.format(
+        "VehicleLoader: Loaded %d vehicles (Added %d new).",
+        #self.vehicles, injectedCount
+    ))
 end
 
 function VehicleLoader:GetAll()
