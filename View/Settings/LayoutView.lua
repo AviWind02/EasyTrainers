@@ -39,6 +39,9 @@ local function LayoutOptionRowViewFunction()
         UI.Layout.FrameRounding = frameRoundingRef.value
         UI.OptionRow.Rounding = frameRoundingRef.value
     end
+    
+    Buttons.ColorHex(L("settings.layout.layout.backgroundcolor.label"), UI.Colors, "Background", tip("settings.layout.layout.backgroundcolor.tip"))
+
     if Buttons.Int(L("settings.layout.layout.itemspacingx.label"), itemSpacingXRef, tip("settings.layout.layout.itemspacingx.tip")) then
         UI.Layout.ItemSpacing.x = itemSpacingXRef.value
     end

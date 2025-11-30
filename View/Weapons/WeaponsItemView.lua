@@ -13,7 +13,7 @@ local modeOptions = {
 }
 
 local actionMode = { index = 1 }
-local actionOptions = { "weaponsitems.addweapon", "removeweapon.addweapon" }
+local actionOptions = { "weaponsitems.addweapon", "weaponsitems.removeweapon" }
 
 local selectedSort = { index = 1 }
 local sortModes = { "weaponsitems.quantityH", "weaponsitems.quantityL", "weaponsitems.rarity" }

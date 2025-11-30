@@ -12,6 +12,7 @@ function ResetUI.ResetLayout()
     UI.Layout.LabelOffsetX = 8.0
     UI.Layout.ItemSpacing = { x = 8.0, y = 2.0 }
     UI.Layout.FramePadding = { x = 4.0, y = 0.5 }
+    UI.Colors.Background = UI.ColPalette.NearBlackGray
 
     UI.OptionRow.HoverBg = UI.Colors.HoverBg
     UI.OptionRow.HighlightBg = UI.Colors.Highlight
@@ -29,13 +30,11 @@ function ResetUI.ResetFrame()
     UI.Header.TextColor = UI.Colors.Text
     UI.Header.FontSize = 18.0
     UI.Header.FontSizeSub = 16.0
-    UI.Header.Text = "EasyTrainer"
 
     UI.Footer.Height = 25.0
     UI.Footer.BackgroundColor = UI.Colors.Background
     UI.Footer.TextColor = UI.ColPalette.MediumGray
     UI.Footer.FontSize = 12.0
-    UI.Footer.Text = "Beta 1.0 | By Avi"
 end
 
 function ResetUI.ResetNotification()

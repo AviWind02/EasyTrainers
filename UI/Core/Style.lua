@@ -40,15 +40,15 @@ UI.Colors = {
 }
 
 UI.Layout = {
-    Padding        = 14.0,
-    FrameRounding  = 10.0,
-    FrameHeight    = 22.0,
-    OptionHeight   = 28.0,
+    Padding = 14.0,
+    FrameRounding = 10.0,
+    FrameHeight = 22.0,
+    OptionHeight = 28.0,
     OptionPaddingX = 3.0,
     OptionPaddingY = 5.0,
-    LabelOffsetX   = 8.0,
-    ItemSpacing    = { x = 8.0, y = 2.0 },
-    FramePadding   = { x = 4.0, y = 0.5 },
+    LabelOffsetX = 8.0,
+    ItemSpacing = { x = 8.0, y = 2.0 },
+    FramePadding = { x = 4.0, y = 0.5 },
 }
 
 UI.OptionRow = {
@@ -80,7 +80,7 @@ UI.Footer = {
     TextColor = UI.ColPalette.MediumGray,
     BorderColor = UI.Colors.Border,
     FontSize = 12.0,
-    Text = "Beta 1.2.6 | By Avi"
+    Text = "Beta 1.3.1 | By Avi"
 }
 
 

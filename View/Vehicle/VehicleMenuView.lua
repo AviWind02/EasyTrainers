@@ -10,9 +10,34 @@ local VehicleRepair = VehicleFeaures.VehicleRepair
 local VehicleMount = VehicleFeaures.VehicleMountOnRoof
 local VehicleMapTimer = VehicleFeaures.FreezeQuestTimer
 local VehicleNitro = VehicleFeaures.VehicleNitro
+local VehicleUnlocking = VehicleFeaures.VehicleUnlocking
 
+local VehicleLoader = require("Utils/DataExtractors/VehicleLoader")
+
+
+local function GetAllFactions()
+    local seen, list = {}, {}
+
+    for _, v in ipairs(VehicleLoader:GetAll()) do
+        if v.faction and not seen[v.faction] then
+            seen[v.faction] = true
+            table.insert(list, v.faction)
+        end
+    end
+
+    table.sort(list)
+    return list
+end
+
+local factionCycler = { index = 1 }
+local factionList = nil
 
 local function VehicleViewFunction()
+    
+    if not factionList then
+        factionList = GetAllFactions()
+    end
+
     VehiclePreview.SetActive(false)
     if Buttons.Submenu(L("vehiclemenu.vehiclelist.label"), VehicleListView, L("vehiclemenu.vehiclelist.tip")) then VehicleFeaures.VehicleListStates.enableVehicleSpawnerMode = false end
     if Buttons.Submenu(L("vehiclemenu.vehiclespawner.label"), VehicleListView, L("vehiclemenu.vehiclespawner.tip")) then VehicleFeaures.VehicleListStates.enableVehicleSpawnerMode = true end
@@ -22,6 +47,21 @@ local function VehicleViewFunction()
     Buttons.Toggle(L("vehiclelights.rgbfade.label"), VehicleLights.toggleRGBFade, L("vehiclelights.rgbfade.tip"))
     Buttons.Toggle(L("vehiclemenu.freezequesttimer.label"), VehicleMapTimer.toggleFreezeQuestTimer, L("vehiclemenu.freezequesttimer.tip"))
     Buttons.Float(L("vehiclemenu.nitrous.label"), VehicleNitro.multiplier, L("vehiclemenu.nitrous.tip"))
+
+    Buttons.Break(L("vehiclemenu.quickoptions.label"))
+
+    Buttons.Option(L("vehiclemenu.unlockplayer.label"), L("vehiclemenu.unlockplayer.tip"), VehicleUnlocking.UnlockAllPlayerVehicles)
+    Buttons.Option(L("vehiclemenu.disableplayer.label"), L("vehiclemenu.disableplayer.tip"), VehicleUnlocking.DisableAllPlayerVehicles)
+
+    Buttons.Option(L("vehiclemenu.unlockmodded.label"), L("vehiclemenu.unlockmodded.tip"), VehicleUnlocking.UnlockAllModded)
+    Buttons.Option(L("vehiclemenu.disablemodded.label"), L("vehiclemenu.disablemodded.tip"), VehicleUnlocking.DisableAllModded)
+
+    if Buttons.StringCyclerClick(L("vehiclemenu.unlockfaction.label"), factionCycler, factionList, L("vehiclemenu.unlockfaction.tip")) then 
+        VehicleUnlocking.UnlockFaction(factionList[factionCycler.index])  
+    end
+    if Buttons.StringCyclerClick(L("vehiclemenu.lockfaction.label"), factionCycler, factionList, L("vehiclemenu.lockfaction.tip")) then 
+        VehicleUnlocking.DisableFaction(factionList[factionCycler.index])  
+    end
 
 end
 

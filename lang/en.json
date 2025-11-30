@@ -633,10 +633,42 @@
       "label": "Mount on Roof",
       "tip": "Unmounts you from the driver seat and places your character sitting on top of the current vehicle."
     },
+    "quickoptions": {
+      "label": "Vehicle Lock/Unlock Options",
+      "tip": ""
+    },
+    "unlockplayer": {
+      "label": "Unlock Player Vehicles",
+      "tip": "Unlock all vehicles assigned to the Player faction."
+    },
+    "disableplayer": {
+      "label": "Disable Player Vehicles",
+      "tip": "Disable all vehicles assigned to the Player faction."
+    },
+
+    "unlockmodded": {
+      "label": "Unlock Modded Vehicles",
+      "tip": "Unlock all add-on vehicles installed through mods. Variants excluded."
+    },
+    "disablemodded": {
+      "label": "Disable Modded Vehicles",
+      "tip": "Disable all add-on vehicles installed through mods. Variants excluded."
+    },
+
+    "unlockfaction": {
+      "label": "Unlock Faction Vehicles",
+      "tip": "Unlock all vehicles belonging to the selected faction."
+    },
+        "lockfaction": {
+      "label": "Disable Faction Vehicles",
+      "tip": "Disable all vehicles belonging to the selected faction."
+    },
+
     "nitrous": {
       "label": "Nitrous Boost",
       "tip": "Hold Left Shift (keyboard) or X (controller) while driving to activate a forward force boost. Adjust the force multiplier to control how strong the boost feels."
     },
+
     "freezequesttimer": {
       "label": "Freeze Quest Timer",
       "tip": "Disables vehicle quest countdown timers so they no longer track time."
@@ -1895,6 +1927,10 @@
         "paddingy": {
           "label": "Padding Y",
           "tip": "Vertical padding between rows and from menu edges."
+        },
+        "backgroundcolor": {
+          "label": "Background Color",
+          "tip": " Adjust the background color of the trainer."
         },
         "labeloffsetx": {
           "label": "Label Offset X",

@@ -15,6 +15,7 @@ local function collectData()
 
     return {
         Layout = UI.Layout,
+        Colors = UI.Colors,
         OptionRow = UI.OptionRow,
         Header = UI.Header,
         Footer = UI.Footer,
