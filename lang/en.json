@@ -648,11 +648,11 @@
 
     "unlockmodded": {
       "label": "Unlock Modded Vehicles",
-      "tip": "Unlock all add-on vehicles installed through mods. Variants excluded."
+      "tip": "Unlock all add-on vehicles installed through mods."
     },
     "disablemodded": {
       "label": "Disable Modded Vehicles",
-      "tip": "Disable all add-on vehicles installed through mods. Variants excluded."
+      "tip": "Disable all add-on vehicles installed through mods."
     },
 
     "unlockfaction": {
