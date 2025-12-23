@@ -10,4 +10,5 @@ VehicleFeatures.VehicleMountOnRoof = require("Features/Vehicles/VehicleMountOnRo
 VehicleFeatures.VehicleLightFade = require("Features/Vehicles/VehicleLightFade")
 VehicleFeatures.FreezeQuestTimer = require("Features/Vehicles/FreezeQuestTimer")
 VehicleFeatures.VehicleNitro = require("Features/Vehicles/VehicleNitro")
+VehicleFeatures.KeepCrystalCoat = require("Features/Vehicles/KeepCrystalCoat")
 return VehicleFeatures

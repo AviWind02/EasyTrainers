@@ -180,6 +180,11 @@ Event.RegisterInit(function()
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)
     end)
 
+    --Event.Override("VehicleObject", "OnCheckVehicleVisialCustomizationDistanceTermination", function(this, wrappedMethod)
+    --    return Vehicle.KeepCrystalCoat:BlockDisable(this, wrappedMethod)
+   -- end)
+    
+
     Logger.Log("Initialized")
 
 end)

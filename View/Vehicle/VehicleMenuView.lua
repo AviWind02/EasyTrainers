@@ -11,6 +11,7 @@ local VehicleMount = VehicleFeaures.VehicleMountOnRoof
 local VehicleMapTimer = VehicleFeaures.FreezeQuestTimer
 local VehicleNitro = VehicleFeaures.VehicleNitro
 local VehicleUnlocking = VehicleFeaures.VehicleUnlocking
+local VehicleCrystalCoat = VehicleFeaures.KeepCrystalCoat
 
 local VehicleLoader = require("Utils/DataExtractors/VehicleLoader")
 
@@ -46,6 +47,8 @@ local function VehicleViewFunction()
     Buttons.Option(L("vehiclemenu.mountonroof.label"), L("vehiclemenu.mountonroof.tip"), VehicleMount.MountOnRoof)
     Buttons.Toggle(L("vehiclelights.rgbfade.label"), VehicleLights.toggleRGBFade, L("vehiclelights.rgbfade.tip"))
     Buttons.Toggle(L("vehiclemenu.freezequesttimer.label"), VehicleMapTimer.toggleFreezeQuestTimer, L("vehiclemenu.freezequesttimer.tip"))
+   -- Buttons.Toggle(L("Keep crystal coat"), VehicleCrystalCoat.toggleKeepCrystalCoat, L("vehiclemenu.freezequesttimer.tip"))
+
     Buttons.Float(L("vehiclemenu.nitrous.label"), VehicleNitro.multiplier, L("vehiclemenu.nitrous.tip"))
 
     Buttons.Break(L("vehiclemenu.quickoptions.label"))
