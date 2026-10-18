@@ -6,6 +6,9 @@ local Toggle = ConfigManager.DefineToggle
 local function RegisterAllTelportOptions()
 
     ConfigManager.RegisterAll({
+        { Id = "number.teleport.forwarddistance", Kind = ConfigManager.Registry.Kind.Number,
+            Ref = Settings.forwardDistance, Default = 2, Category = "teleport",
+            LabelKey = "teleport.forwarddistance.label", TipKey = "teleport.forwarddistance.tip" },
         Toggle("toggle.teleport.autowaypoint", AutoTeleport.toggleAutoWaypoint, false, {
             LabelKey = "teleport.autowaypoint.label", TipKey = "teleport.autowaypoint.tip",
             Keywords = { "map", "marker", "automatic" },

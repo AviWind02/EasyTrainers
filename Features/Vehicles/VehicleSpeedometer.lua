@@ -5,10 +5,10 @@ local Style = require("UI/Style/Style")
 local UIConfig = require("Config/UIConfig")
 
 local Speedometer = {
-    Enabled = { value = true },
+    Enabled = { value = false },
     ShowRPM = { value = true },
     UseMPH = { value = false },
-    AutomaticMaxSpeed = { value = true },
+    AutomaticMaxSpeed = { value = false },
     MaxSpeed = { value = 320, min = 160, max = 500, step = 20 },
     Scale = { value = 1.0, min = 0.7, max = 1.4, step = 0.05 },
     Position = { index = 1 },
@@ -45,6 +45,8 @@ UIConfig.RegisterSection("Speedometer", {
 local lastPosition
 local lastEntity
 local profile
+-- Drivetrain speed records use the game's internal scale, not meters per second.
+local engineSpeedToKPH = 3.86525568
 
 local function SafeMethod(object, name)
     if not object then return nil end
@@ -101,8 +103,8 @@ local function ReadProfile(vehicle)
         end
         if gear then
             table.insert(result.Gears, {
-                MinSpeed = Number(SafeMethod(gear, "MinSpeed")) or 0,
-                MaxSpeed = Number(SafeMethod(gear, "MaxSpeed")) or 0,
+                MinSpeed = (Number(SafeMethod(gear, "MinSpeed")) or 0) * engineSpeedToKPH / 3.6,
+                MaxSpeed = (Number(SafeMethod(gear, "MaxSpeed")) or 0) * engineSpeedToKPH / 3.6,
                 MinRPM = Number(SafeMethod(gear, "MinEngineRPM")) or result.MinRPM,
                 MaxRPM = Number(SafeMethod(gear, "MaxEngineRPM")) or result.MaxRPM,
             })
@@ -111,7 +113,7 @@ local function ReadProfile(vehicle)
     local maximum = 0
     for _, gear in ipairs(result.Gears) do maximum = math.max(maximum, gear.MaxSpeed or 0) end
     if maximum > 0 then
-        result.MaxSpeedKPH = maximum > 180 and maximum or maximum * 3.6
+        result.MaxSpeedKPH = maximum * 3.6
         result.MaxSpeedKPH = math.max(80, math.min(500, result.MaxSpeedKPH))
     end
     return result
@@ -152,6 +154,13 @@ local function GearLabel(value, speedMPS)
 end
 
 function Speedometer.Update(deltaTime)
+    if not Speedometer.Enabled.value then
+        lastPosition, lastEntity, profile = nil, nil, nil
+        Speedometer.Alpha = 0
+        Speedometer.Mounted = false
+        return
+    end
+
     local dt = math.max(0.001, deltaTime or (1 / 60))
     local vehicle = Vehicle.GetMountedVehicleSafe()
     Speedometer.Mounted = vehicle ~= nil
@@ -172,12 +181,14 @@ function Speedometer.Update(deltaTime)
         Speedometer.DetectedMaxSpeed = profile and profile.MaxSpeedKPH or nil
     end
 
-    local speedMPS = GetVelocitySpeed(vehicle)
+    local speedMPS
     local position = GetPosition(vehicle)
-    if speedMPS == nil and position and lastPosition then
+    if position and lastPosition then
         local dx, dy, dz = position.x - lastPosition.x, position.y - lastPosition.y, position.z - lastPosition.z
         speedMPS = math.sqrt((dx * dx) + (dy * dy) + (dz * dz)) / dt
         if speedMPS > 150 then speedMPS = 0 end
+    elseif not position then
+        speedMPS = GetVelocitySpeed(vehicle)
     end
     if position then lastPosition = { x = position.x, y = position.y, z = position.z } end
     speedMPS = math.max(0, speedMPS or 0)

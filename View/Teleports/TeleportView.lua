@@ -15,6 +15,7 @@ local creatorList = {}
 
 local quickTeleport = { index = 1 }
 local quickOptions = {}
+local quickLabels = {}
 
 local selectedParentDistrict = { index = 1 }
 local selectedChildDistrict = { index = 1 }
@@ -26,10 +27,9 @@ local function FormatDistance(dist)
     return dist >= 1000 and string.format("%.2f km", dist / 1000) or string.format("%d m", math.floor(dist))
 end
 
-local quickOptions = {}
-
 local function BuildQuickOptions()
     quickOptions = {}
+    quickLabels = {}
 
     local vendorPrefix = L("teleport.quick_closest_vendor")
     for cat in pairs(TeleportLocations.GetVendors()) do
@@ -50,6 +50,8 @@ local function BuildQuickOptions()
     end
 
     table.sort(quickOptions, function(a, b) return a.label < b.label end)
+    for _, option in ipairs(quickOptions) do table.insert(quickLabels, option.label) end
+    quickTeleport.index = math.max(1, math.min(quickTeleport.index or 1, math.max(1, #quickOptions)))
 end
 
 
@@ -176,6 +178,19 @@ local function GetFilteredCategories()
     return final
 end
 
+local function CountLocationsInCategory(category)
+    local count = 0
+    local creator = creatorList[selectedCreator.index or 1]
+    for _, loc in ipairs(TeleportLocations.GetAll()) do
+        if loc.category == category
+            and (creator == L("teleport.creator_all") or loc.creator == creator)
+            and PassesDistrictFilter(loc) then
+            count = count + 1
+        end
+    end
+    return count
+end
+
 local function GetQuickOptionDistance(option)
     if not option then return nil end
 
@@ -249,12 +264,24 @@ end
 
 
 local onInit = false
-local forwardRef = { value = 2, min = 1, max = 25 }
+local knownLocationCount = -1
+
+local function RebuildViewData()
+    BuildCreatorList()
+    BuildQuickOptions()
+    BuildParentOptions()
+    BuildChildOptionsForParent(L("teleport.district_all"))
+    selectedCreator.index = 1
+    knownLocationCount = #TeleportLocations.GetAll()
+end
+
+local function RefreshTeleportData()
+    TeleportLocations.Reload()
+    RebuildViewData()
+end
 
 local function TeleportSettingsView()
-    Buttons.Option(L("teleport.reloadteleports.label"), L("teleport.reloadteleports.tip"), TeleportLocations.Reload)
-    Buttons.Break("", L("teleport.customteleports.label"))
-    CustomTeleportView.view()
+    Buttons.Option(L("teleport.reloadteleports.label"), L("teleport.reloadteleports.tip"), RefreshTeleportData)
     Buttons.Break("", L("teleport.autoteleports.label"))
 
     Buttons.Toggle(L("teleport.autowaypoint.label"), AutoTeleport.toggleAutoWaypoint, L("teleport.autowaypoint.tip"))
@@ -273,40 +300,29 @@ end
 local settingsSubmenu = { title = "teleport.settingssubmenu.label", view = TeleportSettingsView }
 
 function TeleportMenuView()
-    if not onInit then
-        BuildCreatorList()
-        BuildQuickOptions()
-        BuildParentOptions()
-        BuildChildOptionsForParent(L("teleport.district_all"))
+    if not onInit or knownLocationCount ~= #TeleportLocations.GetAll() then
+        RebuildViewData()
         onInit = true
     end
-    Buttons.Submenu(L("teleport.miscsubmenu.label"), settingsSubmenu, L("teleport.miscsubmenu.tip"))
+
+    Buttons.Break("", L("teleport.quickteleports.label"))
+    Buttons.Option(L("teleport.questmarker.label"), L("teleport.questmarker.tip"), Teleport.ToQuestMarker)
+    Buttons.Option(L("teleport.waypointmarker.label"), L("teleport.waypointmarker.tip"), Teleport.ToWaypoint)
+
     if Settings.showForward.value then
-        Buttons.Int(L("teleport.forwarddistance.label"), forwardRef, L("teleport.forwarddistance.tip"))
+        Buttons.Int(L("teleport.forwarddistance.label"), Settings.forwardDistance, L("teleport.forwarddistance.tip"))
         if Buttons.Option(L("teleport.teleportforward.label"), L("teleport.teleportforward.tip")) then
-            local pos = Teleport.GetForwardOffset(forwardRef.value)
+            local pos = Teleport.GetForwardOffset(Settings.forwardDistance.value)
             Teleport.TeleportEntity(Game.GetPlayer(), pos)
         end
     end
-    if Settings.showQuick.value then
-        Buttons.Break("", L("teleport.quickteleports.label"))
-        Buttons.Option(L("teleport.questmarker.label"), L("teleport.questmarker.tip"), function()
-            Teleport.ToQuestMarker()
-        end)
-        Buttons.Option(L("teleport.waypointmarker.label"), L("teleport.waypointmarker.tip"), function()
-            Teleport.ToWaypoint()
-        end)
 
+    if Settings.showQuick.value then
         local option = quickOptions[quickTeleport.index]
         local label = L("teleport.quickcycler.label")
         if Settings.showQuickDistance.value and option then
             local distText = GetQuickOptionDistance(option)
             label = label .. " (" .. FormatDistance(distText) .. ")"
-        end
-
-        local quickLabels = {}
-        for _, o in ipairs(quickOptions) do
-            table.insert(quickLabels, o.label)
         end
 
         if Buttons.StringCyclerClick(label, quickTeleport, quickLabels, L("teleport.quickcycler.tip")) then
@@ -331,15 +347,25 @@ function TeleportMenuView()
         end
     end
 
+    local categories = GetFilteredCategories()
     Buttons.Break("", L("teleport.categoriesbreak.label"))
-    for _, category in ipairs(GetFilteredCategories()) do
+    if #categories == 0 then
+        Buttons.Break(L("teleport.selectedteleports.label"))
+    end
+    for _, category in ipairs(categories) do
+        local count = CountLocationsInCategory(category)
         Buttons.Submenu(
-            category,
+            category .. "  [" .. tostring(count) .. "]",
             filteredCategorySubmenu,
             tip("teleport.categorysubmenu.tip", { category = category }),
             function() currentTeleportCategory = category end
         )
     end
+
+    Buttons.Break("", L("teleport.settings.label"))
+    Buttons.Submenu(L("teleport.customteleports.label"), CustomTeleportView,
+        L("teleport.customteleportview.save.tip"))
+    Buttons.Submenu(L("teleport.miscsubmenu.label"), settingsSubmenu, L("teleport.miscsubmenu.tip"))
 end
 
 return { 

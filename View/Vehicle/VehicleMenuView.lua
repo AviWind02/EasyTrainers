@@ -24,11 +24,11 @@ local function SpeedometerView()
     Buttons.Dropdown("Screen Position", Speedometer.Position, Speedometer.Positions,
         "Choose where the driving gauges appear.", UIConfig.Save)
     Buttons.Toggle("Automatic Maximum Speed", Speedometer.AutomaticMaxSpeed,
-        "Use the mounted vehicle's highest configured gear speed when available.", UIConfig.Save)
+        "Estimate the dial range from the mounted vehicle's highest gear speed.", UIConfig.Save)
     if Speedometer.AutomaticMaxSpeed.value then
         local detected = Speedometer.DetectedMaxSpeed
         Buttons.OptionExtended("Detected Maximum", "", detected and string.format("%.0f KM/H", detected) or "Manual fallback",
-            "The maximum speed read from the mounted vehicle's drivetrain profile.")
+            "An estimated dial range from the mounted vehicle's drivetrain profile.")
     else
         Buttons.Int("Maximum Speed", Speedometer.MaxSpeed, "Maximum speed shown around the analog dial.", UIConfig.Save)
     end

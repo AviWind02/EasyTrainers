@@ -1,5 +1,6 @@
 local Weapons = require("Features/Weapons")
 local Weapon = require("Utils/Weapon")
+local StatModifiers = require("Utils/StatModifiers")
 local WeaponTick = {}
 
 local modifierEntries = {
@@ -27,6 +28,16 @@ local modifierEntries = {
 local refreshQueue = {}
 local refreshIndex = 1
 
+local function ClearModifier(feature)
+    if #feature.handles == 0 then return end
+
+    for _, id in ipairs(feature.handles) do
+        StatModifiers.Remove(id)
+    end
+    feature.handles = {}
+    feature.appliedToWeaponID = nil
+end
+
 local function QueueEnabledModifierRefreshes()
     refreshQueue = {}
     refreshIndex = 1
@@ -45,8 +56,8 @@ local function TickStatModifiers(deltaTime)
 
     local queuedModifier = refreshQueue[refreshIndex]
     if queuedModifier then
-        -- One modifier family per update prevents all enabled stat changes from
-        -- landing in the same game frame during a weapon switch.
+        -- Clear the previous weapon before this family applies to the new one.
+        ClearModifier(queuedModifier)
         Weapon.MarkChanged()
         queuedModifier.Tick(deltaTime)
         refreshIndex = refreshIndex + 1
@@ -56,18 +67,28 @@ local function TickStatModifiers(deltaTime)
     refreshQueue = {}
     refreshIndex = 1
     for _, entry in ipairs(modifierEntries) do
+        if not entry.enabled.value then ClearModifier(entry.feature) end
         entry.feature.Tick(deltaTime)
     end
 end
 
 function WeaponTick.TickHandler(deltaTime)
-    Weapon.Tick(deltaTime)
     Weapons.GravityGun.Tick()
     Weapons.TeleportShot.Tick()
     Weapons.InfiniteAmmo.Tick()
     Weapons.ForceGun.Tick(deltaTime)
     Weapons.ExplosiveBullets.Tick()
-    TickStatModifiers(deltaTime)
+    local hasActiveModifiers = false
+    for _, entry in ipairs(modifierEntries) do
+        if entry.enabled.value or #entry.feature.handles > 0 then
+            hasActiveModifiers = true
+            break
+        end
+    end
+    if hasActiveModifiers then
+        Weapon.Tick(deltaTime)
+        TickStatModifiers(deltaTime)
+    end
     Weapon.EndFrame()
 end
 

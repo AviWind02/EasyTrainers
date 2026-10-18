@@ -70,7 +70,12 @@ local function SaveCustomTeleport()
     end
 
     table.insert(data.teleports, entry)
-    JsonHelper.Write(path, data)
+    local saved = JsonHelper.Write(path, data)
+    if not saved then
+        Notification.Error("Failed to save custom teleport")
+        return
+    end
+    TeleportLocations.Reload()
 
     Notification.Success(tip("teleport.customteleportview.notifications.saved", {
         name = entry.name,

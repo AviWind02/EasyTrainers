@@ -1,5 +1,6 @@
 
 local TeleportViewStates = {
+    forwardDistance = { value = 2, min = 1, max = 25 },
     showForward = { value = true },
 
     showQuick = { value = true },

@@ -1,11 +1,15 @@
 local State = {}
-local ConfigManager = require("Config/OptionConfig")
+local UIConfig = require("Config/UIConfig")
 
-State.trackMenuOpen = { value = true }
-State.trackMouseOn = { value = false }
+local Persisted = {
+    Initialized = false,
+    MenuOpen = true,
+    MouseEnabled = false,
+}
+UIConfig.RegisterSection("MenuState", Persisted)
 
-State.menuOpen = true
-State.mouseEnabled = false
+State.menuOpen = Persisted.MenuOpen
+State.mouseEnabled = Persisted.MouseEnabled
 State.overlayOpen = false
 State.typingEnabled = false
 
@@ -46,18 +50,27 @@ function State.ToggleMouse()
 end
 
 function State.SyncTracking()
-    State.trackMenuOpen.value = State.menuOpen
-    State.trackMouseOn.value = State.mouseEnabled
-    ConfigManager.Save()
+    Persisted.MenuOpen = State.menuOpen
+    Persisted.MouseEnabled = State.mouseEnabled
+    UIConfig.Save()
 end
 
 function State.InitializeTracking()
-    if State.trackMenuOpen and State.trackMenuOpen.value ~= nil then
-        State.menuOpen = State.trackMenuOpen.value
+    if not Persisted.Initialized then
+        local OptionConfig = require("Config/OptionConfig")
+        local legacy = OptionConfig.Registry.LoadedValues or {}
+        if legacy["toggle.trackMenuOpen"] ~= nil then
+            Persisted.MenuOpen = legacy["toggle.trackMenuOpen"] == true
+        end
+        if legacy["toggle.trackMouseOn"] ~= nil then
+            Persisted.MouseEnabled = legacy["toggle.trackMouseOn"] == true
+        end
+        Persisted.Initialized = true
+        UIConfig.Save()
     end
-    if State.trackMouseOn and State.trackMouseOn.value ~= nil then
-        State.mouseEnabled = State.trackMouseOn.value
-    end
+
+    State.menuOpen = Persisted.MenuOpen ~= false
+    State.mouseEnabled = Persisted.MouseEnabled == true
 end
 
 

@@ -32,7 +32,7 @@ local function RegisterAllVehicleOptions()
             Category = "vehicle",
             Keywords = { "rgb", "lights", "color" },
         }),
-        Toggle("toggle.vehicle.speedometer", VehicleSpeedometer.Enabled, true, {
+        Toggle("toggle.vehicle.speedometer", VehicleSpeedometer.Enabled, false, {
             Label = "Vehicle Speedometer",
             Tip = "Show the analog speedometer while driving.",
             Category = "vehicle",
@@ -48,8 +48,8 @@ local function RegisterAllVehicleOptions()
             Label = "Show RPM Gauge", Tip = "Show the smaller engine RPM gauge.",
             Category = "vehicle", Keywords = { "rpm", "gauge", "engine" },
         }),
-        Toggle("toggle.vehicle.speedometer.automaticMax", VehicleSpeedometer.AutomaticMaxSpeed, true, {
-            Label = "Automatic Maximum Speed", Tip = "Read the maximum speed from the mounted vehicle.",
+        Toggle("toggle.vehicle.speedometer.automaticMax", VehicleSpeedometer.AutomaticMaxSpeed, false, {
+            Label = "Automatic Maximum Speed", Tip = "Estimate the dial range from the mounted vehicle's highest gear speed.",
             Category = "vehicle", Keywords = { "speedometer", "maximum", "automatic" },
         }),
         Toggle("toggle.vehicle.freezeQuestTimers", VehicleFreezeQuestTimer.toggleFreezeQuestTimer, false, {
