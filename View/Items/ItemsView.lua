@@ -1,14 +1,10 @@
-local UI = require("UI")
-local Buttons = UI.Buttons
-local SidePanel = UI.SidePanel
-local Notification = UI.Notification
+local Buttons = require("UI/Options/Buttons")
+local Submenu = require("UI/Navigation/Submenu")
+local SidePanel = require("UI/Panels/SidePanel/SidePanel")
+local Notification = require("UI/Panels/Notification/Notification")
 local Items = require("Features/Items")
 
 local State = Items.BrowserState
-
-local function IsFocused(data)
-    return data and data.Visible and (data.Selected or data.Hovered)
-end
 
 local function DrawItemControls()
     Buttons.Dropdown("Inventory Action", State.Action, State.Actions,
@@ -32,19 +28,19 @@ end
 
 local function DrawItemList(title, items)
     DrawItemControls()
-    Buttons.Break("", title .. "  /  " .. tostring(#items))
+    Buttons.Break(title .. "  /  " .. tostring(#items))
 
     local lastGroup
     for _, item in ipairs(items) do
         if item.group ~= lastGroup then
-            Buttons.Break("", item.group)
+            Buttons.Break(item.group)
             lastGroup = item.group
         end
         local _, data = Buttons.OptionExtended(item.name, "", State.GetSummary(),
             "Apply the selected inventory action to this item.", function()
                 State.Apply(item)
             end)
-        if IsFocused(data) then SubmitItemInfo(item, title) end
+        if data and data.Visible and (data.Selected or data.Hovered) then SubmitItemInfo(item, title) end
     end
 end
 
@@ -60,9 +56,9 @@ local function BuffsView()
     DrawItemList("Boosters & Buffs", Items.Buffs)
 end
 
-local bulkQuantity = { value = 1, min = 1, max = 999, step = 1 }
+local s_BulkQuantity = { value = 1, min = 1, max = 999, step = 1 }
 
-local bulkActions = {
+local BULK_ACTIONS = {
     { name = "All Crafting Components", detail = "Every standard crafting component", action = Items.Actions.GiveAllCraftingComponents },
     { name = "Item Components", detail = "All item component tiers", action = Items.Actions.GiveItemComponents },
     { name = "Quickhack Components", detail = "All quickhack component tiers", action = Items.Actions.GiveQuickhackComponents },
@@ -75,19 +71,18 @@ local bulkActions = {
 }
 
 local function BulkView()
-    Buttons.Int("Quantity Per Item", bulkQuantity, "Amount of every item included in the selected kit.")
-    Buttons.Break("", "Quick Kits")
-    for _, entry in ipairs(bulkActions) do
-        local current = entry
-        Buttons.OptionExtended(current.name, "", "+" .. tostring(bulkQuantity.value), current.detail, function()
-            current.action(bulkQuantity.value)
+    Buttons.Int("Quantity Per Item", s_BulkQuantity, "Amount of every item included in the selected kit.")
+    Buttons.Break("Quick Kits")
+    for _, entry in ipairs(BULK_ACTIONS) do
+        Buttons.OptionExtended(entry.name, "", "+" .. tostring(s_BulkQuantity.value), entry.detail, function()
+            entry.action(s_BulkQuantity.value)
             State.RefreshInventory()
-            Notification.Success("Added " .. current.name, 2)
+            Notification.Success("Added " .. entry.name, 2)
         end)
     end
 end
 
-local recipeActions = {
+local RECIPE_ACTIONS = {
     { name = "Mod Recipes", detail = "Cyberware and weapon mod recipes", action = Items.ModRecipes.GiveAllModRecipes },
     { name = "Quickhack Recipes", detail = "All quickhack crafting recipes", action = Items.QuickhackRecipes.GiveAllQuickhackRecipes },
     { name = "Weapon Recipes", detail = "All weapon crafting recipes", action = Items.WeaponRecipes.GiveAllWeaponRecipes },
@@ -96,27 +91,26 @@ local recipeActions = {
 }
 
 local function RecipesView()
-    for _, entry in ipairs(recipeActions) do
-        local current = entry
-        Buttons.Option(current.name, current.detail, function()
-            current.action()
-            Notification.Success("Unlocked " .. current.name, 2)
+    for _, entry in ipairs(RECIPE_ACTIONS) do
+        Buttons.Option(entry.name, entry.detail, function()
+            entry.action()
+            Notification.Success("Unlocked " .. entry.name, 2)
         end)
     end
 end
 
-local bulkMenu = { title = "Quick Kits", view = BulkView }
-local craftingMenu = { title = "Crafting Components", view = CraftingView }
-local consumablesMenu = { title = "Health & Consumables", view = ConsumablesView }
-local buffsMenu = { title = "Boosters & Buffs", view = BuffsView }
-local recipesMenu = { title = "Crafting Recipes", view = RecipesView }
+local BulkMenu = Submenu.Create("Quick Kits", BulkView)
+local CraftingMenu = Submenu.Create("Crafting Components", CraftingView)
+local ConsumablesMenu = Submenu.Create("Health & Consumables", ConsumablesView)
+local BuffsMenu = Submenu.Create("Boosters & Buffs", BuffsView)
+local RecipesMenu = Submenu.Create("Crafting Recipes", RecipesView)
 
 local function ItemsMainView()
-    Buttons.Submenu("Quick Kits", bulkMenu, "Add complete groups of commonly used items.")
-    Buttons.Submenu("Crafting Components", craftingMenu, "Add or remove individual crafting components.")
-    Buttons.Submenu("Health & Consumables", consumablesMenu, "Manage MaxDocs, Bounce Backs, and boosters.")
-    Buttons.Submenu("Boosters & Buffs", buffsMenu, "Manage temporary buff items and special consumables.")
-    Buttons.Submenu("Crafting Recipes", recipesMenu, "Unlock complete groups of crafting recipes.")
+    Buttons.Submenu("Quick Kits", BulkMenu, "Add complete groups of commonly used items.")
+    Buttons.Submenu("Crafting Components", CraftingMenu, "Add or remove individual crafting components.")
+    Buttons.Submenu("Health & Consumables", ConsumablesMenu, "Manage MaxDocs, Bounce Backs, and boosters.")
+    Buttons.Submenu("Boosters & Buffs", BuffsMenu, "Manage temporary buff items and special consumables.")
+    Buttons.Submenu("Crafting Recipes", RecipesMenu, "Unlock complete groups of crafting recipes.")
 end
 
-return { title = "Essentials", view = ItemsMainView }
+return Submenu.Create("Essentials", ItemsMainView)

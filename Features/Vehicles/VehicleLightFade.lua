@@ -3,48 +3,47 @@ local VehicleLights = require("Features/Vehicles/VehicleLights")
 
 local VehicleLightFade = {}
 
-VehicleLightFade.toggleRGBFade = { value = false }
+VehicleLightFade.Enabled = { value = false }
 
-local frametimeRGB = 0
-local RGBFadeRed, RGBFadeGreen, RGBFadeBlue = 255, 0, 0
+local STEP_MS = 5
 
-function VehicleLightFade.TickFade(delta)
-    if not VehicleLightFade.toggleRGBFade.value then return end
+local s_Elapsed = 0
+local s_Red = 255
+local s_Green = 0
+local s_Blue = 0
+local s_Active = false
 
-
-    if not Vehicle.GetMountedVehicleSafe() then
-        return
-    end
-    
-    frametimeRGB = frametimeRGB + (delta * 1000)
-    if frametimeRGB > 5 then
-        frametimeRGB = 0
-
-        if RGBFadeRed > 0 and RGBFadeBlue == 0 then
-            RGBFadeRed = RGBFadeRed - 1
-            RGBFadeGreen = RGBFadeGreen + 1
-        elseif RGBFadeGreen > 0 and RGBFadeRed == 0 then
-            RGBFadeGreen = RGBFadeGreen - 1
-            RGBFadeBlue = RGBFadeBlue + 1
-        elseif RGBFadeBlue > 0 and RGBFadeGreen == 0 then
-            RGBFadeRed = RGBFadeRed + 1
-            RGBFadeBlue = RGBFadeBlue - 1
-        end
-
-        RGBFadeRed   = math.max(0, math.min(255, RGBFadeRed))
-        RGBFadeGreen = math.max(0, math.min(255, RGBFadeGreen))
-        RGBFadeBlue  = math.max(0, math.min(255, RGBFadeBlue))
-
-        local color  = Color.new({
-            Red   = RGBFadeRed,
-            Green = RGBFadeGreen,
-            Blue  = RGBFadeBlue,
-            Alpha = 255
-        })
-
-        VehicleLights.SetAllLightsColor(color)
+local function Advance()
+    if s_Red > 0 and s_Blue == 0 then
+        s_Red, s_Green = s_Red - 1, s_Green + 1
+    elseif s_Green > 0 and s_Red == 0 then
+        s_Green, s_Blue = s_Green - 1, s_Blue + 1
+    elseif s_Blue > 0 and s_Green == 0 then
+        s_Red, s_Blue = s_Red + 1, s_Blue - 1
     end
 end
 
+function VehicleLightFade.Tick(deltaTime)
+    if not VehicleLightFade.Enabled.value then
+        if s_Active then
+            VehicleLights.ResetAllLightColors()
+            s_Active = false
+        end
+        return
+    end
+
+    if not Vehicle.GetMountedVehicleSafe() then
+        s_Active = false
+        return
+    end
+
+    s_Active = true
+    s_Elapsed = s_Elapsed + deltaTime * 1000
+    if s_Elapsed <= STEP_MS then return end
+    s_Elapsed = 0
+
+    Advance()
+    VehicleLights.SetAllLightsColor(Color.new({ Red = s_Red, Green = s_Green, Blue = s_Blue, Alpha = 255 }))
+end
 
 return VehicleLightFade

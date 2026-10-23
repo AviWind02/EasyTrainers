@@ -1,16 +1,11 @@
-local WorldWeather = {}
 local Logger = require("Core/Logger")
+local Lifecycle = require("Core/Lifecycle")
 
-local function weatherSystem()
-    return Game.GetWeatherSystem()
-end  
+local WorldWeather = {}
 
-WorldWeather.freezeWeather = { value = false }
-WorldWeather.lockedWeather = nil
-WorldWeather.wasFrozen = false
-WorldWeather.freezeCheckAt = 0
+WorldWeather.Freeze = { value = false }
 
-WorldWeather.weatherStates = {
+WorldWeather.States = {
     "24h_weather_sunny",
     "24h_weather_light_clouds",
     "24h_weather_cloudy",
@@ -25,62 +20,72 @@ WorldWeather.weatherStates = {
     "q302_squat_morning",
     "q306_epilogue_cloudy_morning",
     "q306_rainy_night",
-    "sa_courier_clouds",
+    "sa_courier_clouds"
 }
 
+local CHECK_INTERVAL = 1.0
+local ENFORCE_BLEND = 5
+
+local s_Locked = nil
+local s_Enforced = false
+local s_NextCheck = 0
+
 function WorldWeather.GetCurrentWeather()
-    if not weatherSystem() then return "Unknown" end
-    local state = weatherSystem():GetWeatherState()
+    local system = Game.GetWeatherSystem()
+    local state = system and system:GetWeatherState() or nil
     return state and tostring(state.name.value) or "Unknown"
 end
 
+function WorldWeather.SetWeather(state, blendSeconds)
+    local system = Game.GetWeatherSystem()
+    if not system then return end
 
-function WorldWeather.SetWeather(state, transitionSeconds)
-    if not weatherSystem() then return end
-    transitionSeconds = transitionSeconds or 1
-    Logger.Log(string.format("[EasyTrainerWorldWeather] Setting weather: %s (%ds)", state, transitionSeconds))
-    weatherSystem():SetWeather(state, transitionSeconds, 1)
+    blendSeconds = blendSeconds or 1
+    system:SetWeather(state, blendSeconds, 1)
+    Logger.Log(string.format("WorldWeather: set %s (%ds)", state, blendSeconds))
 end
 
 function WorldWeather.SetRandomWeather()
-    local state = WorldWeather.weatherStates[math.random(1, #WorldWeather.weatherStates)]
-    WorldWeather.SetWeather(state)
-end
-
-function WorldWeather.FreezeWeatherToggle(enabled)
-    WorldWeather.freezeWeather.value = enabled
-    if enabled then
-        WorldWeather.lockedWeather = WorldWeather.GetCurrentWeather()
-    else
-        WorldWeather.lockedWeather = nil
-    end
+    WorldWeather.SetWeather(WorldWeather.States[math.random(1, #WorldWeather.States)])
 end
 
 function WorldWeather.ResetWeather()
-    if not weatherSystem() then return end
-    Logger.Log("[EasyTrainerWorldWeather] Resetting weather")
-    weatherSystem():ResetWeather(true)
+    local system = Game.GetWeatherSystem()
+    if not system then return end
+    system:ResetWeather(true)
+    Logger.Log("WorldWeather: reset weather")
+end
+
+local function Release()
+    if s_Enforced then WorldWeather.ResetWeather() end
+    s_Locked = nil
+    s_Enforced = false
 end
 
 function WorldWeather.Update()
-    if WorldWeather.freezeWeather.value and not WorldWeather.wasFrozen then
-        WorldWeather.lockedWeather = WorldWeather.GetCurrentWeather()
-        WorldWeather.wasFrozen = true
-    elseif not WorldWeather.freezeWeather.value then
-        WorldWeather.lockedWeather = nil
-        WorldWeather.wasFrozen = false
+    if not WorldWeather.Freeze.value then
+        if s_Locked then Release() end
         return
     end
 
+    if not s_Locked then s_Locked = WorldWeather.GetCurrentWeather() end
+
     local now = os.clock()
-    if now < WorldWeather.freezeCheckAt then return end
-    WorldWeather.freezeCheckAt = now + 1
-    if WorldWeather.lockedWeather then
-        local current = WorldWeather.GetCurrentWeather()
-        if current ~= WorldWeather.lockedWeather then
-            WorldWeather.SetWeather(WorldWeather.lockedWeather, 5)
-        end
+    if now < s_NextCheck then return end
+    s_NextCheck = now + CHECK_INTERVAL
+
+    if WorldWeather.GetCurrentWeather() ~= s_Locked then
+        WorldWeather.SetWeather(s_Locked, ENFORCE_BLEND)
+        s_Enforced = true
     end
 end
+
+Lifecycle.Register("WorldWeather", {
+    OnSessionEnd = function()
+        s_Locked = nil
+        s_Enforced = false
+    end,
+    OnShutdown = Release
+})
 
 return WorldWeather

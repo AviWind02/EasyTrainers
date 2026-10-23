@@ -1,178 +1,94 @@
--- Utils/Weapon.lua
-local Weapon = {
-    isAiming = false,
-    isShooting = false,
-    lastWeaponID = nil,
-    lastItemKey = nil,
-    hasChanged = false,
-    snapshotValid = false,
-    currentItem = nil,
-    currentItemData = nil,
-    currentItemID = nil,
-    currentIsRanged = false,
-    currentIsMelee = false,
-    lastCheckTime = 0,
-    checkInterval = 1
-}
+local Weapon = {}
+
+local REFRESH_INTERVAL = 0.2
+
+local s_IsShooting = false
+local s_NextRefresh = 0
+local s_Item = nil
+local s_ItemData = nil
+local s_ItemID = nil
+local s_IsRanged = false
+local s_IsMelee = false
+local s_LastItemID = nil
+local s_Generation = 0
 
 function Weapon.HandleInputAction(action)
-    local player = Game.GetPlayer()
-    if not player then return end
+    if Game.NameToString(action:GetName(action)) ~= "RangedAttack" then return end
 
-    Weapon.isAiming = player.isAiming
-
-    local actionName = Game.NameToString(action:GetName(action))
     local actionType = action:GetType(action).value
-
-    if actionName == "RangedAttack" then
-        if actionType == "BUTTON_PRESSED" then
-            Weapon.isShooting = true
-        elseif actionType == "BUTTON_RELEASED" then
-            Weapon.isShooting = false
-        end
+    if actionType == "BUTTON_PRESSED" then
+        s_IsShooting = true
+    elseif actionType == "BUTTON_RELEASED" then
+        s_IsShooting = false
     end
-end
-
-function Weapon.IsPlayerAiming()
-    return Weapon.isAiming
 end
 
 function Weapon.IsPlayerShooting()
-    return Weapon.isShooting
+    return s_IsShooting
 end
 
--- Get all ranged weapons in inventory (returns { {id, data}, ... })
-function Weapon.GetAllRangedWeapons()
-    local player = Game.GetPlayer()
-    local ts = Game.GetTransactionSystem()
-    if not player or not ts then return {} end
+local function HasTag(itemData, tag)
+    return itemData and itemData:HasTag(CName(tag)) or false
+end
 
-    local success, allItems = ts:GetItemList(player)
-    if not success or type(allItems) ~= "table" then
-        return {}
+local function TrackChange()
+    if s_ItemID == nil and s_LastItemID == nil then return end
+    if s_ItemID ~= nil and s_LastItemID ~= nil and s_ItemID == s_LastItemID then return end
+
+    s_Generation = s_Generation + 1
+    s_LastItemID = s_ItemID
+end
+
+local function Refresh()
+    local now = os.clock()
+    if now < s_NextRefresh then return end
+    s_NextRefresh = now + REFRESH_INTERVAL
+
+    s_Item, s_ItemData, s_ItemID = nil, nil, nil
+    local player = Game.GetPlayer()
+    local transactionSystem = Game.GetTransactionSystem()
+    local item = player and transactionSystem and transactionSystem:GetItemInSlot(player, "AttachmentSlots.WeaponRight") or nil
+    if item then
+        s_Item = item
+        s_ItemData = item:GetItemData()
+        s_ItemID = item:GetItemID()
     end
 
-    local ranged = {}
-    for _, itemData in ipairs(allItems) do
-        if itemData
-            and itemData:HasTag(CName("Weapon"))
-            and itemData:HasTag(CName("RangedWeapon")) then
-            table.insert(ranged, {
-                id   = itemData:GetID(),
-                data = itemData
-            })
-        end
-    end
-    return ranged
+    s_IsRanged = HasTag(s_ItemData, "RangedWeapon")
+    s_IsMelee = HasTag(s_ItemData, "Melee")
+    TrackChange()
 end
 
-local function ReadEquippedRightHand()
-    local player = Game.GetPlayer()
-    local ts = Game.GetTransactionSystem()
-    if not player or not ts then return nil, nil, nil end
-
-    local item = ts:GetItemInSlot(player, "AttachmentSlots.WeaponRight")
-    if not item then return nil, nil, nil end
-
-    local itemData = item:GetItemData()
-    if not itemData then return item, nil, item:GetItemID() end
-
-    return item, itemData, item:GetItemID()
+function Weapon.Tick()
+    Refresh()
 end
 
--- Get equipped right-hand weapon (returns {item, itemData, itemID} or nils).
--- Weapon.Tick caches this lookup for the rest of the frame because every enabled
--- weapon modifier asks for the same data while processing a weapon switch.
 function Weapon.GetEquippedRightHand()
-    if Weapon.snapshotValid then
-        return Weapon.currentItem, Weapon.currentItemData, Weapon.currentItemID
-    end
-
-    return ReadEquippedRightHand()
+    Refresh()
+    return s_Item, s_ItemData, s_ItemID
 end
 
 function Weapon.IsRangedEquipped()
-    if Weapon.snapshotValid then
-        return Weapon.currentIsRanged
-    end
-
-    local _, itemData = Weapon.GetEquippedRightHand()
-    return itemData and itemData:HasTag(CName("RangedWeapon")) or false
+    Refresh()
+    return s_IsRanged
 end
 
 function Weapon.IsMeleeEquipped()
-    if Weapon.snapshotValid then
-        return Weapon.currentIsMelee
-    end
-
-    local _, itemData = Weapon.GetEquippedRightHand()
-    return itemData and itemData:HasTag(CName("Melee")) or false -- Actually don't remember if the tags include this word but I assume they would
-end
-
-function Weapon.IsShootingRangedADS()
-    return Weapon.isAiming
-       and Weapon.isShooting
-       and Weapon.IsRangedEquipped()
+    Refresh()
+    return s_IsMelee
 end
 
 function Weapon.IsShootingRanged()
-    return Weapon.isShooting and Weapon.IsRangedEquipped()
+    return s_IsShooting and Weapon.IsRangedEquipped()
 end
 
-function Weapon.Tick(deltaTime)
-    if not Weapon.snapshotValid then
-        local item, itemData, itemID = ReadEquippedRightHand()
-        Weapon.currentItem = item
-        Weapon.currentItemData = itemData
-        Weapon.currentItemID = itemID
-        Weapon.currentIsRanged = itemData and itemData:HasTag(CName("RangedWeapon")) or false
-        Weapon.currentIsMelee = itemData and itemData:HasTag(CName("Melee")) or false
-        Weapon.snapshotValid = true
-    end
-
-    local itemData = Weapon.currentItemData
-    local itemID = Weapon.currentItemID
-    if not itemID then
-        if Weapon.lastItemKey ~= nil then
-            Weapon.lastItemKey = nil
-            Weapon.lastWeaponID = nil
-            Weapon.hasChanged = true
-        end
-        return
-    end
-
-    local itemKey = tostring(itemID)
-    if itemKey ~= Weapon.lastItemKey then
-        Weapon.hasChanged = true
-        Weapon.lastItemKey = itemKey
-        Weapon.lastWeaponID = itemData and itemData:GetStatsObjectID() or nil
-    end
+function Weapon.GetCurrentItemKey()
+    if s_LastItemID == nil then return nil end
+    return s_Generation
 end
 
-function Weapon.HasChanged()
-    return Weapon.hasChanged
-end
-
--- Keep a queued weapon refresh visible to one modifier on a later update.
--- CET game API calls stay on onUpdate; the scheduler in Features/Weapons/Tick
--- uses this to spread expensive modifier rebuilds across separate frames.
-function Weapon.MarkChanged()
-    Weapon.hasChanged = true
-end
-
-function Weapon.EndFrame()
-    Weapon.hasChanged = false
-    Weapon.snapshotValid = false
-    Weapon.currentItem = nil
-    Weapon.currentItemData = nil
-    Weapon.currentItemID = nil
-    Weapon.currentIsRanged = false
-    Weapon.currentIsMelee = false
-end
-
-
-function Weapon.GetCurrentWeaponID()
-    return Weapon.lastWeaponID
+function Weapon.Invalidate()
+    s_NextRefresh = 0
 end
 
 return Weapon

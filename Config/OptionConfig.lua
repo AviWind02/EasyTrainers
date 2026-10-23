@@ -23,8 +23,6 @@ local function ValuesMatch(left, right)
     return true
 end
 
----Register a structured option definition.
----The legacy (id, ref, default) signature remains supported during migration.
 function OptionConfig.Register(specOrId, ref, default)
     if type(specOrId) == "table" then return Registry.Register(specOrId) end
     return Registry.Register({

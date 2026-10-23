@@ -1,4 +1,6 @@
 Logs/*
+Sessions/*
+!Sessions/.gitkeep
 EasyTrainers.log
 EasyTrainers1.log
 EasyTrainers2.log
@@ -10,6 +12,5 @@ options.json
 style.json
 Config/JSON/navigation.json
 Config/JSON/ui.json
-Config/JSON/bindings.json
 Config/JSON/bindings.json
 EasyTrainer.log

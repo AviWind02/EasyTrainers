@@ -13,7 +13,7 @@ local SurfaceStyle = require("UI/Widgets/Surface/SurfaceStyle")
 
 local Dropdown = {}
 
-local function displayText(value)
+local function DisplayText(value)
     if type(L) == "function" then
         local ok, translated = pcall(L, value)
         if ok and translated ~= nil then return tostring(translated) end
@@ -94,7 +94,7 @@ function Dropdown.Update()
     DropdownNavigation.Update(Dropdown)
 end
 
-local function mouseInteraction(x, y, width, height)
+local function MouseInteraction(x, y, width, height)
     if not Navigation.State.MouseEnabled then return false, false end
     local mouseX, mouseY = ImGui.GetMousePos()
     local hovered = mouseX >= x and mouseX <= x + width and mouseY >= y and mouseY <= y + height
@@ -106,7 +106,7 @@ function Dropdown.Option(id, label, valueRef, items, tip, onChange)
     local changed = Dropdown.ConsumeChanged(id)
     if not data.Visible then return changed, data end
 
-    local hovered, clicked = mouseInteraction(data.X, data.Y, data.Width, data.Height)
+    local hovered, clicked = MouseInteraction(data.X, data.Y, data.Width, data.Height)
     data.Hovered = hovered
     if clicked then Navigation.State.Current = data.Index end
     if data.Selected then Highlight.Set(data.Y, data.Height) end
@@ -115,7 +115,7 @@ function Dropdown.Option(id, label, valueRef, items, tip, onChange)
     local drawList = ImGui.GetWindowDrawList()
     local textY = data.Y + ((data.Height - ImGui.GetFontSize()) * 0.5)
     local index = math.max(1, math.min(valueRef.index or 1, math.max(1, #items)))
-    local current = Draw.FitText(displayText(items[index]), data.Width * 0.45)
+    local current = Draw.FitText(DisplayText(items[index]), data.Width * 0.45)
     local currentWidth = ImGui.CalcTextSize(current)
     local arrow = Dropdown.Opened and Dropdown.OwnerId == id and "v" or ">"
     local arrowWidth = ImGui.CalcTextSize(arrow)
@@ -147,7 +147,7 @@ function Dropdown.Draw()
     local width = DropdownStyle.SurfaceWidth - (SurfaceStyle.Padding * 2)
 
     local headerLabel = Draw.FitText(Dropdown.Label, width * 0.4)
-    local selectedText = Draw.FitText(displayText(Dropdown.Items[Dropdown.Current]), width * 0.52)
+    local selectedText = Draw.FitText(DisplayText(Dropdown.Items[Dropdown.Current]), width * 0.52)
     Draw.Text(drawList, x, y, Style.TextDisabled, headerLabel)
     local selectedWidth = ImGui.CalcTextSize(selectedText)
     Draw.Text(drawList, x + width - selectedWidth, y, Style.Accent, selectedText)
@@ -176,7 +176,7 @@ function Dropdown.Draw()
         local item = Dropdown.Items[index]
         if item then
             local rowY = listY + (row * DropdownStyle.OptionHeight)
-            local hovered, clicked = mouseInteraction(x, rowY, rowWidth, DropdownStyle.OptionHeight)
+            local hovered, clicked = MouseInteraction(x, rowY, rowWidth, DropdownStyle.OptionHeight)
             if hovered then Dropdown.Current = index end
 
             if index ~= Dropdown.Current and hovered then
@@ -186,7 +186,7 @@ function Dropdown.Draw()
 
             local textY = rowY + ((DropdownStyle.OptionHeight - ImGui.GetFontSize()) * 0.5)
             Draw.Text(drawList, x + 8, textY, Style.Text,
-                Draw.FitText(displayText(item), rowWidth - 34))
+                Draw.FitText(DisplayText(item), rowWidth - 34))
             if Dropdown.Value and Dropdown.Value.index == index then
                 Draw.Text(drawList, x + rowWidth - 16, textY, Style.Accent, "*")
             end

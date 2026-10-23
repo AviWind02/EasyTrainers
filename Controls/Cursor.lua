@@ -2,18 +2,15 @@ local Input = require("Core/Input")
 local State = require("Controls/State")
 
 local Cursor = {}
-local cursorActive = false 
+
+local s_Visible = false
 
 function Cursor.Update()
-    local shouldBeVisible = State.menuOpen and State.mouseEnabled
+    local visible = State.MenuOpen and State.MouseEnabled
+    if visible == s_Visible then return end
 
-    if shouldBeVisible and not cursorActive then
-        Input.ShowCursor(true)
-        cursorActive = true
-    elseif not shouldBeVisible and cursorActive then
-        Input.ShowCursor(false)
-        cursorActive = false
-    end
+    Input.ShowCursor(visible)
+    s_Visible = visible
 end
 
 return Cursor

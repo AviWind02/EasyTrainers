@@ -1,19 +1,17 @@
 local Logger = require("Core/Logger")
-local Notification = require("UI").Notification
+local Notification = require("UI/Panels/Notification/Notification")
 local Vehicle = require("Utils/Vehicle")
 
 local VehicleMountOnRoof = {}
 
 function VehicleMountOnRoof.MountOnRoof()
-    local veh = Vehicle.GetMountedVehicleSafe()
-    if not veh then
+    if not Vehicle.GetMountedVehicleSafe() then
         Notification.Info("No mounted vehicle to mount")
         return false
     end
 
     Vehicle.UnmountPlayer(true)
-
-    Logger.Log("Vehicle: player placed on top of vehicle roof")
+    Logger.Log("VehicleMountOnRoof: player placed on top of vehicle roof")
     return true
 end
 

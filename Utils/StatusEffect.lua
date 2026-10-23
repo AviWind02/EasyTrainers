@@ -1,53 +1,106 @@
 local Logger = require("Core/Logger")
 
 local StatusEffect = {}
-local active = {}
 
-function StatusEffect.Set(effect, enable)
-    local statusSystem = Game.GetStatusEffectSystem()
+local s_Owners = {}
+
+local function GetContext()
+    local system = Game.GetStatusEffectSystem()
     local player = Game.GetPlayer()
-    if not (statusSystem and player) then return end
+    if not system or not player then return nil, nil end
+    return system, player
+end
+
+local function Apply(effect)
+    local system, player = GetContext()
+    if not system then return false end
 
     local entityID = player:GetEntityID()
+    system:ApplyStatusEffect(entityID, effect, player:GetRecordID(), entityID)
+    return true
+end
+
+local function Remove(effect)
+    local system, player = GetContext()
+    if not system then return false end
+
+    system:RemoveStatusEffect(player:GetEntityID(), effect)
+    return true
+end
+
+local function IsOwned(effect)
+    return s_Owners[effect] ~= nil and next(s_Owners[effect]) ~= nil
+end
+
+function StatusEffect.Set(effect, enable, owner)
+    owner = owner or "Default"
+    local owners = s_Owners[effect]
+
     if enable then
-        if not active[effect] then
-            statusSystem:ApplyStatusEffect(entityID, effect, player:GetRecordID(), entityID)
-            active[effect] = true
-            Logger.Log("StatusEffect: applied " .. tostring(effect))
-        end
-    else
-        if active[effect] then
-            statusSystem:RemoveStatusEffect(entityID, effect)
-            active[effect] = nil
-            Logger.Log("StatusEffect: removed " .. tostring(effect))
+        if owners and owners[owner] then return end
+        local first = not IsOwned(effect)
+        if first and not Apply(effect) then return end
+
+        s_Owners[effect] = owners or {}
+        s_Owners[effect][owner] = true
+        if first then Logger.Log("StatusEffect: applied " .. tostring(effect) .. " for " .. owner) end
+        return
+    end
+
+    if not owners or not owners[owner] then return end
+    owners[owner] = nil
+    if IsOwned(effect) then return end
+
+    s_Owners[effect] = nil
+    Remove(effect)
+    Logger.Log("StatusEffect: removed " .. tostring(effect) .. " for " .. owner)
+end
+
+function StatusEffect.Reapply(effect, owner)
+    if not s_Owners[effect] or not s_Owners[effect][owner] then
+        StatusEffect.Set(effect, true, owner)
+        return
+    end
+
+    if not StatusEffect.Has(effect) then Apply(effect) end
+end
+
+function StatusEffect.Has(effect)
+    local system, player = GetContext()
+    if not system then return false end
+    return system:HasStatusEffect(player:GetEntityID(), effect)
+end
+
+function StatusEffect.GetOwnedEffects()
+    local effects = {}
+    for effect in pairs(s_Owners) do
+        if IsOwned(effect) then table.insert(effects, effect) end
+    end
+    table.sort(effects)
+    return effects
+end
+
+function StatusEffect.RemoveUnowned(effects)
+    local removed = 0
+    for _, effect in ipairs(effects or {}) do
+        if not IsOwned(effect) and StatusEffect.Has(effect) and Remove(effect) then
+            removed = removed + 1
+            Logger.Log("StatusEffect: removed saved trainer effect " .. tostring(effect))
         end
     end
+    return removed
 end
 
-function StatusEffect.IsActive(effect)
-    return active[effect] == true
-end
-
--- Checks directly with the game’s status effect system unlike the above func
-function StatusEffect.Has(effect)
-    local statusSystem = Game.GetStatusEffectSystem()
-    local player = Game.GetPlayer()
-    if not (statusSystem and player) then return false end
-    return statusSystem:HasStatusEffect(player:GetEntityID(), effect)
-end
-
---- Remove all restrictions we applied
 function StatusEffect.ClearAll()
-    local statusSystem = Game.GetStatusEffectSystem()
-    local player = Game.GetPlayer()
-    if not (statusSystem and player) then return end
-
-    local entityID = player:GetEntityID()
-    for effect, _ in pairs(active) do
-        statusSystem:RemoveStatusEffect(entityID, effect)
+    for effect in pairs(s_Owners) do
+        Remove(effect)
         Logger.Log("StatusEffect: cleared " .. tostring(effect))
     end
-    active = {}
+    s_Owners = {}
+end
+
+function StatusEffect.Forget()
+    s_Owners = {}
 end
 
 return StatusEffect

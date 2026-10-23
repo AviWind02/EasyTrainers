@@ -1,23 +1,24 @@
 local Logger = require("Core/Logger")
 local JsonHelper = require("Core/JsonHelper")
 
-local Language = {}
+local Language = {
+    DefaultCode = "en"
+}
 
-Language.defaultLang = "en"
-Language.currentLang = "en"
-Language.translations = {}
-Language.fallbackTranslations = {}
+local s_CurrentCode = "en"
+local s_Translations = {}
+local s_Fallback = {}
 
-local function isValidLanguageCode(langCode)
-    return type(langCode) == "string" and langCode:match("^[%w_%-]+$") ~= nil
+local function IsValidCode(code)
+    return type(code) == "string" and code:match("^[%w_%-]+$") ~= nil
 end
 
-local function readLanguage(langCode)
-    if not isValidLanguageCode(langCode) then
-        return nil, "Invalid language code: " .. tostring(langCode)
+local function ReadLanguage(code)
+    if not IsValidCode(code) then
+        return nil, "Invalid language code: " .. tostring(code)
     end
 
-    local path = string.format("lang/%s.json", langCode)
+    local path = string.format("lang/%s.json", code)
     local data, err = JsonHelper.Read(path)
     if type(data) ~= "table" then
         return nil, err or ("Unexpected localization format in: " .. path)
@@ -26,10 +27,8 @@ local function readLanguage(langCode)
     return data
 end
 
-local function lookup(data, key)
-    if type(data) ~= "table" or type(key) ~= "string" or key == "" then
-        return nil
-    end
+local function Lookup(data, key)
+    if type(data) ~= "table" or type(key) ~= "string" or key == "" then return nil end
 
     local value = data
     for part in key:gmatch("[^%.]+") do
@@ -41,54 +40,59 @@ local function lookup(data, key)
     return type(value) == "string" and value or nil
 end
 
-function Language.Load(langCode)
-    local requested = langCode or Language.defaultLang
-    local fallback, fallbackErr = readLanguage(Language.defaultLang)
+local function LookupSection(section, code)
+    local current = s_Translations[section]
+    local fallback = s_Fallback[section]
+    return (current and current[tostring(code)]) or (fallback and fallback[tostring(code)])
+end
+
+function Language.Load(code)
+    local requested = code or Language.DefaultCode
+    local fallback, fallbackErr = ReadLanguage(Language.DefaultCode)
     if not fallback then
-        Logger.Log("Localization: Failed to load fallback language: " .. tostring(fallbackErr))
+        Logger.Log("Language: failed to load fallback language (" .. tostring(fallbackErr) .. ")")
         return false
     end
 
     local data = fallback
-    if requested ~= Language.defaultLang then
-        local requestedData, err = readLanguage(requested)
+    if requested ~= Language.DefaultCode then
+        local requestedData, err = ReadLanguage(requested)
         if not requestedData then
-            Logger.Log("Localization: Failed to load language '" .. tostring(requested) .. "': " .. tostring(err))
+            Logger.Log("Language: failed to load '" .. tostring(requested) .. "' (" .. tostring(err) .. ")")
             return false
         end
         data = requestedData
     end
 
-    Language.currentLang = requested
-    Language.translations = data
-    Language.fallbackTranslations = fallback
-    Logger.Log("Localization: Loaded language '" .. requested .. "'.")
+    s_CurrentCode = requested
+    s_Translations = data
+    s_Fallback = fallback
+    Logger.Log("Language: loaded '" .. requested .. "'")
     return true
 end
 
 function Language.GetAvailable(folder)
     local languages = {}
     local seen = {}
-    local files = dir(folder or "lang") or {}
 
-    for _, entry in ipairs(files) do
-        local filename = type(entry) == "table" and entry.name or entry
-        local code = type(filename) == "string" and filename:match("^(.+)%.json$") or nil
-        if code and isValidLanguageCode(code) and not seen[code] then
-            local data = readLanguage(code)
+    for _, entry in ipairs(dir(folder or "lang") or {}) do
+        local fileName = type(entry) == "table" and entry.name or entry
+        local code = type(fileName) == "string" and fileName:match("^(.+)%.json$") or nil
+        if code and IsValidCode(code) and not seen[code] then
+            local data = ReadLanguage(code)
             if data then
-                local name = lookup(data, "_meta.name") or lookup(data, "language.name") or code
+                local name = Lookup(data, "_meta.name") or Lookup(data, "language.name") or code
                 table.insert(languages, { code = code, name = name })
                 seen[code] = true
             else
-                Logger.Log("Localization: Ignoring invalid language file: " .. tostring(filename))
+                Logger.Log("Language: ignoring invalid file " .. tostring(fileName))
             end
         end
     end
 
     table.sort(languages, function(a, b)
-        if a.code == Language.defaultLang then return true end
-        if b.code == Language.defaultLang then return false end
+        if a.code == Language.DefaultCode then return true end
+        if b.code == Language.DefaultCode then return false end
         return a.name:lower() < b.name:lower()
     end)
 
@@ -96,57 +100,43 @@ function Language.GetAvailable(folder)
 end
 
 function Language.Has(key)
-    return lookup(Language.translations, key) ~= nil
-        or lookup(Language.fallbackTranslations, key) ~= nil
+    return Lookup(s_Translations, key) ~= nil or Lookup(s_Fallback, key) ~= nil
 end
 
 function Language.Get(key)
-    if type(key) ~= "string" then
-        return tostring(key or "")
-    end
-
-    return lookup(Language.translations, key)
-        or lookup(Language.fallbackTranslations, key)
-        or key
+    if type(key) ~= "string" then return tostring(key or "") end
+    return Lookup(s_Translations, key) or Lookup(s_Fallback, key) or key
 end
 
 function Language.GetCurrentCode()
-    return Language.currentLang
+    return s_CurrentCode
 end
 
 function Language.GetCurrentName()
-    return lookup(Language.translations, "_meta.name")
-        or lookup(Language.translations, "language.name")
-        or Language.currentLang
+    return Lookup(s_Translations, "_meta.name") or Lookup(s_Translations, "language.name") or s_CurrentCode
 end
 
-function Language.tip(key, placeholders)
-    local tipText = Language.Get(key)
+function Language.Tip(key, placeholders)
+    local text = Language.Get(key)
+    if type(placeholders) ~= "table" then return text end
 
-    if type(placeholders) == "table" then
-        for placeholder, value in pairs(placeholders) do
-            local resolved = type(value) == "string" and Language.Get(value) or tostring(value)
-            tipText = tipText:gsub("{" .. placeholder .. "}", resolved)
-        end
+    for placeholder, value in pairs(placeholders) do
+        local resolved = type(value) == "string" and Language.Get(value) or tostring(value)
+        text = text:gsub("{" .. placeholder .. "}", function() return resolved end)
     end
 
-    return tipText
+    return text
 end
 
--- Only really used in the binding button so don't really need it to be a global
 function Language.GetInputKey(code)
-    return Language.translations.inputkeys and Language.translations.inputkeys[tostring(code)]
-        or Language.fallbackTranslations.inputkeys and Language.fallbackTranslations.inputkeys[tostring(code)]
-        or tostring(code)
+    return LookupSection("inputkeys", code) or tostring(code)
 end
 
 function Language.GetInputButton(code)
-    return Language.translations.inputbuttons and Language.translations.inputbuttons[tostring(code)]
-        or Language.fallbackTranslations.inputbuttons and Language.fallbackTranslations.inputbuttons[tostring(code)]
-        or "Btn" .. tostring(code)
+    return LookupSection("inputbuttons", code) or "Btn" .. tostring(code)
 end
 
-L = function(key) return Language.Get(key) end
-tip = function(key, placeholders) return Language.tip(key, placeholders) end
+L = Language.Get
+tip = Language.Tip
 
 return Language

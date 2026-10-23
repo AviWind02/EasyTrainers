@@ -58,7 +58,7 @@ local FactFlags = {
     }
 }
 
-local RelationshipTrackingFacts = { -- I wish I was in a relationship :(
+local RelationshipTrackingFacts = {
     { id = "judy_relationship", name = L("gamefacts.relationshipfacts.judy_relationship.name") },
     { id = "panam_relationship", name = L("gamefacts.relationshipfacts.panam_relationship.name") },
     { id = "river_relationship", name = L("gamefacts.relationshipfacts.river_relationship.name") },

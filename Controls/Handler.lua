@@ -5,122 +5,108 @@ local Restrictions = require("Controls/Restrictions")
 local Cursor = require("Controls/Cursor")
 local OptionConfig = require("Config/OptionConfig")
 
-local Handler = {}
+local Handler = {
+    Defaults = {
+        ScrollDelayBase = 200,
+        ScrollMinDelay = 30,
+        AccelThreshold = 1250,
+        AccelStep = 20
+    }
+}
 
-Handler.scrollDelayBase = 200
-Handler.scrollMinDelay = 30
-Handler.accelThreshold = 1250
-Handler.accelStep = 20
+Handler.ScrollDelayBase = Handler.Defaults.ScrollDelayBase
+Handler.ScrollMinDelay = Handler.Defaults.ScrollMinDelay
+Handler.AccelThreshold = Handler.Defaults.AccelThreshold
+Handler.AccelStep = Handler.Defaults.AccelStep
 
-local holdStart = { up = 0, down = 0, left = 0, right = 0 }
-local lastTick = { up = 0, down = 0, left = 0, right = 0, select = 0, back = 0, misc = 0, toggle = 0, toggleMouse = 0 }
-local scrollDelay = { up = Handler.scrollDelayBase, down = Handler.scrollDelayBase, left = Handler.scrollDelayBase, right =
-Handler.scrollDelayBase }
+local REPEATING_ACTIONS = {
+    { Action = "UP", Flag = "UpPressed" },
+    { Action = "DOWN", Flag = "DownPressed" },
+    { Action = "LEFT", Flag = "LeftPressed" },
+    { Action = "RIGHT", Flag = "RightPressed" }
+}
 
-local function getScrollDelay(key, now)
-    if holdStart[key] == 0 then holdStart[key] = now end
-    local heldTime = now - holdStart[key]
-    if heldTime > Handler.accelThreshold then
-        return math.max(Handler.scrollMinDelay, scrollDelay[key] - Handler.accelStep)
-    else
-        return Handler.scrollDelayBase
-    end
+local SINGLE_ACTIONS = {
+    { Action = "SELECT", Flag = "SelectPressed" },
+    { Action = "BACK", Flag = "BackPressed" },
+    { Action = "MISC", Flag = "MiscPressed" }
+}
+
+local s_Initialized = false
+local s_HoldStart = {}
+local s_LastTick = {}
+local s_Delay = {}
+
+function Handler.ResetDefaults()
+    for key, value in pairs(Handler.Defaults) do Handler[key] = value end
 end
 
+local function ReleaseRepeat(action)
+    s_HoldStart[action] = 0
+    s_Delay[action] = Handler.ScrollDelayBase
+end
 
-local initialized = false
+local function NextDelay(action, now)
+    if (s_HoldStart[action] or 0) == 0 then s_HoldStart[action] = now end
+    if now - s_HoldStart[action] <= Handler.AccelThreshold then return Handler.ScrollDelayBase end
+    return math.max(Handler.ScrollMinDelay, (s_Delay[action] or Handler.ScrollDelayBase) - Handler.AccelStep)
+end
+
+local function Ready(action, now, delay)
+    return now - (s_LastTick[action] or 0) > delay
+end
+
+local function UpdateRepeating(entry, now)
+    if not Bindings.IsActionDown(entry.Action) then
+        ReleaseRepeat(entry.Action)
+        return
+    end
+
+    if not Ready(entry.Action, now, s_Delay[entry.Action] or Handler.ScrollDelayBase) then return end
+    State[entry.Flag] = true
+    s_LastTick[entry.Action] = now
+    s_Delay[entry.Action] = NextDelay(entry.Action, now)
+end
+
+local function UpdateSingle(action, now, onPressed)
+    if not Bindings.IsActionDown(action) or not Ready(action, now, Handler.ScrollDelayBase) then return end
+    s_LastTick[action] = now
+    onPressed()
+end
 
 function Handler.Update()
     local now = os.clock() * 1000
-    State.upPressed, State.downPressed = false, false
-    State.leftPressed, State.rightPressed = false, false
-    State.selectPressed, State.backPressed = false, false
-    State.miscPressed = false
+    State.ClearPresses()
 
     Restrictions.Update()
     Cursor.Update()
 
-    if(not initialized ) then
+    if not s_Initialized then
         State.InitializeTracking()
-        initialized = true
+        s_Initialized = true
     end
 
-    -- We don't need the menu closing or opening in case you're binding the main open key
-    if State.bindingKey then
-        return
-    end
+    if State.BindingKey then return end
 
     if OptionConfig.Registry.UpdateHotkeys() then OptionConfig.Save() end
 
-
-    if Bindings.IsActionDown("TOGGLE") and now - lastTick.toggle > Handler.scrollDelayBase then
+    UpdateSingle("TOGGLE", now, function()
         State.ToggleMenu()
-        Logger.Log("Controls: Menu toggled " .. tostring(State.menuOpen))
-        lastTick.toggle = now
-    end
+        Logger.Log("Controls: menu toggled " .. tostring(State.MenuOpen))
+    end)
 
-    if not State.menuOpen then
-        holdStart.up, holdStart.down, holdStart.left, holdStart.right = 0, 0, 0, 0
+    if not State.MenuOpen then
+        for _, entry in ipairs(REPEATING_ACTIONS) do ReleaseRepeat(entry.Action) end
         return
     end
 
-    if State.typingEnabled then
-        return
-    end
+    if State.TypingEnabled then return end
 
-
-    if Bindings.IsActionDown("UP") and now - lastTick.up > scrollDelay.up then
-        State.upPressed = true
-        lastTick.up = now
-        scrollDelay.up = getScrollDelay("up", now)
-    elseif not Bindings.IsActionDown("UP") then
-        holdStart.up, scrollDelay.up = 0, Handler.scrollDelayBase
+    for _, entry in ipairs(REPEATING_ACTIONS) do UpdateRepeating(entry, now) end
+    for _, entry in ipairs(SINGLE_ACTIONS) do
+        UpdateSingle(entry.Action, now, function() State[entry.Flag] = true end)
     end
-
-    if Bindings.IsActionDown("DOWN") and now - lastTick.down > scrollDelay.down then
-        State.downPressed = true
-        lastTick.down = now
-        scrollDelay.down = getScrollDelay("down", now)
-    elseif not Bindings.IsActionDown("DOWN") then
-        holdStart.down, scrollDelay.down = 0, Handler.scrollDelayBase
-    end
-
-    if Bindings.IsActionDown("LEFT") and now - lastTick.left > scrollDelay.left then
-        State.leftPressed = true
-        lastTick.left = now
-        scrollDelay.left = getScrollDelay("left", now)
-    elseif not Bindings.IsActionDown("LEFT") then
-        holdStart.left, scrollDelay.left = 0, Handler.scrollDelayBase
-    end
-
-    if Bindings.IsActionDown("RIGHT") and now - lastTick.right > scrollDelay.right then
-        State.rightPressed = true
-        lastTick.right = now
-        scrollDelay.right = getScrollDelay("right", now)
-    elseif not Bindings.IsActionDown("RIGHT") then
-        holdStart.right, scrollDelay.right = 0, Handler.scrollDelayBase
-    end
-
-    if Bindings.IsActionDown("SELECT") and now - lastTick.select > Handler.scrollDelayBase then
-        if State.typingEnabled then return end
-        State.selectPressed = true
-        lastTick.select = now
-    end
-
-    if Bindings.IsActionDown("BACK") and now - lastTick.back > Handler.scrollDelayBase then
-        State.backPressed = true
-        lastTick.back = now
-    end
-
-    if Bindings.IsActionDown("MISC") and now - lastTick.misc > Handler.scrollDelayBase then
-        State.miscPressed = true
-        lastTick.misc = now
-    end
-
-    if Bindings.IsActionDown("TOGGLE_MOUSE") and now - lastTick.toggleMouse > Handler.scrollDelayBase then
-        State.ToggleMouse()
-        lastTick.toggleMouse = now
-    end
+    UpdateSingle("TOGGLE_MOUSE", now, State.ToggleMouse)
 end
 
 return Handler

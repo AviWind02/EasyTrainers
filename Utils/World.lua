@@ -1,28 +1,23 @@
 local World = {}
 
----@return string parentDistrictName, string childDistrictName
+local OUT_OF_BOUNDS = "Out of Bounds"
+local UNKNOWN_DISTRICT = "Unknown District"
+
 function World.GetCurrentDistrictName()
     local player = Game.GetPlayer()
-    local districtManager = player:GetPreventionSystem().districtManager
-    local currentDistrict = districtManager and districtManager:GetCurrentDistrict()
-    if not currentDistrict then
-        return "Out of Bounds", "Out of Bounds"
-    end
+    local prevention = player and player:GetPreventionSystem() or nil
+    local districtManager = prevention and prevention.districtManager or nil
+    local district = districtManager and districtManager:GetCurrentDistrict() or nil
+    if not district then return OUT_OF_BOUNDS, OUT_OF_BOUNDS end
 
-    local districtRecord = TweakDBInterface.GetDistrictRecord(currentDistrict:GetDistrictID())
-    if not districtRecord then
-        return "Out of Bounds", "Out of Bounds"
-    end
+    local record = TweakDBInterface.GetDistrictRecord(district:GetDistrictID())
+    if not record then return OUT_OF_BOUNDS, OUT_OF_BOUNDS end
 
-    local childDistrictName = Game.GetLocalizedText(districtRecord:LocalizedName()) or "Unknown District"
+    local childName = Game.GetLocalizedText(record:LocalizedName()) or UNKNOWN_DISTRICT
+    local parent = record:ParentDistrict()
+    local parentName = parent and Game.GetLocalizedText(parent:LocalizedName()) or UNKNOWN_DISTRICT
 
-    local parentDistrictName = "Unknown District"
-    local parentRecord = districtRecord:ParentDistrict()
-    if parentRecord then
-        parentDistrictName = Game.GetLocalizedText(parentRecord:LocalizedName()) or "Unknown District"
-    end
-
-    return parentDistrictName, childDistrictName
+    return parentName, childName
 end
 
 return World

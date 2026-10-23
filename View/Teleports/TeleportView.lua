@@ -1,375 +1,274 @@
-local UI = require("UI")
-local Buttons = UI.Buttons
-local Notification = UI.Notification
-
+local Buttons = require("UI/Options/Buttons")
+local Submenu = require("UI/Navigation/Submenu")
+local Notification = require("UI/Panels/Notification/Notification")
 local Teleport = require("Utils/Teleport")
 local TeleportLocations = require("Features/Teleports/TeleportLocations")
 local AutoTeleport = require("Features/Teleports/AutoTeleport")
 local Settings = require("Features/Teleports/TeleportViewStates")
-
 local CustomTeleportView = require("View/Teleports/CustomTeleportView")
 
-local selectedCreator = { index = 1 }
-local currentTeleportCategory = ""
-local creatorList = {}
+local s_Creator = { index = 1 }
+local s_Parent = { index = 1 }
+local s_Child = { index = 1 }
+local s_Quick = { index = 1 }
 
-local quickTeleport = { index = 1 }
-local quickOptions = {}
-local quickLabels = {}
+local s_Creators = {}
+local s_Parents = {}
+local s_Children = {}
+local s_QuickOptions = {}
+local s_QuickLabels = {}
 
-local selectedParentDistrict = { index = 1 }
-local selectedChildDistrict = { index = 1 }
-local parentOptions, childOptions = { "teleport.district_all" }, { "teleport.area_all" }
+local s_KnownCount = -1
+local s_FilterKey = nil
+local s_Categories = {}
+local s_CategoryCounts = {}
+local s_CurrentCategory = ""
 
+local function AllCreators() return L("teleport.creator_all") end
+local function AllDistricts() return L("teleport.district_all") end
+local function AllAreas() return L("teleport.area_all") end
 
-local function FormatDistance(dist)
-    if not dist then return "" end
-    return dist >= 1000 and string.format("%.2f km", dist / 1000) or string.format("%d m", math.floor(dist))
+local function FormatDistance(distance)
+    if not distance then return "" end
+    if distance >= 1000 then return string.format("%.2f km", distance / 1000) end
+    return string.format("%d m", math.floor(distance))
+end
+
+local function UniqueSorted(first, values)
+    local result = { first }
+    local seen = { [first] = true }
+    for _, value in ipairs(values) do
+        if value and not seen[value] then
+            seen[value] = true
+            table.insert(result, value)
+        end
+    end
+    table.sort(result, function(a, b)
+        if a == first then return true end
+        if b == first then return false end
+        return a < b
+    end)
+    return result
 end
 
 local function BuildQuickOptions()
-    quickOptions = {}
-    quickLabels = {}
+    s_QuickOptions = {}
+    s_QuickLabels = {}
 
     local vendorPrefix = L("teleport.quick_closest_vendor")
-    for cat in pairs(TeleportLocations.GetVendors()) do
-        table.insert(quickOptions, {
-            type = "vendor",
-            key = cat,
-            label = vendorPrefix .. " " .. cat
-        })
+    for category in pairs(TeleportLocations.GetVendors()) do
+        table.insert(s_QuickOptions, { Kind = "vendor", Key = category, Label = vendorPrefix .. " " .. category })
     end
 
-    local aptPrefix = L("teleport.quick_apartment")
-    for _, apt in ipairs(TeleportLocations.GetApartments()) do
-        table.insert(quickOptions, {
-            type = "apartment",
-            key = apt.name,
-            label = aptPrefix .. ": " .. apt.name
-        })
+    local apartmentPrefix = L("teleport.quick_apartment")
+    for _, apartment in ipairs(TeleportLocations.GetApartments()) do
+        table.insert(s_QuickOptions, { Kind = "apartment", Key = apartment.name, Position = apartment.position, Label = apartmentPrefix .. ": " .. apartment.name })
     end
 
-    table.sort(quickOptions, function(a, b) return a.label < b.label end)
-    for _, option in ipairs(quickOptions) do table.insert(quickLabels, option.label) end
-    quickTeleport.index = math.max(1, math.min(quickTeleport.index or 1, math.max(1, #quickOptions)))
+    table.sort(s_QuickOptions, function(a, b) return a.Label < b.Label end)
+    for _, option in ipairs(s_QuickOptions) do table.insert(s_QuickLabels, option.Label) end
+    s_Quick.index = math.max(1, math.min(s_Quick.index or 1, #s_QuickOptions))
 end
 
-
-local function BuildCreatorList()
-    creatorList = { L("teleport.creator_all") }
-    local seen = { [L("teleport.creator_all")] = true }
-    for _, loc in ipairs(TeleportLocations.GetAll()) do
-        if not seen[loc.creator] then
-            table.insert(creatorList, loc.creator)
-            seen[loc.creator] = true
+local function BuildChildren()
+    local parent = s_Parents[s_Parent.index or 1] or AllDistricts()
+    local children = {}
+    for _, location in ipairs(TeleportLocations.GetAll()) do
+        if parent == AllDistricts() or location.parentDistrict == parent then
+            table.insert(children, location.childDistrict or L("teleport.area_unknown"))
         end
     end
-    table.sort(creatorList, function(a, b)
-        if a == L("teleport.creator_all") then return true end
-        if b == L("teleport.creator_all") then return false end
-        return a < b
-    end)
+    s_Children = UniqueSorted(AllAreas(), children)
+    s_Child.index = 1
 end
 
-local function BuildParentOptions()
-    parentOptions = { L("teleport.district_all") }
-    local seen = { [L("teleport.district_all")] = true }
-    for _, loc in ipairs(TeleportLocations.GetAll()) do
-        local parent = loc.parentDistrict or L("teleport.district_unknown")
-        if not seen[parent] then
-            table.insert(parentOptions, parent)
-            seen[parent] = true
-        end
+local function RebuildViewData()
+    local creators = {}
+    local parents = {}
+    for _, location in ipairs(TeleportLocations.GetAll()) do
+        table.insert(creators, location.creator)
+        table.insert(parents, location.parentDistrict or L("teleport.district_unknown"))
     end
-    selectedParentDistrict.index = 1
+
+    s_Creators = UniqueSorted(AllCreators(), creators)
+    s_Parents = UniqueSorted(AllDistricts(), parents)
+    s_Creator.index = 1
+    s_Parent.index = 1
+    BuildChildren()
+    BuildQuickOptions()
+
+    s_KnownCount = #TeleportLocations.GetAll()
+    s_FilterKey = nil
 end
 
-local function BuildChildOptionsForParent(parentFilter)
-    childOptions = { L("teleport.area_all") }
-    local seen = { [L("teleport.area_all")] = true }
-    for _, loc in ipairs(TeleportLocations.GetAll()) do
-        local parent = loc.parentDistrict or L("teleport.district_unknown")
-        local child = loc.childDistrict or L("teleport.area_unknown")
-        if parentFilter == L("teleport.district_all") or parent == parentFilter then
-            if not seen[child] then
-                table.insert(childOptions, child)
-                seen[child] = true
-            end
-        end
-    end
-    selectedChildDistrict.index = 1
-end
+local function Matches(location)
+    local creator = s_Creators[s_Creator.index or 1]
+    local parent = s_Parents[s_Parent.index or 1]
+    local child = s_Children[s_Child.index or 1]
 
-local function PassesDistrictFilter(loc)
-    local parentFilter = parentOptions[selectedParentDistrict.index] or L("teleport.district_all")
-    local childFilter = childOptions[selectedChildDistrict.index] or L("teleport.area_all")
-    if parentFilter ~= L("teleport.district_all") and loc.parentDistrict ~= parentFilter then return false end
-    if childFilter ~= L("teleport.area_all") and loc.childDistrict ~= childFilter then return false end
+    if creator ~= AllCreators() and location.creator ~= creator then return false end
+    if parent ~= AllDistricts() and location.parentDistrict ~= parent then return false end
+    if child ~= AllAreas() and location.childDistrict ~= child then return false end
     return true
 end
 
-local function FilteredCategoryView()
-    local creator = creatorList[selectedCreator.index or 1]
-    local playerPos = Game.GetPlayer() and Game.GetPlayer():GetWorldPosition()
+local function RefreshCategories()
+    local key = table.concat({ s_Creator.index, s_Parent.index, s_Child.index, s_KnownCount }, "|")
+    if key == s_FilterKey then return end
+    s_FilterKey = key
 
-    for _, loc in ipairs(TeleportLocations.GetAll()) do
-        if loc.category == currentTeleportCategory
-            and (creator == L("teleport.creator_all") or loc.creator == creator)
-            and PassesDistrictFilter(loc) then
-            local dist = playerPos and Teleport.DistanceBetween(playerPos, loc.position) or nil
-            local distLabel = (Settings.showCategoryDistance.value and FormatDistance(dist)) or ""
-
-            if Buttons.OptionExtended(
-                    loc.name,
-                    "",
-                    distLabel ~= "" and distLabel or IconGlyphs.MapMarker,
-                    tip("teleport.teleportoption.tip", {
-                        creator = loc.creator,
-                        category = loc.category,
-                        district_parent = loc.parentDistrict or "?",
-                        district_child = loc.childDistrict or "?",
-                        location_name = loc.name
-                    })
-                ) then
-                Teleport.TeleportEntity(Game.GetPlayer(), loc.position)
-            end
-        end
-    end
-end
-
-local filteredCategorySubmenu = { title = "teleport.selectedteleports.label", view = FilteredCategoryView }
-
-local function GetFilteredCategories()
-    local seen, filtered = {}, {}
-    local creator = creatorList[selectedCreator.index or 1]
-
-    for _, loc in ipairs(TeleportLocations.GetAll()) do
-        if (creator == L("teleport.creator_all") or loc.creator == creator)
-            and PassesDistrictFilter(loc) then
-            if not seen[loc.category] then
-                table.insert(filtered, loc.category)
-                seen[loc.category] = true
-            end
+    s_CategoryCounts = {}
+    for _, location in ipairs(TeleportLocations.GetAll()) do
+        if Matches(location) then
+            s_CategoryCounts[location.category] = (s_CategoryCounts[location.category] or 0) + 1
         end
     end
 
-    -- Split into priority then normal
-    -- (teleport's listed in the priority array That I believe people will use most can be adjusted in the file)
-    local prioritySet, priority, normal = {}, {}, {}
-    for _, cat in ipairs(TeleportLocations.GetPriority()) do
-        prioritySet[cat] = true
-    end
+    local isPriority = {}
+    for _, category in ipairs(TeleportLocations.GetPriority()) do isPriority[category] = true end
 
-    for _, cat in ipairs(filtered) do
-        if prioritySet[cat] then
-            table.insert(priority, cat)
-        else
-            table.insert(normal, cat)
-        end
+    local priority = {}
+    local normal = {}
+    for category in pairs(s_CategoryCounts) do
+        table.insert(isPriority[category] and priority or normal, category)
     end
-
     table.sort(priority)
     table.sort(normal)
 
-    local final = {}
-    for _, cat in ipairs(priority) do table.insert(final, cat) end
-    for _, cat in ipairs(normal) do table.insert(final, cat) end
-
-    return final
+    s_Categories = priority
+    for _, category in ipairs(normal) do table.insert(s_Categories, category) end
 end
 
-local function CountLocationsInCategory(category)
-    local count = 0
-    local creator = creatorList[selectedCreator.index or 1]
-    for _, loc in ipairs(TeleportLocations.GetAll()) do
-        if loc.category == category
-            and (creator == L("teleport.creator_all") or loc.creator == creator)
-            and PassesDistrictFilter(loc) then
-            count = count + 1
-        end
+local function NearestVendor(category)
+    local nearest = nil
+    local nearestDistance = math.huge
+    for _, vendor in ipairs(TeleportLocations.GetVendors()[category] or {}) do
+        local distance = Teleport.DistanceFromPlayer(vendor.position)
+        if distance < nearestDistance then nearest, nearestDistance = vendor, distance end
     end
-    return count
+    return nearest, nearest and nearestDistance or nil
 end
 
-local function GetQuickOptionDistance(option)
-    if not option then return nil end
-
-    local player = Game.GetPlayer()
-    if not player then return nil end
-    local playerPos = player:GetWorldPosition()
-    if not playerPos then return nil end
-
-    if option.type == "vendor" then
-        local vendors = TeleportLocations.GetVendors()[option.key]
-        if vendors then
-            local nearestDist = math.huge
-            for _, v in ipairs(vendors) do
-                local dist = Teleport.DistanceBetween(playerPos, v.position)
-                if dist < nearestDist then
-                    nearestDist = dist
-                end
-            end
-            return nearestDist ~= math.huge and nearestDist or nil
-        end
-    elseif option.type == "apartment" then
-        for _, apt in ipairs(TeleportLocations.GetApartments()) do
-            if apt.name == option.key then
-                return Teleport.DistanceFromPlayer(apt.position)
-            end
-        end
+local function QuickTarget(option)
+    if option.Kind == "vendor" then
+        local vendor, distance = NearestVendor(option.Key)
+        return vendor and vendor.position, distance, vendor and vendor.name
     end
-
-    return nil
+    return option.Position, Teleport.DistanceFromPlayer(option.Position), option.Key
 end
 
 local function DoQuickTeleport(option)
-    if not option then return end
-    local player = Game.GetPlayer()
-    if not player then return end
+    local position, _, name = QuickTarget(option)
+    if not position or not Teleport.TeleportEntity(Game.GetPlayer(), position) then return end
 
-    if option.type == "vendor" then
-        local vendors = TeleportLocations.GetVendors()[option.key]
-        if vendors then
-            local nearest, nearestDist = nil, math.huge
-            local playerPos = player:GetWorldPosition()
-            for _, v in ipairs(vendors) do
-                local dist = Teleport.DistanceBetween(playerPos, v.position)
-                if dist < nearestDist then nearest, nearestDist = v, dist end
-            end
-            if nearest then
-                Teleport.TeleportEntity(player, nearest.position)
+    if option.Kind == "vendor" then
+        Notification.Info(L("teleport.quick_closest_vendor_notify") .. " " .. option.Key .. " (" .. name .. ")")
+    else
+        Notification.Info(L("teleport.quick_apartment_notify") .. ": " .. name)
+    end
+end
 
-                local msg = L("teleport.quick_closest_vendor_notify")
-                    .. " " .. option.key
-                    .. " (" .. nearest.name .. ")"
-
-                Notification.Info(msg)
-            end
-        end
-
-    elseif option.type == "apartment" then
-        for _, apt in ipairs(TeleportLocations.GetApartments()) do
-            if apt.name == option.key then
-                Teleport.TeleportEntity(player, apt.position)
-
-                local msg = L("teleport.quick_apartment_notify")
-                    .. ": " .. apt.name
-
-                Notification.Info(msg)
-                break
-            end
+local function CategoryView()
+    for _, location in ipairs(TeleportLocations.GetAll()) do
+        if location.category == s_CurrentCategory and Matches(location) then
+            local distance = Settings.ShowCategoryDistance.value and FormatDistance(Teleport.DistanceFromPlayer(location.position)) or ""
+            Buttons.OptionExtended(location.name, "", distance ~= "" and distance or IconGlyphs.MapMarker, tip("teleport.teleportoption.tip", {
+                creator = location.creator,
+                category = location.category,
+                district_parent = location.parentDistrict or "?",
+                district_child = location.childDistrict or "?",
+                location_name = location.name
+            }), function()
+                Teleport.TeleportEntity(Game.GetPlayer(), location.position)
+            end)
         end
     end
 end
 
+local CategoryMenu = Submenu.Create("teleport.selectedteleports.label", CategoryView)
 
-local onInit = false
-local knownLocationCount = -1
-
-local function RebuildViewData()
-    BuildCreatorList()
-    BuildQuickOptions()
-    BuildParentOptions()
-    BuildChildOptionsForParent(L("teleport.district_all"))
-    selectedCreator.index = 1
-    knownLocationCount = #TeleportLocations.GetAll()
-end
-
-local function RefreshTeleportData()
+local function ReloadTeleports()
     TeleportLocations.Reload()
     RebuildViewData()
 end
 
-local function TeleportSettingsView()
-    Buttons.Option(L("teleport.reloadteleports.label"), L("teleport.reloadteleports.tip"), RefreshTeleportData)
-    Buttons.Break("", L("teleport.autoteleports.label"))
+local function SettingsView()
+    Buttons.Option(L("teleport.reloadteleports.label"), L("teleport.reloadteleports.tip"), ReloadTeleports)
 
-    Buttons.Toggle(L("teleport.autowaypoint.label"), AutoTeleport.toggleAutoWaypoint, L("teleport.autowaypoint.tip"))
-    Buttons.Toggle(L("teleport.autoquest.label"), AutoTeleport.toggleAutoQuest, L("teleport.autoquest.tip"))
-    Buttons.Break("", L("teleport.settings.label"))
-    Buttons.Toggle(L("teleport.showforward.label"), Settings.showForward, L("teleport.showforward.tip"))
-    Buttons.Toggle(L("teleport.showquick.label"), Settings.showQuick, L("teleport.showquick.tip"))
-    Buttons.Toggle(L("teleport.showquickdistance.label"), Settings.showQuickDistance, L("teleport.showquickdistance.tip"))
-    Buttons.Toggle(L("teleport.showcategorydistance.label"), Settings.showCategoryDistance,
-        L("teleport.showcategorydistance.tip"))
-    Buttons.Toggle(L("teleport.showdistrictfilter.label"), Settings.showDistrictFilter,
-        L("teleport.showdistrictfilter.tip"))
-    Buttons.Toggle(L("teleport.showcreatorfilter.label"), Settings.showCreatorFilter, L("teleport.showcreatorfilter.tip"))
+    Buttons.Break(L("teleport.autoteleports.label"))
+    Buttons.Toggle(L("teleport.autowaypoint.label"), AutoTeleport.Waypoint, L("teleport.autowaypoint.tip"))
+    Buttons.Toggle(L("teleport.autoquest.label"), AutoTeleport.Quest, L("teleport.autoquest.tip"))
+
+    Buttons.Break(L("teleport.settings.label"))
+    Buttons.Toggle(L("teleport.showforward.label"), Settings.ShowForward, L("teleport.showforward.tip"))
+    Buttons.Toggle(L("teleport.showquick.label"), Settings.ShowQuick, L("teleport.showquick.tip"))
+    Buttons.Toggle(L("teleport.showquickdistance.label"), Settings.ShowQuickDistance, L("teleport.showquickdistance.tip"))
+    Buttons.Toggle(L("teleport.showcategorydistance.label"), Settings.ShowCategoryDistance, L("teleport.showcategorydistance.tip"))
+    Buttons.Toggle(L("teleport.showdistrictfilter.label"), Settings.ShowDistrictFilter, L("teleport.showdistrictfilter.tip"))
+    Buttons.Toggle(L("teleport.showcreatorfilter.label"), Settings.ShowCreatorFilter, L("teleport.showcreatorfilter.tip"))
 end
 
-local settingsSubmenu = { title = "teleport.settingssubmenu.label", view = TeleportSettingsView }
+local SettingsMenu = Submenu.Create("teleport.settingssubmenu.label", SettingsView)
 
-function TeleportMenuView()
-    if not onInit or knownLocationCount ~= #TeleportLocations.GetAll() then
-        RebuildViewData()
-        onInit = true
+local function DrawQuickCycler()
+    local option = s_QuickOptions[s_Quick.index]
+    local label = L("teleport.quickcycler.label")
+    if Settings.ShowQuickDistance.value and option then
+        local _, distance = QuickTarget(option)
+        label = label .. " (" .. FormatDistance(distance) .. ")"
     end
 
-    Buttons.Break("", L("teleport.quickteleports.label"))
+    if Buttons.StringCyclerClick(label, s_Quick, s_QuickLabels, L("teleport.quickcycler.tip")) and option then
+        DoQuickTeleport(option)
+    end
+end
+
+local function FiltersView()
+    if Settings.ShowDistrictFilter.value then
+        if Buttons.StringCycler(L("teleport.district.label"), s_Parent, s_Parents, L("teleport.district.tip")) then BuildChildren() end
+        Buttons.StringCycler(L("teleport.area.label"), s_Child, s_Children, L("teleport.area.tip"))
+    end
+    if Settings.ShowCreatorFilter.value then
+        Buttons.Dropdown(L("teleport.creator.label"), s_Creator, s_Creators, L("teleport.creator.tip"))
+    end
+end
+
+local FiltersMenu = Submenu.Create("teleport.filters.label", FiltersView)
+
+local function LocationsView()
+    if Settings.ShowCreatorFilter.value or Settings.ShowDistrictFilter.value then
+        Buttons.Submenu(L("teleport.filters.label"), FiltersMenu, L("teleport.filters.tip"))
+    end
+
+    RefreshCategories()
+    if #s_Categories == 0 then
+        Buttons.Option(L("teleport.selectedteleports.label"), "", function() end)
+    end
+    for _, category in ipairs(s_Categories) do
+        Buttons.Submenu(category .. "  [" .. tostring(s_CategoryCounts[category]) .. "]", CategoryMenu,
+            tip("teleport.categorysubmenu.tip", { category = category }), function() s_CurrentCategory = category end)
+    end
+end
+
+local LocationsMenu = Submenu.Create("teleport.categoriesbreak.label", LocationsView)
+
+local function TeleportView()
+    if s_KnownCount ~= #TeleportLocations.GetAll() then RebuildViewData() end
+
+    Buttons.Submenu(L("teleport.categoriesbreak.label"), LocationsMenu, L("teleport.categoriesbreak.tip"))
+    Buttons.Submenu(L("teleport.customteleports.label"), CustomTeleportView, L("teleport.customteleportview.save.tip"))
+    Buttons.Submenu(L("teleport.miscsubmenu.label"), SettingsMenu, L("teleport.miscsubmenu.tip"))
     Buttons.Option(L("teleport.questmarker.label"), L("teleport.questmarker.tip"), Teleport.ToQuestMarker)
     Buttons.Option(L("teleport.waypointmarker.label"), L("teleport.waypointmarker.tip"), Teleport.ToWaypoint)
 
-    if Settings.showForward.value then
-        Buttons.Int(L("teleport.forwarddistance.label"), Settings.forwardDistance, L("teleport.forwarddistance.tip"))
-        if Buttons.Option(L("teleport.teleportforward.label"), L("teleport.teleportforward.tip")) then
-            local pos = Teleport.GetForwardOffset(Settings.forwardDistance.value)
-            Teleport.TeleportEntity(Game.GetPlayer(), pos)
-        end
+    if Settings.ShowForward.value then
+        Buttons.Int(L("teleport.forwarddistance.label"), Settings.ForwardDistance, L("teleport.forwarddistance.tip"))
+        Buttons.Option(L("teleport.teleportforward.label"), L("teleport.teleportforward.tip"), function()
+            Teleport.TeleportEntity(Game.GetPlayer(), Teleport.GetForwardOffset(Settings.ForwardDistance.value))
+        end)
     end
 
-    if Settings.showQuick.value then
-        local option = quickOptions[quickTeleport.index]
-        local label = L("teleport.quickcycler.label")
-        if Settings.showQuickDistance.value and option then
-            local distText = GetQuickOptionDistance(option)
-            label = label .. " (" .. FormatDistance(distText) .. ")"
-        end
-
-        if Buttons.StringCyclerClick(label, quickTeleport, quickLabels, L("teleport.quickcycler.tip")) then
-            if option then DoQuickTeleport(option) end
-        end
-    end
-
-
-    if Settings.showCreatorFilter.value or Settings.showDistrictFilter.value then
-        Buttons.Break("", L("teleport.filters.label"))
-
-        if Settings.showDistrictFilter.value then
-            if Buttons.StringCycler(L("teleport.district.label"), selectedParentDistrict, parentOptions, L("teleport.district.tip")) then
-                BuildChildOptionsForParent(parentOptions[selectedParentDistrict.index])
-                selectedChildDistrict.index = 1
-            end
-            Buttons.StringCycler(L("teleport.area.label"), selectedChildDistrict, childOptions, L("teleport.area.tip"))
-        end
-
-        if Settings.showCreatorFilter.value then
-            Buttons.Dropdown(L("teleport.creator.label"), selectedCreator, creatorList, L("teleport.creator.tip"))
-        end
-    end
-
-    local categories = GetFilteredCategories()
-    Buttons.Break("", L("teleport.categoriesbreak.label"))
-    if #categories == 0 then
-        Buttons.Break(L("teleport.selectedteleports.label"))
-    end
-    for _, category in ipairs(categories) do
-        local count = CountLocationsInCategory(category)
-        Buttons.Submenu(
-            category .. "  [" .. tostring(count) .. "]",
-            filteredCategorySubmenu,
-            tip("teleport.categorysubmenu.tip", { category = category }),
-            function() currentTeleportCategory = category end
-        )
-    end
-
-    Buttons.Break("", L("teleport.settings.label"))
-    Buttons.Submenu(L("teleport.customteleports.label"), CustomTeleportView,
-        L("teleport.customteleportview.save.tip"))
-    Buttons.Submenu(L("teleport.miscsubmenu.label"), settingsSubmenu, L("teleport.miscsubmenu.tip"))
+    if Settings.ShowQuick.value then DrawQuickCycler() end
 end
 
-return { 
-    title = "teleport.title", 
-    view = TeleportMenuView,
-    Settings = Settings
-}
+return Submenu.Create("teleport.title", TeleportView)

@@ -1,38 +1,25 @@
+local StatModifiers = require("Utils/StatModifiers")
+
 local AdvancedMobility = {}
 
-AdvancedMobility.toggleDoubleJump = { value = false }
-AdvancedMobility.toggleAirHover   = { value = false }
-AdvancedMobility.toggleChargeJump = { value = false }
+AdvancedMobility.DoubleJump = { value = false }
+AdvancedMobility.AirHover = { value = false }
+AdvancedMobility.ChargeJump = { value = false }
 
-local state = {
-    doubleJumpApplied = false,
-    airHoverApplied = false,
-    chargeJumpApplied = false
-}
-
-
-local function HandleStatToggle(toggle, statName, appliedFlag, label)
-    local stats = Game.GetStatsSystem()
-    local player = Game.GetPlayer()
-    local entityID = player:GetEntityID()
-
-    local function modify(value)
-        stats:AddModifier(entityID, RPGManager.CreateStatModifier(statName, gameStatModifierType.Additive, value))
-    end
-
-    if toggle.value and not state[appliedFlag] then
-        modify(1.0)
-        state[appliedFlag] = true
-    elseif not toggle.value and state[appliedFlag] then
-        modify(-1.0)
-        state[appliedFlag] = false
-    end
+local function Build(ability)
+    return { { ability.Stat, gameStatModifierType.Additive, 1.0 } }
 end
 
-function AdvancedMobility.Tick()
-    HandleStatToggle(AdvancedMobility.toggleDoubleJump, "HasDoubleJump", "doubleJumpApplied", "Double Jump")
-    HandleStatToggle(AdvancedMobility.toggleAirHover,   "HasAirHover",   "airHoverApplied",   "Air Hover")
-    HandleStatToggle(AdvancedMobility.toggleChargeJump, "HasChargeJump", "chargeJumpApplied", "Charge Jump")
+local ABILITIES = {
+    { Name = "DoubleJump", Ref = AdvancedMobility.DoubleJump, Stat = "HasDoubleJump" },
+    { Name = "AirHover", Ref = AdvancedMobility.AirHover, Stat = "HasAirHover" },
+    { Name = "ChargeJump", Ref = AdvancedMobility.ChargeJump, Stat = "HasChargeJump" }
+}
+
+function AdvancedMobility.Tick(playerID)
+    for _, ability in ipairs(ABILITIES) do
+        StatModifiers.Sync(ability, ability.Ref.value, "on", playerID, Build)
+    end
 end
 
 return AdvancedMobility

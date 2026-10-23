@@ -1,47 +1,35 @@
-local ConfigManager = require("Config/OptionConfig")
+local OptionConfig = require("Config/OptionConfig")
 local AutoTeleport = require("Features/Teleports/AutoTeleport")
-local Settings = require("Features/Teleports/TeleportViewStates")
-local Toggle = ConfigManager.DefineToggle
+local ViewStates = require("Features/Teleports/TeleportViewStates")
 
-local function RegisterAllTelportOptions()
-
-    ConfigManager.RegisterAll({
-        { Id = "number.teleport.forwarddistance", Kind = ConfigManager.Registry.Kind.Number,
-            Ref = Settings.forwardDistance, Default = 2, Category = "teleport",
-            LabelKey = "teleport.forwarddistance.label", TipKey = "teleport.forwarddistance.tip" },
-        Toggle("toggle.teleport.autowaypoint", AutoTeleport.toggleAutoWaypoint, false, {
-            LabelKey = "teleport.autowaypoint.label", TipKey = "teleport.autowaypoint.tip",
-            Keywords = { "map", "marker", "automatic" },
-        }),
-        Toggle("toggle.teleport.autoquest", AutoTeleport.toggleAutoQuest, false, {
-            LabelKey = "teleport.autoquest.label", TipKey = "teleport.autoquest.tip",
-            Keywords = { "mission", "objective", "automatic" },
-        }),
-        Toggle("view.teleport.showforward", Settings.showForward, true, {
-            LabelKey = "teleport.showforward.label", TipKey = "teleport.showforward.tip",
-            Keywords = { "forward", "layout" },
-        }),
-        Toggle("view.teleport.showquick", Settings.showQuick, true, {
-            LabelKey = "teleport.showquick.label", TipKey = "teleport.showquick.tip",
-            Keywords = { "quick", "layout" },
-        }),
-        Toggle("view.teleport.showquickdistance", Settings.showQuickDistance, true, {
-            LabelKey = "teleport.showquickdistance.label", TipKey = "teleport.showquickdistance.tip",
-            Keywords = { "quick", "distance", "layout" },
-        }),
-        Toggle("view.teleport.showcategorydistance", Settings.showCategoryDistance, true, {
-            LabelKey = "teleport.showcategorydistance.label", TipKey = "teleport.showcategorydistance.tip",
-            Keywords = { "category", "distance", "layout" },
-        }),
-        Toggle("view.teleport.showcreatorfilter", Settings.showCreatorFilter, false, {
-            LabelKey = "teleport.showcreatorfilter.label", TipKey = "teleport.showcreatorfilter.tip",
-            Keywords = { "author", "filter", "layout" },
-        }),
-        Toggle("view.teleport.showdistrictfilter", Settings.showDistrictFilter, true, {
-            LabelKey = "teleport.showdistrictfilter.label", TipKey = "teleport.showdistrictfilter.tip",
-            Keywords = { "area", "district", "filter", "layout" },
-        }),
+local function Toggle(id, ref, default, key, keywords)
+    return OptionConfig.DefineToggle(id, ref, default, {
+        LabelKey = key .. ".label",
+        TipKey = key .. ".tip",
+        Keywords = keywords
     })
 end
 
-return RegisterAllTelportOptions
+local function RegisterAllTeleportOptions()
+    OptionConfig.RegisterAll({
+        {
+            Id = "number.teleport.forwarddistance",
+            Kind = OptionConfig.Registry.Kind.Number,
+            Ref = ViewStates.ForwardDistance,
+            Default = 2,
+            Category = "teleport",
+            LabelKey = "teleport.forwarddistance.label",
+            TipKey = "teleport.forwarddistance.tip"
+        },
+        Toggle("toggle.teleport.autowaypoint", AutoTeleport.Waypoint, false, "teleport.autowaypoint", { "map", "marker", "automatic" }),
+        Toggle("toggle.teleport.autoquest", AutoTeleport.Quest, false, "teleport.autoquest", { "mission", "objective", "automatic" }),
+        Toggle("view.teleport.showforward", ViewStates.ShowForward, true, "teleport.showforward", { "forward", "layout" }),
+        Toggle("view.teleport.showquick", ViewStates.ShowQuick, true, "teleport.showquick", { "quick", "layout" }),
+        Toggle("view.teleport.showquickdistance", ViewStates.ShowQuickDistance, true, "teleport.showquickdistance", { "quick", "distance", "layout" }),
+        Toggle("view.teleport.showcategorydistance", ViewStates.ShowCategoryDistance, true, "teleport.showcategorydistance", { "category", "distance", "layout" }),
+        Toggle("view.teleport.showcreatorfilter", ViewStates.ShowCreatorFilter, false, "teleport.showcreatorfilter", { "author", "filter", "layout" }),
+        Toggle("view.teleport.showdistrictfilter", ViewStates.ShowDistrictFilter, true, "teleport.showdistrictfilter", { "area", "district", "filter", "layout" })
+    })
+end
+
+return RegisterAllTeleportOptions

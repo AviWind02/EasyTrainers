@@ -1,5 +1,5 @@
 local Logger = require("Core/Logger")
-local Inventory = require("Utils").Inventory
+local Inventory = require("Utils/Inventory")
 
 local CraftingComponents = require("Features/Items/ItemsCraftingComponents")
 local Consumables = require("Features/Items/ItemsConsumables")

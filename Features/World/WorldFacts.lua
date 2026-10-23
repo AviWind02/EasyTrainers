@@ -1,45 +1,22 @@
-local Facts = {}
-local logger = require("Core/Logger")
+local Logger = require("Core/Logger")
 
+local WorldFacts = {}
 
-function Facts.Get(factName)
-    local QS = Game.GetQuestsSystem()
-    local result = QS:GetFactStr(factName)
-    return result
+function WorldFacts.Get(name)
+    return Game.GetQuestsSystem():GetFactStr(name)
 end
 
-function Facts.Set(factName, value)
-    local QS = Game.GetQuestsSystem()
-    QS:SetFactStr(factName, value)
-    logger.Log(string.format("[Facts] %s set to %s", factName, tostring(value)))
+function WorldFacts.Set(name, value)
+    Game.GetQuestsSystem():SetFactStr(name, value)
+    Logger.Log(string.format("WorldFacts: %s set to %s", name, tostring(value)))
 end
 
-function Facts.IsTrue(factName)
-    return tostring(Facts.Get(factName)) == "1"
+function WorldFacts.IsTrue(name)
+    return tostring(WorldFacts.Get(name)) == "1"
 end
 
-function Facts.SetBool(factName, state)
-    Facts.Set(factName, state and 1 or 0)
+function WorldFacts.SetBool(name, state)
+    WorldFacts.Set(name, state and 1 or 0)
 end
 
-function Facts.Print(factList)
-    for _, fact in ipairs(factList) do
-        logger.Log(fact .. ": " .. tostring(Facts.Get(fact)))
-    end
-end
-
-function Facts.MakeToggle(factName)
-    return {
-        value = Facts.IsTrue(factName),
-        _fact = factName
-    }
-end
-
-function Facts.Tick(toggleRef)
-    local current = Facts.IsTrue(toggleRef._fact)
-    if toggleRef.value ~= current then
-        Facts.SetBool(toggleRef._fact, toggleRef.value)
-    end
-end
-
-return Facts
+return WorldFacts

@@ -1,9 +1,8 @@
-local VehicleListState = {
-    enableVehicleSpawnerMode = false,
-
-    deleteLastVehicle = { value = true },
-    mountOnSpawn = { value = true },
-    previewVehicle = { value = true },
+local VehicleViewStates = {
+    SpawnerMode = false,
+    DeleteLastVehicle = { value = true },
+    MountOnSpawn = { value = true },
+    PreviewVehicle = { value = true }
 }
 
-return VehicleListState
+return VehicleViewStates

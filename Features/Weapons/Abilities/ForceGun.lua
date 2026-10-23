@@ -1,52 +1,40 @@
--- Features/ForceGun.lua
-local Logger = require("Core/Logger")
 local Force = require("Utils/Force")
 local Weapon = require("Utils/Weapon")
+local AimHelpers = require("Features/Weapons/Abilities/AimHelpers")
 
 local ForceGun = {}
 
-ForceGun.enabled = { value = false }
-local heldTarget = nil
-local launchPower = 25000.0
+ForceGun.Enabled = { value = false }
 
-function ForceGun.Tick(dt)
-    if not ForceGun.enabled.value then
-        heldTarget = nil
+local LAUNCH_POWER = 25000.0
+
+local s_Target = nil
+
+function ForceGun.Tick()
+    if not ForceGun.Enabled.value then
+        s_Target = nil
         return
     end
 
     local player = Game.GetPlayer()
-    local targetingSystem = Game.GetTargetingSystem()
-    if not player or not targetingSystem then return end
+    local targeting = Game.GetTargetingSystem()
+    if not player or not targeting then return end
 
-    if player.isAiming and not heldTarget then
-        heldTarget = targetingSystem:GetLookAtObject(player, true, false)
+    if player.isAiming and not s_Target then
+        s_Target = targeting:GetLookAtObject(player, true, false)
     end
 
-    if heldTarget and Weapon.IsPlayerShooting() then
-        local camOrigin = player:GetWorldPosition()
-        local lookAt = targetingSystem:GetLookAtPosition(player, true, false)
-        if not lookAt then heldTarget = nil return end
+    if not s_Target or not Weapon.IsPlayerShooting() then return end
 
-        local dir = {
-            x = lookAt.x - camOrigin.x,
-            y = lookAt.y - camOrigin.y,
-            z = lookAt.z - camOrigin.z
-        }
-        local mag = math.sqrt(dir.x^2 + dir.y^2 + dir.z^2)
-        if mag < 0.001 then heldTarget = nil return end
-        dir.x, dir.y, dir.z = dir.x / mag, dir.y / mag, dir.z / mag
-
-        local impulse = Vector3.new(
-            dir.x * launchPower,
-            dir.y * launchPower,
-            dir.z * launchPower
-        )
-
-        pcall(Force.ApplyImpulse, heldTarget, impulse)
-        
-        heldTarget = nil
+    local direction = AimHelpers.GetAimDirection(player, targeting)
+    if direction then
+        pcall(Force.ApplyImpulse, s_Target, Vector3.new(
+            direction.x * LAUNCH_POWER,
+            direction.y * LAUNCH_POWER,
+            direction.z * LAUNCH_POWER
+        ))
     end
+    s_Target = nil
 end
 
 return ForceGun

@@ -1,35 +1,29 @@
-local ConfigManager = require("Config/OptionConfig")
+local OptionConfig = require("Config/OptionConfig")
+local WorldTime = require("Features/World/WorldTime")
+local WorldWeather = require("Features/World/WorldWeather")
 
-local WorldTime = require("Features/World").WorldTime
-local WorldWeather = require("Features/World").WorldWeather
-local Toggle = ConfigManager.DefineToggle
-
-local function RegisterAllWorldOptions()
-    ConfigManager.RegisterAll({
-        Toggle("toggle.world.freezeTime", WorldTime.toggleFreezeTime, false, {
-            LabelKey = "worldtime.freezetime.label", TipKey = "worldtime.freezetime.tip",
-            Keywords = { "clock", "pause" },
-        }),
-        Toggle("toggle.world.timeLapse", WorldTime.toggleTimeLapse, false, {
-            LabelKey = "worldtime.enabletimelapse.label", TipKey = "worldtime.enabletimelapse.tip",
-            Keywords = { "clock", "speed" },
-        }),
-        Toggle("toggle.world.syncSystemClock", WorldTime.toggleSyncToSystemClock, false, {
-            LabelKey = "worldtime.synctopc.label", TipKey = "worldtime.synctopc.tip",
-            Keywords = { "clock", "computer", "real time" },
-        }),
-        Toggle("toggle.world.freezeWeather", WorldWeather.freezeWeather, false, {
-            LabelKey = "worldweather.freeze.label", TipKey = "worldweather.freeze.tip",
-            Keywords = { "climate", "rain", "sun" },
-        }),
-        { Id = "number.world.timeLapseMultiplier", Kind = ConfigManager.Registry.Kind.Number,
-            Ref = WorldTime.timeLapseMultiplier, Default = 2, Label = "Time Lapse Multiplier", Category = "world" },
-        { Id = "number.world.daySpeed", Kind = ConfigManager.Registry.Kind.Number,
-            Ref = WorldTime.daySpeedMultiplier, Default = 2.0, Label = "Day Speed", Category = "world" },
-        { Id = "number.world.nightSpeed", Kind = ConfigManager.Registry.Kind.Number,
-            Ref = WorldTime.nightSpeedMultiplier, Default = 2.0, Label = "Night Speed", Category = "world" },
+local function Toggle(id, ref, key, keywords)
+    return OptionConfig.DefineToggle(id, ref, false, {
+        LabelKey = key .. ".label",
+        TipKey = key .. ".tip",
+        Keywords = keywords
     })
 end
 
+local function Number(id, ref, default, label)
+    return { Id = id, Kind = OptionConfig.Registry.Kind.Number, Ref = ref, Default = default, Label = label, Category = "world" }
+end
+
+local function RegisterAllWorldOptions()
+    OptionConfig.RegisterAll({
+        Toggle("toggle.world.freezeTime", WorldTime.FreezeTime, "worldtime.freezetime", { "clock", "pause" }),
+        Toggle("toggle.world.timeLapse", WorldTime.TimeLapse, "worldtime.enabletimelapse", { "clock", "speed" }),
+        Toggle("toggle.world.syncSystemClock", WorldTime.SyncToSystemClock, "worldtime.synctopc", { "clock", "computer", "real time" }),
+        Toggle("toggle.world.freezeWeather", WorldWeather.Freeze, "worldweather.freeze", { "climate", "rain", "sun" }),
+        Number("number.world.timeLapseMultiplier", WorldTime.TimeLapseMultiplier, 2, "Time Lapse Multiplier"),
+        Number("number.world.daySpeed", WorldTime.DaySpeed, 2.0, "Day Speed"),
+        Number("number.world.nightSpeed", WorldTime.NightSpeed, 2.0, "Night Speed")
+    })
+end
 
 return RegisterAllWorldOptions

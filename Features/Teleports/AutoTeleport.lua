@@ -1,25 +1,31 @@
 local Teleport = require("Utils/Teleport")
-local Notification = require("UI").Notification
+local Notification = require("UI/Panels/Notification/Notification")
+
 local AutoTeleport = {}
 
-AutoTeleport.toggleAutoWaypoint = { value = false }
-AutoTeleport.toggleAutoQuest = { value = false }
+AutoTeleport.Waypoint = { value = false }
+AutoTeleport.Quest = { value = false }
 
-local tickTimer = 0
-function AutoTeleport.Tick(delta)
-    tickTimer = tickTimer + delta
-    if tickTimer < 1.0 then return end  
-    tickTimer = 0
+local INTERVAL = 1.0
+local ARRIVED_DISTANCE = 3.0
 
-    if AutoTeleport.toggleAutoWaypoint.value then
-        local success = Teleport.ToWaypoint()
-        if success then Notification.Info("Auto-teleported to waypoint.") end
-    end
+local s_Elapsed = 0
 
-    if AutoTeleport.toggleAutoQuest.value then
-        local success = Teleport.ToQuestMarker()
-        if success then Notification.Info("Auto-teleported to quest objective.") end
-    end
+local function TryTeleport(getPosition, message)
+    local position = getPosition()
+    if not position or Teleport.DistanceFromPlayer(position) < ARRIVED_DISTANCE then return end
+    if Teleport.TeleportEntity(Game.GetPlayer(), position) then Notification.Info(message) end
+end
+
+function AutoTeleport.Tick(deltaTime)
+    if not AutoTeleport.Waypoint.value and not AutoTeleport.Quest.value then return end
+
+    s_Elapsed = s_Elapsed + deltaTime
+    if s_Elapsed < INTERVAL then return end
+    s_Elapsed = 0
+
+    if AutoTeleport.Waypoint.value then TryTeleport(Teleport.GetWaypointPosition, "Auto-teleported to waypoint.") end
+    if AutoTeleport.Quest.value then TryTeleport(Teleport.GetQuestMarkerPosition, "Auto-teleported to quest objective.") end
 end
 
 return AutoTeleport

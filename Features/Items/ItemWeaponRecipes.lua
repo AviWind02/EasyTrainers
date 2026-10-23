@@ -1,4 +1,4 @@
-local Inventory = require("Utils").Inventory
+local Inventory = require("Utils/Inventory")
 
 local ItemWeaponRecipes = {}
 
@@ -245,7 +245,6 @@ function ItemWeaponRecipes.GiveAllWeaponRecipes()
         "RareYukimuraRecipe",
         "RareZhuoRecipe",
 
-        -- Presets, Iconics, DLC recipes…
         "Recipe_Preset_Achilles_Nash_Epic",
         "Recipe_Preset_Achilles_Nash_Legendary",
         "Recipe_Preset_Ajax_Moron",
@@ -323,7 +322,6 @@ function ItemWeaponRecipes.GiveAllWeaponRecipes()
         "Recipe_Preset_Yukimura_Kiji_Legendary",
         "Recipe_Preset_Zhuo_Eight_Star",
 
-        -- more uncommons, commons, etc...
         "UncommonAchillesRecipe",
         "UncommonAjaxRecipe",
         "UncommonAshuraRecipe",

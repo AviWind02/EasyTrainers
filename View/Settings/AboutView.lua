@@ -1,13 +1,16 @@
-local Buttons = require("UI").Buttons
+local Buttons = require("UI/Options/Buttons")
+local Submenu = require("UI/Navigation/Submenu")
 
-local function DrawAbout()
+local function AboutView()
     Buttons.OptionExtended("EasyTrainer", "", "v2.0", "An accessible Cyberpunk 2077 trainer with keyboard, controller, and mouse support.")
-    Buttons.Break("Credits", "")
-    Buttons.OptionExtended("Created by", "", "Avi", "EasyTrainer creator and maintainer.")
-    Buttons.OptionExtended("Inspired by", "", "SimpleMenu", "Inspired by Dank Rafft and capncoolio2.")
-    Buttons.OptionExtended("Teleport data", "", "LocationKingGRP", "Additional teleport location data.")
-    Buttons.Break("Project", "")
-    Buttons.OptionExtended("Source repository", "", "Avi6481 / EasyTrainers","github.com/Avi6481/EasyTrainers")
+
+    Buttons.Break("Credits")
+    Buttons.OptionExtended("Created By", "", "Avi", "EasyTrainer creator and maintainer.")
+    Buttons.OptionExtended("Inspired By", "", "SimpleMenu", "Inspired by Dank Rafft and capncoolio2.")
+    Buttons.OptionExtended("Teleport Data", "", "LocationKingGRP", "Additional teleport location data.")
+
+    Buttons.Break("Project")
+    Buttons.OptionExtended("Source Repository", "", "Avi6481 / EasyTrainers", "github.com/Avi6481/EasyTrainers")
 end
 
-return { title = "About", view = DrawAbout }
+return Submenu.Create("About", AboutView)

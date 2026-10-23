@@ -1,94 +1,62 @@
-local UI = require("UI")
-local Buttons = UI.Buttons
-local Notification = UI.Notification
+local Buttons = require("UI/Options/Buttons")
+local Submenu = require("UI/Navigation/Submenu")
+local Notification = require("UI/Panels/Notification/Notification")
+local GameFacts = require("Utils/Facts")
+local WorldFacts = require("Features/World/WorldFacts")
 
-local GameFacts = require("Utils").Facts
-local Facts = require("Features/World").Facts
-
-local factCategories = {
-    { key = "RomanceFlags", label = "gamefacts.categories.romance" },
-    { key = "StoryOutcomeFlags", label = "gamefacts.categories.storyoutcomes" },
-    { key = "SmartWeaponStates", label = "gamefacts.categories.skippystates" },
-    { key = "GameplayToggles", label = "gamefacts.categories.gameplaytoggles" },
-    -- { key = "LifePathFlags", label = "gamefacts.categories.lifepath" },
-    { key = "WorldEventFlags", label = "gamefacts.categories.worldevents" },
-    { key = "CensorshipFlags", label = "gamefacts.categories.censorship" }
+local CATEGORIES = {
+    { Key = "RomanceFlags", Label = "gamefacts.categories.romance" },
+    { Key = "StoryOutcomeFlags", Label = "gamefacts.categories.storyoutcomes" },
+    { Key = "SmartWeaponStates", Label = "gamefacts.categories.skippystates" },
+    { Key = "GameplayToggles", Label = "gamefacts.categories.gameplaytoggles" },
+    { Key = "WorldEventFlags", Label = "gamefacts.categories.worldevents" },
+    { Key = "CensorshipFlags", Label = "gamefacts.categories.censorship" }
 }
 
-local factLabels = {
-    "gamefacts.categories.romance",
-    "gamefacts.categories.storyoutcomes",
-    "gamefacts.categories.skippystates",
-    "gamefacts.categories.gameplaytoggles",
-    -- "gamefacts.categories.lifepath",
-    "gamefacts.categories.worldevents",
-    "gamefacts.categories.censorship"
-}
+local s_Category = { index = 1, expanded = false }
+local s_CategoryLabels = {}
+local s_Toggles = {}
+local s_LoadedCategories = {}
 
-local selectedCategory = { index = 1, expanded = false }
-local initializedCategories = {}
-local factToggles = {}
+for _, category in ipairs(CATEGORIES) do table.insert(s_CategoryLabels, category.Label) end
 
-local function GetOrCreateToggle(entry)
-    if not factToggles[entry.id] then
-        factToggles[entry.id] = Facts.MakeToggle(entry.id)
-    end
-    return factToggles[entry.id]
-end
-
-local function InitializeCategory(categoryKey)
-    if initializedCategories[categoryKey] then return end
-    initializedCategories[categoryKey] = true
-
-    for _, entry in ipairs(GameFacts.FactFlags[categoryKey]) do
-        local toggle = GetOrCreateToggle(entry)
-        toggle.value = Facts.IsTrue(entry.id)
+local function LoadCategory(key)
+    if s_LoadedCategories[key] then return end
+    s_LoadedCategories[key] = true
+    for _, entry in ipairs(GameFacts.FactFlags[key]) do
+        s_Toggles[entry.id] = { value = WorldFacts.IsTrue(entry.id) }
     end
 end
 
-local function DrawRelationshipFacts()
-    Buttons.Break(L("gamefacts.relationshiptracking.label"))
+local function RelationshipView()
     for _, entry in ipairs(GameFacts.RelationshipTrackingFacts) do
-        local rawValue = Facts.Get(entry.id)
-        local display = (rawValue ~= nil and rawValue ~= "") and tostring(rawValue) or L("gamefacts.notavailable.label")
-        Buttons.OptionExtended(entry.name, nil, display)
+        local value = WorldFacts.Get(entry.id)
+        local display = value ~= nil and value ~= "" and tostring(value) or L("gamefacts.notavailable.label")
+        Buttons.OptionExtended(entry.name, nil, display, L("gamefacts.relationshiptracking.label"))
     end
 end
 
-local relationshipFactsMenu = { title = "Relationship Tracking", view = DrawRelationshipFacts }
+local RelationshipMenu = Submenu.Create("gamefacts.relationshiptracking.label", RelationshipView)
 
-local function GameFactsView()
-    Buttons.Submenu("Relationship Tracking", relationshipFactsMenu,
-        "View the current relationship and story progression values.")
-    Buttons.Dropdown(
-        L("gamefacts.category.label"),
-        selectedCategory,
-        factLabels,
-        L("gamefacts.category.tip")
-    )
-
-    local categoryKey = factCategories[selectedCategory.index].key
-    local categoryLabel = L(factCategories[selectedCategory.index].label)
-
-    local entries = GameFacts.FactFlags[categoryKey]
-    InitializeCategory(categoryKey)
-
-    Buttons.Break("", categoryLabel .. "  /  " .. tostring(#entries))
-
-    for _, entry in ipairs(entries) do
-        local toggle = GetOrCreateToggle(entry)
-        Buttons.Toggle(entry.name, toggle, entry.desc, function()
-            Facts.SetBool(entry.id, toggle.value)
-            Notification.Info(
-                toggle.value
-                    and tip("gamefacts.factnotification.enabled", { name = entry.name })
-                    or tip("gamefacts.factnotification.disabled", { name = entry.name }), 2
-            )
-        end)
-    end
+local function FactToggle(entry)
+    local toggle = s_Toggles[entry.id]
+    Buttons.Toggle(entry.name, toggle, entry.desc, function(enabled)
+        WorldFacts.SetBool(entry.id, enabled)
+        local key = enabled and "gamefacts.factnotification.enabled" or "gamefacts.factnotification.disabled"
+        Notification.Info(tip(key, { name = entry.name }), 2)
+    end)
 end
 
-return {
-    title = "gamefacts.title",
-    view = GameFactsView
-}
+local function FactView()
+    Buttons.Submenu(L("gamefacts.relationshiptracking.label"), RelationshipMenu, "View the current relationship and story progression values.")
+    Buttons.Dropdown(L("gamefacts.category.label"), s_Category, s_CategoryLabels, L("gamefacts.category.tip"))
+
+    local category = CATEGORIES[s_Category.index or 1]
+    local entries = GameFacts.FactFlags[category.Key]
+    LoadCategory(category.Key)
+
+    Buttons.Break(L(category.Label) .. "  /  " .. tostring(#entries))
+    for _, entry in ipairs(entries) do FactToggle(entry) end
+end
+
+return Submenu.Create("gamefacts.title", FactView)

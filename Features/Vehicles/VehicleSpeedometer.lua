@@ -42,11 +42,11 @@ UIConfig.RegisterSection("Speedometer", {
     Colors = Speedometer.Colors,
 })
 
-local lastPosition
-local lastEntity
-local profile
--- Drivetrain speed records use the game's internal scale, not meters per second.
-local engineSpeedToKPH = 3.86525568
+local ENGINE_SPEED_TO_KPH = 3.86525568
+
+local s_LastPosition = nil
+local s_LastEntity = nil
+local s_Profile = nil
 
 local function SafeMethod(object, name)
     if not object then return nil end
@@ -103,8 +103,8 @@ local function ReadProfile(vehicle)
         end
         if gear then
             table.insert(result.Gears, {
-                MinSpeed = (Number(SafeMethod(gear, "MinSpeed")) or 0) * engineSpeedToKPH / 3.6,
-                MaxSpeed = (Number(SafeMethod(gear, "MaxSpeed")) or 0) * engineSpeedToKPH / 3.6,
+                MinSpeed = (Number(SafeMethod(gear, "MinSpeed")) or 0) * ENGINE_SPEED_TO_KPH / 3.6,
+                MaxSpeed = (Number(SafeMethod(gear, "MaxSpeed")) or 0) * ENGINE_SPEED_TO_KPH / 3.6,
                 MinRPM = Number(SafeMethod(gear, "MinEngineRPM")) or result.MinRPM,
                 MaxRPM = Number(SafeMethod(gear, "MaxEngineRPM")) or result.MaxRPM,
             })
@@ -127,19 +127,19 @@ local function RuntimeValue(vehicle, component, names)
 end
 
 local function EstimateDrivetrain(speedMPS)
-    if not profile or #profile.Gears < 2 then
+    if not s_Profile or #s_Profile.Gears < 2 then
         local gear = speedMPS < 0.5 and 0 or math.min(6, math.max(1, math.floor(speedMPS / 9) + 1))
         local ratio = math.min(1, (speedMPS % 9) / 9)
         return gear, 900 + (ratio * 6100)
     end
 
     local selected = 2
-    for index = 2, #profile.Gears do
-        local gear = profile.Gears[index]
+    for index = 2, #s_Profile.Gears do
+        local gear = s_Profile.Gears[index]
         selected = index
-        if speedMPS <= gear.MaxSpeed or index == #profile.Gears then break end
+        if speedMPS <= gear.MaxSpeed or index == #s_Profile.Gears then break end
     end
-    local gear = profile.Gears[selected]
+    local gear = s_Profile.Gears[selected]
     local range = math.max(0.01, gear.MaxSpeed - gear.MinSpeed)
     local ratio = math.max(0, math.min(1, (speedMPS - gear.MinSpeed) / range))
     return selected - 1, gear.MinRPM + ((gear.MaxRPM - gear.MinRPM) * ratio)
@@ -155,7 +155,7 @@ end
 
 function Speedometer.Update(deltaTime)
     if not Speedometer.Enabled.value then
-        lastPosition, lastEntity, profile = nil, nil, nil
+        s_LastPosition, s_LastEntity, s_Profile = nil, nil, nil
         Speedometer.Alpha = 0
         Speedometer.Mounted = false
         return
@@ -166,7 +166,7 @@ function Speedometer.Update(deltaTime)
     Speedometer.Mounted = vehicle ~= nil
     Speedometer.Alpha = Animation.Animate(Speedometer.Alpha, vehicle and 1 or 0, 8, dt)
     if not vehicle then
-        lastPosition, lastEntity, profile = nil, nil, nil
+        s_LastPosition, s_LastEntity, s_Profile = nil, nil, nil
         Speedometer.SpeedKPH = Animation.Animate(Speedometer.SpeedKPH, 0, 8, dt)
         Speedometer.RPM = Animation.Animate(Speedometer.RPM, 0, 8, dt)
         Speedometer.Gear = "N"
@@ -174,30 +174,30 @@ function Speedometer.Update(deltaTime)
     end
 
     local entity = EntityKey(vehicle)
-    if entity ~= lastEntity then
-        lastEntity = entity
-        lastPosition = nil
-        profile = ReadProfile(vehicle)
-        Speedometer.DetectedMaxSpeed = profile and profile.MaxSpeedKPH or nil
+    if entity ~= s_LastEntity then
+        s_LastEntity = entity
+        s_LastPosition = nil
+        s_Profile = ReadProfile(vehicle)
+        Speedometer.DetectedMaxSpeed = s_Profile and s_Profile.MaxSpeedKPH or nil
     end
 
     local speedMPS
     local position = GetPosition(vehicle)
-    if position and lastPosition then
-        local dx, dy, dz = position.x - lastPosition.x, position.y - lastPosition.y, position.z - lastPosition.z
+    if position and s_LastPosition then
+        local dx, dy, dz = position.x - s_LastPosition.x, position.y - s_LastPosition.y, position.z - s_LastPosition.z
         speedMPS = math.sqrt((dx * dx) + (dy * dy) + (dz * dz)) / dt
         if speedMPS > 150 then speedMPS = 0 end
     elseif not position then
         speedMPS = GetVelocitySpeed(vehicle)
     end
-    if position then lastPosition = { x = position.x, y = position.y, z = position.z } end
+    if position then s_LastPosition = { x = position.x, y = position.y, z = position.z } end
     speedMPS = math.max(0, speedMPS or 0)
 
     local component = SafeMethod(vehicle, "GetVehicleComponent")
     local runtimeGear = RuntimeValue(vehicle, component, { "GetCurrentGear", "GetCurrentGearIndex", "GetGear" })
     local runtimeRPM = RuntimeValue(vehicle, component, { "GetCurrentRPM", "GetEngineRPM", "GetRPM" })
     local estimatedGear, estimatedRPM = EstimateDrivetrain(speedMPS)
-    local maxRPM = math.max(1000, profile and profile.MaxRPM or 8000)
+    local maxRPM = math.max(1000, s_Profile and s_Profile.MaxRPM or 8000)
     if runtimeRPM and runtimeRPM <= 1.5 then runtimeRPM = runtimeRPM * maxRPM end
 
     Speedometer.SpeedKPH = Animation.Animate(Speedometer.SpeedKPH, speedMPS * 3.6, 10, dt)

@@ -1,38 +1,22 @@
--- Core/Nitro.lua
-local Input  = require("Core/Input")
-local Event  = require("Core/Event")
-local Logger = require("Core/Logger")
-local Force  = require("Utils/Force")
+local Force = require("Utils/Force")
+local Bindings = require("Controls/Bindings")
 
-local VehicleNitro = {
-    multiplier = {
-        value = 1.5,
-        min = 1.0,
-        max = 100.0,
-        step = 0.5,
-        enabled = false
-    },
+local VehicleNitro = {}
 
-    baseForce = 50000.0,
-    dt = 0.05
-}
+VehicleNitro.Multiplier = { value = 1.5, min = 1.0, max = 100.0, step = 0.5, enabled = false }
 
-function VehicleNitro.Tick(dt)
-    if VehicleNitro.multiplier.enabled then
-        local player = Game.GetPlayer()
-        if not player then return end
-        local vehicle = player:GetMountedVehicle()
-        if not vehicle then return end
-        if Input.IsKeyDown(Input.VK.SHIFT) or Input.IsButtonDown(Input.GP.X) then
-            vehicle:ToggleHorn(false, false)
-            Force.ApplyNitroImpulse(
-                vehicle,
-                VehicleNitro.baseForce,
-                (VehicleNitro.multiplier.value * 100),
-                VehicleNitro.dt
-            )
-        end
-    end
+local BASE_FORCE = 50000.0
+local IMPULSE_STEP = 0.05
+
+function VehicleNitro.Tick()
+    if not VehicleNitro.Multiplier.enabled or not Bindings.IsActionDown("NITRO") then return end
+
+    local player = Game.GetPlayer()
+    local vehicle = player and player:GetMountedVehicle() or nil
+    if not vehicle then return end
+
+    vehicle:ToggleHorn(false, false)
+    Force.ApplyNitroImpulse(vehicle, BASE_FORCE, VehicleNitro.Multiplier.value * 100, IMPULSE_STEP)
 end
 
 return VehicleNitro

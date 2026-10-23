@@ -1,26 +1,26 @@
--- Controls/Restrictions.lua
 local Logger = require("Core/Logger")
 local Input = require("Core/Input")
 local State = require("Controls/State")
-
 local StatusEffect = require("Utils/StatusEffect")
 
 local Restrictions = {}
 
-local controllerRestrictions = {
+local OWNER = "Menu"
+
+local CONTROLLER = {
     "GameplayRestriction.NoPhone",
     "GameplayRestriction.VehicleNoSummoning",
     "GameplayRestriction.PhoneCall",
     "GameplayRestriction.NoHealing",
     "GameplayRestriction.NoJump",
-    "GameplayRestriction.InDaClub" -- Go shorty, it’s your birthday. | blocks cyberware dash
+    "GameplayRestriction.InDaClub"
 }
 
--- we don't need to block much when the player is using a keyboard the arrow keys drive
--- This is of course assuming they use default controls
-local keyboardOnlyRestriction = "GameplayRestriction.NoDriving"
+local KEYBOARD = {
+    "GameplayRestriction.NoDriving"
+}
 
-local mouseRestrictions = {
+local MOUSE = {
     "GameplayRestriction.NoZooming",
     "GameplayRestriction.NoWeapons",
     "GameplayRestriction.NoCameraControl",
@@ -29,7 +29,7 @@ local mouseRestrictions = {
     "GameplayRestriction.BinocularView"
 }
 
-local typingRestrictions = {
+local TYPING = {
     "GameplayRestriction.BlockAllHubMenu",
     "GameplayRestriction.NoDriving",
     "GameplayRestriction.Melee",
@@ -42,75 +42,42 @@ local typingRestrictions = {
     "GameplayRestriction.NoPhotoMode",
     "GameplayRestriction.NoQuickMelee",
     "GameplayRestriction.NoScanning",
-    "GameplayRestriction.NoSprint",
+    "GameplayRestriction.NoSprint"
 }
 
-local lastMenuOpen = false
-local lastWasController = false
-local lastMouseEnabled = false
-local lastTypingEnabled = false
+local s_Applied = nil
+local s_AppliedName = nil
 
-function Restrictions.Update()
-    local menuOpen = State.IsMenuOpen()
-    Input.UpdateDevice()
-
-    local usingController = Input.IsController()
-    local mouseEnabled = State.mouseEnabled
-    local typingEnabled = State.typingEnabled
-
-    if not menuOpen and lastMenuOpen then
-        Restrictions.Clear()
-        lastMenuOpen, lastWasController, lastMouseEnabled, lastTypingEnabled = false, false, false, false
-        return
-    end
-
-    if not menuOpen then return end
-
-    -- if input mode changed, reapply restrictions once
-    if usingController ~= lastWasController
-        or mouseEnabled ~= lastMouseEnabled
-        or typingEnabled ~= lastTypingEnabled
-        or not lastMenuOpen then
-        Restrictions.Clear()
-
-        if usingController then
-            Logger.Log("Controller restrictions applied")
-            for _, effect in ipairs(controllerRestrictions) do
-                StatusEffect.Set(effect, true)
-            end
-        elseif typingEnabled then
-            Logger.Log("Typing restrictions applied")
-            for _, effect in ipairs(typingRestrictions) do
-                StatusEffect.Set(effect, true)
-            end
-        elseif mouseEnabled then
-            Logger.Log("Mouse restrictions applied")
-            for _, effect in ipairs(mouseRestrictions) do
-                StatusEffect.Set(effect, true)
-            end
-        else
-            Logger.Log("Keyboard restrictions applied")
-            StatusEffect.Set(keyboardOnlyRestriction, true)
-        end
-    end
-
-    lastMenuOpen = menuOpen
-    lastWasController = usingController
-    lastMouseEnabled = mouseEnabled
-    lastTypingEnabled = typingEnabled
+local function SelectSet()
+    if Input.IsController() then return CONTROLLER, "controller" end
+    if State.TypingEnabled then return TYPING, "typing" end
+    if State.MouseEnabled then return MOUSE, "mouse" end
+    return KEYBOARD, "keyboard"
 end
 
 function Restrictions.Clear()
-    StatusEffect.Set(keyboardOnlyRestriction, false)
-    for _, effect in ipairs(controllerRestrictions) do
-        StatusEffect.Set(effect, false)
+    if not s_Applied then return end
+    for _, effect in ipairs(s_Applied) do StatusEffect.Set(effect, false, OWNER) end
+    s_Applied = nil
+    s_AppliedName = nil
+end
+
+function Restrictions.Update()
+    Input.UpdateDevice()
+
+    if not State.IsMenuOpen() then
+        Restrictions.Clear()
+        return
     end
-    for _, effect in ipairs(mouseRestrictions) do
-        StatusEffect.Set(effect, false)
-    end
-    for _, effect in ipairs(typingRestrictions) do
-        StatusEffect.Set(effect, false)
-    end
+
+    local set, name = SelectSet()
+    if name == s_AppliedName then return end
+
+    Restrictions.Clear()
+    for _, effect in ipairs(set) do StatusEffect.Set(effect, true, OWNER) end
+    s_Applied = set
+    s_AppliedName = name
+    Logger.Log("Restrictions: applied " .. name .. " restrictions")
 end
 
 return Restrictions

@@ -1,154 +1,82 @@
-local Logger = require("Core/Logger")
-
 local Teleport = {}
 
-function Teleport.TeleportEntity(entity, pos, facing)
-    if not entity or not pos then return false end
+function Teleport.TeleportEntity(entity, position, facing)
+    if not entity or not position then return false end
 
-    local targetPos = Vector4.new(pos.x, pos.y, pos.z, pos.w or 1.0)
-    local rot = facing or entity:GetWorldOrientation():ToEulerAngles()
+    local target = Vector4.new(position.x, position.y, position.z, position.w or 1.0)
+    local rotation = facing or entity:GetWorldOrientation():ToEulerAngles()
 
-    Game.GetTeleportationFacility():Teleport(entity, targetPos, rot)
-    --Logger.Log(string.format("Teleport: moved entity to (%.2f, %.2f, %.2f)", targetPos.x, targetPos.y, targetPos.z))
+    Game.GetTeleportationFacility():Teleport(entity, target, rotation)
     return true
 end
 
-function Teleport.TeleportPlayerTo(x, y, z)
-    local player = Game.GetPlayer()
-    if not player then return false end
-
-    local facing = player:GetWorldOrientation():ToEulerAngles()
-    local pos = Vector4.new(x, y, z, 1.0)
-    Teleport.TeleportEntity(player, pos, facing)
-    -- Logger.Log(string.format("Teleport: player to (%.2f, %.2f, %.2f)", x, y, z))
-    return true
+function Teleport.DistanceBetween(a, b)
+    if not a or not b then return math.huge end
+    local dx = a.x - b.x
+    local dy = a.y - b.y
+    local dz = (a.z or 0) - (b.z or 0)
+    return math.sqrt(dx * dx + dy * dy + dz * dz)
 end
 
-function Teleport.DistanceBetween(posA, posB)
-    if not posA or not posB then return math.huge end
-    local dx, dy, dz = posA.x - posB.x, posA.y - posB.y, (posA.z or 0) - (posB.z or 0)
-    return math.sqrt(dx*dx + dy*dy + dz*dz)
+function Teleport.DistanceFromPlayer(position)
+    local player = Game.GetPlayer()
+    if not player or not position then return math.huge end
+    return Teleport.DistanceBetween(player:GetWorldPosition(), position)
 end
 
-function Teleport.DistanceFromPlayer(pos)
-    local player = Game.GetPlayer()
-    if not player or not pos then return math.huge end
-    return Teleport.DistanceBetween(player:GetWorldPosition(), pos)
+function Teleport.GetWaypointPosition()
+    local mappinSystem = Game.GetMappinSystem()
+    if not mappinSystem then return nil end
+
+    local id = mappinSystem:GetManuallyTrackedMappinID()
+    if not id then return nil end
+
+    local mappin = mappinSystem:GetMappin(id)
+    if not mappin or not mappin:IsPlayerTracked() then return nil end
+    return mappin:GetWorldPosition()
 end
 
-function Teleport.GetClosestPosition(list)
-    local player = Game.GetPlayer()
-    if not player or not list or #list == 0 then return nil end
+function Teleport.GetQuestMarkerPosition()
+    local journal = Game.GetJournalManager()
+    local tracked = journal and journal:GetTrackedEntry() or nil
+    local mappinSystem = Game.GetMappinSystem()
+    if not tracked or not mappinSystem then return nil end
 
-    local playerPos = player:GetWorldPosition()
-    local nearest, nearestDist = nil, math.huge
-
-    for _, pos in ipairs(list) do
-        local dist = Teleport.DistanceBetween(playerPos, pos)
-        if dist < nearestDist then
-            nearest, nearestDist = pos, dist
-        end
-    end
-    return nearest, nearestDist
+    local ok, positions = mappinSystem:GetQuestMappinPositionsByObjective(journal:GetEntryHash(tracked))
+    if not ok or not positions or #positions == 0 then return nil end
+    return positions[1]
 end
 
 function Teleport.ToWaypoint()
-    local ms = Game.GetMappinSystem()
-    if not ms then return false end
-
-    local id = ms:GetManuallyTrackedMappinID()
-    if not id then return false end
-
-    local m = ms:GetMappin(id)
-    if not m or not m:IsPlayerTracked() then return false end
-
-    return Teleport.TeleportEntity(Game.GetPlayer(), m:GetWorldPosition())
+    return Teleport.TeleportEntity(Game.GetPlayer(), Teleport.GetWaypointPosition())
 end
 
 function Teleport.ToQuestMarker()
-    local player = Game.GetPlayer()
-    if not player then return false end
-
-    local journal = Game.GetJournalManager()
-    local tracked = journal and journal:GetTrackedEntry()
-    if not tracked then return false end
-
-    local mappinSys = Game.GetMappinSystem()
-    if not mappinSys then return false end
-
-    local hash = journal:GetEntryHash(tracked)
-    local ok, positions = mappinSys:GetQuestMappinPositionsByObjective(hash)
-    if not ok or not positions or #positions == 0 then return false end
-
-    return Teleport.TeleportEntity(player, positions[1])
+    return Teleport.TeleportEntity(Game.GetPlayer(), Teleport.GetQuestMarkerPosition())
 end
 
-function Teleport.GetPlayerPosition()
+local function OffsetFromPlayer(distance, yawOffset, yawOverride)
     local player = Game.GetPlayer()
-    return player and player:GetWorldPosition() or nil
+    if not player then return nil end
+
+    local position = player:GetWorldPosition()
+    local yaw = yawOverride or player:GetWorldOrientation():ToEulerAngles().yaw
+    local radians = math.rad(yaw + yawOffset)
+
+    return Vector4.new(
+        position.x - distance * math.sin(radians),
+        position.y + distance * math.cos(radians),
+        position.z,
+        1.0
+    )
 end
 
 function Teleport.GetForwardOffset(distance, yawOverride)
-    local player = Game.GetPlayer()
-    if not player then return nil end
-
-    local pos = player:GetWorldPosition()
-    local rot = player:GetWorldOrientation():ToEulerAngles()
-    local yaw = yawOverride or rot.yaw
-
-    local yawRad = math.rad(yaw)
-    local xOffset = distance * -math.sin(yawRad)
-    local yOffset = distance *  math.cos(yawRad)
-
-    return Vector4.new(pos.x + xOffset, pos.y + yOffset, pos.z, 1.0)
+    return OffsetFromPlayer(distance, 0, yawOverride)
 end
 
 function Teleport.GetRightOffset(distance, yawOverride)
-    local player = Game.GetPlayer()
-    if not player then return nil end
-
-    local pos = player:GetWorldPosition()
-    local rot = player:GetWorldOrientation():ToEulerAngles()
-    local yaw = yawOverride or rot.yaw
-
-    local yawRad = math.rad(yaw + 90)
-    local xOffset = distance * -math.sin(yawRad)
-    local yOffset = distance *  math.cos(yawRad)
-
-    return Vector4.new(pos.x + xOffset, pos.y + yOffset, pos.z, 1.0)
-end
-
--- Was messing with trying to get the nearest vendor and kind of just gave up and just used hard coded variables 
--- but I found a way to get the nearest drop point! :)
-function Teleport.GetNearestDropPoint()
-    local player = Game.GetPlayer()
-    if not player then return nil end
-
-    local playerPos = player:GetWorldPosition()
-    local dropPointSystem = Game.GetScriptableSystemsContainer():Get("DropPointSystem")
-    if not dropPointSystem then
-        Logger.Log("Teleport: DropPointSystem not found")
-        return nil
-    end
-
-    local mappins = dropPointSystem.mappins or {}
-    local nearest, nearestDist = nil, math.huge
-
-    for _, dp in ipairs(mappins) do
-        if dp and dp:GetPosition() then
-            local pos = dp:GetPosition()
-            local dist = Teleport.DistanceBetween(playerPos, pos)
-            if dist < nearestDist then
-                nearest, nearestDist = dp, dist
-            end
-        end
-    end
-
-    if nearest then
-        Logger.Log(string.format("Teleport: nearest drop point %.2f units away", nearestDist))
-        return nearest, nearestDist
-    end
-    return nil
+    return OffsetFromPlayer(distance, 90, yawOverride)
 end
 
 return Teleport

@@ -1,223 +1,196 @@
-local Language = require("Core/Language")
 local Logger = require("Core/Logger")
 local Event = require("Core/Event")
+local Input = require("Core/Input")
+local Language = require("Core/Language")
 local JsonHelper = require("Core/JsonHelper")
+local Lifecycle = require("Core/Lifecycle")
+local SaveGuard = require("Core/SaveGuard")
 local Session = require("Core/cp2077-cet-kit/GameSession")
 local Cron = require("Core/cp2077-cet-kit/Cron")
-local OptionConfig = require("Config/OptionConfig")
-local Input = require("Core/Input")
--- Config
+
 local BindingsConfig = require("Config/BindingsConfig")
-local UIConfig = require("Config/UIConfig")
 local NavigationConfig = require("Config/NavigationConfig")
+local OptionConfig = require("Config/OptionConfig")
+local UIConfig = require("Config/UIConfig")
 
 local State = require("Controls/State")
 local Handler = require("Controls/Handler")
 local Restrictions = require("Controls/Restrictions")
 
 local Notification = require("UI/Panels/Notification/Notification")
+local StatusEffect = require("Utils/StatusEffect")
+local StatModifiers = require("Utils/StatModifiers")
 
 local VehicleLoader = require("Utils/DataExtractors/VehicleLoader")
 local WeaponLoader = require("Utils/DataExtractors/WeaponLoader")
 local PerkLoader = require("Utils/DataExtractors/PerkLoader")
 local GeneralLoader = require("Utils/DataExtractors/GeneralLoader")
-
 local TeleportLocations = require("Features/Teleports/TeleportLocations")
 
-local Utils
-local Weapon
-local SelfFeature
-local SelfTick
-local MainMenu
-local Vehicle
-local AutoTeleport
-local WorldWeather
-local WorldTime
-registerForEvent("onOverlayOpen", function() State.overlayOpen = true end)
-registerForEvent("onOverlayClose", function() State.overlayOpen = false end)
+local s_Modules = nil
+local s_DeltaTime = 1 / 60
+local s_Session = { isLoaded = false, isPaused = false, isDead = false }
 
-local modulesLoaded = false
-GameState = {}
+registerForEvent("onOverlayOpen", function() State.OverlayOpen = true end)
+registerForEvent("onOverlayClose", function() State.OverlayOpen = false end)
 
-local function GetStartingState()
-    GameState = Session.GetState()
-end
+local function LoadModules()
+    if s_Modules or not Session.IsLoaded() then return end
 
-local function UpdateSessionStateTick()
-    local loaded = Session.IsLoaded()
-    local paused = Session.IsPaused()
-    local dead = Session.IsDead()
-    GameState.isLoaded = loaded
-    GameState.isPaused = paused
-    GameState.isDead = dead
-end
-
-local function TryLoadModules()
-    if modulesLoaded or not Session.IsLoaded() then return end
-
-    local ok, err = pcall(function()
-        Utils = require("Utils")
-        SelfFeature = require("Features/Self")
-        SelfTick = require("Features/Self/Tick")
-        Weapon = require("Features/Weapons/Tick")
-        Vehicle = require("Features/Vehicles")
-        AutoTeleport = require("Features/Teleports/AutoTeleport")
-        WorldWeather = require("Features/World/WorldWeather")
-        WorldTime = require("Features/World/WorldTime")
-        MainMenu = require("View/MainMenu")
+    local ok, result = pcall(function()
+        return {
+            Self = require("Features/Self"),
+            SelfTick = require("Features/Self/Tick"),
+            WeaponTick = require("Features/Weapons/Tick"),
+            Vehicles = require("Features/Vehicles"),
+            AutoTeleport = require("Features/Teleports/AutoTeleport"),
+            WorldWeather = require("Features/World/WorldWeather"),
+            WorldTime = require("Features/World/WorldTime"),
+            Weapon = require("Utils/Weapon"),
+            MainMenu = require("View/MainMenu")
+        }
     end)
+
     if not ok then
-        Logger.Log("Module initialization failed: " .. tostring(err))
+        Logger.Log("Module initialization failed: " .. tostring(result))
         return
     end
 
-    modulesLoaded = true
-    Logger.Log("Game modules initialized.")
+    s_Modules = result
+    Logger.Log("Game modules initialized")
 end
 
-local function OnSessionUpdate(state)
-    GameState = state
-    if GameState.event == "Start" and not GameState.wasLoaded then
-        TryLoadModules()
-    end
+local function EndSession()
+    Lifecycle.SessionEnd()
+    StatusEffect.Forget()
+    StatModifiers.Forget()
+    Logger.Log("Session ended, trainer state forgotten")
 end
 
+local function OnSessionEvent(state)
+    s_Session = state
+    if state.event == "Start" then LoadModules() end
+    if state.event == "End" then EndSession() end
+end
 
-Event.RegisterInit(function()
-    Logger.Initialize()
-    Logger.Log("Initialization")
+local function UpdateSessionState()
+    s_Session.isLoaded = Session.IsLoaded()
+    s_Session.isPaused = Session.IsPaused()
+    s_Session.isDead = Session.IsDead()
+end
 
-    Input.Initialize()
+local function LoadLanguage()
+    local settings = JsonHelper.LoadOrCreate("Config/JSON/Settings.json", { shown = false, Lang = "en" })
+    local code = settings and settings.Lang or "en"
+    if Language.Load(code) then return end
 
-    Cron.After(0.1, GetStartingState)
+    Logger.Log("Language failed to load, falling back to English")
+    Language.Load("en")
+end
 
-    Session.Listen(OnSessionUpdate)
-
-    Cron.Every(1.0, UpdateSessionStateTick)
-    Cron.Every(0.5, TryLoadModules)
-
-    Logger.Log("Cron Started")
-
-
-    local config = JsonHelper.LoadOrCreate("Config/JSON/Settings.json", { shown = false, Lang = "en" })
-    local lang = (config and config.Lang) or "en"
-    if not Language.Load(lang) then
-        Logger.Log("Language failed to load, fallback to English")
-        Language.Load("en")
-    else
-        Logger.Log("Language loaded: " .. lang)
-    end
-
-
+local function LoadData()
     TeleportLocations.LoadAll()
-
-
     PerkLoader:LoadAll()
     WeaponLoader:LoadAll()
     VehicleLoader:LoadAll()
     GeneralLoader:LoadAll()
-    Logger.Log("DataLoaded")
+end
 
-
+local function LoadConfigs()
     BindingsConfig.Load()
-    Logger.Log("Bindings loaded")
-
     UIConfig.Load()
-    Logger.Log("UI config loaded")
-
     NavigationConfig.Load()
-    Logger.Log("Navigation config loaded")
-
     OptionConfig.Load()
-    Logger.Log("Option config loaded")
+end
 
-
+local function RegisterHooks()
     Event.Observe("PlayerPuppet", "OnAction", function(_, action)
-        if modulesLoaded then
-            SelfFeature.NoClip.HandleMouseLook(action)
-            if Utils then
-                Utils.Weapon.HandleInputAction(action)
-            end
-        end
+        if not s_Modules then return end
+        s_Modules.Self.NoClip.HandleMouseLook(action)
+        s_Modules.Weapon.HandleInputAction(action)
     end)
 
-    Event.Observe("BaseProjectile", "ProjectileHit", function(self, eventData)
-        if modulesLoaded then
-            Weapon.HandleProjectileHit(self, eventData)
-        end
+    Event.Observe("BaseProjectile", "ProjectileHit", function(projectile, eventData)
+        if s_Modules then s_Modules.WeaponTick.HandleProjectileHit(projectile, eventData) end
     end)
 
     Event.ObserveAfter("LocomotionAirEvents", "OnEnter", function(self, context, result)
-        if modulesLoaded then
-            SelfFeature.GodMode.DisableFallFX(self, context, result)
-        end
+        if s_Modules then s_Modules.Self.GodMode.DisableFallFX(self, context, result) end
     end)
 
-    Event.ObserveAfter("MinimapContainerController", "OnCountdownTimerActiveUpdated", function(_, _)
-        if modulesLoaded then
-            Vehicle.FreezeQuestTimer.HandleCountdownTimer(_, _)
-        end
+    Event.ObserveAfter("MinimapContainerController", "OnCountdownTimerActiveUpdated", function()
+        if s_Modules then s_Modules.Vehicles.FreezeQuestTimer.HandleCountdownTimer() end
     end)
 
     Event.Override("LocomotionTransition", "WantsToDodge", function(transition, stateContext, scriptInterface, wrappedFunc)
-        if modulesLoaded then
-            return SelfFeature.InfiniteAirDash.HandleAirDash(transition, stateContext, scriptInterface, wrappedFunc)
-        end
-        return wrappedFunc(stateContext, scriptInterface)
+        if not s_Modules then return wrappedFunc(stateContext, scriptInterface) end
+        return s_Modules.Self.InfiniteAirDash.HandleAirDash(transition, stateContext, scriptInterface, wrappedFunc)
     end)
-
 
     Event.Override("scannerDetailsGameController", "ShouldDisplayTwintoneTab", function(this, wrappedMethod)
-        if not modulesLoaded then return wrappedMethod() end
+        if not s_Modules then return wrappedMethod() end
         return VehicleLoader:HandleTwinToneScan(this, wrappedMethod)
     end)
+end
+
+Event.RegisterInit(function()
+    Logger.Initialize()
+    Input.Initialize()
+
+    SaveGuard.Track("StatusEffects", {
+        Capture = StatusEffect.GetOwnedEffects,
+        Restore = StatusEffect.RemoveUnowned
+    })
+    SaveGuard.Initialize()
+
+    Session.Listen(OnSessionEvent)
+    Cron.After(0.1, function() s_Session = Session.GetState() end)
+    Cron.Every(1.0, UpdateSessionState)
+    Cron.Every(0.5, LoadModules)
+
+    LoadLanguage()
+    LoadData()
+    LoadConfigs()
+    RegisterHooks()
 
     Logger.Log("Initialized")
-
-end)
-Event.RegisterUpdate(function(dt)
-    Cron.Update(dt)
-
-    if not modulesLoaded then return end
-    Utils.StatModifiers.UpdateSessionWatcher()
-    
-    if not GameState.isLoaded or GameState.isPaused or GameState.isDead then
-        return
-    end
-
-    SelfTick.TickHandler()
-    Weapon.TickHandler(dt)
-    AutoTeleport.Tick(dt)
-
-    Vehicle.VehicleLightFade.TickFade(dt)
-    Vehicle.VehiclePreview.Update(dt)
-    Vehicle.VehicleSpawning.HandlePending()
-    Vehicle.VehicleNitro.Tick(dt)
-    Vehicle.VehicleSpeedometer.Update(dt)
-    WorldWeather.Update()
-    WorldTime.Update(dt)
 end)
 
-local function RenderMainMenu()
-    if not modulesLoaded then return end
+Event.RegisterUpdate(function(deltaTime)
+    s_DeltaTime = deltaTime
+    Cron.Update(deltaTime)
 
-    MainMenu.Initialize()
-    Handler.Update()
-    MainMenu.Render()
-end
+    if not s_Modules then return end
+    SaveGuard.Tick()
+
+    if not s_Session.isLoaded or s_Session.isPaused or s_Session.isDead then return end
+
+    s_Modules.SelfTick.TickHandler()
+    s_Modules.WeaponTick.TickHandler()
+    s_Modules.Vehicles.Tick(deltaTime)
+    s_Modules.AutoTeleport.Tick(deltaTime)
+    s_Modules.WorldWeather.Update()
+    s_Modules.WorldTime.Update(deltaTime)
+end)
 
 Event.RegisterDraw(function()
     Notification.Render()
-    if modulesLoaded then Vehicle.VehicleSpeedometer.Render() end
-    RenderMainMenu()
+    if not s_Modules then return end
+
+    s_Modules.Vehicles.VehicleSpeedometer.Render()
+    s_Modules.MainMenu.Initialize()
+    Handler.Update()
+    s_Modules.MainMenu.Render(s_DeltaTime)
 end)
 
 Event.RegisterShutdown(function()
-    if modulesLoaded then
+    if s_Modules then
         Restrictions.Clear()
+        Lifecycle.Shutdown()
+        StatusEffect.ClearAll()
+        StatModifiers.RemoveAll()
         BindingsConfig.Save()
         OptionConfig.Save()
-        Utils.StatModifiers.Cleanup()
     end
-    Logger.Log("Clean up")
+    Logger.Log("Shutdown cleanup finished")
 end)

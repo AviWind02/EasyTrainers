@@ -1,105 +1,95 @@
 local Logger = require("Core/Logger")
 local JsonHelper = require("Core/JsonHelper")
 
-local TeleportLocations = {}
+local TeleportLocations = {
+    FilePath = "Config/JSON/Teleports.json"
+}
 
-local apartments = { -- Hard coded apartments for quick tp
+local APARTMENTS = {
     { name = "Corpo Plaza", category = "V's Apartment", position = { x = -1598.990723, y = 359.183655, z = 48.620003 } },
     { name = "Dogtown", category = "V's Apartment", position = { x = -2232.448486, y = -2560.21875, z = 80.270355 } },
     { name = "The Glen", category = "V's Apartment", position = { x = -1524.231445, y = -985.826355, z = 86.940002 } },
     { name = "H10 Megabuilding", category = "V's Apartment", position = { x = -1378.424927, y = 1273.94043, z = 123.033356 } },
     { name = "Japantown", category = "V's Apartment", position = { x = -785.826416, y = 987.398376, z = 28.209541 } },
-    { name = "Northside", category = "V's Apartment", position = { x = -1507.223022, y = 2232.709229, z = 22.2108 } },
+    { name = "Northside", category = "V's Apartment", position = { x = -1507.223022, y = 2232.709229, z = 22.2108 } }
 }
 
-local cache = {
-    all = {},
-    vendors = {},
-    apartments = apartments,
-    categories = {},
-    districts = {},
-    priority = {}
-}
+local UNKNOWN_DISTRICT = "Unknown District"
 
-local TeleportFile = "Config/JSON/Teleports.json"
+local s_All = {}
+local s_Vendors = {}
+local s_Categories = {}
+local s_Districts = {}
+local s_Priority = {}
 
-local function isVendor(entry)
-    return entry.category and entry.category:lower():find("vendor")
+local function Count(values)
+    local count = 0
+    for _ in pairs(values) do count = count + 1 end
+    return count
+end
+
+local function Append(map, key, entry)
+    map[key] = map[key] or {}
+    table.insert(map[key], entry)
+end
+
+local function IsVendor(entry)
+    return entry.category ~= nil and entry.category:lower():find("vendor", 1, true) ~= nil
+end
+
+local function Reset()
+    s_All, s_Vendors, s_Categories, s_Districts, s_Priority = {}, {}, {}, {}, {}
 end
 
 function TeleportLocations.LoadAll()
-    local data, err = JsonHelper.Read(TeleportFile)
+    Reset()
+
+    local data, err = JsonHelper.Read(TeleportLocations.FilePath)
     if not data then
-        Logger.Log(string.format("teleportlocations: failed to load '%s': %s", TeleportFile, tostring(err)))
-        cache.all, cache.vendors, cache.categories, cache.districts, cache.priority = {}, {}, {}, {}, {}
+        Logger.Log(string.format("TeleportLocations: failed to load '%s' (%s)", TeleportLocations.FilePath, tostring(err)))
         return
     end
 
-    -- Handle new structure: { priority = {...}, teleports = {...} }
-    local teleports = data.teleports or {}
-    cache.priority = data.priority or {}
+    s_All = data.teleports or {}
+    s_Priority = data.priority or {}
 
-    cache.all = teleports
-    cache.vendors = {}
-    cache.categories = {}
-    cache.districts = {}
-
-    for _, entry in ipairs(teleports) do
-        -- Vendors
-        if isVendor(entry) then
-            local cat = entry.category
-            cache.vendors[cat] = cache.vendors[cat] or {}
-            table.insert(cache.vendors[cat], entry)
-        end
-
-        -- Categories
-        local category = entry.category or "Uncategorized"
-        cache.categories[category] = cache.categories[category] or {}
-        table.insert(cache.categories[category], entry)
-
-        -- Districts
-        local parent = entry.parentDistrict or "Unknown District"
-        local child = entry.childDistrict or "Unknown District"
-        local key = parent .. " / " .. child
-        cache.districts[key] = cache.districts[key] or {}
-        table.insert(cache.districts[key], entry)
+    for _, entry in ipairs(s_All) do
+        if IsVendor(entry) then Append(s_Vendors, entry.category, entry) end
+        Append(s_Categories, entry.category or "Uncategorized", entry)
+        Append(s_Districts, (entry.parentDistrict or UNKNOWN_DISTRICT) .. " / " .. (entry.childDistrict or UNKNOWN_DISTRICT), entry)
     end
 
     Logger.Log(string.format(
-        "teleportlocations: loaded %d teleports across %d categories and %d districts. Added %d categories to Priority list.",
-        #cache.all,
-        (function() local n=0 for _ in pairs(cache.categories) do n=n+1 end return n end)(),
-        (function() local n=0 for _ in pairs(cache.districts) do n=n+1 end return n end)(),
-        #cache.priority
+        "TeleportLocations: loaded %d teleports across %d categories and %d districts, %d priority categories",
+        #s_All, Count(s_Categories), Count(s_Districts), #s_Priority
     ))
 end
 
 function TeleportLocations.GetAll()
-    return cache.all
+    return s_All
 end
 
 function TeleportLocations.GetVendors()
-    return cache.vendors
+    return s_Vendors
 end
 
 function TeleportLocations.GetApartments()
-    return cache.apartments
+    return APARTMENTS
 end
 
 function TeleportLocations.GetCategories()
-    return cache.categories
+    return s_Categories
 end
 
 function TeleportLocations.GetDistricts()
-    return cache.districts
+    return s_Districts
 end
 
 function TeleportLocations.GetPriority()
-    return cache.priority
+    return s_Priority
 end
 
 function TeleportLocations.Reload()
-    Logger.Log("teleportlocations: reloading teleport locations...")
     TeleportLocations.LoadAll()
 end
 

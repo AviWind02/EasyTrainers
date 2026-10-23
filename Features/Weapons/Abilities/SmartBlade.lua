@@ -1,23 +1,19 @@
-local SmartBlade = {}
 local Weapon = require("Utils/Weapon")
 
-SmartBlade.enabled = { value = false }
+local SmartBlade = {}
 
+SmartBlade.Enabled = { value = false }
 
--- I'm not sure why no one has ever made this or I couldn't just find a mod
-function SmartBlade.Tick(self)
-    if not SmartBlade.enabled.value then
-        return
-    end
+function SmartBlade.OnProjectileHit(projectile)
+    if not SmartBlade.Enabled.value or not projectile then return end
     if Weapon.IsRangedEquipped() then return end
+
     local player = Game.GetPlayer()
     if not player then return end
 
-    local playerPos = player:GetWorldPosition()
-    local rot = player:GetWorldOrientation():ToEulerAngles()
-
-    local returnPos = Vector4.new(playerPos.x, playerPos.y, playerPos.z - 0.5, 1.0)
-    Game.GetTeleportationFacility():Teleport(self, returnPos, rot)
+    local position = player:GetWorldPosition()
+    local returnPosition = Vector4.new(position.x, position.y, position.z - 0.5, 1.0)
+    Game.GetTeleportationFacility():Teleport(projectile, returnPosition, player:GetWorldOrientation():ToEulerAngles())
 end
 
 return SmartBlade

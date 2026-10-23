@@ -1,4 +1,4 @@
-local Inventory = require("Utils").Inventory
+local Inventory = require("Utils/Inventory")
 
 local ItemQuickhackRecipes = {}
 

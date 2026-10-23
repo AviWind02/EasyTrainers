@@ -1,8 +1,13 @@
+local Logger = require("Core/Logger")
 local Context = require("UI/Core/Context")
+local Draw = require("UI/Core/Draw")
 local Layout = require("UI/Style/Layout")
 local Navigation = require("UI/Navigation/Navigation")
 local Submenu = require("UI/Navigation/Submenu")
-
+local Animation = require("UI/Widgets/Animation/Animation")
+local Highlight = require("UI/Widgets/Core/Highlight")
+local Dropdown = require("UI/Widgets/Dropdown/Dropdown")
+local ColorPicker = require("UI/Widgets/ColorPicker/ColorPicker")
 local Background = require("UI/Panels/Background/Background")
 local Footer = require("UI/Panels/Footer/Footer")
 local Header = require("UI/Panels/Header/Header")
@@ -11,45 +16,34 @@ local SidePanel = require("UI/Panels/SidePanel/SidePanel")
 local SubmenuBar = require("UI/Panels/SubmenuBar/SubmenuBar")
 local Tip = require("UI/Panels/Tip/Tip")
 
-local Dropdown = require("UI/Widgets/Dropdown/Dropdown")
-local ColorPicker = require("UI/Widgets/ColorPicker/ColorPicker")
-local Highlight = require("UI/Widgets/Core/Highlight")
-local MainMenu = require("UI/MainMenu/MainMenu")
-local Logger = require("Core/Logger")
-local Animation = require("UI/Widgets/Animation/Animation")
-local Draw = require("UI/Core/Draw")
-
 local Renderer = {}
 
-Renderer.Enabled = false
-Renderer.Initialized = false
-Renderer.FirstFrame = true
-Renderer.DebugFramesRemaining = 0
-Renderer.Dragging = false
-Renderer.DragOffsetX = 0
-Renderer.DragOffsetY = 0
-Renderer.Alpha = 0
+local DEFAULT_DELTA = 1 / 60
+local FADE_SPEED = 14
+local WINDOW_FLAGS = ImGuiWindowFlags.NoDecoration + ImGuiWindowFlags.NoScrollbar
+    + ImGuiWindowFlags.NoScrollWithMouse + ImGuiWindowFlags.NoSavedSettings
+    + ImGuiWindowFlags.NoResize + ImGuiWindowFlags.NoMove
 
-function Renderer.Initialize(rootSubmenu)
+local s_Initialized = false
+local s_Enabled = false
+local s_Alpha = 0
+local s_Dragging = false
+local s_DragOffsetX = 0
+local s_DragOffsetY = 0
+
+function Renderer.Initialize(root)
     Navigation.Initialize()
-    Submenu.Initialize(rootSubmenu or MainMenu.GetRoot())
+    Submenu.Initialize(root)
     Dropdown.Initialize()
     ColorPicker.Initialize()
     Highlight.Initialize()
     Notification.Initialize()
     SidePanel.Initialize()
     Tip.Initialize()
-    Renderer.FirstFrame = true
-    Renderer.DebugFramesRemaining = 8
-    Renderer.Dragging = false
-    Logger.Log(string.format(
-        "UI Renderer: initialized; requested position=(%.1f, %.1f), size=(%.1f, %.1f), minimum=(%.1f, %.1f)",
-        Layout.X, Layout.Y, Layout.Width, Layout.Height, Layout.MinimumWidth, Layout.MinimumHeight))
-    Renderer.Initialized = true
-end
 
-function Renderer.SetRoot(rootSubmenu)
-    Submenu.Initialize(rootSubmenu or MainMenu.GetRoot())
+    s_Dragging = false
+    s_Initialized = true
+    Logger.Log(string.format("Renderer: initialized at (%.0f, %.0f) size (%.0f, %.0f)", Layout.X, Layout.Y, Layout.Width, Layout.Height))
 end
 
 function Renderer.SetInput(input)
@@ -57,14 +51,12 @@ function Renderer.SetInput(input)
 end
 
 function Renderer.Enable(enabled)
-    Renderer.Enabled = enabled ~= false
+    s_Enabled = enabled ~= false
 end
 
 function Renderer.IsEnabled()
-    return Renderer.Enabled
+    return s_Enabled
 end
-
-function Renderer.RequestResize() end
 
 local function BeginWindow()
     Layout.Width = math.max(Layout.MinimumWidth, tonumber(Layout.Width) or Layout.DefaultWidth)
@@ -72,17 +64,12 @@ local function BeginWindow()
 
     ImGui.SetNextWindowSize(Layout.Width, Layout.Height, ImGuiCond.Always)
     ImGui.SetNextWindowPos(Layout.X, Layout.Y, ImGuiCond.Always)
-    Renderer.FirstFrame = false
-
-    local flags = ImGuiWindowFlags.NoDecoration + ImGuiWindowFlags.NoScrollbar
-        + ImGuiWindowFlags.NoScrollWithMouse + ImGuiWindowFlags.NoSavedSettings
-        + ImGuiWindowFlags.NoResize + ImGuiWindowFlags.NoMove
-    return ImGui.Begin("EasyTrainer###EasyTrainerConsolidated", flags)
+    return ImGui.Begin("EasyTrainer###EasyTrainerConsolidated", WINDOW_FLAGS)
 end
 
 local function UpdateDragging()
     if not Navigation.State.MouseEnabled or Navigation.State.BlockMouseInput then
-        Renderer.Dragging = false
+        s_Dragging = false
         return
     end
 
@@ -91,20 +78,20 @@ local function UpdateDragging()
         and mouseY >= Layout.Y and mouseY <= Layout.Y + Layout.HeaderHeight
 
     if inHeader and ImGui.IsMouseClicked(0) then
-        Renderer.Dragging = true
-        Renderer.DragOffsetX = mouseX - Layout.X
-        Renderer.DragOffsetY = mouseY - Layout.Y
+        s_Dragging = true
+        s_DragOffsetX = mouseX - Layout.X
+        s_DragOffsetY = mouseY - Layout.Y
     end
 
-    if Renderer.Dragging then
-        if ImGui.IsMouseDown(0) then
-            local screenWidth, screenHeight = GetDisplayResolution()
-            Layout.X = math.max(0, math.min(screenWidth - Layout.Width, mouseX - Renderer.DragOffsetX))
-            Layout.Y = math.max(0, math.min(screenHeight - Layout.HeaderHeight, mouseY - Renderer.DragOffsetY))
-        else
-            Renderer.Dragging = false
-        end
+    if not s_Dragging then return end
+    if not ImGui.IsMouseDown(0) then
+        s_Dragging = false
+        return
     end
+
+    local screenWidth, screenHeight = GetDisplayResolution()
+    Layout.X = math.max(0, math.min(screenWidth - Layout.Width, mouseX - s_DragOffsetX))
+    Layout.Y = math.max(0, math.min(screenHeight - Layout.HeaderHeight, mouseY - s_DragOffsetY))
 end
 
 local function BeginFrame(deltaTime)
@@ -112,7 +99,7 @@ local function BeginFrame(deltaTime)
     local width, height = ImGui.GetWindowSize()
     Layout.X, Layout.Y = x, y
 
-    Context.Begin(deltaTime or (1 / 60), { X = x, Y = y, Width = width, Height = height })
+    Context.Begin(deltaTime, { X = x, Y = y, Width = width, Height = height })
     UpdateDragging()
     Navigation.Begin()
     SidePanel.BeginFrame()
@@ -142,21 +129,19 @@ local function DrawFrame()
 end
 
 function Renderer.Render(deltaTime)
-    if not Renderer.Initialized then return end
-    Renderer.Alpha = Animation.Animate(Renderer.Alpha, Renderer.Enabled and 1 or 0, 14, deltaTime or (1 / 60))
-    if not Renderer.Enabled and Renderer.Alpha < 0.01 then return end
+    if not s_Initialized then return end
 
-    ImGui.PushStyleVar(ImGuiStyleVar.Alpha, Renderer.Alpha)
-    Draw.SetAlpha(Renderer.Alpha)
-    local visible = BeginWindow()
-    if Renderer.DebugFramesRemaining > 0 then
-        local x, y = ImGui.GetWindowPos()
-        local width, height = ImGui.GetWindowSize()
-        Logger.Log(string.format(
-            "UI Renderer: visible=%s requested=(%.1f, %.1f) actual position=(%.1f, %.1f), size=(%.1f, %.1f)",
-            tostring(visible), Layout.Width, Layout.Height, x, y, width, height))
-        Renderer.DebugFramesRemaining = Renderer.DebugFramesRemaining - 1
+    deltaTime = deltaTime or DEFAULT_DELTA
+    s_Alpha = Animation.Animate(s_Alpha, s_Enabled and 1 or 0, FADE_SPEED, deltaTime)
+    if not s_Enabled and s_Alpha < 0.01 then
+        Navigation.Input.Clear()
+        return
     end
+
+    ImGui.PushStyleVar(ImGuiStyleVar.Alpha, s_Alpha)
+    Draw.SetAlpha(s_Alpha)
+
+    local visible = BeginWindow()
     if visible then
         BeginFrame(deltaTime)
         UpdateWidgets()
@@ -168,18 +153,17 @@ function Renderer.Render(deltaTime)
         SidePanel.Draw()
         Tip.Draw()
     end
+
     ImGui.PopStyleVar()
     Draw.SetAlpha(1)
-
     Navigation.Input.Clear()
 end
 
 function Renderer.Shutdown()
-    Renderer.Enabled = false
-    Renderer.Alpha = 0
-    Renderer.Initialized = false
+    s_Enabled = false
+    s_Alpha = 0
+    s_Initialized = false
     Navigation.Input.Clear()
 end
 
 return Renderer
-

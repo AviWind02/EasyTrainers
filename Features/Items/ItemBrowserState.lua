@@ -1,5 +1,5 @@
-local Inventory = require("Utils").Inventory
-local Notification = require("UI").Notification
+local Inventory = require("Utils/Inventory")
+local Notification = require("UI/Panels/Notification/Notification")
 
 local ItemBrowserState = {
     Action = { index = 1 },

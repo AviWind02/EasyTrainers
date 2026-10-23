@@ -1,263 +1,88 @@
 local Logger = require("Core/Logger")
-local Weapon = require("Utils/Weapon")
-local Notification = require("UI").Notification
-local Session = require("Core/cp2077-cet-kit/GameSession")
 
 local StatModifiers = {}
 
-local cache = {}   -- id { mod, target, statType, modifierType, value }
-local nextID = 1
+local s_Applied = {}
 
-
-local function getTargetID(entry)
-    if entry.target == "player" then
-        local player = Game.GetPlayer()
-        return player and player:GetEntityID()
-    elseif entry.target == "vehicle" then
-        local player = Game.GetPlayer()
-        local vehicle = player and Game.GetMountedVehicle(player)
-        return vehicle and vehicle:GetEntityID()
-    elseif entry.target == "weapon" then
-        local _, itemData = Weapon.GetEquippedRightHand()
-        return itemData and itemData:GetStatsObjectID()
-    elseif type(entry.target) == "userdata" then
-        return entry.target
-    end
-    return nil
+local function OwnerName(owner)
+    return type(owner) == "table" and tostring(owner.Name or owner) or tostring(owner)
 end
 
-local function setActiveByMod(mod, isActive)
-    for _, entry in pairs(cache) do
-        if entry.mod == mod then
-            entry.active = isActive
-            return
-        end
+local function Create(entry)
+    local modifier = RPGManager.CreateStatModifier(entry[1], entry[2], entry[3])
+    if not modifier then
+        Logger.Log(string.format("StatModifiers: failed to create %s %s %s", tostring(entry[1]), tostring(entry[2]), tostring(entry[3])))
     end
+    return modifier
 end
 
-local function applyToTarget(mod, targetID, remove)
+function StatModifiers.Remove(owner)
+    local applied = s_Applied[owner]
+    if not applied then return false end
+
+    s_Applied[owner] = nil
+
     local stats = Game.GetStatsSystem()
-    if not stats or not targetID then return false end
+    if not stats then return false end
 
-    if remove then
-        stats:RemoveModifier(targetID, mod)
-        setActiveByMod(mod, false)
-    else
-        stats:AddModifier(targetID, mod)
-        setActiveByMod(mod, true)
+    for _, modifier in ipairs(applied.Modifiers) do
+        stats:RemoveModifier(applied.TargetID, modifier)
     end
+
+    Logger.Log(string.format("StatModifiers: removed %d from %s", #applied.Modifiers, OwnerName(owner)))
     return true
 end
 
+function StatModifiers.Add(owner, targetID, key, entries)
+    StatModifiers.Remove(owner)
 
-function StatModifiers.Create(statType, modifierType, value, target)
-    local mod = RPGManager.CreateStatModifier(statType, modifierType, value)
-    if not mod then
-        Logger.Log(string.format(
-            "StatModifiers: failed to create (%s, %.2f, %s)",
-            tostring(statType), value, tostring(modifierType)
-        ))
-        return nil
-    end
-
-    local id = nextID
-    nextID = nextID + 1
-
-    cache[id] = {
-        mod = mod,
-        target = target or "player",
-        statType = statType,
-        modifierType = modifierType,
-        value = value,
-        active = true 
-    }
-
-    Logger.Log(string.format(
-        "StatModifiers: created ID %d (%s %s %.2f > %s)",
-        id, tostring(statType), tostring(modifierType), value, tostring(target or "player")
-    ))
-    return id, mod
-end
-
-function StatModifiers.CreateForWeapon(statType, modifierType, value, weaponItemID)
-    local mod = RPGManager.CreateStatModifier(statType, modifierType, value)
-    if not mod then
-        Logger.Log(string.format(
-            "StatModifiers: failed to create (%s, %.2f, %s)",
-            tostring(statType), value, tostring(modifierType)
-        ))
-        return nil
-    end
-
-    local id = nextID
-    nextID = nextID + 1
-
-    cache[id] = {
-        mod = mod,
-        target = weaponItemID,
-        statType = statType,
-        modifierType = modifierType,
-        value = value,
-        active = true,
-    }
-
-    Logger.Log(string.format(
-        "StatModifiers: created ID %d (%s %s %.2f > weapon %s)",
-        id, tostring(statType), tostring(modifierType), value, tostring(weaponItemID)
-    ))
-    return id, mod
-end
-
--- Apply a cached modifier
-function StatModifiers.Apply(id)
-    local entry = cache[id]
-    if not entry then return false end
-
-    local targetID = getTargetID(entry)
-    if not targetID then return false end
-
-    if applyToTarget(entry.mod, targetID, false) then
-        Logger.Log(string.format("StatModifiers: applied ID %d", id))
-        return true
-    end
-    return false
-end
-
--- Remove a cached modifier
-function StatModifiers.Remove(id)
-    local entry = cache[id]
-    if not entry then return false end
-
-    local targetID = getTargetID(entry)
-    if not targetID then return false end
-
-    if applyToTarget(entry.mod, targetID, true) then
-        Logger.Log(string.format("StatModifiers: removed ID %d", id))
-        cache[id] = nil
-        return true
-    end
-    return false
-end
-
-
-function StatModifiers.RemoveAllButKeepCache()
     local stats = Game.GetStatsSystem()
-    if not stats then return end
-    local count = 0
-    for _, entry in pairs(cache) do
-        local targetID = getTargetID(entry)
-        if targetID then
-            stats:RemoveModifier(targetID, entry.mod)
-            count = count + 1
-        end
-    end
-    Logger.Log(string.format("StatModifiers: removed and cached %d modifiers", count))
-end
+    if not stats or not targetID then return false end
 
-
-function StatModifiers.ReapplyAll()
-    local ss = Game.GetStatsSystem()
-    local player = Game.GetPlayer()
-    if not ss or not player then return end
-
-    local pid = player:GetEntityID()
-    local count = 0
-
-    for id, entry in pairs(cache) do
-        if entry.active then
-            local targetID = getTargetID(entry)
-            if targetID then
-                applyToTarget(entry.mod, targetID, false)
-                count = count + 1
-            end
+    local modifiers = {}
+    for _, entry in ipairs(entries) do
+        local modifier = Create(entry)
+        if modifier then
+            stats:AddModifier(targetID, modifier)
+            table.insert(modifiers, modifier)
         end
     end
 
-    Logger.Log(string.format("StatModifiers: Reapplied %d active modifiers", count))
-    Notification.Success(string.format("Reapplied %d modifiers", count), 3)
+    s_Applied[owner] = { TargetID = targetID, Key = key, Modifiers = modifiers }
+    Logger.Log(string.format("StatModifiers: applied %d to %s (%s)", #modifiers, OwnerName(owner), tostring(key)))
+    return true
 end
 
+function StatModifiers.Sync(owner, enabled, key, targetID, build)
+    local applied = s_Applied[owner]
 
-
-local lastLoadedState = false
-local firstLoad = true
-
-function StatModifiers.UpdateSessionWatcher()
-    local loaded = Session.IsLoaded()
-
-    -- only need to check when the game is loading or unloaded
-    if not loaded and lastLoadedState then
-        Logger.Log("Game unloading: Clearing modifiers")
-        StatModifiers.RemoveAllButKeepCache()
-        lastLoadedState = false
+    if not enabled then
+        if applied then StatModifiers.Remove(owner) end
         return
     end
 
-    if loaded and not lastLoadedState then
-        if firstLoad then
-            Logger.Log("Initial game load detected: skipping modifier reapply")
-            firstLoad = false
-        else
-            Logger.Log("Game fully loaded: Reapplying modifiers")
-            StatModifiers.ReapplyAll()
-        end
-        lastLoadedState = true
-    end
+    if applied and applied.Key == key then return end
+    StatModifiers.Add(owner, targetID, key, build(owner))
 end
 
-local appliedStates = setmetatable({}, { __mode = "k" })
-
-function StatModifiers.HandleToggle(ref, applyFunc)
-    local wasApplied = appliedStates[ref] or false
-
-    if ref.value then
-        if not wasApplied then
-            applyFunc(false) -- apply
-            appliedStates[ref] = true
-        end
-    elseif wasApplied then
-        applyFunc(true) -- remove
-        appliedStates[ref] = false
-    end
+function StatModifiers.GetKey(owner)
+    local applied = s_Applied[owner]
+    return applied and applied.Key or nil
 end
 
-local dynamicStates = setmetatable({}, { __mode = "k" })
-
-function StatModifiers.HandleDynamicToggle(ref, applyFunc)
-    local state = dynamicStates[ref]
-    if not state then
-        state = { applied = false, lastValue = nil }
-        dynamicStates[ref] = state
-    end
-
-    if ref.enabled then
-        if not state.applied then
-            applyFunc(false, ref.value)
-            state.applied = true
-            state.lastValue = ref.value
-        elseif ref.value ~= state.lastValue then
-            applyFunc(true, state.lastValue)
-            applyFunc(false, ref.value) 
-            state.lastValue = ref.value
-        end
-    elseif state.applied then
-        applyFunc(true, state.lastValue)
-        state.applied = false
-    end
+function StatModifiers.IsApplied(owner)
+    return s_Applied[owner] ~= nil
 end
 
-function StatModifiers.Cleanup()
-    local count = 0
-    for id, entry in pairs(cache) do
-        local targetID = getTargetID(entry)
-        if targetID then
-            applyToTarget(entry.mod, targetID, true)
-            count = count + 1
-        end
-        cache[id] = nil
-    end
-    Logger.Log(string.format("StatModifiers: cleanup removed %d modifiers", count))
+function StatModifiers.RemoveAll()
+    local owners = {}
+    for owner in pairs(s_Applied) do table.insert(owners, owner) end
+    for _, owner in ipairs(owners) do StatModifiers.Remove(owner) end
+    return #owners
 end
 
+function StatModifiers.Forget()
+    s_Applied = {}
+end
 
 return StatModifiers

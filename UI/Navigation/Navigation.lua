@@ -36,7 +36,7 @@ function Navigation.IsCurrent(index)
     return State.Current == index
 end
 
-local function move(direction)
+local function Move(direction)
     if State.Total <= 0 then return end
 
     local attempts = 0
@@ -49,11 +49,11 @@ local function move(direction)
 end
 
 function Navigation.MoveUp()
-    move(-1)
+    Move(-1)
 end
 
 function Navigation.MoveDown()
-    move(1)
+    Move(1)
 end
 
 function Navigation.SyncScroll(layout)

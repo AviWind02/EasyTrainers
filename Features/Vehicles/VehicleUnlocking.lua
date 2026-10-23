@@ -1,103 +1,82 @@
 local Logger = require("Core/Logger")
+local Notification = require("UI/Panels/Notification/Notification")
 local VehicleLoader = require("Utils/DataExtractors/VehicleLoader")
-local Notification = require("UI").Notification
 
-local VehicleUnlockSystem = {}
+local VehicleUnlocking = {}
 
-function VehicleUnlockSystem.IsUnlocked(vehicleID)
-    local vs = Game.GetVehicleSystem()
-    if not vs then return false end
-    local recordID = TweakDBID.new(vehicleID)
-    return vs:IsVehiclePlayerUnlocked(recordID)
+local function ForEachVehicle(predicate, callback)
+    for _, vehicle in ipairs(VehicleLoader:GetAll()) do
+        if vehicle.id and predicate(vehicle) then callback(vehicle) end
+    end
 end
 
-function VehicleUnlockSystem.SetPlayerVehicleState(vehicleID, enable)
-    local vs = Game.GetVehicleSystem()
-    if not vs then return false end
+local function IsPlayerVehicle(vehicle)
+    return vehicle.id:lower():match("_player$") ~= nil
+end
+
+local function IsModded(vehicle)
+    return vehicle.isModded == true
+end
+
+function VehicleUnlocking.IsUnlocked(vehicleID)
+    local vehicleSystem = Game.GetVehicleSystem()
+    if not vehicleSystem then return false end
+    return vehicleSystem:IsVehiclePlayerUnlocked(TweakDBID.new(vehicleID))
+end
+
+function VehicleUnlocking.SetPlayerVehicleState(vehicleID, enable)
+    local vehicleSystem = Game.GetVehicleSystem()
+    if not vehicleSystem then return false end
+
     local recordID = type(vehicleID) == "string" and TweakDBID.new(vehicleID) or vehicleID
-    local result = vs:EnablePlayerVehicle(recordID, enable, not enable)
-    Logger.Log(string.format("VehicleUnlock: set state for %s : %s", tostring(vehicleID), enable and "Unlocked" or "Locked"))
+    local result = vehicleSystem:EnablePlayerVehicle(recordID, enable, not enable)
+    Logger.Log(string.format("VehicleUnlocking: %s %s", enable and "unlocked" or "locked", tostring(vehicleID)))
     return result
 end
 
-function VehicleUnlockSystem.Unlock(vehicleID)
-    return VehicleUnlockSystem.SetPlayerVehicleState(vehicleID, true)
+function VehicleUnlocking.Unlock(vehicleID)
+    return VehicleUnlocking.SetPlayerVehicleState(vehicleID, true)
 end
 
-function VehicleUnlockSystem.Disable(vehicleID)
-    return VehicleUnlockSystem.SetPlayerVehicleState(vehicleID, false)
+function VehicleUnlocking.Disable(vehicleID)
+    return VehicleUnlocking.SetPlayerVehicleState(vehicleID, false)
 end
 
-function VehicleUnlockSystem.UnlockAllPlayerVehicles()
-    for _, v in ipairs(VehicleLoader:GetAll()) do
-        if v.id and v.id:lower():match("_player$") then
-            VehicleUnlockSystem.Unlock(v.id)
-        end
+local function SetWithVariants(vehicle, enable)
+    VehicleUnlocking.SetPlayerVehicleState(vehicle.id, enable)
+    for _, variant in ipairs(vehicle.variants or {}) do
+        VehicleUnlocking.SetPlayerVehicleState(variant, enable)
     end
-    Notification.Info("VehicleUnlock: All Player vehicles unlocked")
 end
 
-
-function VehicleUnlockSystem.DisableAllPlayerVehicles()
-    for _, v in ipairs(VehicleLoader:GetAll()) do
-        if v.id and v.id:lower():match("_player$") then
-            VehicleUnlockSystem.Disable(v.id)
-        end
-    end
-    Notification.Info("VehicleUnlock: All Player vehicles disabled")
+function VehicleUnlocking.UnlockAllPlayerVehicles()
+    ForEachVehicle(IsPlayerVehicle, function(vehicle) VehicleUnlocking.Unlock(vehicle.id) end)
+    Notification.Info("All player vehicles unlocked")
 end
 
-
-
-function VehicleUnlockSystem.UnlockFaction(factionName)
-    for _, v in ipairs(VehicleLoader:GetAll()) do
-        if v.faction == factionName then
-            VehicleUnlockSystem.Unlock(v.id)
-
-            if v.variants then
-                for _, var in ipairs(v.variants) do
-                    VehicleUnlockSystem.Unlock(var)
-                end
-            end
-        end
-    end
-
-    Notification.Info("VehicleUnlock: All vehicles for faction '" .. factionName .. "' unlocked")
+function VehicleUnlocking.DisableAllPlayerVehicles()
+    ForEachVehicle(IsPlayerVehicle, function(vehicle) VehicleUnlocking.Disable(vehicle.id) end)
+    Notification.Info("All player vehicles disabled")
 end
 
-function VehicleUnlockSystem.DisableFaction(factionName)
-    for _, v in ipairs(VehicleLoader:GetAll()) do
-        if v.faction == factionName then
-            VehicleUnlockSystem.Disable(v.id)
-
-            if v.variants then
-                for _, var in ipairs(v.variants) do
-                    VehicleUnlockSystem.Disable(var)
-                end
-            end
-        end
-    end
-
-    Notification.Info("VehicleUnlock: All vehicles for faction '" .. factionName .. "' disabled")
+function VehicleUnlocking.UnlockFaction(faction)
+    ForEachVehicle(function(vehicle) return vehicle.faction == faction end, function(vehicle) SetWithVariants(vehicle, true) end)
+    Notification.Info("All " .. tostring(faction) .. " vehicles unlocked")
 end
 
-function VehicleUnlockSystem.UnlockAllModded()
-    for _, v in ipairs(VehicleLoader:GetAll()) do
-        if v.isModded then
-            VehicleUnlockSystem.Unlock(v.id)
-        end
-    end
-    Notification.Info("VehicleUnlock: All Add-on vehicles unlocked (with variants)")
+function VehicleUnlocking.DisableFaction(faction)
+    ForEachVehicle(function(vehicle) return vehicle.faction == faction end, function(vehicle) SetWithVariants(vehicle, false) end)
+    Notification.Info("All " .. tostring(faction) .. " vehicles disabled")
 end
 
-function VehicleUnlockSystem.DisableAllModded()
-    for _, v in ipairs(VehicleLoader:GetAll()) do
-        if v.isModded then
-            VehicleUnlockSystem.Disable(v.id)
-        end
-    end
-    Notification.Info("VehicleUnlock: All Add-on vehicles locked (with variants)")
+function VehicleUnlocking.UnlockAllModded()
+    ForEachVehicle(IsModded, function(vehicle) SetWithVariants(vehicle, true) end)
+    Notification.Info("All add-on vehicles unlocked")
 end
 
+function VehicleUnlocking.DisableAllModded()
+    ForEachVehicle(IsModded, function(vehicle) SetWithVariants(vehicle, false) end)
+    Notification.Info("All add-on vehicles disabled")
+end
 
-return VehicleUnlockSystem
+return VehicleUnlocking

@@ -1,47 +1,44 @@
-local Buttons = require("UI").Buttons
+local Buttons = require("UI/Options/Buttons")
+local Submenu = require("UI/Navigation/Submenu")
 local Bindings = require("Controls/Bindings")
 local BindingsConfig = require("Config/BindingsConfig")
 local Registry = require("UI/Registry/OptionRegistry")
 
-local ensured = false
-local function EnsureRegistered()
-    if ensured then return end
-    require("Features/Self/SelfConfig")()
-    require("Features/Weapons/WeaponConfig")()
-    require("Features/Vehicles/VehicleConfig")()
-    require("Features/Teleports/TeleportConfig")()
-    require("Features/World/WorldConfig")()
-    Registry.RegisterHotkeyActions()
-    ensured = true
+local s_Toggles = nil
+
+local function GetToggles()
+    if s_Toggles then return s_Toggles end
+
+    s_Toggles = {}
+    for _, entry in ipairs(Registry.GetAll()) do
+        if entry.Kind == Registry.Kind.Toggle then
+            Bindings.EnsureAction(Registry.GetHotkeyAction(entry))
+            table.insert(s_Toggles, entry)
+        end
+    end
+    return s_Toggles
+end
+
+local function ClearAll()
+    for _, entry in ipairs(GetToggles()) do
+        Bindings.Actions[Registry.GetHotkeyAction(entry)] = { keys = {}, btns = {} }
+    end
+    BindingsConfig.Save()
 end
 
 local function HotkeysView()
-    EnsureRegistered()
-    local toggles = {}
-    for _, entry in ipairs(Registry.GetAll()) do
-        if entry.Kind == Registry.Kind.Toggle then table.insert(toggles, entry) end
-    end
-    Buttons.OptionExtended("Registered Toggles", "", tostring(#toggles),
-        "Every registered toggle below can use a keyboard or controller binding.")
-    Buttons.Option("Clear All Toggle Hotkeys", "Remove every optional toggle binding.", function()
-        for _, entry in ipairs(toggles) do
-            local action = Registry.GetHotkeyAction(entry)
-            Bindings.Actions[action] = { keys = {}, btns = {} }
-        end
-        BindingsConfig.Save()
-    end)
+    local toggles = GetToggles()
+    Buttons.OptionExtended("Registered Toggles", "", tostring(#toggles), "Every toggle below can use a keyboard or controller binding.")
+    Buttons.Option("Clear All Toggle Hotkeys", "Remove every optional toggle binding.", ClearAll)
 
-    local category
+    local category = nil
     for _, entry in ipairs(toggles) do
         if entry.Category ~= category then
             category = entry.Category
-            local categoryLabel = tostring(category):gsub("^%l", string.upper)
-            Buttons.Break("", categoryLabel)
+            Buttons.Break((tostring(category):gsub("^%l", string.upper)))
         end
-        local action = Registry.GetHotkeyAction(entry)
-        Bindings.EnsureAction(action)
-        Buttons.Bind(Registry.GetLabel(entry), action, Registry.GetTip(entry))
+        Buttons.Bind(Registry.GetLabel(entry), Registry.GetHotkeyAction(entry), Registry.GetTip(entry))
     end
 end
 
-return { title = "Toggle Hotkeys", view = HotkeysView }
+return Submenu.Create("Toggle Hotkeys", HotkeysView)

@@ -1,5 +1,5 @@
 local Logger = require("Core/Logger")
-local utils = require("Utils/DataExtractors/DataUtils")
+local DataUtils = require("Utils/DataExtractors/DataUtils")
 
 local PerkLoader = {
     attribute = {},
@@ -7,86 +7,74 @@ local PerkLoader = {
     categoryNames = {}
 }
 
-local perkCatKeys = {
-    { key = "Body", value = "Body" },
-    { key = "Cool", value = "Cool" },
-    { key = "Intelligence", value = "Intelligence" },
-    { key = "Reflexes", value = "Reflexes" },
-    { key = "Tech", value = "Technical Ability" },
-    { key = "Espionage", value = "Relic" },
+local ATTRIBUTE_KEYS = {
+    { "Body", "Body" },
+    { "Cool", "Cool" },
+    { "Intelligence", "Intelligence" },
+    { "Reflexes", "Reflexes" },
+    { "Tech", "Technical Ability" },
+    { "Espionage", "Relic" }
 }
 
-local function GuessAttributeFromId(id)
+local function GuessAttribute(id)
     if not id then return "Unknown" end
-    for _, entry in ipairs(perkCatKeys) do
-        if id:find(entry.key, 1, true) then
-            return entry.value
-        end
+    for _, entry in ipairs(ATTRIBUTE_KEYS) do
+        if id:find(entry[1], 1, true) then return entry[2] end
     end
     return "Unknown"
 end
 
-local function GetRequirements(rec)
+local function GetRequirements(record)
     local requirements = { perks = {}, prereqId = nil }
+    if not record then return requirements end
 
-    if not rec then return requirements end
-
-    local count = rec:GetRequiresPerksCount()
-    for i = 0, count - 1 do
-        local reqRec = rec:GetRequiresPerksItem(i)
-        if reqRec then
-            local reqId   = reqRec:GetID().value
-            local reqName = utils.GetLocalizedText(reqRec:Loc_name_key())
-            local reqType = reqRec:Type()
-
+    for i = 0, record:GetRequiresPerksCount() - 1 do
+        local required = record:GetRequiresPerksItem(i)
+        if required then
             table.insert(requirements.perks, {
-                id = reqId,  
-                name = reqName,
-                type = reqType 
+                id = required:GetID().value,
+                name = DataUtils.GetLocalizedText(required:Loc_name_key()),
+                type = required:Type()
             })
         end
     end
 
-    local prereqRec = rec:Requirement()
-    if prereqRec then
-        requirements.prereqId = prereqRec:GetID().value
-    end
+    local prereq = record:Requirement()
+    if prereq then requirements.prereqId = prereq:GetID().value end
 
     return requirements
 end
 
+function PerkLoader:CategoryName(categoryRecord)
+    local categoryID = categoryRecord and categoryRecord:GetID().value or "Unknown"
+    local name = self.categoryNames[categoryID]
+    if name or not categoryRecord then return name end
+
+    name = categoryRecord:EnumComment() or tostring(categoryRecord:EnumName())
+    self.categoryNames[categoryID] = name
+    return name
+end
 
 function PerkLoader:LoadAll()
-    local perkRecords = TweakDB:GetRecords("gamedataNewPerk_Record")
-    if not perkRecords or #perkRecords == 0 then
-        Logger.Log("PerkLoader: No perk records found.")
+    local records = TweakDB:GetRecords("gamedataNewPerk_Record")
+    if not records or #records == 0 then
+        Logger.Log("PerkLoader: no perk records found")
         return
     end
 
-    for _, rec in ipairs(perkRecords) do
-        local id = utils.SafeCall(function() return rec:GetID().value end)
+    for _, record in ipairs(records) do
+        local id = DataUtils.SafeCall(function() return record:GetID().value end)
         if id then
-            local catRecord = rec:Category()
-            local catId = catRecord and catRecord:GetID().value or "Unknown"
-            local catName = self.categoryNames[catId]
-
-            if not catName and catRecord then
-                catName = catRecord:EnumComment() or tostring(catRecord:EnumName())
-                self.categoryNames[catId] = catName
-            end
-
-            local attribute = GuessAttributeFromId(id)
+            local attribute = GuessAttribute(id)
             local data = {
                 id = id,
-                name = utils.GetLocalizedText(rec:Loc_name_key()),
-                description = utils.StripRichText(utils.GetLocalizedText(rec:Loc_desc_key())),
-                category = catName or "Uncategorized",
+                name = DataUtils.GetLocalizedText(record:Loc_name_key()),
+                description = DataUtils.StripRichText(DataUtils.GetLocalizedText(record:Loc_desc_key())),
+                category = self:CategoryName(record:Category()) or "Uncategorized",
                 attribute = attribute,
-                type = rec:Type(),
-                requirements = GetRequirements(rec)
+                type = record:Type(),
+                requirements = GetRequirements(record)
             }
-
-            
 
             self.attribute[attribute] = self.attribute[attribute] or {}
             self.attribute[attribute][id] = data
@@ -94,11 +82,7 @@ function PerkLoader:LoadAll()
         end
     end
 
-    Logger.Log(string.format(
-        "PerkLoader: Loaded %d perks across %d attributes.",
-        utils.Count(self.indexById),
-        utils.Count(self.attribute)
-    ))
+    Logger.Log(string.format("PerkLoader: loaded %d perks across %d attributes", DataUtils.Count(self.indexById), DataUtils.Count(self.attribute)))
 end
 
 function PerkLoader:GetAll()

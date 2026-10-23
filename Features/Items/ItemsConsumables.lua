@@ -1,5 +1,4 @@
-local Consumables = { -- The general loader is a mess and I really don't want to refine it right now so I'm just going to hard code these
- -- MaxDocs
+local Consumables = {
     { id = "Items.FirstAidWhiffV0",             name = "MaxDoc Mk.1",          group = "MaxDoc" },
     { id = "Items.FirstAidWhiffVCommonPlus",    name = "MaxDoc Mk.1+",         group = "MaxDoc" },
     { id = "Items.FirstAidWhiffVUncommon",      name = "MaxDoc Mk.2",          group = "MaxDoc" },
@@ -11,7 +10,6 @@ local Consumables = { -- The general loader is a mess and I really don't want to
     { id = "Items.FirstAidWhiffVEpicPlus",      name = "MaxDoc Mk.4+",         group = "MaxDoc" },
     { id = "Items.FirstAidWhiffVLegendaryPlus", name = "MaxDoc Legendary+",    group = "MaxDoc" },
 
-    -- Bounce Backs
     { id = "Items.BonesMcCoy70V0",              name = "Bounce Back Mk.1",     group = "BounceBack" },
     { id = "Items.BonesMcCoy70VCommonPlus",     name = "Bounce Back Mk.1+",    group = "BounceBack" },
     { id = "Items.BonesMcCoy70VUncommon",       name = "Bounce Back Mk.2",     group = "BounceBack" },
@@ -23,7 +21,6 @@ local Consumables = { -- The general loader is a mess and I really don't want to
     { id = "Items.BonesMcCoy70V2",              name = "Bounce Back (Alt)",    group = "BounceBack" },
     { id = "Items.BonesMcCoy70VLegendaryPlus",  name = "Bounce Back Legendary+", group = "BounceBack" },
 
-    -- Boosters
     { id = "Items.CarryCapacityBooster",        name = "Capacity Booster",     group = "Booster" },
     { id = "Items.HealthBooster",               name = "Health Booster",       group = "Booster" },
     { id = "Items.OxyBooster",                  name = "Oxy Booster",          group = "Booster" },

@@ -1,102 +1,70 @@
-local VehicleLights = require("Features/Vehicles").VehicleLights
-local Buttons = require("UI").Buttons
+local Buttons = require("UI/Options/Buttons")
+local Submenu = require("UI/Navigation/Submenu")
+local VehicleLights = require("Features/Vehicles/VehicleLights")
 
-local lightTypes = {
-    { name = "vehiclelights.head", type = vehicleELightType.Head },
-    { name = "vehiclelights.brake", type = vehicleELightType.Brake },
-    { name = "vehiclelights.left", type = vehicleELightType.LeftBlinker },
-    { name = "vehiclelights.right", type = vehicleELightType.RightBlinker },
-    { name = "vehiclelights.reverse", type = vehicleELightType.Reverse },
-    { name = "vehiclelights.interior", type = vehicleELightType.Interior },
-    { name = "vehiclelights.utility", type = vehicleELightType.Utility },
-    { name = "vehiclelights.default", type = vehicleELightType.Default },
-    { name = "vehiclelights.blinkers", type = vehicleELightType.Blinkers }
+local LIGHT_TYPES = {
+    { Name = "vehiclelights.head", Type = vehicleELightType.Head },
+    { Name = "vehiclelights.brake", Type = vehicleELightType.Brake },
+    { Name = "vehiclelights.left", Type = vehicleELightType.LeftBlinker },
+    { Name = "vehiclelights.right", Type = vehicleELightType.RightBlinker },
+    { Name = "vehiclelights.reverse", Type = vehicleELightType.Reverse },
+    { Name = "vehiclelights.interior", Type = vehicleELightType.Interior },
+    { Name = "vehiclelights.utility", Type = vehicleELightType.Utility },
+    { Name = "vehiclelights.default", Type = vehicleELightType.Default },
+    { Name = "vehiclelights.blinkers", Type = vehicleELightType.Blinkers }
 }
 
--- lazy init flags
-local initialized = false
-local lightNames = {}
-local lightSettings = {}
+local s_LightNames = {}
+local s_Settings = {}
+local s_AllColor = { Red = 255, Green = 255, Blue = 255, Alpha = 255 }
+local s_Selected = { index = 1, expanded = false }
 
-local globalColorRef = { Red = 255, Green = 255, Blue = 255, Alpha = 255 }
-local selectedLightRef = { index = 1, expanded = false }
-
-local function Initialized()
-    if initialized then return end
-    -- Build lightNames once
-    for _, lt in ipairs(lightTypes) do
-        table.insert(lightNames, lt.name)
-    end
-    -- Build lightSettings once
-    for _, lt in ipairs(lightTypes) do
-        lightSettings[lt.type] = {
-            color = { Red = 255, Green = 255, Blue = 255, Alpha = 255 },
-            strength = { value = 1.0 }
-        }
-    end
-    initialized = true
+for _, light in ipairs(LIGHT_TYPES) do
+    table.insert(s_LightNames, light.Name)
+    s_Settings[light.Type] = {
+        Color = { Red = 255, Green = 255, Blue = 255, Alpha = 255 },
+        Strength = { value = 1.0 }
+    }
 end
 
-local function VehicleLightsViewFunction()
-    Initialized()
-
-    Buttons.Color(L("vehiclelights.setallcolor.label"), globalColorRef, L("vehiclelights.setallcolor.tip"))
-
-    if Buttons.Option(L("vehiclelights.applyallcolor.label"), L("vehiclelights.applyallcolor.tip")) then
-        VehicleLights.SetAllLightsColor(Color.new(globalColorRef))
-    end
-
-    if Buttons.Option(L("vehiclelights.resetallcolor.label"), L("vehiclelights.resetallcolor.tip")) then
-        VehicleLights.ResetAllLightColors()
-    end
-
-    if Buttons.Option(L("vehiclelights.disableall.label"), L("vehiclelights.disableall.tip")) then
-        VehicleLights.DisableAllLights()
-    end
-
+local function VehicleLightView()
+    Buttons.Color(L("vehiclelights.setallcolor.label"), s_AllColor, L("vehiclelights.setallcolor.tip"))
+    Buttons.Option(L("vehiclelights.applyallcolor.label"), L("vehiclelights.applyallcolor.tip"), function()
+        VehicleLights.SetAllLightsColor(Color.new(s_AllColor))
+    end)
+    Buttons.Option(L("vehiclelights.resetallcolor.label"), L("vehiclelights.resetallcolor.tip"), VehicleLights.ResetAllLightColors)
+    Buttons.Option(L("vehiclelights.disableall.label"), L("vehiclelights.disableall.tip"), VehicleLights.DisableAllLights)
 
     Buttons.Break(L("vehiclelights.adjustselected"))
-    Buttons.Dropdown(L("vehiclelights.lighttype.label"), selectedLightRef, lightNames, L("vehiclelights.lighttype.tip"))
+    Buttons.Dropdown(L("vehiclelights.lighttype.label"), s_Selected, s_LightNames, L("vehiclelights.lighttype.tip"))
 
-    local selectedLight = lightTypes[selectedLightRef.index]
-    local lightKey = selectedLight.name
-    local lightLabel = L(lightKey)
-    local lightConfig = lightSettings[selectedLight.type]
+    local light = LIGHT_TYPES[s_Selected.index or 1]
+    local settings = s_Settings[light.Type]
+    local placeholders = { light = L(light.Name) }
 
-    Buttons.Color(L("vehiclelights.color.label"), lightConfig.color, tip("vehiclelights.color.tip", { light = lightLabel }))
-
-    if Buttons.Option(L("vehiclelights.applycolor.label"), tip("vehiclelights.applycolor.tip", { light = lightLabel })) then
-        VehicleLights.SetLightColor(selectedLight.type, Color.new(lightConfig.color))
-    end
-
-    Buttons.Float(L("vehiclelights.strength.label"), lightConfig.strength, tip("vehiclelights.strength.tip", { light = lightLabel }))
-
-    if Buttons.Option(L("vehiclelights.applystrength.label"), tip("vehiclelights.applystrength.tip", { light = lightLabel })) then
-        VehicleLights.SetLightStrength(selectedLight.type, lightConfig.strength.value)
-    end
-
-    if Buttons.Option(L("vehiclelights.resetcolor.label"), tip("vehiclelights.resetcolor.tip", { light = lightLabel })) then
-        VehicleLights.ResetLightColor(selectedLight.type)
-    end
-
-    if Buttons.Option(L("vehiclelights.resetstrength.label"), tip("vehiclelights.resetstrength.tip", { light = lightLabel })) then
-        VehicleLights.ResetLightStrength(selectedLight.type)
-    end
-
-    if Buttons.Option(L("vehiclelights.resetall.label"), tip("vehiclelights.resetall.tip", { light = lightLabel })) then
-        VehicleLights.ResetLightParameters(selectedLight.type)
-    end
-
-    if Buttons.Option(L("vehiclelights.toggleon.label"), tip("vehiclelights.toggleon.tip", { light = lightLabel })) then
-        VehicleLights.ToggleLights(true, selectedLight.type)
-    end
-
-    if Buttons.Option(L("vehiclelights.toggleoff.label"), tip("vehiclelights.toggleoff.tip", { light = lightLabel })) then
-        VehicleLights.ToggleLights(false, selectedLight.type)
-    end
+    Buttons.Color(L("vehiclelights.color.label"), settings.Color, tip("vehiclelights.color.tip", placeholders))
+    Buttons.Option(L("vehiclelights.applycolor.label"), tip("vehiclelights.applycolor.tip", placeholders), function()
+        VehicleLights.SetLightColor(light.Type, Color.new(settings.Color))
+    end)
+    Buttons.Float(L("vehiclelights.strength.label"), settings.Strength, tip("vehiclelights.strength.tip", placeholders))
+    Buttons.Option(L("vehiclelights.applystrength.label"), tip("vehiclelights.applystrength.tip", placeholders), function()
+        VehicleLights.SetLightStrength(light.Type, settings.Strength.value)
+    end)
+    Buttons.Option(L("vehiclelights.resetcolor.label"), tip("vehiclelights.resetcolor.tip", placeholders), function()
+        VehicleLights.ResetLightColor(light.Type)
+    end)
+    Buttons.Option(L("vehiclelights.resetstrength.label"), tip("vehiclelights.resetstrength.tip", placeholders), function()
+        VehicleLights.ResetLightStrength(light.Type)
+    end)
+    Buttons.Option(L("vehiclelights.resetall.label"), tip("vehiclelights.resetall.tip", placeholders), function()
+        VehicleLights.ResetLightParameters(light.Type)
+    end)
+    Buttons.Option(L("vehiclelights.toggleon.label"), tip("vehiclelights.toggleon.tip", placeholders), function()
+        VehicleLights.ToggleLights(true, light.Type)
+    end)
+    Buttons.Option(L("vehiclelights.toggleoff.label"), tip("vehiclelights.toggleoff.tip", placeholders), function()
+        VehicleLights.ToggleLights(false, light.Type)
+    end)
 end
 
-return {
-    title = "vehiclelights.title",
-    view  = VehicleLightsViewFunction
-}
+return Submenu.Create("vehiclelights.title", VehicleLightView)

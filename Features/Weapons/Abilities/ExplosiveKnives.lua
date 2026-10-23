@@ -1,33 +1,29 @@
 local Explosion = require("Utils/Explosion")
-local Logger = require("Core/Logger")
 local Weapon = require("Utils/Weapon")
 
 local ExplosiveKnives = {}
-ExplosiveKnives.enabled = { value = false }
 
--- cooldown to prevent spamming multiple explosions at once
-local cooldown = 0.1
-local lastExplosionTime = -1
+ExplosiveKnives.Enabled = { value = false }
 
----@param eventData gameprojectileHitEvent
-function ExplosiveKnives.Tick(eventData)
-    if not ExplosiveKnives.enabled.value then return end
-    if not eventData then return end
+local COOLDOWN = 0.1
+local ATTACK = "Attacks.LegendaryFragGrenade"
+
+local s_LastExplosion = -1
+
+function ExplosiveKnives.OnProjectileHit(eventData)
+    if not ExplosiveKnives.Enabled.value or not eventData then return end
     if Weapon.IsRangedEquipped() then return end
 
-    local currentTime = os.clock()
-    if currentTime - lastExplosionTime < cooldown then return end
+    local now = os.clock()
+    if now - s_LastExplosion < COOLDOWN then return end
 
     local player = Game.GetPlayer()
     if not player then return end
 
-    local instances = eventData.hitInstances
-    if instances and #instances > 0 then
-        for _, hit in ipairs(instances) do
-            if hit and hit.position then
-                Explosion.SpawnAtPos(hit.position, "Attacks.LegendaryFragGrenade", player, player, nil, 3.0)
-                lastExplosionTime = currentTime
-            end
+    for _, hit in ipairs(eventData.hitInstances or {}) do
+        if hit and hit.position then
+            Explosion.SpawnAtPos(hit.position, ATTACK, player, player, nil, 3.0)
+            s_LastExplosion = now
         end
     end
 end

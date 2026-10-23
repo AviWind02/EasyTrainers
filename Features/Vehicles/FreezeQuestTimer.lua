@@ -1,25 +1,25 @@
-local Logger = require("Core/Logger")
-local Event = require("Core/Event")
-
 local FreezeQuestTimer = {}
 
-FreezeQuestTimer.toggleFreezeQuestTimer = { value = false }
+FreezeQuestTimer.Enabled = { value = false }
 
-function FreezeQuestTimer.HandleCountdownTimer(_, _)
-    if not FreezeQuestTimer.toggleFreezeQuestTimer.value then return end
+local FROZEN_PROGRESS = 599.0
+
+function FreezeQuestTimer.HandleCountdownTimer()
+    if not FreezeQuestTimer.Enabled.value then return end
 
     local timerDef = GetAllBlackboardDefs().UI_HUDCountdownTimer
     local blackboardSystem = Game.GetBlackboardSystem()
     local delaySystem = Game.GetDelaySystem()
-    if not (timerDef and blackboardSystem and delaySystem) then return end
-    local timerBB = blackboardSystem:Get(timerDef)
-    if not timerBB then return end
+    if not timerDef or not blackboardSystem or not delaySystem then return end
 
-    local missionTimer = FromVariant(timerBB:GetVariant(timerDef.TimerID))
-    if missionTimer then
-        delaySystem:CancelTick(missionTimer)
-        timerBB:SetFloat(timerDef.Progress, 599.0, true)
-    end
+    local blackboard = blackboardSystem:Get(timerDef)
+    if not blackboard then return end
+
+    local timer = FromVariant(blackboard:GetVariant(timerDef.TimerID))
+    if not timer then return end
+
+    delaySystem:CancelTick(timer)
+    blackboard:SetFloat(timerDef.Progress, FROZEN_PROGRESS, true)
 end
 
 return FreezeQuestTimer

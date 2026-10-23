@@ -1,97 +1,90 @@
 local Logger = require("Core/Logger")
+local Lifecycle = require("Core/Lifecycle")
 local Vehicle = require("Utils/Vehicle")
 
 local VehicleSpawning = {}
 
-local activeSpawns, pendingMounts = {}, {}
+local SPAWN_TAG = "EasyTrainer"
+local DEFAULT_SEAT = "seat_front_left"
 
-local function DespawnEntity(des, entityID, tag)
-    if des and entityID then
-        des:DeleteEntity(entityID)
-        Logger.Log("VehicleSpawning: despawned " .. (tag or "entity") .. " " .. tostring(entityID))
-    end
+local s_ActiveSpawns = {}
+local s_PendingMounts = {}
+
+local function Despawn(entitySystem, entityID, label)
+    if not entitySystem or not entityID then return end
+    entitySystem:DeleteEntity(entityID)
+    Logger.Log("VehicleSpawning: despawned " .. label .. " " .. tostring(entityID))
 end
 
-function VehicleSpawning.RequestVehicle(tweakDBIDStr, spawnDist)
-    local player = Game.GetPlayer()
-    if not player then return false end
-
-    local transform, spawnPos = Vehicle.GetSpawnTransform(player, spawnDist)
-    local vehicleID = TweakDBID.new(tweakDBIDStr)
-
-    Game.GetPreventionSpawnSystem():RequestUnitSpawn(vehicleID, transform)
-    Logger.Log(string.format("VehicleSpawning: requested '%s' at (%.2f, %.2f, %.2f)",
-        tweakDBIDStr, spawnPos.x, spawnPos.y, spawnPos.z))
-    return true
-end
-
-local function CreateDynamicSpec(tweakDBIDStr, spawnPos) -- Probably should go into some utility tbh
+local function CreateSpec(recordID, position)
     local spec = NewObject("DynamicEntitySpec")
-    spec.recordID = TweakDBID.new(tweakDBIDStr)
-    spec.position = spawnPos
+    spec.recordID = TweakDBID.new(recordID)
+    spec.position = position
     spec.orientation = Quaternion.new(0, 0, 0, 1)
     spec.persistState = false
     spec.persistSpawn = false
     spec.spawnInView = true
     spec.active = true
-    spec.tags = { CName.new("EasyTrainer") }
+    spec.tags = { CName.new(SPAWN_TAG) }
     return spec
 end
 
-function VehicleSpawning.SpawnVehicle(tweakDBIDStr, spawnDist, mount, deleteLast)
-    local player, des = Game.GetPlayer(), Game.GetDynamicEntitySystem()
-    if not player or not des then return nil end
+function VehicleSpawning.RequestVehicle(recordID, distance)
+    local player = Game.GetPlayer()
+    if not player then return false end
 
-    local previousID = deleteLast and activeSpawns[#activeSpawns] or nil
+    local transform, position = Vehicle.GetSpawnTransform(player, distance)
+    Game.GetPreventionSpawnSystem():RequestUnitSpawn(TweakDBID.new(recordID), transform)
+    Logger.Log(string.format("VehicleSpawning: requested '%s' at (%.2f, %.2f, %.2f)", recordID, position.x, position.y, position.z))
+    return true
+end
 
-    local transform, spawnPos = Vehicle.GetSpawnTransform(player, spawnDist)
-    local spec = CreateDynamicSpec(tweakDBIDStr, spawnPos)
-    local entityID = des:CreateEntity(spec)
+function VehicleSpawning.SpawnVehicle(recordID, distance, mount, deleteLast)
+    local player = Game.GetPlayer()
+    local entitySystem = Game.GetDynamicEntitySystem()
+    if not player or not entitySystem then return nil end
 
+    local previousID = deleteLast and s_ActiveSpawns[#s_ActiveSpawns] or nil
+    local _, position = Vehicle.GetSpawnTransform(player, distance)
+    local entityID = entitySystem:CreateEntity(CreateSpec(recordID, position))
     if not entityID then
-        Logger.Log("VehicleSpawning: failed to spawn " .. tostring(tweakDBIDStr))
+        Logger.Log("VehicleSpawning: failed to spawn " .. tostring(recordID))
         return nil
     end
 
     if previousID and previousID ~= entityID then
-        DespawnEntity(des, previousID, "previous vehicle")
-        table.remove(activeSpawns)
+        Despawn(entitySystem, previousID, "previous vehicle")
+        table.remove(s_ActiveSpawns)
     end
 
-    table.insert(activeSpawns, entityID)
-    -- Logger.Log(string.format("VehicleSpawning: spawned '%s' at (%.2f, %.2f, %.2f)", tweakDBIDStr, spawnPos.x, spawnPos.y, spawnPos.z))
-
-    if mount then
-        pendingMounts[entityID] = { seat = "seat_front_left" }
-        Logger.Log("VehicleSpawning: queued auto-mount for " .. tostring(entityID))
-    end
-
+    table.insert(s_ActiveSpawns, entityID)
+    if mount then s_PendingMounts[entityID] = DEFAULT_SEAT end
     return entityID
 end
 
 function VehicleSpawning.HandlePending()
-    if next(pendingMounts) == nil then return end
+    if next(s_PendingMounts) == nil then return end
 
-    local des, ws, player = Game.GetDynamicEntitySystem(), Game.GetWorkspotSystem(), Game.GetPlayer()
-    if not (des and ws and player) then return end
+    local entitySystem = Game.GetDynamicEntitySystem()
+    if not entitySystem or not Game.GetPlayer() then return end
 
-    for entityID, opts in pairs(pendingMounts) do
-        if des:IsSpawned(entityID) then
-            pendingMounts[entityID] = nil
-            local ent = des:GetEntity(entityID)
-            if Vehicle.IsValidVehicle(ent) then
+    for entityID, seat in pairs(s_PendingMounts) do
+        if entitySystem:IsSpawned(entityID) then
+            s_PendingMounts[entityID] = nil
+            local entity = entitySystem:GetEntity(entityID)
+            if Vehicle.IsValidVehicle(entity) then
                 if Vehicle.GetMountedVehicleSafe() then Vehicle.UnmountPlayer(true) end
-                Vehicle.MountPlayer(ent)
-                Logger.Log("VehicleSpawning: mounted player into vehicle")
+                Vehicle.MountPlayer(entity, seat)
             end
         end
     end
 end
 
 function VehicleSpawning.Forget(entityID)
-    for index = #activeSpawns, 1, -1 do
-        if activeSpawns[index] == entityID then
-            table.remove(activeSpawns, index)
+    s_PendingMounts[entityID] = nil
+    for index = #s_ActiveSpawns, 1, -1 do
+        if s_ActiveSpawns[index] == entityID then
+            table.remove(s_ActiveSpawns, index)
             return true
         end
     end
@@ -99,24 +92,21 @@ function VehicleSpawning.Forget(entityID)
 end
 
 function VehicleSpawning.DespawnLast()
-    local des = Game.GetDynamicEntitySystem()
-    local lastID = table.remove(activeSpawns)
-    if lastID then
-        DespawnEntity(des, lastID, "last vehicle")
-        return true
+    local lastID = table.remove(s_ActiveSpawns)
+    if not lastID then
+        Logger.Log("VehicleSpawning: no vehicle to despawn")
+        return false
     end
-    Logger.Log("VehicleSpawning: no vehicle to despawn")
-    return false
+
+    Despawn(Game.GetDynamicEntitySystem(), lastID, "last vehicle")
+    return true
 end
 
-function VehicleSpawning.DespawnPrevious(currentID)
-    local des = Game.GetDynamicEntitySystem()
-    if not des or #activeSpawns < 2 then return end
-
-    local prevID = activeSpawns[#activeSpawns - 1]
-    if prevID and prevID ~= currentID then
-        DespawnEntity(des, prevID, "previous vehicle")
+Lifecycle.Register("VehicleSpawning", {
+    OnSessionEnd = function()
+        s_ActiveSpawns = {}
+        s_PendingMounts = {}
     end
-end
+})
 
 return VehicleSpawning

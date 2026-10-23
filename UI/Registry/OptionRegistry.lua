@@ -276,7 +276,8 @@ function OptionRegistry.UpdateHotkeys()
     local changed = false
     for _, entry in ipairs(OptionRegistry.Ordered) do
         if entry.Kind == OptionRegistry.Kind.Toggle and entry.Ref then
-            local action = HotkeyAction(entry.Id)
+            local action = entry.Hotkey or HotkeyAction(entry.Id)
+            entry.Hotkey = action
             local down = Bindings.IsActionDown(action)
             if down and not HotkeyDown[action] then
                 OptionRegistry.Activate(entry.Id)

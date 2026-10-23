@@ -12,28 +12,20 @@ local Style = require("UI/Style/Style")
 local ColorPicker = require("UI/Widgets/ColorPicker/ColorPicker")
 
 local Buttons = {}
-local ActiveTextRef = nil
-local TextBuffer = ""
-local PreviousMouseEnabled = false
-local ColorMetadata = setmetatable({}, { __mode = "k" })
+local s_ActiveTextRef = nil
+local s_TextBuffer = ""
+local s_PreviousMouseEnabled = false
+local s_ColorMetadata = setmetatable({}, { __mode = "k" })
 
 local function Id(label, ref, suffix)
     local registered = type(ref) == "table" and OptionRegistry.FindByRef(ref) or nil
     if registered then return registered.Id .. "##" .. (suffix or "option") end
-    return table.concat({ tostring(label or "option"), tostring(ref or ""), suffix or "" }, "##")
+    local refKey = type(ref) == "table" and tostring(ref) or ""
+    return table.concat({ tostring(label or "option"), refKey, suffix or "" }, "##")
 end
 
 local function Translate(value)
     return type(L) == "function" and L(value) or tostring(value or "")
-end
-
-local function NormalizeSubmenu(submenu)
-    if not submenu then return nil end
-    if submenu.Title and submenu.View then return submenu end
-    if not submenu._ConsolidatedSubmenu then
-        submenu._ConsolidatedSubmenu = Submenu.Create(submenu.title or "", submenu.view)
-    end
-    return submenu._ConsolidatedSubmenu
 end
 
 function Buttons.Option(label, tip, action)
@@ -58,11 +50,10 @@ function Buttons.Break(left, center, right)
 end
 
 function Buttons.Submenu(label, submenu, tip, action)
-    local target = NormalizeSubmenu(submenu)
     local activated, data = Button.Draw(label, tip, ">", Id(label, submenu, "submenu"))
     if activated then
         if action then action() end
-        if target then Submenu.Open(target, Navigation) end
+        if submenu then Submenu.Open(submenu, Navigation) end
     end
     return activated, data
 end
@@ -202,9 +193,9 @@ function Buttons.Bind(label, action, tip)
 end
 
 function Buttons.ColorHex(label, tbl, key, tip)
-    ColorMetadata[tbl] = ColorMetadata[tbl] or {}
-    ColorMetadata[tbl][key] = ColorMetadata[tbl][key] or {}
-    local ref = ColorMetadata[tbl][key]
+    s_ColorMetadata[tbl] = s_ColorMetadata[tbl] or {}
+    s_ColorMetadata[tbl][key] = s_ColorMetadata[tbl][key] or {}
+    local ref = s_ColorMetadata[tbl][key]
     local ownerId = Id(label, ref, "color")
     if not ColorPicker.IsOwner(ownerId) then
         local color = ImGui.ColorConvertU32ToFloat4(tbl[key])
@@ -222,13 +213,13 @@ end
 function Buttons.Text(label, ref, tip, action)
     local activated = Button.Draw(label, tip, ref.value or "", Id(label, ref, "text"))
     if activated then
-        ActiveTextRef = ref
-        TextBuffer = ref.value or ""
-        PreviousMouseEnabled = ControlState.mouseEnabled
-        ControlState.typingEnabled = true
-        ControlState.mouseEnabled = true
+        s_ActiveTextRef = ref
+        s_TextBuffer = ref.value or ""
+        s_PreviousMouseEnabled = ControlState.MouseEnabled
+        ControlState.TypingEnabled = true
+        ControlState.MouseEnabled = true
     end
-    if ActiveTextRef ~= ref then return false end
+    if s_ActiveTextRef ~= ref then return false end
 
     local width, height = 440, 150
     local screenWidth, screenHeight = GetDisplayResolution()
@@ -250,24 +241,24 @@ function Buttons.Text(label, ref, tip, action)
     ImGui.TextColored(accent[1], accent[2], accent[3], accent[4], label)
     ImGui.Spacing()
     ImGui.PushItemWidth(-1)
-    local value, edited = ImGui.InputText("##Value", TextBuffer, 256)
+    local value, edited = ImGui.InputText("##Value", s_TextBuffer, 256)
     ImGui.PopItemWidth()
-    if edited then TextBuffer = value end
+    if edited then s_TextBuffer = value end
     ImGui.Spacing()
     local committed = false
     if ImGui.Button("Apply", 92, 28) then
-        ref.value = TextBuffer
-        ActiveTextRef = nil
-        ControlState.typingEnabled = false
-        ControlState.mouseEnabled = PreviousMouseEnabled
+        ref.value = s_TextBuffer
+        s_ActiveTextRef = nil
+        ControlState.TypingEnabled = false
+        ControlState.MouseEnabled = s_PreviousMouseEnabled
         committed = true
         if action then action(ref.value) end
     end
     ImGui.SameLine()
     if ImGui.Button("Cancel", 92, 28) then
-        ActiveTextRef = nil
-        ControlState.typingEnabled = false
-        ControlState.mouseEnabled = PreviousMouseEnabled
+        s_ActiveTextRef = nil
+        ControlState.TypingEnabled = false
+        ControlState.MouseEnabled = s_PreviousMouseEnabled
     end
     ImGui.End()
     ImGui.PopStyleColor(5)

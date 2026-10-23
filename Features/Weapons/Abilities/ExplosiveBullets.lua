@@ -2,27 +2,29 @@ local Weapon = require("Utils/Weapon")
 local Explosion = require("Utils/Explosion")
 
 local ExplosiveBullets = {}
-local cooldown = 0.1
-local lastExplosionTime = -1
 
-ExplosiveBullets.enabled = { value = false }
+ExplosiveBullets.Enabled = { value = false }
+
+local COOLDOWN = 0.1
+local ATTACK = "Attacks.LegendaryFragGrenade"
+
+local s_LastExplosion = -1
 
 function ExplosiveBullets.Tick()
-    if not ExplosiveBullets.enabled.value then return end
-    if not Weapon.IsShootingRanged() then return end
+    if not ExplosiveBullets.Enabled.value or not Weapon.IsShootingRanged() then return end
 
-    local currentTime = os.clock()
-    if currentTime - lastExplosionTime < cooldown then return end
+    local now = os.clock()
+    if now - s_LastExplosion < COOLDOWN then return end
 
     local player = Game.GetPlayer()
     local targeting = Game.GetTargetingSystem()
-    if not (player and targeting) then return end
+    if not player or not targeting then return end
+
     local lookAt = targeting:GetLookAtPosition(player, true, false)
     if not lookAt then return end
 
-    if Explosion.SpawnAtPos(lookAt, "Attacks.LegendaryFragGrenade", player, player,
-        player:GetActiveWeapon(), 3.0) then
-        lastExplosionTime = currentTime
+    if Explosion.SpawnAtPos(lookAt, ATTACK, player, player, player:GetActiveWeapon(), 3.0) then
+        s_LastExplosion = now
     end
 end
 

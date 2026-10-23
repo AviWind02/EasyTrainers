@@ -1,29 +1,37 @@
-local StatusEffect = require("Utils").StatusEffect
+local StatusEffect = require("Utils/StatusEffect")
+local Lifecycle = require("Core/Lifecycle")
 
 local Invisibility = {}
 
-Invisibility.enabled = { value = false }
+Invisibility.Enabled = { value = false }
 
-local wasApplied = false
+local EFFECT = "BaseStatusEffect.Cloaked"
+local OWNER = "Invisibility"
 
+local s_Applied = false
+
+local function SetInvisible(enabled)
+    local player = Game.GetPlayer()
+    if not player then return false end
+
+    StatusEffect.Set(EFFECT, enabled, OWNER)
+    player:SetInvisible(enabled)
+    player:UpdateVisibility()
+    return true
+end
 
 function Invisibility.Tick()
-    local player = Game.GetPlayer()
-    local statusSystem = Game.GetStatusEffectSystem()
-
-    if Invisibility.enabled.value then
-        if not wasApplied then
-            StatusEffect.Set("BaseStatusEffect.Cloaked", true)
-            player:SetInvisible(true)
-            player:UpdateVisibility()
-            wasApplied = true
-        end
-    elseif wasApplied then
-        StatusEffect.Set("BaseStatusEffect.Cloaked", false)
-        player:SetInvisible(false)
-        player:UpdateVisibility()
-        wasApplied = false
-    end
+    local enabled = Invisibility.Enabled.value
+    if enabled == s_Applied then return end
+    if SetInvisible(enabled) then s_Applied = enabled end
 end
+
+Lifecycle.Register("Invisibility", {
+    OnSessionEnd = function() s_Applied = false end,
+    OnShutdown = function()
+        if s_Applied then SetInvisible(false) end
+        s_Applied = false
+    end
+})
 
 return Invisibility

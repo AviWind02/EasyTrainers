@@ -2,7 +2,7 @@ local Vehicle = require("Utils/Vehicle")
 
 local VehicleLights = {}
 
-local lightTypes = {
+local LIGHT_TYPES = {
     vehicleELightType.Head,
     vehicleELightType.Brake,
     vehicleELightType.LeftBlinker,
@@ -14,68 +14,53 @@ local lightTypes = {
     vehicleELightType.Blinkers
 }
 
-function VehicleLights.SetLightColor(lightType, color)
+local function WithController(callback)
     local controller = Vehicle.GetController()
-    if not controller then return end
-    controller:SetLightColor(lightType, color, 0.0)
+    if controller then callback(controller) end
+end
+
+function VehicleLights.SetLightColor(lightType, color)
+    WithController(function(controller) controller:SetLightColor(lightType, color, 0.0) end)
 end
 
 function VehicleLights.SetAllLightsColor(color)
-    local controller = Vehicle.GetController()
-    if not controller then return end
-    for _, lightType in ipairs(lightTypes) do
-        controller:SetLightColor(lightType, color, 0.0)
-    end
+    WithController(function(controller)
+        for _, lightType in ipairs(LIGHT_TYPES) do controller:SetLightColor(lightType, color, 0.0) end
+    end)
 end
 
 function VehicleLights.SetLightParameters(lightType, strength, color)
-    local controller = Vehicle.GetController()
-    if not controller then return end
-    controller:SetLightParameters(lightType, strength, color, 0.0)
+    WithController(function(controller) controller:SetLightParameters(lightType, strength, color, 0.0) end)
 end
 
 function VehicleLights.SetLightStrength(lightType, strength)
-    local controller = Vehicle.GetController()
-    if not controller then return end
-    controller:SetLightStrength(lightType, strength, 0.0)
+    WithController(function(controller) controller:SetLightStrength(lightType, strength, 0.0) end)
 end
 
 function VehicleLights.ResetLightColor(lightType)
-    local controller = Vehicle.GetController()
-    if not controller then return end
-    controller:ResetLightColor(lightType, 0.0)
+    WithController(function(controller) controller:ResetLightColor(lightType, 0.0) end)
 end
 
 function VehicleLights.ResetLightParameters(lightType)
-    local controller = Vehicle.GetController()
-    if not controller then return end
-    controller:ResetLightParameters(lightType, 0.0)
+    WithController(function(controller) controller:ResetLightParameters(lightType, 0.0) end)
 end
 
 function VehicleLights.ResetLightStrength(lightType)
-    local controller = Vehicle.GetController()
-    if not controller then return end
-    controller:ResetLightStrength(lightType, 0.0)
+    WithController(function(controller) controller:ResetLightStrength(lightType, 0.0) end)
 end
 
 function VehicleLights.ToggleLights(on, lightType)
-    local controller = Vehicle.GetController()
-    if not controller then return end
-    controller:ToggleLights(on, lightType or nil, 0.0, "", false)
+    WithController(function(controller) controller:ToggleLights(on, lightType, 0.0, "", false) end)
 end
 
 function VehicleLights.DisableAllLights()
-    VehicleLights.SetAllLightsColor(Color.new({
-        Red = 0, Green = 0, Blue = 0, Alpha = 255
-    }))
+    VehicleLights.SetAllLightsColor(Color.new({ Red = 0, Green = 0, Blue = 0, Alpha = 255 }))
 end
 
 function VehicleLights.ResetAllLightColors()
-    local controller = Vehicle.GetController()
-    if not controller then return end
-    for _, lightType in ipairs(lightTypes) do
-        controller:ResetLightColor(lightType, 0.0)
-    end
+    WithController(function(controller)
+        for _, lightType in ipairs(LIGHT_TYPES) do controller:ResetLightColor(lightType, 0.0) end
+    end)
 end
 
 return VehicleLights

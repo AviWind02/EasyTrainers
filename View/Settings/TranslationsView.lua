@@ -1,75 +1,58 @@
-local Buttons = require("UI").Buttons
+local Buttons = require("UI/Options/Buttons")
+local Submenu = require("UI/Navigation/Submenu")
+local Notification = require("UI/Panels/Notification/Notification")
 local JsonHelper = require("Core/JsonHelper")
 local Language = require("Core/Language")
-local Notification = require("UI").Notification
 
-local configPath = "Config/JSON/Settings.json"
-local langFolder = "lang" -- Leaving this here so other authors don't have to adjust their language pack 
+local SETTINGS_PATH = "Config/JSON/Settings.json"
+local LANGUAGE_FOLDER = "lang"
 
-local config
-local availableLangs = {}
-local languageRadio = { index = 1 }
-local languageOptions = {}
-local initialized = false 
+local s_Settings = nil
+local s_Languages = nil
+local s_Names = {}
+local s_Selected = { index = 1 }
 
-local function LoadAvailableLanguages()
-    availableLangs = Language.GetAvailable(langFolder)
-    languageOptions = {}
-    config = JsonHelper.LoadOrCreate(configPath, { shown = false, Lang = "en" }) or { Lang = "en" }
-    local selectedLangIndex = 1
-    local currentCode = config.Lang or Language.GetCurrentCode()
+local function LoadLanguages()
+    s_Languages = Language.GetAvailable(LANGUAGE_FOLDER)
+    s_Settings = JsonHelper.LoadOrCreate(SETTINGS_PATH, { shown = false, Lang = "en" }) or { Lang = "en" }
+    s_Names = {}
 
-    for index, language in ipairs(availableLangs) do
-        table.insert(languageOptions, language.name)
-        if language.code == currentCode then
-            selectedLangIndex = index
-        end
+    local current = s_Settings.Lang or Language.GetCurrentCode()
+    s_Selected.index = 1
+    for index, language in ipairs(s_Languages) do
+        table.insert(s_Names, language.name)
+        if language.code == current then s_Selected.index = index end
     end
-
-    languageRadio.index = selectedLangIndex
 end
 
-local function SetLanguage(language)
+local function SetLanguage(index)
+    local language = s_Languages[index]
     if not language or not Language.Load(language.code) then
         Notification.Error(L("languagemenu.loadfailed"))
         return
     end
 
-    config.Lang = language.code
-    local saved = JsonHelper.Write(configPath, config)
-    if not saved then
+    s_Settings.Lang = language.code
+    if not JsonHelper.Write(SETTINGS_PATH, s_Settings) then
         Notification.Warning(L("languagemenu.savefailed"))
         return
     end
 
-    local loadMessage = Language.Get("loadmessage")
-    if loadMessage ~= "" then
-        Notification.Success(loadMessage)
-    end
+    local message = Language.Get("loadmessage")
+    if message ~= "" and message ~= "loadmessage" then Notification.Success(message) end
 end
 
-local function LanguageMenuView()
-    if not initialized then
-        LoadAvailableLanguages()
-        initialized = true
+local function TranslationsView()
+    if not s_Languages then LoadLanguages() end
+
+    Buttons.Option(L("languagemenu.reload.label"), L("languagemenu.reload.tip"), LoadLanguages)
+    Buttons.OptionExtended(L("languagemenu.current"), "", Language.GetCurrentName(), L("languagemenu.tip"))
+    if #s_Languages <= 1 then
+        Buttons.OptionExtended(L("languagemenu.onlyone"), "", "", L("languagemenu.tip"))
     end
 
-    Buttons.Option(L("languagemenu.reload.label"), L("languagemenu.reload.tip"), function()
-        LoadAvailableLanguages()
-    end)
-
-    Buttons.Break(L("languagemenu.tip"))
-    Buttons.Break(L("languagemenu.current") .. ": " .. Language.GetCurrentName())
-    if #availableLangs <= 1 then
-        Buttons.Break(L("languagemenu.onlyone"))
-    end
-
-    Buttons.Radio("", languageRadio, languageOptions, "", function()
-        SetLanguage(availableLangs[languageRadio.index])
-    end)
+    Buttons.Break(L("languagemenu.title"))
+    Buttons.Radio("", s_Selected, s_Names, L("languagemenu.tip"), SetLanguage)
 end
 
-return {
-    title = "languagemenu.title",
-    view = LanguageMenuView
-}
+return Submenu.Create("languagemenu.title", TranslationsView)
